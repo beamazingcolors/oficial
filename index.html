@@ -228,7 +228,7 @@
                                 La joya indiscutible de la Península de Yucatán. Un lugar donde la selva esmeralda abraza el mar turquesa y el tiempo parece detenerse. Cancún ofrece un contraste perfecto entre la herencia milenaria de la civilización maya y el lujo contemporáneo más sofisticado.
                             </p>
                             <p class="text-gray-300 font-medium text-lg italic border-l-2 border-brand-orange pl-4">
-                                "Permítete dejar el mundo atrás. El Caribe Mexicano está listo para redefinir tu concepto de libertad."
+                                "Permítete dejar el mundo atrás. El Caribe Mexicano está listo para redefinir tu concept de libertad."
                             </p>
                         </div>
                         <div class="relative h-[60vh] w-full reveal-curtain">
@@ -574,7 +574,7 @@
         let isMobileMenuOpen = false;
         let isMobileSubmenuOpen = false;
 
-        // SISTEMA GLOBAL DE SEGUIMIENTO Y RESOLUCIÓN DINÁMICA DE EXTENSIONES
+        // SISTEMA GLOBAL DE SEGUIMIENTO Y RESOLUCIÓN DINÁMICA DE EXTENSIONES (SIN PREFIJOS INTERNOS DE ACTIVIDADES)
         function handleImgError(img, fallbackCategory = 'general') {
             if (img.dataset.ultimateFailed) {
                 img.src = 'logo.png';
@@ -586,7 +586,7 @@
 
             const currentSrc = img.src;
 
-            // Si es un recurso interno dentro de la raíz o carpeta actividades/
+            // Si es un recurso interno dentro de la raíz (donde se encuentran tus archivos subidos)
             if (!currentSrc.includes('unsplash.com') && !currentSrc.includes('logo.png') && !currentSrc.includes('font-awesome')) {
                 const lastSlash = currentSrc.lastIndexOf('/');
                 const filenameWithExt = currentSrc.substring(lastSlash + 1);
@@ -624,7 +624,7 @@
             img.style.objectFit = 'cover';
         }
 
-        // DATOS DE RESPALDO (FALLBACK) EXCLUSIVOS
+        // DATOS DE RESPALDO (FALLBACK) EXCLUSIVOS (SIN LA RUTA actividades/)
         const FALLBACK_DATA = [
             {
                 titulo: "Chichén Itzá Privado",
@@ -758,7 +758,7 @@
             return data;
         }
 
-        // MAPER ADAPTATIVO DE ENTRADAS CON ENFOQUE EN LA COLUMNA 'CATALOGO'
+        // MAPER ADAPTATIVO DE ENTRADAS CON ENFOQUE EN LA COLUMNA 'CATALOGO' (Y SIN PREFIJOS actividades/)
         function mapActivity(item) {
             const findValue = (keywords) => {
                 const key = Object.keys(item).find(k => keywords.some(kw => k.includes(kw)));
@@ -772,7 +772,7 @@
             // BUSCAMOS ESPECÍFICAMENTE LA COLUMNA 'catalogo' O 'codigo' DE TU HOJA DE GOOGLE SHEETS
             const catalogo = findValue(['catalo', 'cod', 'id']) || item.catalogo || item.codigo || item.code || '';
             
-            // Sincronización directa con tu raíz sin carpetas previas
+            // Sincronización directa con tu raíz sin carpetas previas (ej. AMP.png, la cual handleImgError probará como AMP.jpg)
             let imagen = '';
             if (catalogo) {
                 imagen = `${catalogo}.png`;
