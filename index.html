@@ -6,12 +6,12 @@
     <title>Amazing Colors Private Tours | Exclusividad en el Caribe</title>
     <meta name="description" content="Tours privados en Cancún y la Riviera Maya. Experiencias de lujo diseñadas a medida, sin multitudes y 100% privadas.">
     
-    <!-- Etiquetas Open Graph para compartir en WhatsApp/Facebook -->
-    <meta property="og:title" content="Amazing Colors Private Tours">
-    <meta property="og:description" content="Descubre el Caribe a tu manera. Experiencias y Yates Privados en Cancún y Riviera Maya.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1596484552993-39d0901e6a10?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:image" content="logo.png">
     <meta property="og:url" content="https://beamazingcolors.github.io/oficial/">
     <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" href="logo.png" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -132,21 +132,13 @@
 </head>
 <body class="font-sans bg-brand-navy text-slate-800 antialiased overflow-x-hidden selection:bg-brand-cyan selection:text-white">
 
-    <!-- Redes Sociales Flotantes (Desktop) -->
-    <div class="fixed left-6 top-1/2 transform -translate-y-1/2 z-40 hidden lg:flex flex-col gap-6 items-center mix-blend-difference text-white">
-        <a href="#" onclick="trackConversion('Click_Social', {network: 'Instagram'})" class="hover:text-brand-orange transition-colors hover:-translate-y-1 duration-300"><i class="fab fa-instagram text-xl"></i></a>
-        <a href="#" onclick="trackConversion('Click_Social', {network: 'Facebook'})" class="hover:text-brand-orange transition-colors hover:-translate-y-1 duration-300"><i class="fab fa-facebook-f text-xl"></i></a>
-        <a href="#" onclick="openWhatsApp('Hola')" class="hover:text-brand-orange transition-colors hover:-translate-y-1 duration-300"><i class="fab fa-whatsapp text-xl"></i></a>
-        <div class="w-[1px] h-16 bg-gradient-to-b from-white/50 to-transparent mt-2"></div>
-    </div>
-
     <!-- Navegación Principal -->
     <nav id="main-nav" class="fixed w-full z-50 transition-all duration-500 bg-transparent py-6">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 relative flex justify-between items-center">
             <!-- Logo -->
             <div class="flex-shrink-0 z-50">
-                <button onclick="navigateTo('home')" class="font-display font-black text-2xl tracking-tighter text-white transition-colors duration-300 drop-shadow-md">
-                    AMAZING<span class="text-brand-cyan">COLORS</span>
+                <button onclick="navigateTo('home')" class="transition-transform hover:scale-105 duration-300 drop-shadow-md">
+                    <img src="logo.png" alt="Amazing Colors Logo" class="h-10 md:h-12 w-auto">
                 </button>
             </div>
             
@@ -199,7 +191,7 @@
             <!-- CONTENEDOR HERO - CORRECCIÓN DE OVERFLOW SAFARI -->
             <div class="relative h-[120vh] w-full overflow-hidden" style="clip-path: inset(0); contain: paint;">
                 <div class="absolute inset-0 z-0 h-[150vh] parallax-bg -top-[20vh]">
-                    <img src="https://images.unsplash.com/photo-1596484552993-39d0901e6a10?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Bacalar Aéreo" class="w-full h-full object-cover opacity-70" fetchpriority="high">
+                    <img src="actividades/hero-fondo.jpg" alt="Fondo Aéreo" class="w-full h-full object-cover opacity-70" fetchpriority="high">
                     <div class="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/30 to-brand-navy"></div>
                 </div>
                 
@@ -235,7 +227,7 @@
                             </p>
                         </div>
                         <div class="relative h-[60vh] w-full reveal-curtain">
-                            <img src="https://images.unsplash.com/photo-1552074284-5e88ef1aef18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Playas de Cancún" loading="lazy" class="w-full h-full object-cover">
+                            <img src="actividades/inicio-playas.jpg" alt="Playas de Cancún" loading="lazy" class="w-full h-full object-cover">
                             <div class="absolute inset-0 border-4 border-brand-navy/20 m-6 pointer-events-none"></div>
                         </div>
                     </div>
@@ -293,22 +285,22 @@
                         <!-- SET 1 -->
                         <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
-                                <img src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cenotes" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-cenotes.jpg" alt="Cenotes" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Cenotes Privados</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
-                                <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Yates" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-yates.jpg" alt="Yates" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Yates de Lujo</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
-                                <img src="https://images.unsplash.com/photo-1518182170546-076616fdcbdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Arqueología" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-arqueologia.jpg" alt="Arqueología" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Sitios Arqueológicos</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
-                                <img src="https://images.unsplash.com/photo-1552074284-5e88ef1aef18?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Playas" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-playas.jpg" alt="Playas" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Playas Exclusivas</h4>
                             </div>
@@ -316,22 +308,22 @@
                         <!-- SET 2 (Clon para efecto infinito) -->
                         <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
-                                <img src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cenotes" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-cenotes.jpg" alt="Cenotes" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Cenotes Privados</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
-                                <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Yates" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-yates.jpg" alt="Yates" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Yates de Lujo</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
-                                <img src="https://images.unsplash.com/photo-1518182170546-076616fdcbdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Arqueología" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-arqueologia.jpg" alt="Arqueología" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Sitios Arqueológicos</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
-                                <img src="https://images.unsplash.com/photo-1552074284-5e88ef1aef18?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Playas" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-playas.jpg" alt="Playas" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Playas Exclusivas</h4>
                             </div>
@@ -361,7 +353,7 @@
                     </div>
 
                     <div class="relative h-[70vh] w-full reveal-curtain">
-                        <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Yate" loading="lazy" class="w-full h-full object-cover">
+                        <img src="actividades/legado-yate.jpg" alt="Yate" loading="lazy" class="w-full h-full object-cover">
                         <div class="absolute inset-0 border-8 border-brand-navy/50 m-4 pointer-events-none"></div>
                     </div>
                 </div>
@@ -387,7 +379,7 @@
                     <div class="stack-card bg-brand-navy border border-white/5 rounded-none shadow-[0_30px_50px_rgba(0,0,0,0.5)] overflow-hidden cursor-pointer group" onclick="openWhatsApp('Cotizar Chichén Itzá')">
                         <div class="grid md:grid-cols-2 h-auto md:h-[65vh]">
                             <div class="relative overflow-hidden h-[40vh] md:h-full">
-                                <img src="https://images.unsplash.com/photo-1601053075253-33bc212c449c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Chichen Itza" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out">
+                                <img src="actividades/tour-chichen.jpg" alt="Chichen Itza" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out">
                                 <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-transparent transition-colors duration-700"></div>
                             </div>
                             <div class="p-10 md:p-16 flex flex-col justify-center bg-brand-navy relative">
@@ -416,7 +408,7 @@
                                 </div>
                             </div>
                             <div class="relative overflow-hidden h-[40vh] md:h-full order-1 md:order-2">
-                                <img src="https://images.unsplash.com/photo-1620617056627-c102bd53bbd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Bacalar" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out">
+                                <img src="actividades/tour-bacalar.jpg" alt="Bacalar" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out">
                                 <div class="absolute inset-0 bg-[#0D1627]/20 group-hover:bg-transparent transition-colors duration-700"></div>
                             </div>
                         </div>
@@ -442,7 +434,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-up">
                     <article class="bg-white shadow-xl group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
                         <div class="h-64 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Agua" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <img src="actividades/insider-bacalar.jpg" alt="Agua" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         </div>
                         <div class="p-8">
                             <span class="text-brand-cyan text-xs font-bold uppercase tracking-widest mb-2 block">Fotografía</span>
@@ -454,7 +446,7 @@
                     
                     <article class="bg-white shadow-xl group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
                         <div class="h-64 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1512813389649-acb9131ced20?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Isla Mujeres" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <img src="actividades/insider-isla-mujeres.jpg" alt="Isla Mujeres" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         </div>
                         <div class="p-8">
                             <span class="text-brand-cyan text-xs font-bold uppercase tracking-widest mb-2 block">Logística</span>
@@ -466,7 +458,7 @@
 
                     <article class="bg-white shadow-xl group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
                         <div class="h-64 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1518182170546-076616fdcbdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chichen" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <img src="actividades/insider-chichen.jpg" alt="Chichen" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         </div>
                         <div class="p-8">
                             <span class="text-brand-cyan text-xs font-bold uppercase tracking-widest mb-2 block">Cultura</span>
@@ -537,8 +529,8 @@
                 
                 <!-- Columna 1 -->
                 <div class="lg:col-span-2">
-                    <button onclick="navigateTo('home')" class="font-display font-black text-2xl tracking-tighter text-white mb-6 text-left hover:opacity-80 transition-opacity">
-                        AMAZING<span class="text-brand-cyan">COLORS</span>
+                    <button onclick="navigateTo('home')" class="mb-6 block text-left hover:opacity-80 transition-opacity">
+                        <img src="logo.png" alt="Amazing Colors Logo" class="h-10 w-auto">
                     </button>
                     <p class="text-gray-400 font-light text-sm leading-relaxed max-w-sm mb-8">
                         Redefiniendo el viaje en el Caribe Mexicano. Experiencias exclusivas, sin multitudes y diseñadas meticulosamente a tu medida.
