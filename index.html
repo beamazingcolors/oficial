@@ -196,7 +196,7 @@
             <!-- CONTENEDOR HERO -->
             <div class="relative h-[120vh] w-full overflow-hidden" style="clip-path: inset(0); contain: paint;">
                 <div class="absolute inset-0 z-0 h-[150vh] parallax-bg -top-[20vh]">
-                    <img id="hero-bg-img" src="actividades/hero-fondo.jpg" alt="Fondo Aéreo" class="w-full h-full object-cover opacity-70" fetchpriority="high">
+                    <img id="hero-bg-img" src="actividades/hero-fondo.jpg" alt="Fondo Aéreo" class="w-full h-full object-cover opacity-70 animate-fade" fetchpriority="high" onerror="this.src='logo.png'; this.style.width='auto'; this.style.height='180px'; this.style.objectFit='contain'; this.style.position='absolute'; this.style.top='50%'; this.style.left='50%'; this.style.transform='translate(-50%, -50%)'; this.style.opacity='0.15';">
                     <div class="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/30 to-brand-navy"></div>
                 </div>
                 
@@ -748,15 +748,44 @@
 
             // 1. Fondo de la cabecera (Hero)
             const heroImg = document.getElementById('hero-bg-img');
-            if (heroImg) heroImg.src = getRandomImage();
+            if (heroImg) {
+                heroImg.src = getRandomImage();
+                heroImg.onerror = function() {
+                    this.src = 'logo.png';
+                    this.style.width = 'auto';
+                    this.style.height = '180px';
+                    this.style.objectFit = 'contain';
+                    this.style.position = 'absolute';
+                    this.style.top = '50%';
+                    this.style.left = '50%';
+                    this.style.transform = 'translate(-50%, -50%)';
+                    this.style.opacity = '0.15';
+                };
+            }
 
             // 2. Playas de Cancún (Inicio)
             const inicioPlayasImg = document.getElementById('inicio-playas-img');
-            if (inicioPlayasImg) inicioPlayasImg.src = getRandomImage();
+            if (inicioPlayasImg) {
+                inicioPlayasImg.src = getRandomImage();
+                inicioPlayasImg.onerror = function() {
+                    this.src = 'logo.png';
+                    this.style.objectFit = 'contain';
+                    this.style.padding = '3rem';
+                    this.style.backgroundColor = '#0E1726';
+                };
+            }
 
             // 3. Imagen del Legado (Nosotros)
             const legadoYateImg = document.getElementById('legado-yate-img');
-            if (legadoYateImg) legadoYateImg.src = getRandomImage();
+            if (legadoYateImg) {
+                legadoYateImg.src = getRandomImage();
+                legadoYateImg.onerror = function() {
+                    this.src = 'logo.png';
+                    this.style.objectFit = 'contain';
+                    this.style.padding = '3rem';
+                    this.style.backgroundColor = '#0E1726';
+                };
+            }
 
             // 4. Imágenes del carrusel infinito (Set completo de 4 + sus clones)
             const carouselImgs = [
@@ -768,12 +797,24 @@
             const allCarouselDOMElements = document.querySelectorAll('.animate-infinite-scroll img');
             allCarouselDOMElements.forEach((img, idx) => {
                 img.src = carouselImgs[idx % 4];
+                img.onerror = function() {
+                    this.src = 'logo.png';
+                    this.style.objectFit = 'contain';
+                    this.style.padding = '1.5rem';
+                    this.style.backgroundColor = '#0E1726';
+                };
             });
 
             // 5. Portadas de los artículos del Insider
             const insiderDOMElements = document.querySelectorAll('#page-insider article img');
             insiderDOMElements.forEach(img => {
                 img.src = getRandomImage();
+                img.onerror = function() {
+                    this.src = 'logo.png';
+                    this.style.objectFit = 'contain';
+                    this.style.padding = '2rem';
+                    this.style.backgroundColor = '#0E1726';
+                };
             });
         }
 
