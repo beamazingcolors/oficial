@@ -123,7 +123,7 @@
             <!-- Logo y Nombre (Redirige a Inicio) -->
             <div class="flex-shrink-0 z-50">
                 <button onclick="navigateTo('home')" class="transition-transform hover:scale-105 duration-300 drop-shadow-md flex items-center gap-3">
-                    <img src="logo.png" alt="Amazing Colors Logo" class="h-10 md:h-12 w-auto">
+                    <img src="logo.png" alt="Amazing Colors Logo" class="h-10 md:h-12 w-auto" onerror="this.style.display='none'">
                     <span class="font-display font-black text-xl tracking-tighter text-white">AMAZING<span class="text-brand-cyan">COLORS</span></span>
                 </button>
             </div>
@@ -196,7 +196,7 @@
             <!-- CONTENEDOR HERO -->
             <div class="relative h-[120vh] w-full overflow-hidden" style="clip-path: inset(0); contain: paint;">
                 <div class="absolute inset-0 z-0 h-[150vh] parallax-bg -top-[20vh]">
-                    <img id="hero-bg-img" src="actividades/hero-fondo.jpg" alt="Fondo Aéreo" class="w-full h-full object-cover opacity-70 animate-fade" fetchpriority="high" onerror="this.src='logo.png'; this.style.width='auto'; this.style.height='180px'; this.style.objectFit='contain'; this.style.position='absolute'; this.style.top='50%'; this.style.left='50%'; this.style.transform='translate(-50%, -50%)'; this.style.opacity='0.15';">
+                    <img id="hero-bg-img" src="actividades/hero-fondo.jpg" alt="Fondo Aéreo" class="w-full h-full object-cover opacity-70" fetchpriority="high" onerror="handleImgError(this, 'general')">
                     <div class="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/30 to-brand-navy"></div>
                 </div>
                 
@@ -232,7 +232,7 @@
                             </p>
                         </div>
                         <div class="relative h-[60vh] w-full reveal-curtain">
-                            <img id="inicio-playas-img" src="actividades/inicio-playas.jpg" alt="Playas de Cancún" loading="lazy" class="w-full h-full object-cover">
+                            <img id="inicio-playas-img" src="actividades/inicio-playas.jpg" alt="Playas de Cancún" loading="lazy" class="w-full h-full object-cover" onerror="handleImgError(this, 'playas')">
                             <div class="absolute inset-0 border-4 border-brand-navy/20 m-6 pointer-events-none"></div>
                         </div>
                     </div>
@@ -289,22 +289,22 @@
                         <!-- SET 1 -->
                         <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'tours')">
-                                <img src="actividades/carrusel-cenotes.jpg" alt="Cenotes" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-cenotes.jpg" alt="Cenotes" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'cenotes')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Cenotes Privados</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'yates')">
-                                <img src="actividades/carrusel-yates.jpg" alt="Yates" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-yates.jpg" alt="Yates" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Yates de Lujo</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'tours')">
-                                <img src="actividades/carrusel-arqueologia.jpg" alt="Arqueología" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-arqueologia.jpg" alt="Arqueología" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Sitios Arqueológicos</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'transportacion')">
-                                <img src="actividades/carrusel-playas.jpg" alt="Playas" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-playas.jpg" alt="Playas" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Playas Exclusivas</h4>
                             </div>
@@ -312,22 +312,22 @@
                         <!-- SET 2 (Clon) -->
                         <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'tours')">
-                                <img src="actividades/carrusel-cenotes.jpg" alt="Cenotes" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-cenotes.jpg" alt="Cenotes" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'cenotes')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Cenotes Privados</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'yates')">
-                                <img src="actividades/carrusel-yates.jpg" alt="Yates" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-yates.jpg" alt="Yates" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Yates de Lujo</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'tours')">
-                                <img src="actividades/carrusel-arqueologia.jpg" alt="Arqueología" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-arqueologia.jpg" alt="Arqueología" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Sitios Arqueológicos</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'transportacion')">
-                                <img src="actividades/carrusel-playas.jpg" alt="Playas" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="actividades/carrusel-playas.jpg" alt="Playas" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Playas Exclusivas</h4>
                             </div>
@@ -357,7 +357,7 @@
                     </div>
 
                     <div class="relative h-[70vh] w-full reveal-curtain">
-                        <img id="legado-yate-img" src="actividades/legado-yate.jpg" alt="Yate" loading="lazy" class="w-full h-full object-cover">
+                        <img id="legado-yate-img" src="actividades/legado-yate.jpg" alt="Yate" loading="lazy" class="w-full h-full object-cover" onerror="handleImgError(this, 'yates')">
                         <div class="absolute inset-0 border-8 border-brand-navy/50 m-4 pointer-events-none"></div>
                     </div>
                 </div>
@@ -404,7 +404,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-up">
                     <article class="bg-white shadow-xl group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
                         <div class="h-64 overflow-hidden relative">
-                            <img src="actividades/insider-bacalar.jpg" alt="Agua" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <img src="actividades/insider-bacalar.jpg" alt="Agua" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
                         </div>
                         <div class="p-8">
                             <span class="text-brand-cyan text-xs font-bold uppercase tracking-widest mb-2 block">Fotografía</span>
@@ -416,7 +416,7 @@
                     
                     <article class="bg-white shadow-xl group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
                         <div class="h-64 overflow-hidden relative">
-                            <img src="actividades/insider-isla-mujeres.jpg" alt="Isla Mujeres" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <img src="actividades/insider-isla-mujeres.jpg" alt="Isla Mujeres" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
                         </div>
                         <div class="p-8">
                             <span class="text-brand-cyan text-xs font-bold uppercase tracking-widest mb-2 block">Logística</span>
@@ -428,7 +428,7 @@
 
                     <article class="bg-white shadow-xl group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
                         <div class="h-64 overflow-hidden relative">
-                            <img src="actividades/insider-chichen.jpg" alt="Chichen" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <img src="actividades/insider-chichen.jpg" alt="Chichen" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
                         </div>
                         <div class="p-8">
                             <span class="text-brand-cyan text-xs font-bold uppercase tracking-widest mb-2 block">Cultura</span>
@@ -513,7 +513,7 @@
                 <!-- Columna 1 -->
                 <div class="lg:col-span-2">
                     <button onclick="navigateTo('home')" class="mb-6 block text-left hover:opacity-80 transition-opacity">
-                        <img src="logo.png" alt="Amazing Colors Logo" class="h-10 w-auto">
+                        <img src="logo.png" alt="Amazing Colors Logo" class="h-10 w-auto" onerror="this.style.display='none'">
                     </button>
                     <p class="text-gray-400 font-light text-sm leading-relaxed max-w-sm mb-8">
                         Redefiniendo el viaje en el Caribe Mexicano. Experiencias exclusivas y diseñadas meticulosamente a tu medida.
@@ -574,6 +574,33 @@
         let isMobileMenuOpen = false;
         let isMobileSubmenuOpen = false;
 
+        // SISTEMA RESILIENTE GLOBAL DE CONTROL DE ERRORES DE IMAGEN
+        function handleImgError(img, fallbackCategory = 'general') {
+            // Evitar bucle infinito si falla el fallback
+            if (img.dataset.failed) {
+                img.src = 'logo.png';
+                img.style.objectFit = 'contain';
+                img.style.padding = '2rem';
+                img.style.backgroundColor = '#0E1726';
+                return;
+            }
+            img.dataset.failed = "true";
+
+            const fallbacks = {
+                tours: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=1200&q=80",      // Cenote Premium
+                yates: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",      // Yate Espectacular
+                transportacion: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80", // Suburban Premium
+                cenotes: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=1200&q=80",     // Cenotes
+                arqueologia: "https://images.unsplash.com/photo-1518638150341-f706e86654de?auto=format&fit=crop&w=1200&q=80", // Chichén Itzá
+                playas: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=80",      // Playa Caribeña
+                general: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"     // Atardecer Lujoso
+            };
+
+            const selectedFallback = fallbacks[fallbackCategory] || fallbacks.general;
+            img.src = selectedFallback;
+            img.style.objectFit = 'cover';
+        }
+
         // DATOS DE RESPALDO (FALLBACK) EXCLUSIVOS
         const FALLBACK_DATA = [
             {
@@ -593,7 +620,7 @@
                 descripcion: "Navega las cristalinas aguas de la mítica Laguna de los Siete Colores en un lujoso pontón privado. Explora canales piratas, estromatolitos milenarios y cenotes abiertos.",
                 imagen: "actividades/tour-bacalar.jpg",
                 duracion: "12 Horas",
-                amazing: "Servicio de Concierge a bordo en una embarcación de acceso exclusivo.",
+                amazing: "Servicio de Concierge a bordo en una barra de acceso exclusivo.",
                 incluye: "Pontón de lujo privado, capitán, chalecos salvavidas certificados, hielera premium con bebidas selectas y menú de degustación local."
             },
             {
@@ -750,41 +777,18 @@
             const heroImg = document.getElementById('hero-bg-img');
             if (heroImg) {
                 heroImg.src = getRandomImage();
-                heroImg.onerror = function() {
-                    this.src = 'logo.png';
-                    this.style.width = 'auto';
-                    this.style.height = '180px';
-                    this.style.objectFit = 'contain';
-                    this.style.position = 'absolute';
-                    this.style.top = '50%';
-                    this.style.left = '50%';
-                    this.style.transform = 'translate(-50%, -50%)';
-                    this.style.opacity = '0.15';
-                };
             }
 
             // 2. Playas de Cancún (Inicio)
             const inicioPlayasImg = document.getElementById('inicio-playas-img');
             if (inicioPlayasImg) {
                 inicioPlayasImg.src = getRandomImage();
-                inicioPlayasImg.onerror = function() {
-                    this.src = 'logo.png';
-                    this.style.objectFit = 'contain';
-                    this.style.padding = '3rem';
-                    this.style.backgroundColor = '#0E1726';
-                };
             }
 
             // 3. Imagen del Legado (Nosotros)
             const legadoYateImg = document.getElementById('legado-yate-img');
             if (legadoYateImg) {
                 legadoYateImg.src = getRandomImage();
-                legadoYateImg.onerror = function() {
-                    this.src = 'logo.png';
-                    this.style.objectFit = 'contain';
-                    this.style.padding = '3rem';
-                    this.style.backgroundColor = '#0E1726';
-                };
             }
 
             // 4. Imágenes del carrusel infinito (Set completo de 4 + sus clones)
@@ -797,24 +801,12 @@
             const allCarouselDOMElements = document.querySelectorAll('.animate-infinite-scroll img');
             allCarouselDOMElements.forEach((img, idx) => {
                 img.src = carouselImgs[idx % 4];
-                img.onerror = function() {
-                    this.src = 'logo.png';
-                    this.style.objectFit = 'contain';
-                    this.style.padding = '1.5rem';
-                    this.style.backgroundColor = '#0E1726';
-                };
             });
 
             // 5. Portadas de los artículos del Insider
             const insiderDOMElements = document.querySelectorAll('#page-insider article img');
             insiderDOMElements.forEach(img => {
                 img.src = getRandomImage();
-                img.onerror = function() {
-                    this.src = 'logo.png';
-                    this.style.objectFit = 'contain';
-                    this.style.padding = '2rem';
-                    this.style.backgroundColor = '#0E1726';
-                };
             });
         }
 
@@ -880,7 +872,7 @@
                     <div class="bg-brand-navy border border-white/5 rounded-none shadow-[0_30px_50px_rgba(0,0,0,0.5)] overflow-hidden cursor-pointer group reveal-up" onclick="openWhatsApp('Cotizar ${act.titulo}')">
                         <div class="grid md:grid-cols-2 h-auto">
                             <div class="relative overflow-hidden h-[40vh] md:h-auto ${orderImg}">
-                                <img src="${act.imagen || 'actividades/hero-fondo.jpg'}" alt="${act.titulo}" onerror="this.src='actividades/hero-fondo.jpg'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out">
+                                <img src="${act.imagen || 'actividades/hero-fondo.jpg'}" alt="${act.titulo}" onerror="handleImgError(this, '${subCategory}')" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out">
                                 <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-transparent transition-colors duration-700"></div>
                                 <div class="absolute top-6 left-6 bg-brand-cyan/90 text-brand-navy text-[10px] tracking-[0.2em] uppercase font-bold px-4 py-1.5 shadow-lg">
                                     EXCLUSIVO
@@ -926,6 +918,11 @@
             const img = document.getElementById('zoom-modal-img');
             
             img.src = imgSrc;
+            // Si el lightbox de zoom también da error, se maneja de forma elegante
+            img.onerror = function() {
+                handleImgError(this, 'general');
+            };
+
             modal.classList.remove('opacity-0', 'pointer-events-none');
             document.body.classList.add('no-scroll');
             trackConversion('Open_Image_Zoom', { src: imgSrc });
@@ -943,7 +940,6 @@
             const img = document.getElementById('zoom-modal-img');
             const rect = container.getBoundingClientRect();
             
-            // Obtener coordenadas relativas al contenedor
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             
