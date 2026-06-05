@@ -574,16 +574,45 @@
         let isMobileMenuOpen = false;
         let isMobileSubmenuOpen = false;
 
-        // SISTEMA RESILIENTE GLOBAL DE CONTROL DE ERRORES DE IMAGEN (FALLBACK TEMÁTICO DE SEGURIDAD)
+        // SISTEMA GLOBAL DE SEGUIMIENTO Y RESOLUCIÓN DINÁMICA DE EXTENSIONES
         function handleImgError(img, fallbackCategory = 'general') {
-            if (img.dataset.failed) {
+            if (img.dataset.ultimateFailed) {
                 img.src = 'logo.png';
                 img.style.objectFit = 'contain';
                 img.style.padding = '2rem';
                 img.style.backgroundColor = '#0E1726';
                 return;
             }
-            img.dataset.failed = "true";
+
+            const currentSrc = img.src;
+
+            // Si es un recurso interno dentro de actividades/, probamos todas las variaciones posibles antes de rendirnos
+            if (currentSrc.includes('actividades/')) {
+                const basePath = currentSrc.substring(0, currentSrc.lastIndexOf('.'));
+                const currentExt = currentSrc.substring(currentSrc.lastIndexOf('.')).toLowerCase();
+                
+                let attempts = parseInt(img.dataset.extAttempts || '0');
+                
+                if (attempts < 4) {
+                    img.dataset.extAttempts = attempts + 1;
+                    if (currentExt.includes('png')) {
+                        img.src = basePath + '.jpg';
+                        return;
+                    } else if (currentExt.includes('jpg')) {
+                        img.src = basePath + '.jpeg';
+                        return;
+                    } else if (currentExt.includes('jpeg')) {
+                        img.src = basePath + '.PNG';
+                        return;
+                    } else {
+                        img.src = basePath + '.JPG';
+                        return;
+                    }
+                }
+            }
+
+            // Fallback temático de seguridad Unsplash por categoría
+            img.dataset.ultimateFailed = "true";
 
             const fallbacks = {
                 tours: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=1200&q=80",      // Cenote Premium
@@ -595,8 +624,7 @@
                 general: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"     // Atardecer Lujoso
             };
 
-            const selectedFallback = fallbacks[fallbackCategory] || fallbacks.general;
-            img.src = selectedFallback;
+            img.src = fallbacks[fallbackCategory] || fallbacks.general;
             img.style.objectFit = 'cover';
         }
 
@@ -691,7 +719,7 @@
             return data;
         }
 
-        // MAPER ADAPTATIVO DE ENTRADAS CON SOPORTE PNG ESTRICTO
+        // MAPER ADAPTATIVO DE ENTRADAS CON ENFOQUE EN LA COLUMNA 'CATALOGO'
         function mapActivity(item) {
             const findValue = (keywords) => {
                 const key = Object.keys(item).find(k => keywords.some(kw => k.includes(kw)));
@@ -701,12 +729,15 @@
             const titulo = findValue(['tit', 'nom', 'activity', 'tour', 'name', 'experiencia']) || item.title || item.name || '';
             const categoria = (findValue(['cat', 'tip', 'type']) || item.category || '').toLowerCase();
             const descripcion = findValue(['desc', 'info', 'detal', 'about', 'intro']) || item.description || '';
-            const codigo = findValue(['cod', 'id']) || item.codigo || item.code || '';
             
-            // CONEXIÓN DIRECTA CON TU REPOSITORIO USANDO EXTENSIÓN .png SEGÚN LA COLUMNA CODIGO
+            // BUSCAMOS ESPECÍFICAMENTE LA COLUMNA 'catalogo' DE TU HOJA DE GOOGLE SHEETS
+            const catalogo = findValue(['catalo', 'cod', 'id']) || item.catalogo || item.codigo || item.code || '';
+            
+            // Asignamos una extensión por defecto (.png). Si en tu GitHub está en .jpg, .PNG o .JPG,
+            // el gestor de errores handleImgError se encargará de resolverlo al instante sin verse roto.
             let imagen = '';
-            if (codigo) {
-                imagen = `actividades/${codigo}.png`;
+            if (catalogo) {
+                imagen = `actividades/${catalogo}.png`;
             } else {
                 imagen = findValue(['img', 'imag', 'foto', 'photo', 'url']) || item.image || 'actividades/hero-fondo.png';
             }
@@ -719,7 +750,7 @@
                 titulo,
                 categoria,
                 descripcion,
-                codigo,
+                codigo: catalogo,
                 imagen,
                 duracion,
                 amazing,
@@ -823,7 +854,7 @@
             } else if (subCategory === 'yates') {
                 badge.innerText = "Navegación Exclusiva";
                 pageTitle.innerHTML = `Yates & <span class="font-serif italic font-bold text-brand-cyan">Catamaranes</span>`;
-                pageSubtitle.innerText = "Flota premium de de recreo y lujo a tu entera disposición para surcar el infinito turquesa.";
+                pageSubtitle.innerText = "Flota premium de recreo y lujo a tu entera disposición para surcar el infinito turquesa.";
             } else if (subCategory === 'transportacion') {
                 badge.innerText = "Logística de Élite";
                 pageTitle.innerHTML = `Transportación <span class="font-serif italic font-bold text-brand-cyan">Premium</span>`;
@@ -949,6 +980,7 @@
             img.style.transform = "scale(2.2)";
         }
 
+        // Reseteo suave del zoom
         function resetZoomImage() {
             const img = document.getElementById('zoom-modal-img');
             img.style.transform = "scale(1)";
