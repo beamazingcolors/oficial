@@ -82,7 +82,7 @@
 
         /* REVEAL ANIMATIONS */
         .reveal-curtain {
-            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+            clip-path: polygon(0 100%, 100 100%, 100% 100%, 0 100%);
             transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
         }
         .reveal-curtain.active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
@@ -196,7 +196,7 @@
             <!-- CONTENEDOR HERO -->
             <div class="relative h-[120vh] w-full overflow-hidden" style="clip-path: inset(0); contain: paint;">
                 <div class="absolute inset-0 z-0 h-[150vh] parallax-bg -top-[20vh]">
-                    <img id="hero-bg-img" src="actividades/hero-fondo.png" alt="Fondo Aéreo" class="w-full h-full object-cover object-center opacity-70" fetchpriority="high" onerror="handleImgError(this, 'general')">
+                    <img id="hero-bg-img" src="hero-fondo.png" alt="Fondo Aéreo" class="w-full h-full object-cover object-center opacity-70" fetchpriority="high" onerror="handleImgError(this, 'general')">
                     <div class="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/30 to-brand-navy"></div>
                 </div>
                 
@@ -228,11 +228,11 @@
                                 La joya indiscutible de la Península de Yucatán. Un lugar donde la selva esmeralda abraza el mar turquesa y el tiempo parece detenerse. Cancún ofrece un contraste perfecto entre la herencia milenaria de la civilización maya y el lujo contemporáneo más sofisticado.
                             </p>
                             <p class="text-gray-300 font-medium text-lg italic border-l-2 border-brand-orange pl-4">
-                                "Permítete dejar el mundo atrás. El Caribe Mexicano está listo para redefinir tu concepto de libertad."
+                                "Permítete dejar el mundo atrás. El Caribe Mexicano está listo para redefinir tu concept de libertad."
                             </p>
                         </div>
                         <div class="relative h-[60vh] w-full reveal-curtain">
-                            <img id="inicio-playas-img" src="actividades/inicio-playas.png" alt="Playas de Cancún" loading="lazy" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'playas')">
+                            <img id="inicio-playas-img" src="inicio-playas.png" alt="Playas de Cancún" loading="lazy" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'playas')">
                             <div class="absolute inset-0 border-4 border-brand-navy/20 m-6 pointer-events-none"></div>
                         </div>
                     </div>
@@ -289,22 +289,22 @@
                         <!-- SET 1 -->
                         <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'tours')">
-                                <img src="actividades/carrusel-cenotes.png" alt="Cenotes" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'cenotes')">
+                                <img src="carrusel-cenotes.png" alt="Cenotes" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'cenotes')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Cenotes Privados</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'yates')">
-                                <img src="actividades/carrusel-yates.png" alt="Yates" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
+                                <img src="carrusel-yates.png" alt="Yates" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Yates de Lujo</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'tours')">
-                                <img src="actividades/carrusel-arqueologia.png" alt="Arqueología" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
+                                <img src="carrusel-arqueologia.png" alt="Arqueología" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Sitios Arqueológicos</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'transportacion')">
-                                <img src="actividades/carrusel-playas.png" alt="Playas" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
+                                <img src="carrusel-playas.png" alt="Playas" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Playas Exclusivas</h4>
                             </div>
@@ -312,22 +312,22 @@
                         <!-- SET 2 (Clon) -->
                         <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'tours')">
-                                <img src="actividades/carrusel-cenotes.png" alt="Cenotes" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'cenotes')">
+                                <img src="carrusel-cenotes.png" alt="Cenotes" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'cenotes')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Cenotes Privados</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'yates')">
-                                <img src="actividades/carrusel-yates.png" alt="Yates" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
+                                <img src="carrusel-yates.png" alt="Yates" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Yates de Lujo</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'tours')">
-                                <img src="actividades/carrusel-arqueologia.png" alt="Arqueología" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
+                                <img src="carrusel-arqueologia.png" alt="Arqueología" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Sitios Arqueológicos</h4>
                             </div>
                             <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'transportacion')">
-                                <img src="actividades/carrusel-playas.png" alt="Playas" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
+                                <img src="carrusel-playas.png" alt="Playas" loading="lazy" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Playas Exclusivas</h4>
                             </div>
@@ -357,7 +357,7 @@
                     </div>
 
                     <div class="relative h-[70vh] w-full reveal-curtain">
-                        <img id="legado-yate-img" src="actividades/legado-yate.png" alt="Yate" loading="lazy" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'yates')">
+                        <img id="legado-yate-img" src="legado-yate.png" alt="Yate" loading="lazy" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'yates')">
                         <div class="absolute inset-0 border-8 border-brand-navy/50 m-4 pointer-events-none"></div>
                     </div>
                 </div>
@@ -404,7 +404,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-up">
                     <article class="bg-white shadow-xl group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
                         <div class="h-64 overflow-hidden relative">
-                            <img src="actividades/insider-bacalar.png" alt="Agua" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
+                            <img src="insider-bacalar.png" alt="Agua" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
                         </div>
                         <div class="p-8">
                             <span class="text-brand-cyan text-xs font-bold uppercase tracking-widest mb-2 block">Fotografía</span>
@@ -416,7 +416,7 @@
                     
                     <article class="bg-white shadow-xl group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
                         <div class="h-64 overflow-hidden relative">
-                            <img src="actividades/insider-isla-mujeres.png" alt="Isla Mujeres" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
+                            <img src="insider-isla-mujeres.png" alt="Isla Mujeres" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
                         </div>
                         <div class="p-8">
                             <span class="text-brand-cyan text-xs font-bold uppercase tracking-widest mb-2 block">Logística</span>
@@ -428,7 +428,7 @@
 
                     <article class="bg-white shadow-xl group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
                         <div class="h-64 overflow-hidden relative">
-                            <img src="actividades/insider-chichen.png" alt="Chichen" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
+                            <img src="insider-chichen.png" alt="Chichen" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
                         </div>
                         <div class="p-8">
                             <span class="text-brand-cyan text-xs font-bold uppercase tracking-widest mb-2 block">Cultura</span>
