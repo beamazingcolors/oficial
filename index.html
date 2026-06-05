@@ -34,7 +34,7 @@
                     colors: {
                         brand: {
                             cyan: '#14B8B1',      /* Teal Esmeralda */
-                            orange: '#E06A41',    /* Coral Vibrante */
+                            orange: '#E06A41',    /* Coral/Terracota Vibrante */
                             navy: '#0A111E',      /* Azul Abismo */
                             white: '#FFFFFF',
                             sand: '#F8F7F5'       /* Lino Alabastro */
@@ -94,20 +94,6 @@
         }
         .reveal-up.active { opacity: 1; transform: translateY(0); }
 
-        /* STICKY STACKING CARDS PARA TOURS */
-        .stack-container { position: relative; padding-bottom: 10vh; }
-        .stack-card {
-            position: sticky;
-            top: 15vh;
-            box-shadow: 0 -20px 40px rgba(0,0,0,0.6);
-            transform-origin: top center;
-            will-change: transform;
-            transition: transform 0.5s ease;
-        }
-        .stack-card:nth-child(1) { top: 12vh; z-index: 10; }
-        .stack-card:nth-child(2) { top: 15vh; z-index: 20; transform: rotate(-1deg); }
-        .stack-card:nth-child(3) { top: 18vh; z-index: 30; transform: rotate(1deg); }
-
         .parallax-bg {
             transform: translateY(calc(var(--scroll-y) * 0.4px));
             will-change: transform;
@@ -135,10 +121,11 @@
     <!-- Navegación Principal -->
     <nav id="main-nav" class="fixed w-full z-50 transition-all duration-500 bg-transparent py-6">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 relative flex justify-between items-center">
-            <!-- Logo -->
+            <!-- Logo y Nombre (Ambos dirigen al Inicio) -->
             <div class="flex-shrink-0 z-50">
-                <button onclick="navigateTo('home')" class="transition-transform hover:scale-105 duration-300 drop-shadow-md">
+                <button onclick="navigateTo('home')" class="transition-transform hover:scale-105 duration-300 drop-shadow-md flex items-center gap-3">
                     <img src="logo.png" alt="Amazing Colors Logo" class="h-10 md:h-12 w-auto">
+                    <span class="font-display font-black text-xl tracking-tighter text-white">AMAZING<span class="text-brand-cyan">COLORS</span></span>
                 </button>
             </div>
             
@@ -146,7 +133,19 @@
             <div class="hidden lg:flex space-x-8 items-center">
                 <button onclick="navigateTo('home')" class="nav-link nav-home text-brand-cyan text-sm tracking-widest uppercase font-medium transition-colors drop-shadow-md">Inicio</button>
                 <button onclick="navigateTo('legacy')" class="nav-link nav-legacy text-white hover:text-brand-cyan text-sm tracking-widest uppercase font-medium transition-colors drop-shadow-md">Legado</button>
-                <button onclick="navigateTo('tours')" class="nav-link nav-tours text-white hover:text-brand-cyan text-sm tracking-widest uppercase font-medium transition-colors drop-shadow-md">Tours</button>
+                
+                <!-- Menú Desplegable de Actividades -->
+                <div class="relative group">
+                    <button class="nav-link nav-actividades text-white hover:text-brand-cyan text-sm tracking-widest uppercase font-medium transition-colors drop-shadow-md flex items-center gap-1.5 focus:outline-none">
+                        Actividades <i class="fas fa-chevron-down text-[10px] transition-transform group-hover:rotate-180"></i>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-56 bg-[#0E1726]/95 border border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 shadow-2xl rounded-sm py-2 backdrop-blur-md">
+                        <button onclick="navigateTo('actividades', 'tours')" class="w-full text-left px-5 py-3 text-xs text-gray-300 hover:text-brand-cyan hover:bg-white/5 transition-colors tracking-widest uppercase font-semibold">Tours</button>
+                        <button onclick="navigateTo('actividades', 'yates')" class="w-full text-left px-5 py-3 text-xs text-gray-300 hover:text-brand-cyan hover:bg-white/5 transition-colors tracking-widest uppercase font-semibold">Yates</button>
+                        <button onclick="navigateTo('actividades', 'transportacion')" class="w-full text-left px-5 py-3 text-xs text-gray-300 hover:text-brand-cyan hover:bg-white/5 transition-colors tracking-widest uppercase font-semibold">Transportación</button>
+                    </div>
+                </div>
+
                 <button onclick="navigateTo('insider')" class="nav-link nav-insider text-white hover:text-brand-cyan text-sm tracking-widest uppercase font-medium transition-colors drop-shadow-md">Insider</button>
                 <button onclick="navigateTo('contact')" class="bg-brand-orange text-white px-8 py-3 rounded-none font-sans font-semibold tracking-wide hover:bg-white hover:text-brand-orange transition-all duration-300 shadow-[0_0_15px_rgba(224,106,65,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)]">
                     RESERVAR
@@ -164,10 +163,22 @@
 
     <!-- Overlay de Menú Móvil -->
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-navy/95 backdrop-blur-xl z-40 flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-500 flex">
-        <div class="flex flex-col items-center space-y-8 text-center mt-10">
+        <div class="flex flex-col items-center space-y-8 text-center mt-10 w-full max-w-xs">
             <button onclick="navigateTo('home'); toggleMobileMenu();" class="text-white hover:text-brand-cyan text-xl tracking-widest uppercase font-display font-light">Inicio</button>
             <button onclick="navigateTo('legacy'); toggleMobileMenu();" class="text-white hover:text-brand-cyan text-xl tracking-widest uppercase font-display font-light">Legado</button>
-            <button onclick="navigateTo('tours'); toggleMobileMenu();" class="text-white hover:text-brand-cyan text-xl tracking-widest uppercase font-display font-light">Tours</button>
+            
+            <!-- Grupo Actividades Móvil -->
+            <div class="flex flex-col items-center w-full">
+                <button onclick="toggleMobileSubmenu()" class="text-white hover:text-brand-cyan text-xl tracking-widest uppercase font-display font-light flex items-center gap-2">
+                    Actividades <i id="mobile-chevron" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+                </button>
+                <div id="mobile-submenu" class="hidden flex-col items-center space-y-4 mt-4 bg-white/5 py-4 w-full rounded-sm border border-white/5">
+                    <button onclick="navigateTo('actividades', 'tours'); toggleMobileMenu();" class="text-gray-300 hover:text-brand-cyan text-lg font-light tracking-wide">Tours</button>
+                    <button onclick="navigateTo('actividades', 'yates'); toggleMobileMenu();" class="text-gray-300 hover:text-brand-cyan text-lg font-light tracking-wide">Yates</button>
+                    <button onclick="navigateTo('actividades', 'transportacion'); toggleMobileMenu();" class="text-gray-300 hover:text-brand-cyan text-lg font-light tracking-wide">Transportación</button>
+                </div>
+            </div>
+
             <button onclick="navigateTo('insider'); toggleMobileMenu();" class="text-white hover:text-brand-cyan text-xl tracking-widest uppercase font-display font-light">Insider</button>
             <button onclick="navigateTo('contact'); toggleMobileMenu();" class="bg-brand-orange text-white px-10 py-4 mt-6 rounded-none font-sans font-semibold tracking-wide hover:bg-white hover:text-brand-orange shadow-[0_0_15px_rgba(224,106,65,0.4)]">
                 RESERVAR AHORA
@@ -204,7 +215,7 @@
                     <p class="text-lg md:text-xl text-gray-300 max-w-2xl font-light mb-12 reveal-up" style="transition-delay: 200ms;">
                         Sin multitudes. Sin prisas. <span class="text-white font-medium">100% privado.</span>
                     </p>
-                    <button onclick="navigateTo('tours')" class="reveal-up bg-white text-brand-navy px-10 py-4 font-bold tracking-widest uppercase text-sm hover:bg-brand-cyan hover:text-white transition-all duration-300" style="transition-delay: 300ms;">
+                    <button onclick="navigateTo('actividades', 'tours')" class="reveal-up bg-white text-brand-navy px-10 py-4 font-bold tracking-widest uppercase text-sm hover:bg-brand-cyan hover:text-white transition-all duration-300" style="transition-delay: 300ms;">
                         Ver Catálogo Exclusivo
                     </button>
                 </div>
@@ -284,22 +295,22 @@
                     <div class="flex animate-infinite-scroll">
                         <!-- SET 1 -->
                         <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'tours')">
                                 <img src="actividades/carrusel-cenotes.jpg" alt="Cenotes" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Cenotes Privados</h4>
                             </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'yates')">
                                 <img src="actividades/carrusel-yates.jpg" alt="Yates" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Yates de Lujo</h4>
                             </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'tours')">
                                 <img src="actividades/carrusel-arqueologia.jpg" alt="Arqueología" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Sitios Arqueológicos</h4>
                             </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'transportacion')">
                                 <img src="actividades/carrusel-playas.jpg" alt="Playas" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Playas Exclusivas</h4>
@@ -307,22 +318,22 @@
                         </div>
                         <!-- SET 2 (Clon para efecto infinito) -->
                         <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'tours')">
                                 <img src="actividades/carrusel-cenotes.jpg" alt="Cenotes" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Cenotes Privados</h4>
                             </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'yates')">
                                 <img src="actividades/carrusel-yates.jpg" alt="Yates" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Yates de Lujo</h4>
                             </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'tours')">
                                 <img src="actividades/carrusel-arqueologia.jpg" alt="Arqueología" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Sitios Arqueológicos</h4>
                             </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('tours')">
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('actividades', 'transportacion')">
                                 <img src="actividades/carrusel-playas.jpg" alt="Playas" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                                 <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm drop-shadow-md">Playas Exclusivas</h4>
@@ -361,60 +372,26 @@
         </section>
 
         <!-- ========================================== -->
-        <!-- VIEW 3: TOURS (STICKY STACKING)            -->
+        <!-- VIEW 3: ACTIVIDADES (DYNAMICS FROM SHEET) -->
         <!-- ========================================== -->
-        <section id="page-tours" class="page-view bg-[#0A0F18] min-h-screen pt-32 pb-20 relative z-30">
+        <section id="page-actividades" class="page-view bg-[#0A0F18] min-h-screen pt-32 pb-20 relative z-30">
             <div class="max-w-5xl mx-auto px-6 lg:px-12">
                 
                 <div class="text-center mb-20 reveal-up">
-                    <span class="text-brand-orange uppercase tracking-[0.2em] text-xs font-bold mb-4 block">La Colección</span>
-                    <h2 class="font-display text-5xl md:text-7xl text-white font-light">
-                        Experiencias <span class="font-serif italic font-bold text-brand-cyan">Signature</span>
+                    <span id="actividades-badge" class="text-brand-orange uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Amazing Colors</span>
+                    <h2 id="actividades-title" class="font-display text-5xl md:text-7xl text-white font-light">
+                        Cargando <span class="font-serif italic font-bold text-brand-cyan">Experiencias</span>...
                     </h2>
+                    <p id="actividades-subtitle" class="text-gray-400 font-light text-lg mt-4 max-w-2xl mx-auto">
+                        Conectando con nuestro catálogo oficial en la nube...
+                    </p>
                 </div>
 
-                <!-- Contenedor Stacking -->
-                <div class="stack-container">
-                    
-                    <div class="stack-card bg-brand-navy border border-white/5 rounded-none shadow-[0_30px_50px_rgba(0,0,0,0.5)] overflow-hidden cursor-pointer group" onclick="openWhatsApp('Cotizar Chichén Itzá')">
-                        <div class="grid md:grid-cols-2 h-auto md:h-[65vh]">
-                            <div class="relative overflow-hidden h-[40vh] md:h-full">
-                                <img src="actividades/tour-chichen.jpg" alt="Chichen Itza" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out">
-                                <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-transparent transition-colors duration-700"></div>
-                            </div>
-                            <div class="p-10 md:p-16 flex flex-col justify-center bg-brand-navy relative">
-                                <span class="text-brand-cyan tracking-widest text-xs font-bold uppercase mb-4 block">Arqueología VIP (8-10 Horas)</span>
-                                <h3 class="font-display text-4xl text-white font-semibold mb-6">Chichén Itzá<br><span class="font-serif italic font-light text-gray-400">Privado</span></h3>
-                                <p class="text-gray-400 font-light text-lg mb-6 leading-relaxed">Llegamos antes que los autobuses masivos. El factor Amazing: Tu tiempo es tuyo. Incluye SUV Privada con A/C, Guía Federal Exclusivo, hielera premium y nado privado en cenote.</p>
-                                <div class="mt-auto">
-                                    <span class="inline-flex items-center text-sm font-bold tracking-widest text-brand-orange uppercase group-hover:text-brand-cyan transition-colors">
-                                        Cotizar Experiencia <i class="fab fa-whatsapp ml-3 text-lg transform group-hover:scale-110 transition-transform"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stack-card bg-[#0D1627] border border-white/5 rounded-none shadow-[0_30px_50px_rgba(0,0,0,0.5)] overflow-hidden cursor-pointer group mt-20" onclick="openWhatsApp('Cotizar Bacalar')">
-                        <div class="grid md:grid-cols-2 h-auto md:h-[65vh]">
-                            <div class="p-10 md:p-16 flex flex-col justify-center bg-[#0D1627] order-2 md:order-1 relative">
-                                <span class="text-brand-cyan tracking-widest text-xs font-bold uppercase mb-4 block">Laguna Secreta (12 Horas)</span>
-                                <h3 class="font-display text-4xl text-white font-semibold mb-6">Magia de<br><span class="font-serif italic font-light text-gray-400">Bacalar</span></h3>
-                                <p class="text-gray-400 font-light text-lg mb-6 leading-relaxed">El factor Amazing: Navega en pontón privado por canales secretos de la Laguna de los Siete Colores donde no entran embarcaciones grandes. Incluye comida gourmet y transporte de lujo.</p>
-                                <div class="mt-auto">
-                                    <span class="inline-flex items-center text-sm font-bold tracking-widest text-brand-orange uppercase group-hover:text-brand-cyan transition-colors">
-                                        Cotizar Experiencia <i class="fab fa-whatsapp ml-3 text-lg transform group-hover:scale-110 transition-transform"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="relative overflow-hidden h-[40vh] md:h-full order-1 md:order-2">
-                                <img src="actividades/tour-bacalar.jpg" alt="Bacalar" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out">
-                                <div class="absolute inset-0 bg-[#0D1627]/20 group-hover:bg-transparent transition-colors duration-700"></div>
-                            </div>
-                        </div>
-                    </div>
-
+                <!-- Dynamic Grid Container -->
+                <div id="actividades-dynamic-container" class="space-y-16">
+                    <!-- Cards will be populated dynamically from TSV -->
                 </div>
+
             </div>
         </section>
 
@@ -547,7 +524,7 @@
                     <ul class="space-y-4">
                         <li><button onclick="navigateTo('home')" class="text-gray-400 hover:text-brand-cyan text-sm font-light transition-colors">Inicio</button></li>
                         <li><button onclick="navigateTo('legacy')" class="text-gray-400 hover:text-brand-cyan text-sm font-light transition-colors">Nuestro Legado</button></li>
-                        <li><button onclick="navigateTo('tours')" class="text-gray-400 hover:text-brand-cyan text-sm font-light transition-colors">Colección de Tours</button></li>
+                        <li><button onclick="navigateTo('actividades', 'tours')" class="text-gray-400 hover:text-brand-cyan text-sm font-light transition-colors">Colección de Tours</button></li>
                         <li><button onclick="navigateTo('insider')" class="text-gray-400 hover:text-brand-cyan text-sm font-light transition-colors">Guía Insider</button></li>
                     </ul>
                 </div>
@@ -589,6 +566,240 @@
     <script>
         const WHATSAPP_NUMBER = "5219981234567";
         let isMobileMenuOpen = false;
+        let isMobileSubmenuOpen = false;
+
+        // DATOS DE RESPALDO (FALLBACK) EXCLUSIVOS
+        const FALLBACK_DATA = [
+            {
+                titulo: "Chichén Itzá Privado",
+                categoria: "tours",
+                descripcion: "Evita las aglomeraciones llegando antes que los autobuses masivos. Un viaje místico guiado por un arqueólogo certificado para descubrir los misterios que guarda el templo de Kukulcán.",
+                imagen: "actividades/tour-chichen.jpg",
+                duracion: "8-10 Horas",
+                amazing: "Acceso exclusivo sin filas y nado en un cenote completamente privado antes del mediodía.",
+                incluye: "Transportación redonda en SUV de lujo con A/C, Guía Federal certificado, entradas preferenciales, bebidas gourmet e hidratantes."
+            },
+            {
+                titulo: "Magia de Bacalar",
+                categoria: "tours",
+                descripcion: "Navega las cristalinas aguas de la mítica Laguna de los Siete Colores en un lujoso pontón privado. Explora canales piratas, estromatolitos milenarios y cenotes abiertos.",
+                imagen: "actividades/tour-bacalar.jpg",
+                duracion: "12 Horas",
+                amazing: "Servicio de Concierge a bordo en una embarcación de acceso exclusivo.",
+                incluye: "Pontón de lujo privado, capitán, chalecos salvavidas certificados, hielera premium con bebidas selectas y menú de degustación local."
+            },
+            {
+                titulo: "Catamarán Lagoon 45'",
+                categoria: "yates",
+                descripcion: "Zarpa desde la marina exclusiva con rumbo a Isla Mujeres sobre el azul del Caribe. Disfruta del solarium, haz snorkel en arrecifes de coral protegidos y relájate en Playa Norte.",
+                imagen: "actividades/carrusel-yates.jpg",
+                duracion: "4 u 8 Horas",
+                amazing: "Servicio exclusivo de tripulación con coctelería de autor y atardecer en alta mar.",
+                incluye: "Catamarán privado de 45 pies, capitán, marineros, equipo completo de snorkel de alta gama, barra libre premium y canapés de bienvenida."
+            },
+            {
+                titulo: "Yate Premium Express Cruiser",
+                categoria: "yates",
+                descripcion: "Diseñado para los amantes de la velocidad y la comodidad absoluta. Perfecto para celebraciones de aniversario, propuestas de matrimonio o escapadas familiares vip.",
+                imagen: "actividades/legado-yate.jpg",
+                duracion: "4-6 Horas",
+                amazing: "Itinerario 100% personalizable por el litoral de la zona hotelera.",
+                incluye: "Yate premium de lujo, tripulación bilingüe certificada, toallas frías, hielera con bebidas refrescantes y tabla de quesos finos."
+            },
+            {
+                titulo: "Traslado Aeropuerto VIP",
+                categoria: "transportacion",
+                descripcion: "La bienvenida perfecta al paraíso. Tu concierge te espera en la terminal para escoltarte a un vehículo de gama alta blindado o SUV Premium, evitando esperas y tiempos muertos.",
+                imagen: "actividades/carrusel-playas.jpg",
+                duracion: "Trayecto Único",
+                amazing: "Monitoreo satelital de vuelo y conductor bilingüe con protocolo de hospitalidad premium.",
+                incluye: "Bienvenida personalizada con banner digital, toallitas refrescantes, agua embotellada premium, cervezas locales y snacks de cortesía."
+            },
+            {
+                titulo: "Chauffeur Privado de Lujo",
+                categoria: "transportacion",
+                descripcion: "Renta un chofer dedicado por el día completo. Ideal para ir de compras por las boutiques de Tulum, cenar en restaurantes exclusivos de la Riviera Maya o realizar rutas arqueológicas sin prisas.",
+                imagen: "actividades/hero-fondo.jpg",
+                duracion: "12 Horas de servicio",
+                amazing: "Vehículo siempre climatizado esperándote al pie de cada parada de tu itinerario.",
+                incluye: "SUV de lujo (Suburban o similar), conductor experto, combustible ilimitado, peajes incluidos y concierge telefónico 24/7."
+            }
+        ];
+
+        let globalActivities = [];
+
+        // PARSER DE GOOGLE SHEETS TSV INTELIGENTE Y ADAPTATIVO
+        function parseTSV(tsvText) {
+            const lines = tsvText.split(/\r?\n/);
+            if (lines.length < 2) return [];
+            
+            const headers = lines[0].split('\t').map(h => {
+                return h.trim().toLowerCase()
+                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Eliminar acentos
+                    .replace(/[^a-z0-9_]/g, '_'); // Reemplazar caracteres raros por guión bajo
+            });
+            
+            const data = [];
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+                const cols = lines[i].split('\t');
+                const obj = {};
+                headers.forEach((header, index) => {
+                    obj[header] = cols[index] ? cols[index].trim() : '';
+                });
+                data.push(obj);
+            }
+            return data;
+        }
+
+        // MAPER ADAPTATIVO DE ENTRADAS
+        function mapActivity(item) {
+            const findValue = (keywords) => {
+                const key = Object.keys(item).find(k => keywords.some(kw => k.includes(kw)));
+                return key ? item[key] : '';
+            };
+
+            const titulo = findValue(['tit', 'nom', 'activity', 'tour', 'name', 'experiencia']) || item.title || item.name || '';
+            const categoria = (findValue(['cat', 'tip', 'type']) || item.category || '').toLowerCase();
+            const descripcion = findValue(['desc', 'info', 'detal', 'about', 'intro']) || item.description || '';
+            const imagen = findValue(['img', 'imag', 'foto', 'photo', 'url']) || item.image || '';
+            const duracion = findValue(['dur', 'tiemp', 'hour', 'hr']) || item.duration || '';
+            const amazing = findValue(['amaz', 'exclus', 'factor', 'wow']) || item.amazing || '';
+            const incluye = findValue(['inclu', 'cont', 'serv']) || item.includes || '';
+
+            return {
+                titulo,
+                categoria,
+                descripcion,
+                imagen,
+                duracion,
+                amazing,
+                incluye
+            };
+        }
+
+        // FETCH DESDE EL GOOGLE SHEET TSV
+        async function fetchActivities() {
+            const tsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSpCWJlj6HKzh_LIA2SXADpmORKc43sw8U_Eo4pLrirJ9ZP23WwYE6BlyygN-hxqy-QAaLadVeXPkGC/pub?output=tsv";
+            try {
+                const response = await fetch(tsvUrl);
+                if (!response.ok) throw new Error("Fallo de red");
+                const text = await response.text();
+                const rawData = parseTSV(text);
+                globalActivities = rawData.map(mapActivity);
+                console.log("Cargado con éxito del TSV Oficial:", globalActivities);
+            } catch (err) {
+                console.warn("Fallo de conexión al TSV, usando datos de respaldo:", err);
+                globalActivities = FALLBACK_DATA;
+            }
+            // Si el usuario ya está en Actividades, renderiza con la data nueva
+            const activePage = document.querySelector('.page-view.active');
+            if (activePage && activePage.id === 'page-actividades') {
+                const hash = window.location.hash.replace('#', '');
+                const sub = hash.includes('actividades-') ? hash.replace('actividades-', '') : 'tours';
+                renderActividades(sub);
+            }
+        }
+
+        // RENDERIZADOR DINÁMICO DE ACTIVIDADES
+        function renderActividades(subCategory) {
+            const container = document.getElementById('actividades-dynamic-container');
+            const pageTitle = document.getElementById('actividades-title');
+            const pageSubtitle = document.getElementById('actividades-subtitle');
+            const badge = document.getElementById('actividades-badge');
+            
+            // Asignar Títulos y Enfoque según la Categoría
+            if (subCategory === 'tours') {
+                badge.innerText = "La Colección Signature";
+                pageTitle.innerHTML = `Tours <span class="font-serif italic font-bold text-brand-cyan">Privados</span>`;
+                pageSubtitle.innerText = "Exploraciones privadas diseñadas minuciosamente para evitar multitudes y conectar con la verdadera magia de Quintana Roo.";
+            } else if (subCategory === 'yates') {
+                badge.innerText = "Navegación Exclusiva";
+                pageTitle.innerHTML = `Yates & <span class="font-serif italic font-bold text-brand-cyan">Catamaranes</span>`;
+                pageSubtitle.innerText = "Flota premium de embarcaciones de recreo y lujo a tu entera disposición para surcar el infinito turquesa.";
+            } else if (subCategory === 'transportacion') {
+                badge.innerText = "Logística de Élite";
+                pageTitle.innerHTML = `Transportación <span class="font-serif italic font-bold text-brand-cyan">Premium</span>`;
+                pageSubtitle.innerText = "Seguridad, confort absoluto y choferes con el más alto nivel de hospitalidad desde el instante de tu arribo.";
+            }
+
+            // Filtrar las actividades cargadas
+            const filtered = globalActivities.filter(act => {
+                const actCat = (act.categoria || '').toLowerCase();
+                if (subCategory === 'tours') {
+                    return actCat.includes('tour') || actCat.includes('actividad') || (!actCat && FALLBACK_DATA.find(f => f.titulo === act.titulo)?.categoria === 'tours');
+                }
+                if (subCategory === 'yates') {
+                    return actCat.includes('yate') || actCat.includes('yacht') || actCat.includes('barco') || (!actCat && FALLBACK_DATA.find(f => f.titulo === act.titulo)?.categoria === 'yates');
+                }
+                if (subCategory === 'transportacion') {
+                    return actCat.includes('trans') || actCat.includes('traslado') || actCat.includes('van') || (!actCat && FALLBACK_DATA.find(f => f.titulo === act.titulo)?.categoria === 'transportacion');
+                }
+                return false;
+            });
+
+            // En caso de que se requiera, usar el respaldo de esa categoría
+            const listToDisplay = filtered.length > 0 ? filtered : FALLBACK_DATA.filter(f => f.categoria === subCategory);
+
+            container.innerHTML = '';
+
+            listToDisplay.forEach((act, index) => {
+                const isEven = index % 2 === 0;
+                const orderImg = isEven ? 'md:order-1' : 'md:order-2';
+                const orderText = isEven ? 'md:order-2' : 'md:order-1';
+                
+                // Formateo del contenido adicional (HTML)
+                const includesHTML = act.incluye 
+                    ? `<div class="mb-6">
+                        <span class="text-xs font-bold tracking-widest text-brand-cyan uppercase mb-2 block">¿Qué incluye?</span>
+                        <p class="text-sm text-gray-300 font-light leading-relaxed">${act.incluye}</p>
+                       </div>`
+                    : '';
+
+                const amazingHTML = act.amazing 
+                    ? `<div class="bg-[#0E1726]/80 p-5 border-l-2 border-brand-orange mb-6">
+                        <span class="text-xs font-bold tracking-widest text-brand-orange uppercase mb-1.5 block">El Factor Amazing</span>
+                        <p class="text-sm text-gray-300 italic font-light">${act.amazing}</p>
+                       </div>`
+                    : '';
+
+                const cardHTML = `
+                    <div class="bg-brand-navy border border-white/5 rounded-none shadow-[0_30px_50px_rgba(0,0,0,0.5)] overflow-hidden cursor-pointer group reveal-up" onclick="openWhatsApp('Cotizar ${act.titulo}')">
+                        <div class="grid md:grid-cols-2 h-auto">
+                            <div class="relative overflow-hidden h-[40vh] md:h-auto ${orderImg}">
+                                <img src="${act.imagen || 'actividades/hero-fondo.jpg'}" alt="${act.titulo}" onerror="this.src='actividades/hero-fondo.jpg'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out">
+                                <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-transparent transition-colors duration-700"></div>
+                                <div class="absolute top-6 left-6 bg-brand-cyan/90 text-brand-navy text-[10px] tracking-[0.2em] uppercase font-bold px-4 py-1.5 shadow-lg">
+                                    100% PRIVADO
+                                </div>
+                            </div>
+                            <div class="p-8 md:p-14 flex flex-col justify-center bg-brand-navy relative ${orderText}">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-brand-cyan tracking-widest text-xs font-bold uppercase">${act.duracion || 'Tiempo a Medida'}</span>
+                                    <i class="far fa-clock text-gray-500 text-sm"></i>
+                                </div>
+                                <h3 class="font-display text-3xl text-white font-semibold mb-6">${act.titulo}</h3>
+                                <p class="text-gray-400 font-light text-base mb-6 leading-relaxed">${act.descripcion}</p>
+                                
+                                ${includesHTML}
+                                ${amazingHTML}
+
+                                <div class="mt-4">
+                                    <span class="inline-flex items-center text-sm font-bold tracking-widest text-brand-orange uppercase group-hover:text-brand-cyan transition-colors">
+                                        Cotizar Experiencia <i class="fab fa-whatsapp ml-3 text-lg transform group-hover:scale-110 transition-transform"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHTML);
+            });
+
+            // Re-ejecutar el observador de animaciones
+            setTimeout(() => setupReveals(), 50);
+        }
 
         function openWhatsApp(message) {
             trackConversion('Click_WhatsApp', { intent: message });
@@ -618,7 +829,6 @@
                 overlay.classList.add('opacity-100', 'pointer-events-auto');
                 document.body.classList.add('no-scroll');
                 
-                // Animar hamburguesa a X
                 bar1.style.transform = 'translateY(8px) rotate(45deg)';
                 bar2.style.opacity = '0';
                 bar3.style.transform = 'translateY(-8px) rotate(-45deg)';
@@ -627,47 +837,85 @@
                 overlay.classList.remove('opacity-100', 'pointer-events-auto');
                 document.body.classList.remove('no-scroll');
                 
-                // Restaurar hamburguesa
                 bar1.style.transform = 'none';
                 bar2.style.opacity = '1';
                 bar3.style.transform = 'none';
+                
+                // Cerrar también submenú móvil si estaba abierto
+                if (isMobileSubmenuOpen) toggleMobileSubmenu();
             }
         }
 
-        // MOTOR SPA DEFINITIVO
-        function navigateTo(pageId) {
-            const currentActive = document.querySelector('.page-view.active');
-            const targetPage = document.getElementById(`page-${pageId}`);
+        function toggleMobileSubmenu() {
+            const submenu = document.getElementById('mobile-submenu');
+            const chevron = document.getElementById('mobile-chevron');
+            isMobileSubmenuOpen = !isMobileSubmenuOpen;
             
-            if(currentActive === targetPage) return;
+            if (isMobileSubmenuOpen) {
+                submenu.classList.remove('hidden');
+                submenu.classList.add('flex');
+                chevron.classList.add('rotate-180');
+            } else {
+                submenu.classList.add('hidden');
+                submenu.classList.remove('flex');
+                chevron.classList.remove('rotate-180');
+            }
+        }
 
-            // Actualizar URL y Analytics
-            if(history.pushState) history.pushState(null, null, `#${pageId}`);
-            else location.hash = `#${pageId}`;
-            trackConversion('Page_View', { page: pageId });
+        // MOTOR SPA SEGURO E INSTANTÁNEO
+        function navigateTo(pageId, subCategory = '') {
+            const currentActive = document.querySelector('.page-view.active');
+            
+            // Si eligen Actividades por defecto, dirigirse a Tours
+            if (pageId === 'actividades' && !subCategory) {
+                subCategory = 'tours';
+            }
 
-            // Scroll a top inmediato (elimina scroll residual)
+            const targetPageId = pageId === 'actividades' ? 'actividades' : pageId;
+            const targetPage = document.getElementById(`page-${targetPageId}`);
+            
+            if(currentActive === targetPage && pageId !== 'actividades') return;
+
+            // Actualizar URL y rastreo
+            const hash = subCategory ? `${pageId}-${subCategory}` : pageId;
+            if(history.pushState) history.pushState(null, null, `#${hash}`);
+            else location.hash = `#${hash}`;
+            trackConversion('Page_View', { page: pageId, sub: subCategory });
+
+            // Scroll inmediato
             window.scrollTo({ top: 0, behavior: 'instant' });
 
-            // Swap estricto
+            // Hacer el Swap estricto
             if(currentActive) currentActive.classList.remove('active');
             if(targetPage) {
                 targetPage.classList.add('active');
-                
-                // Reiniciar Reveals
                 targetPage.querySelectorAll('.reveal-up, .reveal-curtain').forEach(el => el.classList.remove('active'));
                 setTimeout(() => setupReveals(), 50);
             }
 
-            // UI NavBar
+            // Si es la página de actividades, ejecutar la construcción dinámica
+            if(pageId === 'actividades') {
+                renderActividades(subCategory);
+            }
+
+            // UI NavBar Active
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('text-brand-cyan');
                 link.classList.add('text-white');
             });
-            const activeLink = document.querySelector(`.nav-${pageId}`);
-            if(activeLink) {
-                activeLink.classList.remove('text-white');
-                activeLink.classList.add('text-brand-cyan');
+            
+            if (pageId === 'actividades') {
+                const actLink = document.querySelector('.nav-actividades');
+                if (actLink) {
+                    actLink.classList.remove('text-white');
+                    actLink.classList.add('text-brand-cyan');
+                }
+            } else {
+                const activeLink = document.querySelector(`.nav-${pageId}`);
+                if(activeLink) {
+                    activeLink.classList.remove('text-white');
+                    activeLink.classList.add('text-brand-cyan');
+                }
             }
 
             adjustNavbar(pageId);
@@ -705,12 +953,25 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            fetchActivities(); // Iniciar carga asíncrona de Google Sheets
+            
             const hash = window.location.hash.replace('#', '');
-            const validPages = ['home', 'legacy', 'tours', 'insider', 'contact'];
-            const initialPage = validPages.includes(hash) ? hash : 'home';
+            const validPages = ['home', 'legacy', 'actividades', 'insider', 'contact'];
+            
+            let initialPage = 'home';
+            let initialSub = '';
+            
+            if (hash) {
+                if (hash.startsWith('actividades-')) {
+                    initialPage = 'actividades';
+                    initialSub = hash.replace('actividades-', '');
+                } else if (validPages.includes(hash)) {
+                    initialPage = hash;
+                }
+            }
             
             document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
-            navigateTo(initialPage);
+            navigateTo(initialPage, initialSub);
         });
     </script>
 </body>
