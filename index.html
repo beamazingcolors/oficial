@@ -32,11 +32,11 @@
                 extend: {
                     colors: {
                         brand: {
-                            navy: '#051329',      /* Azul Abismo */
-                            accent: '#bd5307',    /* Terracota Sol */
-                            light: '#0cb5d6',     /* Turquesa Agua */
-                            pearl: '#f7f5f0',     /* Alabastro */
-                            dark: '#020914'
+                            navy: '#0b1a30',      /* Azul Abismo Náutico */
+                            accent: '#bda06a',    /* Oro Cepillado / Champagne */
+                            light: '#2a5a7a',     /* Deep Slate Blue */
+                            pearl: '#f5f3ef',     /* Lino Arena Alabastro */
+                            dark: '#071021'       /* Yacht Midnight Blue */
                         }
                     },
                     fontFamily: {
@@ -51,22 +51,13 @@
 
     <style>
         :root {
-            --primary-dark: #020914; 
-            --brand-blue: #051329; 
-            --accent: #bd5307;  
-            --light: #0cb5d6;   
+            --primary-dark: #071021; 
+            --brand-blue: #0b1a30; 
+            --accent: #bda06a;  
+            --light: #2a5a7a;   
             --white: #ffffff;
-            --pearl-bg: #f7f5f0;   
-            --gradient: linear-gradient(135deg, #bd5307 0%, #ff8c42 100%);
-        }
-
-        /* Lienzo de Partículas Magnéticas */
-        #particleCanvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: 99999;
-            pointer-events: none; 
+            --pearl-bg: #f5f3ef;   
+            --gradient: linear-gradient(135deg, #bda06a 0%, #dfcba5 100%);
         }
 
         /* SPA CONTROLLER TRANSITIONS */
@@ -120,10 +111,7 @@
         .no-scroll { overflow: hidden; }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden selection:bg-brand-light selection:text-white">
-
-    <!-- Lienzo de Partículas -->
-    <canvas id="particleCanvas"></canvas>
+<body class="antialiased overflow-x-hidden selection:bg-brand-accent selection:text-white">
 
     <!-- ========================================== -->
     <!-- INTERFAZ PRINCIPAL DEL SITIO (SPA CATALOG)  -->
@@ -168,7 +156,7 @@
                         <div class="reveal-up">
                             <span class="text-brand-accent tracking-widest text-xs font-bold uppercase mb-4 block">El Caribe Maya a tu manera</span>
                             <h2 class="font-display text-4xl lg:text-5xl text-brand-navy font-light leading-tight mb-8">
-                                Cancún no es solo un destino, <br>es un <span class="font-serif italic font-bold text-brand-light">estado de plenitud.</span>
+                                Cancún no es solo un destino, <br>es un <span class="font-serif italic font-bold text-brand-accent">estado de plenitud.</span>
                             </h2>
                             <div class="w-12 h-[2px] bg-brand-accent mb-8"></div>
                             <p class="text-slate-600 font-light text-lg leading-relaxed mb-6">
@@ -185,11 +173,11 @@
                 </div>
 
                 <!-- Datos Curiosos de Quintana Roo -->
-                <div class="bg-brand-navy text-white py-20 border-t border-brand-light/10">
+                <div class="bg-brand-navy text-white py-20 border-t border-brand-accent/10">
                     <div class="max-w-7xl mx-auto px-6 lg:px-12">
                         <div class="text-center mb-16 reveal-up">
-                            <span class="text-brand-light uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Datos Curiosos</span>
-                            <h2 class="font-display text-3xl md:text-5xl text-white font-light">Misterios de <span class="font-serif italic font-bold">Quintana Roo</span></h2>
+                            <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Datos Curiosos</span>
+                            <h2 class="font-display text-3xl md:text-5xl text-white font-light">Misterios de <span class="font-serif italic font-bold text-brand-accent">Quintana Roo</span></h2>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                             <div class="border border-white/5 p-10 rounded-2xl bg-brand-dark hover:-translate-y-2 transition-transform duration-300 shadow-xl reveal-up">
@@ -198,12 +186,12 @@
                                 <p class="text-slate-300 font-light text-sm leading-relaxed">Nuestra brillante arena blanca está hecha de coral triturado. No absorbe la energía solar, permitiendo caminar descalzo cómodamente a mediodía.</p>
                             </div>
                             <div class="border border-white/5 p-10 rounded-2xl bg-brand-dark hover:-translate-y-2 transition-transform duration-300 shadow-xl reveal-up">
-                                <i class="fas fa-water text-brand-light text-3xl mb-6"></i>
+                                <i class="fas fa-water text-brand-accent text-3xl mb-6"></i>
                                 <h3 class="font-display text-xl text-white font-semibold mb-4">El Arrecife Mesoamericano</h3>
                                 <p class="text-slate-300 font-light text-sm leading-relaxed">Frente a las costas descansa la segunda barra de coral más grande del mundo. Un santuario de biodiversidad ideal para explorar de forma privada.</p>
                             </div>
                             <div class="border border-white/5 p-10 rounded-2xl bg-brand-dark hover:-translate-y-2 transition-transform duration-300 shadow-xl reveal-up">
-                                <i class="fas fa-diaspora text-brand-accent text-3xl mb-6"></i>
+                                <i class="fas fa-dharmachakra text-brand-accent text-3xl mb-6"></i>
                                 <h3 class="font-display text-xl text-white font-semibold mb-4">Portales al Inframundo</h3>
                                 <p class="text-slate-300 font-light text-sm leading-relaxed">Quintana Roo alberga los ríos subterráneos y cuevas inundadas (cenotes) más extensos del planeta. Portales sagrados de aguas cristalinas.</p>
                             </div>
@@ -214,66 +202,22 @@
                 <!-- Lema y Carrusel dinámico -->
                 <div class="py-24 overflow-hidden border-t border-brand-navy/5">
                     <div class="text-center px-6 max-w-5xl mx-auto reveal-up mb-16">
-                        <i class="fas fa-gem text-brand-light text-3xl mb-8 drop-shadow-[0_0_15px_rgba(20,184,177,0.5)]"></i>
+                        <i class="fas fa-anchor text-brand-accent text-3xl mb-8"></i>
                         <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-brand-navy font-light leading-tight mb-6">
                             Donde el paraíso toma su <br>
-                            <span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-light">verdadero color.</span>
+                            <span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-navy">verdadero color.</span>
                         </h2>
                         <div class="w-20 h-[1.5px] bg-brand-accent mx-auto my-8"></div>
                         <p class="text-slate-500 font-medium text-xs md:text-sm tracking-[0.3em] uppercase">El lujo de la libertad absoluta</p>
                     </div>
 
-                    <div class="relative w-full pb-10 overflow-hidden carousel-hover-pause" style="clip-path: inset(0); contain: paint;">
+                    <!-- Contenedor del Carrusel que será poblado aleatoriamente -->
+                    <div id="home-carousel-container" class="relative w-full pb-10 overflow-hidden carousel-hover-pause" style="clip-path: inset(0); contain: paint;">
                         <div class="absolute inset-y-0 left-0 w-16 md:w-40 bg-gradient-to-r from-brand-pearl to-transparent z-10 pointer-events-none"></div>
                         <div class="absolute inset-y-0 right-0 w-16 md:w-40 bg-gradient-to-l from-brand-pearl to-transparent z-10 pointer-events-none"></div>
                         
-                        <div class="flex animate-infinite-scroll">
-                            <!-- SET 1 -->
-                            <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">
-                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
-                                    <img src="https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=800&q=80" alt="Cenote" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'cenotes')">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Cenotes</h4>
-                                </div>
-                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
-                                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Yate" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Nuestra Flota</h4>
-                                </div>
-                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
-                                    <img src="https://images.unsplash.com/photo-1518638150341-f706e86654de?auto=format&fit=crop&w=800&q=80" alt="Zonas Arqueológicas" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Zonas Arqueológicas</h4>
-                                </div>
-                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'transportacion')">
-                                    <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=800&q=80" alt="Playas Exclusivas" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Playas Exclusivas</h4>
-                                </div>
-                            </div>
-                            <!-- SET 2 (Clon) -->
-                            <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">
-                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
-                                    <img src="https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=800&q=80" alt="Cenote" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'cenotes')">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Cenotes</h4>
-                                </div>
-                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
-                                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Yate" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Nuestra Flota</h4>
-                                </div>
-                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
-                                    <img src="https://images.unsplash.com/photo-1518638150341-f706e86654de?auto=format&fit=crop&w=800&q=80" alt="Zonas Arqueológicas" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Zonas Arqueológicas</h4>
-                                </div>
-                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'transportacion')">
-                                    <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=800&q=80" alt="Playas Exclusivas" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Playas Exclusivas</h4>
-                                </div>
-                            </div>
+                        <div id="home-carousel-scroll" class="flex animate-infinite-scroll">
+                            <!-- Se poblará dinámicamente con imágenes aleatorias del Sheet de Google -->
                         </div>
                     </div>
                 </div>
@@ -337,7 +281,7 @@
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16">
                     <div class="text-center mb-16 reveal-up">
                         <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Consejos & Secretos</span>
-                        <h2 class="font-display text-3xl md:text-5xl text-brand-navy font-light">Guía <span class="font-serif italic font-bold">Insider</span></h2>
+                        <h2 class="font-display text-3xl md:text-5xl text-brand-navy font-light">Guía <span class="font-serif italic font-bold text-brand-accent">Insider</span></h2>
                         <p class="text-slate-500 font-light text-base mt-4 max-w-2xl mx-auto">Recomendaciones exclusivas para evitar errores y sacarle el máximo partido a tu estancia en la Riviera Maya.</p>
                     </div>
 
@@ -347,7 +291,7 @@
                                 <img src="https://images.unsplash.com/photo-1620617056627-c102bd53bbd3?auto=format&fit=crop&w=800&q=80" alt="Bacalar" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
                             </div>
                             <div class="p-8">
-                                <span class="text-brand-light text-[10px] font-bold uppercase tracking-widest mb-2 block">Fotografía & Viaje</span>
+                                <span class="text-brand-accent text-[10px] font-bold uppercase tracking-widest mb-2 block">Fotografía & Viaje</span>
                                 <h3 class="font-display text-xl text-brand-navy font-bold mb-4 leading-snug">El color real del agua en Bacalar</h3>
                                 <p class="text-slate-500 font-light text-sm mb-6 leading-relaxed">Te revelamos los puntos exactos y las horas mágicas de luz para capturar los siete tonos reales de la laguna sin reflejos molestos.</p>
                                 <span class="text-brand-accent font-semibold text-xs uppercase tracking-widest hover:text-brand-navy transition-colors">Descubrir Secretos <i class="fas fa-arrow-right ml-2 text-[10px]"></i></span>
@@ -359,7 +303,7 @@
                                 <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Isla Mujeres" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
                             </div>
                             <div class="p-8">
-                                <span class="text-brand-light text-[10px] font-bold uppercase tracking-widest mb-2 block">Logística Privada</span>
+                                <span class="text-brand-accent text-[10px] font-bold uppercase tracking-widest mb-2 block">Logística Privada</span>
                                 <h3 class="font-display text-xl text-brand-navy font-bold mb-4 leading-snug">3 Errores críticos al visitar Isla Mujeres</h3>
                                 <p class="text-slate-500 font-light text-sm mb-6 leading-relaxed">Los fallos de planeación que cometen los turistas en tours masivos de ferry público y cómo convertirlos en una tarde soñada.</p>
                                 <span class="text-brand-accent font-semibold text-xs uppercase tracking-widest hover:text-brand-navy transition-colors">Evitar Errores <i class="fas fa-arrow-right ml-2 text-[10px]"></i></span>
@@ -371,7 +315,7 @@
                                 <img src="https://images.unsplash.com/photo-1518638150341-f706e86654de?auto=format&fit=crop&w=800&q=80" alt="Chichen Itza" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
                             </div>
                             <div class="p-8">
-                                <span class="text-brand-light text-[10px] font-bold uppercase tracking-widest mb-2 block">Legado Maya</span>
+                                <span class="text-brand-accent text-[10px] font-bold uppercase tracking-widest mb-2 block">Legado Maya</span>
                                 <h3 class="font-display text-xl text-brand-navy font-bold mb-4 leading-snug">¿Vale la pena Chichén Itzá de forma privada?</h3>
                                 <p class="text-slate-500 font-light text-sm mb-6 leading-relaxed">Descubre la diferencia monumental de entrar a la zona arqueológica antes del amanecer frente al agobio de los autobuses estándar.</p>
                                 <span class="text-brand-accent font-semibold text-xs uppercase tracking-widest hover:text-brand-navy transition-colors">Conocer Detalles <i class="fas fa-arrow-right ml-2 text-[10px]"></i></span>
@@ -397,7 +341,7 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 <div class="relative">
                                     <input type="text" id="f_name" required class="w-full bg-transparent border-b border-slate-300 text-brand-navy py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent" placeholder="Tu Nombre">
-                                    <label for="f_name" class="absolute left-0 -top-3.5 text-xs text-brand-light uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Tu Nombre *</label>
+                                    <label for="f_name" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Tu Nombre *</label>
                                 </div>
                                 <div class="relative">
                                     <select id="f_people" required class="w-full bg-transparent border-b border-slate-300 text-brand-navy py-3 focus:outline-none focus:border-brand-accent transition-colors appearance-none cursor-pointer">
@@ -410,12 +354,12 @@
                                 </div>
                                 <div class="relative md:col-span-2">
                                     <input type="text" id="f_destinos" class="w-full bg-transparent border-b border-slate-300 text-brand-navy py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent" placeholder="Actividades de Interés">
-                                    <label for="f_destinos" class="absolute left-0 -top-3.5 text-xs text-brand-light uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Actividades de Interés</label>
+                                    <label for="f_destinos" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Actividades de Interés</label>
                                 </div>
                             </div>
 
                             <div class="pt-6 text-center">
-                                <button type="submit" class="bg-brand-accent text-white px-12 py-5 font-bold tracking-widest uppercase hover:bg-brand-navy transition-all duration-300 w-full md:w-auto flex items-center justify-center mx-auto rounded-full shadow-[0_10px_25px_rgba(189,83,7,0.3)]">
+                                <button type="submit" class="bg-brand-accent text-white px-12 py-5 font-bold tracking-widest uppercase hover:bg-brand-navy transition-all duration-300 w-full md:w-auto flex items-center justify-center mx-auto rounded-full shadow-[0_10px_25px_rgba(189,160,106,0.3)]">
                                     Enviar Solicitud a WhatsApp <i class="fab fa-whatsapp ml-3 text-lg"></i>
                                 </button>
                             </div>
@@ -429,7 +373,7 @@
         <!-- MODAL DE ZOOM & LIGHTBOX                   -->
         <!-- ========================================== -->
         <div id="image-zoom-modal" class="fixed inset-0 bg-brand-navy/98 z-50 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeZoomModal()">
-            <button onclick="closeZoomModal()" class="absolute top-6 right-6 text-white text-4xl hover:text-brand-orange transition-colors z-50 focus:outline-none p-4">
+            <button onclick="closeZoomModal()" class="absolute top-6 right-6 text-white text-4xl hover:text-brand-accent transition-colors z-50 focus:outline-none p-4">
                 <i class="fas fa-times"></i>
             </button>
             <div class="relative max-w-5xl max-h-[80vh] overflow-hidden cursor-zoom-out p-2" id="zoom-container" onclick="event.stopPropagation()" onmousemove="zoomImage(event)" onmouseleave="resetZoomImage()">
@@ -449,7 +393,7 @@
                     
                     <div class="lg:col-span-2">
                         <button onclick="navigateTo('home')" class="mb-6 block text-left hover:opacity-80 transition-opacity focus:outline-none">
-                            <span class="font-display font-black text-2xl tracking-tighter text-white">AMAZING<span class="text-brand-light">COLORS</span></span>
+                            <span class="font-display font-black text-2xl tracking-tighter text-white">AMAZING<span class="text-brand-accent">COLORS</span></span>
                         </button>
                         <p class="text-slate-400 font-light text-sm leading-relaxed max-w-sm mb-6">
                             Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y personalizadas de alta gama.
@@ -461,17 +405,17 @@
                     </div>
 
                     <div>
-                        <h4 class="text-brand-light font-display font-semibold tracking-widest uppercase text-xs mb-6">Secciones</h4>
+                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Secciones</h4>
                         <ul class="space-y-4">
-                            <li><button onclick="navigateTo('home')" class="text-slate-400 hover:text-brand-light text-sm font-light transition-colors focus:outline-none">Inicio</button></li>
-                            <li><button onclick="navigateTo('legacy')" class="text-slate-400 hover:text-brand-light text-sm font-light transition-colors focus:outline-none">Legado</button></li>
-                            <li><button onclick="navigateTo('catalog', 'tour')" class="text-slate-400 hover:text-brand-light text-sm font-light transition-colors focus:outline-none">Tours</button></li>
-                            <li><button onclick="navigateTo('insider')" class="text-slate-400 hover:text-brand-light text-sm font-light transition-colors focus:outline-none">Insider</button></li>
+                            <li><button onclick="navigateTo('home')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Inicio</button></li>
+                            <li><button onclick="navigateTo('legacy')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Legado</button></li>
+                            <li><button onclick="navigateTo('catalog', 'tour')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Tours</button></li>
+                            <li><button onclick="navigateTo('insider')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Insider</button></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 class="text-brand-light font-display font-semibold tracking-widest uppercase text-xs mb-6">Ubicación</h4>
+                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Ubicación</h4>
                         <p class="text-slate-400 font-light text-sm leading-relaxed mb-4">
                             Cancún, Quintana Roo<br>México
                         </p>
@@ -562,71 +506,6 @@
             img.src = fallbacks[fallbackCategory] || fallbacks.general;
             img.style.objectFit = 'cover';
         }
-
-        /* LIENZO DE PARTÍCULAS SÚPER ORGÁNICAS */
-        const canvas = document.getElementById('particleCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class SparkParticle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.radius = Math.random() * 2 + 1.2;       
-                this.vx = (Math.random() - 0.5) * 3.5;       
-                this.vy = (Math.random() - 0.5) * 3.5 - 1.5; 
-                this.gravity = 0.14;                                        
-                this.hue = Math.floor(Math.random() * 360);  
-                this.alpha = 1;                                              
-                this.decay = Math.random() * 0.012 + 0.012;  
-            }
-
-            update() {
-                this.x += this.vx;
-                this.vy += this.gravity;                     
-                this.y += this.vy;
-                this.alpha -= this.decay;
-            }
-
-            draw() {
-                if (this.alpha <= 0) return;
-                ctx.save();
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `hsla(${this.hue}, 95%, 60%, ${this.alpha})`;
-                ctx.shadowBlur = 6;
-                ctx.shadowColor = `hsl(${this.hue}, 95%, 60%)`;
-                ctx.fill();
-                ctx.restore();
-            }
-        }
-
-        window.addEventListener('mousemove', (e) => {
-            for (let i = 0; i < 2; i++) { particles.push(new SparkParticle(e.clientX, e.clientY)); }
-        });
-
-        window.addEventListener('touchmove', (e) => {
-            const touch = e.touches[0];
-            for (let i = 0; i < 2; i++) { particles.push(new SparkParticle(touch.clientX, touch.clientY)); }
-        }, { passive: true });
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = particles.length - 1; i >= 0; i--) {
-                particles[i].update();
-                particles[i].draw();
-                if (particles[i].alpha <= 0) { particles.splice(i, 1); }
-            }
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
 
         /* PARSER DE DATOS ADAPTATIVO */
         function getCleanValue(item, possibleHeaders) {
@@ -734,7 +613,58 @@
                     initialSub = hash.replace('catalog-', '');
                 }
                 filterCatalog(initialSub);
+
+                // Inicializar carrusel aleatorio con imágenes de GitHub
+                initHomeCarousel();
             } catch (err) { console.error("Error al obtener la base de datos:", err); }
+        }
+
+        function initHomeCarousel() {
+            const scrollContainer = document.getElementById('home-carousel-scroll');
+            if (!scrollContainer || fullData.length === 0) return;
+
+            // Filtrar únicamente los elementos que contienen un código de catálogo/imagen válido
+            let itemsWithImages = fullData.filter(item => {
+                let code = getCleanValue(item, ['Catalogo', 'Catálogo', 'Codigo', 'Código', 'CDG']);
+                return code && code.trim() !== '';
+            });
+
+            if (itemsWithImages.length === 0) {
+                // Si no hay datos dinámicos, el carrusel se mantendrá oculto o usará fallbacks
+                return;
+            }
+
+            // Ordenar aleatoriamente
+            itemsWithImages.sort(() => 0.5 - Math.random());
+
+            // Seleccionar hasta 4 elementos aleatorios para estructurar el carrusel infinito
+            let selectedItems = itemsWithImages.slice(0, 5);
+
+            let setHtml = '';
+            selectedItems.forEach(item => {
+                let name = getCleanValue(item, ['Nombre', 'NOMBRE']);
+                let code = getCleanValue(item, ['Catalogo', 'Catálogo', 'Codigo', 'Código', 'CDG']);
+                let imgUrl = getImgUrlByCodigo(code);
+                let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
+                
+                let categoryType = 'tour';
+                if (tipo.includes('yate')) categoryType = 'yate';
+                if (tipo.includes('trans')) categoryType = 'transportacion';
+
+                setHtml += `
+                    <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', '${categoryType}')">
+                        <img src="${imgUrl}" alt="${name}" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, '${categoryType}')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                        <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">${name}</h4>
+                    </div>
+                `;
+            });
+
+            // Inyectar ambos sets idénticos para recrear el efecto infinito sin saltos
+            scrollContainer.innerHTML = `
+                <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
+                <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
+            `;
         }
 
         function filterCatalog(category) {
@@ -813,7 +743,7 @@
                 card.innerHTML = `
                     <div class="img-container group relative h-64 overflow-hidden bg-brand-navy">
                         ${imgUrl ? `<img src="${imgUrl}" onerror="handleImgError(this, '${category}')" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">` : ''}
-                        <div class="absolute top-4 left-4 bg-brand-light text-brand-navy text-[10px] tracking-[0.2em] uppercase font-bold px-3 py-1 shadow-lg rounded">
+                        <div class="absolute top-4 left-4 bg-brand-accent text-white text-[10px] tracking-[0.2em] uppercase font-bold px-3 py-1 shadow-lg rounded-sm">
                             EXCLUSIVO
                         </div>
                         <button onclick="openZoomModal('${imgUrl}', event)" class="absolute bottom-4 right-4 bg-white/90 hover:bg-brand-accent text-brand-navy hover:text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-110 focus:outline-none" title="Ver imagen completa">
