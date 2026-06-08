@@ -64,7 +64,7 @@
             --gradient: linear-gradient(135deg, #bda06a 0%, #dfcba5 100%);
         }
 
-        /* MGA TRANSISYON SA SPA CONTROLLER */
+        /* MGA TRANSISYON SA SPA CONTROLLER - CINEMATIC SCALE & ROTATE */
         .page-view {
             display: none !important; 
             opacity: 0;
@@ -72,6 +72,12 @@
             position: absolute !important;
             height: 0 !important;
             overflow: hidden !important;
+            transform: scale(0.97) translateY(20px);
+            filter: blur(10px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, filter;
         }
         
         .page-view.active {
@@ -80,12 +86,28 @@
             position: relative !important;
             height: auto !important;
             overflow: visible !important;
-            animation: fadeUpPage 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: blur(0);
         }
 
-        @keyframes fadeUpPage {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
+        /* EFECTO SHINE DE ORO EN ENLACES DEL MENÚ */
+        .nav-btn {
+            position: relative;
+        }
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 1.5px;
+            background: #bda06a;
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-btn:hover::after, .nav-btn.active::after {
+            width: 100%;
+            left: 0;
         }
 
         /* ANIMASYON SA WALAY KATAPUSANG KARUSEL */
@@ -112,6 +134,15 @@
             transform: translateY(0);
         }
 
+        /* EFECTO CORTINA ULTRA SUAVE */
+        .reveal-curtain {
+            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+            transition: clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-curtain.active {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
         .no-scroll { overflow: hidden; }
 
         /* Media query alang sa dropdown menu sa dagkong screen */
@@ -121,6 +152,17 @@
                 visibility: visible !important;
             }
         }
+
+        /* GLOWS AMBIENTALES DE DETRÁS (Efecto Neblina de Oro) */
+        .ambient-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(189,160,106,0.05) 0%, rgba(7,16,33,0) 70%);
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(80px);
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden selection:bg-brand-accent selection:text-white bg-brand-dark">
@@ -128,9 +170,13 @@
     <!-- ========================================== -->
     <!-- PANGUNAHING INTERFACE SA SITE (SPA KATALOGO) -->
     <!-- ========================================== -->
-    <div id="main-site-wrapper" class="bg-brand-dark min-h-screen flex flex-col justify-between opacity-100">
+    <div id="main-site-wrapper" class="bg-brand-dark min-h-screen flex flex-col justify-between opacity-100 relative">
         
-        <div>
+        <!-- Glows de Ambientación de Lujo -->
+        <div class="ambient-glow top-20 left-[-100px]"></div>
+        <div class="ambient-glow top-[40%] right-[-100px]"></div>
+
+        <div class="relative z-10">
             <!-- Ulohan sa Brand (Hinay nga moadto sa Sugod) -->
             <header class="site-brand-header flex flex-col items-center justify-center pt-6 pb-4 px-4 cursor-pointer text-center" onclick="navigateTo('home')">
                 <img src="lg2.png" alt="Logo Amazing Colors" class="h-36 sm:h-48 md:h-56 w-auto mb-2 object-contain object-center transition-all duration-500 hover:scale-105" onerror="handleImgError(this, 'general')">
@@ -146,9 +192,9 @@
                 <!-- Katalogo uban sa mga Sub-kategorya -->
                 <div class="relative group" id="catalog-dropdown-container">
                     <button id="btn-nav-catalog" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300 flex items-center gap-1.5 focus:outline-none" onclick="toggleCatalogDropdown(event)">
-                        <span data-i18n="navCatalog">Catálogo</span> <i class="fas fa-chevron-down text-[10px]"></i>
+                        <span data-i18n="navCatalog">Catálogo</span> <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i>
                     </button>
-                    <div id="catalog-dropdown-menu" class="absolute left-1/2 -translate-x-1/2 mt-2 w-48 bg-brand-dark border border-white/10 opacity-0 invisible transition-all duration-300 z-50 shadow-2xl rounded-lg py-2 dropdown-menu">
+                    <div id="catalog-dropdown-menu" class="absolute left-1/2 -translate-x-1/2 mt-2 w-48 bg-brand-dark/95 backdrop-blur-md border border-white/10 opacity-0 invisible transition-all duration-300 z-50 shadow-2xl rounded-lg py-2 dropdown-menu">
                         <button onclick="selectCatalogSubCategory('tour', event)" data-i18n="navTours" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Tours</button>
                         <button onclick="selectCatalogSubCategory('yate', event)" data-i18n="navYates" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Yates</button>
                         <button onclick="selectCatalogSubCategory('transportacion', event)" data-i18n="navTrans" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Transportación</button>
@@ -179,7 +225,7 @@
                         </div>
                         <!-- Larawan nga nagrepresentar sa Cancún (cun.png gikan sa repository) -->
                         <div class="relative h-[45vh] lg:h-[60vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
-                            <img id="inicio-playas-img" src="cun.png" alt="Playas de Cancún" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'playas')">
+                            <img id="inicio-playas-img" src="cun.png" alt="Playas de Cancún" class="w-full h-full object-cover object-center transition-transform duration-1000 hover:scale-105" onerror="handleImgError(this, 'playas')">
                         </div>
                     </div>
                 </div>
@@ -262,7 +308,7 @@
                         </div>
                         <div class="relative h-[45vh] lg:h-[65vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
                             <!-- Larawan CCT.jpg gikan sa opisyal nga repository -->
-                            <img id="legado-yate-img" src="CCT.jpg" alt="Zonas Arqueológicas" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'arqueologia')">
+                            <img id="legado-yate-img" src="CCT.jpg" alt="Zonas Arqueológicas" class="w-full h-full object-cover object-center transition-transform duration-[2s] hover:scale-105" onerror="handleImgError(this, 'arqueologia')">
                         </div>
                     </div>
                 </div>
@@ -276,7 +322,7 @@
                     <div class="text-center mb-12 lg:mb-16 reveal-up">
                         <span id="catalog-category-badge" data-i18n="catalogTag" class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Experiencias Exclusivas</span>
                         <h2 id="catalog-category-title" data-i18n="catalogTitle" class="font-display text-3xl md:text-5xl text-white font-light">Colección de <span class="font-serif italic font-bold">Aventuras</span></h2>
-                        <p id="catalog-category-desc" data-i18n="catalogDesc" class="text-slate-300 font-light text-sm md:text-base max-w-2xl mx-auto mt-4">Un catálogo meticulosamente seleccionado para aquellos que buscan conectar con la belleza real del Caribe.</p>
+                        <p id="catalog-category-desc" data-i18n="catalogDesc" class="text-slate-300 font-light text-sm md:text-base max-w-2xl mx-auto mt-4">Un catálogo meticulosamente seleccionado para aquellos que buscan conectar con la beauty real del Caribe.</p>
                     </div>
 
                     <!-- Sulod nga Navigation sa Katalogo -->
@@ -419,7 +465,7 @@
                         <button onclick="navigateTo('home')" class="mb-6 block text-left hover:opacity-80 transition-opacity focus:outline-none">
                             <span class="font-display font-black text-2xl tracking-tighter text-white">AMAZING<span class="text-brand-accent">COLORS</span></span>
                         </button>
-                        <p data-i18n="footerDesc" class="text-slate-400 font-light text-sm leading-relaxed max-w-sm mb-6">
+                        <p id="footer-desc-text" data-i18n="footerDesc" class="text-slate-400 font-light text-sm leading-relaxed max-w-sm mb-6">
                             Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y personalizadas de alta gama.
                         </p>
                         <div class="flex space-x-6">
@@ -1005,7 +1051,7 @@
             
             filtered.forEach((item, idx) => {
                 const card = document.createElement('div'); 
-                card.className = 'card w-full max-w-[350px] bg-brand-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white';
+                card.className = 'card w-full max-w-[350px] bg-[#0d1c31]/50 border border-white/5 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:border-brand-accent/50 flex flex-col justify-between text-white transform translate-y-4 opacity-0';
                 let nombre = getCleanValue(item, ['Nombre', 'NOMBRE']);
                 card.onclick = () => openDetailModal(nombre);
                 
@@ -1041,9 +1087,9 @@
                         let translatedVal = translateContent(val);
 
                         extraSpecsHtml += `
-                            <div class="spec-row flex justify-between text-xs py-1 border-b border-white/5 last:border-0">
+                            <div class="spec-row flex justify-between text-xs py-1.5 border-b border-white/5 last:border-0">
                                 <span class="spec-label font-bold text-brand-accent uppercase tracking-wider text-[10px]">${translatedLabel}:</span>
-                                <span class="spec-value text-slate-300 text-right">${translatedVal}</span>
+                                <span class="spec-value text-slate-300 text-right font-light">${translatedVal}</span>
                             </div>
                         `;
                     }
@@ -1051,28 +1097,32 @@
 
                 card.innerHTML = `
                     <div class="img-container group relative h-64 overflow-hidden bg-brand-dark">
-                        ${imgUrl ? `<img src="${imgUrl}" onerror="handleImgError(this, '${category}')" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">` : ''}
+                        ${imgUrl ? `<img src="${imgUrl}" onerror="handleImgError(this, '${category}')" class="w-full h-full object-cover object-center transition-transform duration-[1.5s] ease-out group-hover:scale-110">` : ''}
                         
-                        <button onclick="openZoomModal('${imgUrl}', event)" class="absolute bottom-4 right-4 bg-brand-dark/80 hover:bg-brand-accent text-white hover:text-brand-dark w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-110 focus:outline-none" title="Ver imagen completa">
+                        <button onclick="openZoomModal('${imgUrl}', event)" class="absolute bottom-4 right-4 bg-brand-dark/80 hover:bg-brand-accent text-white hover:text-brand-dark w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none" title="Ver imagen completa">
                             <i class="fas fa-search-plus text-sm"></i>
                         </button>
                     </div>
                     <div class="card-info p-6 flex flex-col justify-between flex-grow">
                         <div>
-                            <h3 class="card-title text-xl font-bold font-display text-white mb-2">${nombre}</h3>
-                            <p class="card-price text-brand-accent font-semibold text-sm mb-4">${precio}</p>
+                            <h3 class="card-title text-xl font-bold font-display text-white mb-2 tracking-wide">${nombre}</h3>
+                            <p class="card-price text-brand-accent font-semibold text-sm mb-4 tracking-wider">${precio}</p>
                         </div>
-                        ${extraSpecsHtml ? `<div class="card-extra-specs border-t border-dashed border-white/10 pt-3 mt-4 flex flex-col gap-1">${extraSpecsHtml}</div>` : ''}
+                        ${extraSpecsHtml ? `<div class="card-extra-specs border-t border-dashed border-white/10 pt-4 mt-4 flex flex-col gap-1">${extraSpecsHtml}</div>` : ''}
                         
                         <div class="pt-6 mt-4 border-t border-white/5">
-                            <button class="w-full border border-brand-accent/40 hover:border-brand-accent hover:bg-brand-accent/15 text-brand-accent hover:text-white font-medium tracking-[0.2em] text-[9px] uppercase transition-all duration-300 rounded-full py-2 px-4 flex items-center justify-center gap-1.5 focus:outline-none">
+                            <button class="w-full border border-brand-accent/40 hover:border-brand-accent hover:bg-brand-accent/20 hover:shadow-[0_0_20px_rgba(189,160,106,0.3)] text-brand-accent hover:text-white font-medium tracking-[0.2em] text-[9px] uppercase transition-all duration-500 rounded-full py-2.5 px-4 flex items-center justify-center gap-1.5 focus:outline-none">
                                 ${langData.cardBtn} <i class="fas fa-chevron-right text-[7px] transition-transform"></i>
                             </button>
                         </div>
                     </div>
                 `;
                 grid.appendChild(card); 
-                setTimeout(() => card.classList.add('visible'), idx * 80);
+                // Staggered entry animation
+                setTimeout(() => {
+                    card.classList.remove('translate-y-4', 'opacity-0');
+                    card.classList.add('translate-y-0', 'opacity-100');
+                }, idx * 100);
             });
         }
 
@@ -1084,7 +1134,7 @@
             });
         }
 
-        // SISTEMA SA SPA NGA NAVIGATION WALAY PAG-RELOAD
+        // SISTEMA SA SPA NGA NAVIGATION WALAY PAG-RELOAD (Con Evasión de Saltos y Blur de Transición)
         function navigateTo(pageId, subCategory = '') {
             const currentActive = document.querySelector('.page-view.active');
             const targetPage = document.getElementById(`page-${pageId}`);
@@ -1098,11 +1148,32 @@
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            if(currentActive) currentActive.classList.remove('active');
-            if(targetPage) {
-                targetPage.classList.add('active');
-                targetPage.querySelectorAll('.reveal-up, .reveal-curtain').forEach(el => el.classList.remove('active'));
-                setTimeout(() => setupReveals(), 50);
+            if(currentActive) {
+                // Fade out transition
+                currentActive.style.opacity = '0';
+                currentActive.style.transform = 'scale(0.97) translateY(-20px)';
+                currentActive.style.filter = 'blur(10px)';
+                setTimeout(() => {
+                    currentActive.classList.remove('active');
+                    showTarget();
+                }, 300);
+            } else {
+                showTarget();
+            }
+
+            function showTarget() {
+                if(targetPage) {
+                    targetPage.classList.add('active');
+                    // Force reflow
+                    targetPage.offsetHeight;
+                    setTimeout(() => {
+                        targetPage.style.opacity = '1';
+                        targetPage.style.transform = 'scale(1) translateY(0)';
+                        targetPage.style.filter = 'blur(0)';
+                    }, 50);
+                    targetPage.querySelectorAll('.reveal-up, .reveal-curtain').forEach(el => el.classList.remove('active'));
+                    setTimeout(() => setupReveals(), 200);
+                }
             }
 
             if(pageId === 'catalog') {
@@ -1237,14 +1308,23 @@
                 openWhatsApp(intentMsg);
             };
 
+            // Epic Spring modal open transition
+            modal.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+            modal.style.opacity = '0';
             modal.classList.remove('opacity-0', 'pointer-events-none');
+            // Force Reflow
+            modal.offsetHeight;
+            modal.style.opacity = '1';
             document.body.classList.add('no-scroll');
         }
 
         function closeDetailModal() {
             const modal = document.getElementById('activity-detail-modal');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            document.body.classList.remove('no-scroll');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                document.body.classList.remove('no-scroll');
+            }, 400);
         }
 
         /* SISTEMA SA PAG-RETRY SA MGA INTEGRATED NGA LARAWAN */
@@ -1309,18 +1389,26 @@
             img.src = imgSrc;
             img.onerror = function() { handleImgError(img, 'general'); };
 
+            modal.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+            modal.style.opacity = '0';
             modal.classList.remove('opacity-0', 'pointer-events-none');
+            // Force Reflow
+            modal.offsetHeight;
+            modal.style.opacity = '1';
             document.body.classList.add('no-scroll');
         }
 
         function closeZoomModal() {
             const modal = document.getElementById('image-zoom-modal');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            const detailModal = document.getElementById('activity-detail-modal');
-            if (detailModal.classList.contains('pointer-events-none')) {
-                document.body.classList.remove('no-scroll');
-            }
-            resetZoomImage();
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                const detailModal = document.getElementById('activity-detail-modal');
+                if (detailModal.classList.contains('pointer-events-none')) {
+                    document.body.classList.remove('no-scroll');
+                }
+                resetZoomImage();
+            }, 400);
         }
 
         /* PAGKONTROL SA INTERACTIVE NGA ZOOM */
@@ -1375,7 +1463,7 @@
                         obs.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.15 });
+            }, { threshold: 0.1 });
 
             const activePage = document.querySelector('.page-view.active');
             if(activePage) {
