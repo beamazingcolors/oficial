@@ -129,7 +129,7 @@
         <div>
             <!-- Cabecera de Marca (Redirige suavemente al Inicio) -->
             <header class="site-brand-header flex flex-col items-center justify-center pt-16 pb-6 px-4 cursor-pointer text-center" onclick="navigateTo('home')">
-                <img src="lg2.png" alt="Logo Amazing Colors" class="h-28 sm:h-36 md:h-44 w-auto mb-6 object-contain object-center transition-all duration-500 hover:scale-105" onerror="handleImgError(this, 'general')">
+                <img src="lg2.png" alt="Logo Amazing Colors" class="h-28 sm:h-36 md:h-44 w-auto mb-2 object-contain object-center transition-all duration-500 hover:scale-105" onerror="handleImgError(this, 'general')">
                 <span class="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.1em] sm:tracking-[0.2em] text-white hover:text-brand-accent transition-all duration-300 uppercase text-center block w-full px-2 break-words">Amazing Colors</span>
                 <p class="text-[9px] md:text-xs font-semibold uppercase tracking-[0.3em] sm:tracking-[0.4em] text-brand-accent/80 mt-2 text-center w-full px-2 block break-words">Elite Ocean Journeys</p>
             </header>
@@ -173,8 +173,9 @@
                                 "Siente la brisa caribeña sin límites. Te revelamos el verdadero color del paraíso."
                             </p>
                         </div>
+                        <!-- Imagen representativa de Cancún (cun.png del repositorio) -->
                         <div class="relative h-[45vh] lg:h-[60vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
-                            <img id="inicio-playas-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="Playas de Cancún" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'playas')">
+                            <img id="inicio-playas-img" src="cun.png" alt="Playas de Cancún" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'playas')">
                         </div>
                     </div>
                 </div>
@@ -322,8 +323,8 @@
                             </div>
 
                             <div class="pt-6 text-center">
-                                <button type="submit" class="bg-brand-accent text-white px-6 py-4 sm:px-10 sm:py-5 font-bold tracking-wider sm:tracking-widest text-xs sm:text-sm uppercase hover:bg-white hover:text-brand-navy transition-all duration-300 w-full md:w-auto flex items-center justify-center mx-auto rounded-full shadow-[0_10px_25px_rgba(189,160,106,0.3)]">
-                                    Enviar Solicitud a WhatsApp <i class="fab fa-whatsapp ml-3 text-lg"></i>
+                                <button type="submit" class="border border-brand-accent hover:bg-brand-accent text-white py-3.5 px-8 font-medium tracking-[0.2em] text-[11px] uppercase transition-all duration-300 rounded-full w-full md:w-auto flex items-center justify-center mx-auto gap-2 focus:outline-none hover:shadow-[0_10px_25px_rgba(189,160,106,0.3)]">
+                                    Enviar Solicitud a WhatsApp <i class="fab fa-whatsapp text-sm"></i>
                                 </button>
                             </div>
                         </form>
@@ -457,8 +458,8 @@
 
     </div>
 
-    <!-- Botón Flotante Lateral de WhatsApp -->
-    <button onclick="openWhatsApp('Hola Concierge. Deseo agendar una experiencia.')" class="fixed bottom-6 right-6 bg-[#25d366] hover:bg-[#20ba5a] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 z-50 hover:-translate-y-1 focus:outline-none">
+    <!-- Botón Flotante Lateral de WhatsApp (Oculto en Móviles para Profesionalismo) -->
+    <button onclick="openWhatsApp('Hola Concierge. Deseo agendar una experiencia.')" class="fixed bottom-6 right-6 bg-[#25d366] hover:bg-[#20ba5a] text-white w-14 h-14 rounded-full shadow-2xl items-center justify-center transition-all duration-300 z-50 hover:-translate-y-1 focus:outline-none hidden md:flex">
         <i class="fab fa-whatsapp text-2xl"></i>
     </button>
 
@@ -630,6 +631,41 @@
             `;
         }
 
+        // MOTOR DE COPY CREATIVO CONTEXTUAL (REPLAZA "MOMENTOS INOLVIDABLES")
+        function getCreativeSlogan(item, index) {
+            const slogansTours = [
+                "Travesía Mística Exclusiva",
+                "Aventura Premium a Medida",
+                "Exploración de Leyenda",
+                "Descubrimiento de Élite",
+                "Experiencia de Lujo Absoluto",
+                "Ruta Ancestral de Ensueño"
+            ];
+            const slogansYates = [
+                "Navegación de Alta Costura",
+                "Elegancia sobre el Mar Turquesa",
+                "Travesía Privada de Lujo",
+                "Atardecer Exclusivo en Popa",
+                "Carta Náutica de Ensueño",
+                "Libertad Absoluta en Alta Mar"
+            ];
+            const slogansTrans = [
+                "Arribo Impecable y Seguro",
+                "Logística VIP con Chauffeur",
+                "Confort de Primera Clase",
+                "Privacidad Total en Ruta",
+                "Conexión VIP Riviera Maya",
+                "Transportación de Alta Gama"
+            ];
+            
+            let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
+            let arr = slogansTours;
+            if (tipo.includes('yate')) arr = slogansYates;
+            else if (tipo.includes('trans') || tipo.includes('traslado')) arr = slogansTrans;
+            
+            return arr[index % arr.length];
+        }
+
         function filterCatalog(category) {
             // Sincronizar botones internos del catálogo
             document.querySelectorAll('#page-catalog button[id^="sub-nav-"]').forEach(btn => {
@@ -677,7 +713,7 @@
                 
                 let precio = getCleanValue(item, ['Precio', 'PRECIO']);
                 if (precio === '' || precio.toLowerCase() === 'consultar') {
-                    precio = 'Momentos inolvidables';
+                    precio = getCreativeSlogan(item, idx);
                 }
 
                 // Generación de especificaciones dinámicas adicionales
@@ -703,6 +739,7 @@
                     }
                 }
 
+                // BOTÓN RESERVAR REDISEÑADO (OUTLINE FINO, PREMIUM Y ESTÉTICO)
                 card.innerHTML = `
                     <div class="img-container group relative h-64 overflow-hidden bg-brand-dark">
                         ${imgUrl ? `<img src="${imgUrl}" onerror="handleImgError(this, '${category}')" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">` : ''}
@@ -719,10 +756,10 @@
                         </div>
                         ${extraSpecsHtml ? `<div class="card-extra-specs border-t border-dashed border-white/10 pt-3 mt-4 flex flex-col gap-1">${extraSpecsHtml}</div>` : ''}
                         
-                        <!-- Botón Reservar premium solicitado -->
+                        <!-- Botón Reservar premium estilizado (Outline fino, estilizado, no robusto) -->
                         <div class="pt-6 mt-4 border-t border-white/5">
-                            <button class="w-full bg-brand-accent hover:bg-white text-white hover:text-brand-navy py-2.5 font-bold tracking-widest text-[10px] uppercase transition-all duration-300 rounded-lg">
-                                Ver Detalles & Reserva <i class="fas fa-arrow-right ml-1"></i>
+                            <button class="w-full border border-brand-accent/40 hover:border-brand-accent hover:bg-brand-accent/15 text-brand-accent hover:text-white font-medium tracking-[0.2em] text-[9px] uppercase transition-all duration-300 rounded-full py-2 px-4 flex items-center justify-center gap-1.5 focus:outline-none">
+                                Ver Detalles & Reserva <i class="fas fa-chevron-right text-[7px] transition-transform"></i>
                             </button>
                         </div>
                     </div>
@@ -844,7 +881,7 @@
             title.innerText = getCleanValue(item, ['Nombre', 'NOMBRE']);
             
             let precio = getCleanValue(item, ['Precio', 'PRECIO']);
-            price.innerText = (precio === '' || precio.toLowerCase() === 'consultar') ? 'Momentos inolvidables' : precio;
+            price.innerText = (precio === '' || precio.toLowerCase() === 'consultar') ? 'Consulte con su Concierge' : precio;
 
             // Descriptivo / Detalles
             let descriptivo = getCleanValue(item, ['Descriptivo', 'Detalles']);
