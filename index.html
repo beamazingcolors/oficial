@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amazing Colors | Elite Ocean Journeys</title>
     
-    <!-- Favicon Oficial Premium -->
-    <link class="brand-favicon" rel="icon" type="image/png" href="lg2.png">
+    <!-- Favicon Oficial Premium de Alta Resolución (Estilo y Escalado Mejorado) -->
+    <link class="brand-favicon" rel="icon" type="image/png" sizes="32x32" href="lg2.png">
+    <link class="brand-favicon" rel="icon" type="image/png" sizes="16x16" href="lg2.png">
+    <link class="brand-favicon" rel="icon" type="image/png" sizes="192x192" href="lg2.png">
+    <link class="brand-favicon" rel="icon" type="image/png" sizes="512x512" href="lg2.png">
+    <link class="brand-favicon" rel="apple-touch-icon" sizes="180x180" href="lg2.png">
     
     <!-- Fuentes Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -420,7 +424,7 @@
                         </p>
                         <div class="flex space-x-6">
                             <a href="https://www.instagram.com/amazingcolorstours/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-accent transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
-                            <a href="https://www.facebook.com/profile.php?id=100088379184523&locale=es_LA" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-accent transition-colors duration-300"><i class="fab fa-facebook-f text-xl"></i></a>
+                            <a href="https://www.facebook.com/p/Amazing-Colors-Tours-100088379184523/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-accent transition-colors duration-300"><i class="fab fa-facebook-f text-xl"></i></a>
                         </div>
                     </div>
 
@@ -467,20 +471,33 @@
 
         let fullData = [];
 
-        /* PARSER DE DATOS ADAPTATIVO */
+        /* PARSER DE DATOS ADAPTATIVO EXTREMADAMENTE ROBUSTO */
         function getCleanValue(item, possibleHeaders) {
             if (!item) return '';
+            // Crear versiones normalizadas de las llaves buscadas para un filtrado elástico
+            const normalizedSearched = possibleHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
+            
+            // 1. Intento de coincidencia exacta y normalizada
             for (let originalKey in item) {
-                let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-                for (let header of [originalKey, ...possibleHeaders]) {
-                    let normalizedHeader = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-                    if (normalizedKey === normalizedHeader) {
+                let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
+                if (normalizedSearched.includes(normalizedKey)) {
+                    let val = item[originalKey]?.trim();
+                    if (!val || val.toLowerCase() === 'undefined' || val.toLowerCase() === 'null') continue;
+                    if (val.startsWith('::')) val = val.substring(2).trim();
+                    else if (val.startsWith(':')) val = val.substring(1).trim();
+                    return val;
+                }
+            }
+            
+            // 2. Intento de coincidencia parcial elástica (por ejemplo si contiene "tipo" o "nombre")
+            for (let originalKey in item) {
+                let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
+                for (let search of normalizedSearched) {
+                    if (normalizedKey.includes(search) || search.includes(normalizedKey)) {
                         let val = item[originalKey]?.trim();
-                        if (!val || val.toLowerCase() === 'undefined' || val.toLowerCase() === 'null') return '';
-                        
+                        if (!val || val.toLowerCase() === 'undefined' || val.toLowerCase() === 'null') continue;
                         if (val.startsWith('::')) val = val.substring(2).trim();
                         else if (val.startsWith(':')) val = val.substring(1).trim();
-                        
                         return val;
                     }
                 }
@@ -555,15 +572,26 @@
                 const response = await fetch(TSV_URL);
                 const text = await response.text();
                 
+                // Limpiar el Byte Order Mark (BOM) que suele insertar Excel o Sheets al inicio y corromper el primer encabezado
+                let cleanText = text;
+                if (cleanText.charCodeAt(0) === 0xFEFF) {
+                    cleanText = cleanText.substring(1);
+                }
+                
                 // Parser TSV robusto de doble comilla para evitar que se desalinee
-                const rows = parseTSV(text).filter(r => r.length > 0 && r.some(cell => cell.trim() !== ''));
+                const rows = parseTSV(cleanText).filter(r => r.length > 0 && r.some(cell => cell.trim() !== ''));
                 if (rows.length < 2) return;
                 
-                const headers = rows[0].map(h => h.trim());
+                const rawHeaders = rows[0].map(h => h.trim());
+                const cleanHeaders = rawHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
+                
                 fullData = rows.slice(1).map(row => {
                     let item = {}; 
-                    headers.forEach((h, i) => { 
-                        item[h] = row[i]?.trim() || ''; 
+                    rawHeaders.forEach((h, i) => { 
+                        const cleanH = cleanHeaders[i];
+                        const val = row[i] !== undefined ? row[i].trim() : '';
+                        item[cleanH] = val; 
+                        item[h] = val;
                     }); 
                     return item;
                 });
@@ -1002,6 +1030,7 @@
             resetZoomImage();
         }
 
+        // Control del zoom interactivo
         function zoomImage(e) {
             const container = document.getElementById('zoom-container');
             const img = document.getElementById('zoom-modal-img');
