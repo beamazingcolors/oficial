@@ -458,11 +458,6 @@
 
     </div>
 
-    <!-- Botón Flotante Lateral de WhatsApp (Oculto en Móviles para Profesionalismo) -->
-    <button onclick="openWhatsApp('Hola Concierge. Deseo agendar una experiencia.')" class="fixed bottom-6 right-6 bg-[#25d366] hover:bg-[#20ba5a] text-white w-14 h-14 rounded-full shadow-2xl items-center justify-center transition-all duration-300 z-50 hover:-translate-y-1 focus:outline-none hidden md:flex">
-        <i class="fab fa-whatsapp text-2xl"></i>
-    </button>
-
     <!-- ========================================== -->
     <!-- SCRIPTS DE NAVEGACIÓN, MOTOR Y TSV         -->
     <!-- ========================================== -->
@@ -477,7 +472,7 @@
             if (!item) return '';
             for (let originalKey in item) {
                 let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-                for (let header of possibleHeaders) {
+                for (let header of [originalKey, ...possibleHeaders]) {
                     let normalizedHeader = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
                     if (normalizedKey === normalizedHeader) {
                         let val = item[originalKey]?.trim();
