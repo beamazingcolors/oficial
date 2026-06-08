@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth bg-brand-dark">
+<html lang="ceb" class="scroll-smooth bg-brand-dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amazing Colors | Elite Ocean Journeys</title>
     
-    <!-- Favicon Oficial Premium de Alta Resolución (Estilo y Escalado Mejorado) -->
+    <!-- Opisyal nga Premium Favicon sa Taas nga Resolusyon -->
     <link class="brand-favicon" rel="icon" type="image/png" sizes="32x32" href="lg2.png">
     <link class="brand-favicon" rel="icon" type="image/png" sizes="16x16" href="lg2.png">
     <link class="brand-favicon" rel="icon" type="image/png" sizes="192x192" href="lg2.png">
     <link class="brand-favicon" rel="icon" type="image/png" sizes="512x512" href="lg2.png">
     <link class="brand-favicon" rel="apple-touch-icon" sizes="180x180" href="lg2.png">
     
-    <!-- Fuentes Premium -->
+    <!-- Premium nga mga Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS & FontAwesome Icons -->
+    <!-- Tailwind CSS ug FontAwesome mga Icon -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Definición Global de Analíticas y Conversión -->
+    <!-- Tibuok Kalibutan nga Kahulugan sa mga Analitika ug Pagkabig -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function trackConversion(eventName, details) {
@@ -36,11 +36,11 @@
                 extend: {
                     colors: {
                         brand: {
-                            navy: '#0b1a30',      /* Azul Abismo Náutico */
-                            accent: '#bda06a',    /* Oro Cepillado / Champagne */
-                            light: '#2a5a7a',     /* Deep Slate Blue */
-                            pearl: '#f5f3ef',     /* Lino Arena Alabastro */
-                            dark: '#071021'       /* Yacht Midnight Blue */
+                            navy: '#0b1a30',      /* Lawom nga Asul sa Dagat */
+                            accent: '#bda06a',    /* Sinipilyong Bulawan / Champagne */
+                            light: '#2a5a7a',     /* Deep Slate nga Asul */
+                            pearl: '#f5f3ef',     /* Puti nga Lino ug Bas */
+                            dark: '#071021'       /* Midnight Yacht nga Asul */
                         }
                     },
                     fontFamily: {
@@ -64,7 +64,7 @@
             --gradient: linear-gradient(135deg, #bda06a 0%, #dfcba5 100%);
         }
 
-        /* SPA CONTROLLER TRANSITIONS */
+        /* MGA TRANSISYON SA SPA CONTROLLER */
         .page-view {
             display: none !important; 
             opacity: 0;
@@ -88,7 +88,7 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* ANIMACIÓN CARRUSEL INFINITO */
+        /* ANIMASYON SA WALAY KATAPUSANG KARUSEL */
         @keyframes infinite-scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -101,7 +101,7 @@
             animation-play-state: paused;
         }
 
-        /* REVEAL ON SCROLL EFFECTS */
+        /* MGA EPEKTO SA REVEAL SAMTANG NAG-SCROLL */
         .reveal-up {
             opacity: 0;
             transform: translateY(50px);
@@ -114,7 +114,7 @@
 
         .no-scroll { overflow: hidden; }
 
-        /* Media query para manejar el menú desplegable en pantallas grandes */
+        /* Media query alang sa dropdown menu sa dagkong screen */
         @media (min-width: 1024px) {
             .group:hover .dropdown-menu {
                 opacity: 1 !important;
@@ -126,182 +126,182 @@
 <body class="antialiased overflow-x-hidden selection:bg-brand-accent selection:text-white bg-brand-dark">
 
     <!-- ========================================== -->
-    <!-- INTERFAZ PRINCIPAL DEL SITIO (SPA CATALOG)  -->
+    <!-- PANGUNAHING INTERFACE SA SITE (SPA KATALOGO) -->
     <!-- ========================================== -->
     <div id="main-site-wrapper" class="bg-brand-dark min-h-screen flex flex-col justify-between opacity-100">
         
         <div>
-            <!-- Cabecera de Marca (Redirige suavemente al Inicio) -->
+            <!-- Ulohan sa Brand (Hinay nga moadto sa Sugod) -->
             <header class="site-brand-header flex flex-col items-center justify-center pt-6 pb-4 px-4 cursor-pointer text-center" onclick="navigateTo('home')">
                 <img src="lg2.png" alt="Logo Amazing Colors" class="h-36 sm:h-48 md:h-56 w-auto mb-2 object-contain object-center transition-all duration-500 hover:scale-105" onerror="handleImgError(this, 'general')">
                 <span class="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.1em] sm:tracking-[0.2em] text-white hover:text-brand-accent transition-all duration-300 uppercase text-center block w-full px-2 break-words">Amazing Colors</span>
                 <p class="text-[9px] md:text-xs font-semibold uppercase tracking-[0.3em] sm:tracking-[0.4em] text-brand-accent/80 mt-2 text-center w-full px-2 block break-words">Elite Ocean Journeys</p>
             </header>
 
-            <!-- Barra de Navegación Premium -->
+            <!-- Premium nga Navigation Bar -->
             <nav class="nav-bar sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md py-5 border-b border-white/10 flex justify-center gap-4 md:gap-8 flex-wrap px-4">
-                <button id="btn-nav-home" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300 active" onclick="navigateTo('home')">Inicio</button>
-                <button id="btn-nav-legacy" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300" onclick="navigateTo('legacy')">Legado</button>
+                <button id="btn-nav-home" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300 active" onclick="navigateTo('home')">Sugod</button>
+                <button id="btn-nav-legacy" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300" onclick="navigateTo('legacy')">Kabilin</button>
                 
-                <!-- Catalogo con Subcategorías -->
+                <!-- Katalogo uban sa mga Sub-kategorya -->
                 <div class="relative group" id="catalog-dropdown-container">
                     <button id="btn-nav-catalog" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300 flex items-center gap-1.5 focus:outline-none" onclick="toggleCatalogDropdown(event)">
-                        Catálogo <i class="fas fa-chevron-down text-[10px]"></i>
+                        Katalogo <i class="fas fa-chevron-down text-[10px]"></i>
                     </button>
                     <div id="catalog-dropdown-menu" class="absolute left-1/2 -translate-x-1/2 mt-2 w-48 bg-brand-dark border border-white/10 opacity-0 invisible transition-all duration-300 z-50 shadow-2xl rounded-lg py-2 dropdown-menu">
-                        <button onclick="selectCatalogSubCategory('tour', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Tours</button>
-                        <button onclick="selectCatalogSubCategory('yate', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Yates</button>
-                        <button onclick="selectCatalogSubCategory('transportacion', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Transportación</button>
+                        <button onclick="selectCatalogSubCategory('tour', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Mga Tour</button>
+                        <button onclick="selectCatalogSubCategory('yate', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Mga Yate</button>
+                        <button onclick="selectCatalogSubCategory('transportacion', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Transportasyon</button>
                     </div>
                 </div>
 
-                <button id="btn-nav-contact" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300" onclick="navigateTo('contact')">Reserva</button>
+                <button id="btn-nav-contact" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300" onclick="navigateTo('contact')">Pag-reserba</button>
             </nav>
 
             <!-- ========================================== -->
-            <!-- VIEW 1: HOME / INICIO                      -->
+            <!-- TAN-AWONON 1: HOME / SUGOD                 -->
             <!-- ========================================== -->
             <section id="page-home" class="page-view active bg-brand-dark">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                         <div class="reveal-up lg:pr-8">
-                            <span class="text-brand-accent tracking-widest text-xs font-bold uppercase mb-4 block">El Caribe Maya a tu manera</span>
+                            <span class="text-brand-accent tracking-widest text-xs font-bold uppercase mb-4 block">Ang Mayan Caribbean sa imong kaugalingong paagi</span>
                             <h2 class="font-display text-4xl lg:text-5xl text-white font-light leading-tight mb-8">
-                                Cancún no es solo un destino, <br>es un <span class="font-serif italic font-bold text-brand-accent">estado de plenitud.</span>
+                                Ang Cancún dili lang usa ka destinasyon, <br>kini usa ka <span class="font-serif italic font-bold text-brand-accent">kahimtang sa pagkakompleto.</span>
                             </h2>
                             <div class="w-12 h-[2px] bg-brand-accent mb-8"></div>
                             <p class="text-slate-300 font-light text-lg leading-relaxed mb-6">
-                                La joya de Quintana Roo. Un lugar donde la selva de esmeraldas se funde con el mar turquesa y el tiempo parece detenerse para regalarte momentos inigualables. Cancún te ofrece el contraste perfecto de la civilización maya y la hospitalidad premium contemporánea.
+                                Ang mutya sa Quintana Roo. Usa ka dapit diin ang lasang sa mga esmeralda mosagol sa turkesa nga dagat ug ang panahon daw mohunong aron sa paghatag kanimo og dili hitupngan nga mga higayon. Ang Cancún nagtanyag kanimo sa hingpit nga kalainan sa sibilisasyong Maya ug modernong premium nga pagkamaabiabihon.
                             </p>
                             <p class="text-white font-semibold text-lg italic border-l-2 border-brand-accent pl-4">
-                                "Siente la brisa caribeña sin límites. Te revelamos el verdadero color del paraíso."
+                                "Batia ang hangin sa Caribbean nga walay kinutuban. Among ipadayag ang tinuod nga kolor sa paraiso."
                             </p>
                         </div>
-                        <!-- Imagen representativa de Cancún (cun.png del repositorio) -->
+                        <!-- Larawan nga nagrepresentar sa Cancún (cun.png gikan sa repository) -->
                         <div class="relative h-[45vh] lg:h-[60vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
-                            <img id="inicio-playas-img" src="cun.png" alt="Playas de Cancún" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'playas')">
+                            <img id="inicio-playas-img" src="cun.png" alt="Mga Eksklusibong Baybayon sa Cancún" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'playas')">
                         </div>
                     </div>
                 </div>
 
-                <!-- Datos Curiosos de Quintana Roo -->
+                <!-- Mga Misteryo sa Quintana Roo -->
                 <div class="bg-brand-dark text-white py-20 lg:py-28 border-t border-white/10">
                     <div class="max-w-7xl mx-auto px-6 lg:px-12">
                         <div class="text-center mb-16 lg:mb-20 reveal-up">
-                            <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Datos Curiosos</span>
-                            <h2 class="font-display text-3xl md:text-5xl text-white font-light">Misterios de <span class="font-serif italic font-bold text-brand-accent">Quintana Roo</span></h2>
+                            <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Mga Makalingaw nga Kamatuoran</span>
+                            <h2 class="font-display text-3xl md:text-5xl text-white font-light">Mga Misteryo sa <span class="font-serif italic font-bold text-brand-accent">Quintana Roo</span></h2>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
                             <div class="border border-white/10 p-8 lg:p-10 rounded-2xl bg-brand-navy hover:-translate-y-2 transition-transform duration-300 shadow-xl reveal-up flex flex-col justify-between">
                                 <div>
                                     <i class="fas fa-sun text-brand-accent text-3xl mb-6"></i>
-                                    <h3 class="font-display text-xl text-white font-semibold mb-4">Arena que no quema</h3>
-                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Nuestra brillante arena blanca está hecha de coral triturado. No absorbe la energía solar, permitiendo caminar descalzo cómodamente a mediodía.</p>
+                                    <h3 class="font-display text-xl text-white font-semibold mb-4">Bas nga dili makapaso</h3>
+                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Ang among sinaw nga puti nga bas gihimo gikan sa nadugmok nga koral. Dili kini mosuhop sa enerhiya sa adlaw, nga magtugot kanimo sa paglakaw nga nagtiniil nga komportable sa udto.</p>
                                 </div>
                             </div>
                             <div class="border border-white/10 p-8 lg:p-10 rounded-2xl bg-brand-navy hover:-translate-y-2 transition-transform duration-300 shadow-xl reveal-up flex flex-col justify-between">
                                 <div>
                                     <i class="fas fa-water text-brand-accent text-3xl mb-6"></i>
-                                    <h3 class="font-display text-xl text-white font-semibold mb-4">El Arrecife Mesoamericano</h3>
-                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Frente a las costas descansa la segunda barra de coral más grande del mundo. Un santuario de biodiversidad ideal para explorar de forma privada.</p>
+                                    <h3 class="font-display text-xl text-white font-semibold mb-4">Ang Mesoamerican Reef</h3>
+                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Sa atubangan sa baybayon nahimutang ang ikaduhang labing dako nga babag sa koral sa kalibutan. Usa ka sangtuwaryo sa biodiversity nga sulundon nga dulaon nga pribado.</p>
                                 </div>
                             </div>
                             <div class="border border-white/10 p-8 lg:p-10 rounded-2xl bg-brand-navy hover:-translate-y-2 transition-transform duration-300 shadow-xl reveal-up flex flex-col justify-between">
                                 <div>
                                     <i class="fas fa-dharmachakra text-brand-accent text-3xl mb-6"></i>
-                                    <h3 class="font-display text-xl text-white font-semibold mb-4">Portales al Inframundo</h3>
-                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Quintana Roo alberga los ríos subterráneos y cuevas inundadas (cenotes) más extensos del planeta. Portales sagrados de aguas cristalinas.</p>
+                                    <h3 class="font-display text-xl text-white font-semibold mb-4">Mga Portal padulong sa Underworld</h3>
+                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Ang Quintana Roo puy-anan sa labing lapad nga mga suba sa ilawom sa yuta ug nalunod nga mga langob (cenotes) sa planeta. Sagradong mga portal sa tin-aw nga tubig.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Lema y Carrusel dinámico -->
+                <!-- Lema ug Karusel sa Balay -->
                 <div class="pt-24 pb-4 lg:pt-28 lg:pb-6 overflow-hidden border-t border-white/10">
                     <div class="text-center px-6 max-w-5xl mx-auto reveal-up mb-16">
                         <i class="fas fa-anchor text-brand-accent text-3xl mb-8"></i>
                         <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-white font-light leading-tight mb-6">
-                            Donde el paraíso toma su <br>
-                            <span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-white">verdadero color.</span>
+                            Diin ang paraiso nagkuha sa <br>
+                            <span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-white">tinuod nga kolor niini.</span>
                         </h2>
                         <div class="w-20 h-[1.5px] bg-brand-accent mx-auto my-8"></div>
-                        <p class="text-slate-400 font-medium text-xs md:text-sm tracking-[0.3em] uppercase">El lujo de la libertad absoluta</p>
+                        <p class="text-slate-400 font-medium text-xs md:text-sm tracking-[0.3em] uppercase">Ang kaluho sa hingpit nga kagawasan</p>
                     </div>
 
-                    <!-- Contenedor del Carrusel que será poblado aleatoriamente -->
+                    <!-- Container sa Karusel nga mapun-an nga random gikan sa Sheet -->
                     <div id="home-carousel-container" class="relative w-full pb-4 overflow-hidden carousel-hover-pause" style="clip-path: inset(0); contain: paint;">
                         <div class="absolute inset-y-0 left-0 w-16 md:w-40 bg-gradient-to-r from-brand-dark to-transparent z-10 pointer-events-none"></div>
                         <div class="absolute inset-y-0 right-0 w-16 md:w-40 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none"></div>
                         
                         <div id="home-carousel-scroll" class="flex animate-infinite-scroll">
-                            <!-- Se poblará dinámicamente con imágenes del Sheet de Google -->
+                            <!-- Mapun-an dinagmiko gikan sa Google Sheet -->
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- ========================================== -->
-            <!-- VIEW 2: ABOUT / LEGADO                     -->
+            <!-- TAN-AWONON 2: ABOUT / KABILIN              -->
             <!-- ========================================== -->
             <section id="page-legacy" class="page-view bg-brand-dark">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                         <div class="reveal-up lg:pr-8">
-                            <span class="text-brand-accent tracking-widest text-xs font-bold uppercase mb-4 block">Nuestra Historia</span>
+                            <span class="text-brand-accent tracking-widest text-xs font-bold uppercase mb-4 block">Ang Among Kasaysayan</span>
                             <h2 class="font-display text-4xl lg:text-5xl text-white font-light leading-tight mb-8">
-                                Nacimos en <span class="font-serif italic font-bold text-brand-accent">2021</span> para redefinir el lujo del viaje privado.
+                                Natawo kami sa <span class="font-serif italic font-bold text-brand-accent">2021</span> aron usbon ang kahulugan sa kaluho sa pribadong pagbiyahe.
                             </h2>
                             <div class="w-12 h-[2px] bg-brand-accent mb-8"></div>
                             <p class="text-slate-300 font-light text-lg leading-relaxed mb-6">
-                                Mientras el mundo entero experimentaba profundos cambios, nosotros decidimos mirar hacia el horizonte del Caribe Mexicano y crear una propuesta diferente. Nos propusimos diseñar experiencias completamente libres de filas, personalizadas al detalle y enfocadas en revelar la verdadera esencia y pureza de Cancún y la Riviera Maya.
+                                Samtang ang tibuok kalibutan nakasinati og lawom nga mga kausaban, kami nakahukom sa pagtan-aw sa kapunawpunawan sa Mexican Caribbean ug sa paghimo og usa ka lahi nga sugyot. Gitinguha namo ang pagdesinyo og mga kasinatian nga walay linya, detalyado nga gipahiangay ug nakatutok sa pagpadayag sa tinuod nga esensya ug kaputli sa Cancún ug Riviera Maya.
                             </p>
                             <p class="text-white font-semibold text-xl leading-relaxed">
-                                Llevamos 5 años entregándote el color real del paraíso sin prisas ni multitudes.
+                                Naghatag kami kanimo sa tinuod nga kolor sa paraiso sulod sa 5 ka tuig nga walay pagdali o mga panon sa katawhan.
                             </p>
                         </div>
                         <div class="relative h-[45vh] lg:h-[65vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
-                            <!-- Foto panorámica CCT.jpg del repositorio oficial de GitHub -->
-                            <img id="legado-yate-img" src="CCT.jpg" alt="Chichen Itza" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'arqueologia')">
+                            <!-- Larawan CCT.jpg gikan sa opisyal nga repository -->
+                            <img id="legado-yate-img" src="CCT.jpg" alt="Zonas Arqueológicas" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'arqueologia')">
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- ========================================== -->
-            <!-- VIEW 3: CATALOG (DYNAMIC GRID)             -->
+            <!-- TAN-AWONON 3: CATALOG / KATALOGO           -->
             <!-- ========================================== -->
             <section id="page-catalog" class="page-view bg-brand-dark">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
                     <div class="text-center mb-12 lg:mb-16 reveal-up">
-                        <span id="catalog-category-badge" class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Experiencias Exclusivas</span>
-                        <h2 id="catalog-category-title" class="font-display text-3xl md:text-5xl text-white font-light">Colección de <span class="font-serif italic font-bold">Aventuras</span></h2>
-                        <p id="catalog-category-desc" class="text-slate-300 font-light text-sm md:text-base max-w-2xl mx-auto mt-4">Un catálogo meticulosamente seleccionado para aquellos que buscan conectar con la belleza real del Caribe.</p>
+                        <span id="catalog-category-badge" class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Mga Eksklusibong Kasinatian</span>
+                        <h2 id="catalog-category-title" class="font-display text-3xl md:text-5xl text-white font-light">Koleksyon sa mga <span class="font-serif italic font-bold">Pakigsandurot</span></h2>
+                        <p id="catalog-category-desc" class="text-slate-300 font-light text-sm md:text-base max-w-2xl mx-auto mt-4">Usa ka katalogo nga makuti nga gipili alang niadtong nagtinguha sa pagkonektar sa tinuod nga katahum sa Caribbean.</p>
                     </div>
 
-                    <!-- Subbarra de Navegación Interna para el Catálogo -->
+                    <!-- Sulod nga Navigation sa Katalogo -->
                     <div class="flex justify-center gap-4 mb-16 border-b border-white/10 pb-6 flex-wrap">
-                        <button id="sub-nav-tour" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('tour')">Tours</button>
-                        <button id="sub-nav-yate" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none" onclick="filterCatalog('yate')">Yates</button>
-                        <button id="sub-nav-transportacion" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none" onclick="filterCatalog('transportacion')">Transportación</button>
+                        <button id="sub-nav-tour" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('tour')">Mga Tour</button>
+                        <button id="sub-nav-yate" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('yate')">Mga Yate</button>
+                        <button id="sub-nav-transportacion" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('transportacion')">Transportasyon</button>
                     </div>
 
-                    <!-- Cuadrícula Dinámica del Catálogo perfectamente balanceada y centrada -->
+                    <!-- Maayong pagkabalanse ug nakasentro nga Grid sa Katalogo -->
                     <div id="catalog-grid" class="flex flex-wrap justify-center gap-8 lg:gap-10">
-                        <!-- Se poblará de forma dinámica -->
+                        <!-- Mapun-an dinagmiko -->
                     </div>
                 </div>
             </section>
 
             <!-- ========================================== -->
-            <!-- VIEW 4: RESERVA & CONTACT                  -->
+            <!-- TAN-AWONON 4: RESERVA / PAG-RESERBA        -->
             <!-- ========================================== -->
             <section id="page-contact" class="page-view bg-brand-dark">
                 <div class="max-w-4xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="text-center mb-12 lg:mb-16 reveal-up">
-                        <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Planificación Personalizada</span>
-                        <h2 class="font-display text-3xl md:text-5xl text-white font-light">Diseña tu <span class="font-serif italic font-bold">Estancia</span></h2>
-                        <p class="text-slate-300 font-light text-base mt-4 max-w-lg mx-auto">Envíanos tus deseos de viaje y un concierge especializado creará tu itinerario ideal.</p>
+                        <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Personal nga Pagplano</span>
+                        <h2 class="font-display text-3xl md:text-5xl text-white font-light">Idisenyo ang imong <span class="font-serif italic font-bold">Pagpuyo</span></h2>
+                        <p class="text-slate-300 font-light text-base mt-4 max-w-lg mx-auto">Ipadala kanamo ang imong mga tinguha sa pagbiyahe ug usa ka espesyalista nga concierge maghimo sa imong sulundon nga itinerary.</p>
                     </div>
 
                     <div class="bg-brand-navy p-8 md:p-12 shadow-2xl rounded-2xl reveal-up border border-white/10 max-w-3xl mx-auto">
@@ -309,26 +309,26 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
                                 <div class="relative">
                                     <input type="text" id="f_name" required class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent" placeholder="Tu Nombre">
-                                    <label for="f_name" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Tu Nombre *</label>
+                                    <label for="f_name" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Imong Ngalan *</label>
                                 </div>
                                 <div class="relative">
                                     <select id="f_people" required class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors appearance-none cursor-pointer">
-                                        <option value="" disabled selected class="text-slate-400">¿Cuántos viajan? *</option>
-                                        <option value="Pareja" class="text-brand-dark">Pareja (2 personas)</option>
-                                        <option value="Familia Pequeña (3-5)" class="text-brand-dark">Familia pequeña (3 a 5)</option>
-                                        <option value="Grupo Familiar (6-10)" class="text-brand-dark">Grupo familiar (6 a 10)</option>
-                                        <option value="Gran Evento (10+)" class="text-brand-dark">Delegación / Grupo Grande (10+)</option>
+                                        <option value="" disabled selected class="text-slate-400">Pila ang mobiyahe? *</option>
+                                        <option value="Pareja" class="text-brand-dark">Magtiayon (2 ka tawo)</option>
+                                        <option value="Familia Pequeña (3-5)" class="text-brand-dark">Gamay nga pamilya (3 hangtod 5)</option>
+                                        <option value="Grupo Familiar (6-10)" class="text-brand-dark">Grupo sa pamilya (6 hangtod 10)</option>
+                                        <option value="Gran Evento (10+)" class="text-brand-dark">Delegasyon / Dakong Grupo (10+)</option>
                                     </select>
                                 </div>
                                 <div class="relative md:col-span-2">
                                     <input type="text" id="f_destinos" class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent" placeholder="Actividades de Interés">
-                                    <label for="f_destinos" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Actividades de Interés</label>
+                                    <label for="f_destinos" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Mga Kalihokan nga Interesado</label>
                                 </div>
                             </div>
 
                             <div class="pt-6 text-center">
                                 <button type="submit" class="border border-brand-accent hover:bg-brand-accent text-white py-3.5 px-8 font-medium tracking-[0.2em] text-[11px] uppercase transition-all duration-300 rounded-full w-full md:w-auto flex items-center justify-center mx-auto gap-2 focus:outline-none hover:shadow-[0_10px_25px_rgba(189,160,106,0.3)]">
-                                    Enviar Solicitud a WhatsApp <i class="fab fa-whatsapp text-sm"></i>
+                                    Ipadala ang Hangyo sa WhatsApp <i class="fab fa-whatsapp text-sm"></i>
                                 </button>
                             </div>
                         </form>
@@ -338,7 +338,7 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- DETALLES E INFORMACIÓN DE RESERVA MODAL     -->
+        <!-- MODAL SA DETALYE UG IMPORMASYON SA RESERBA  -->
         <!-- ========================================== -->
         <div id="activity-detail-modal" class="fixed inset-0 bg-brand-dark/95 backdrop-blur-md z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 overflow-y-auto p-4 md:p-6" onclick="closeDetailModal()">
             <div class="bg-brand-navy border border-white/10 rounded-2xl w-full max-w-4xl relative overflow-hidden shadow-2xl flex flex-col md:flex-row my-auto" onclick="event.stopPropagation()">
@@ -346,47 +346,47 @@
                     <i class="fas fa-times"></i>
                 </button>
                 
-                <!-- Columna Izquierda: Imagen (Click para zoom) -->
+                <!-- Wala nga Kolumna: Larawan (Click alang sa zoom) -->
                 <div class="md:w-1/2 relative min-h-[300px] md:min-h-[500px] overflow-hidden bg-brand-dark cursor-zoom-in" id="detail-img-container">
                     <img id="detail-modal-img" src="" alt="Detalle Actividad" class="w-full h-full object-cover object-center absolute inset-0 transition-transform duration-500 hover:scale-105">
                     <div class="absolute bottom-4 left-4 bg-brand-dark/80 px-4 py-2 rounded-full text-xs text-brand-accent flex items-center gap-2 pointer-events-none">
-                        <i class="fas fa-search-plus"></i> Clic para ampliar imagen
+                        <i class="fas fa-search-plus"></i> I-klik aron madako ang larawan
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Información, Specs y Reservar -->
+                <!-- Tuo nga Kolumna: Impormasyon, Specs ug Pag-reserba -->
                 <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-between max-h-[85vh] overflow-y-auto">
                     <div>
                         <span id="detail-modal-pax" class="text-brand-accent text-xs font-bold uppercase tracking-widest block mb-2">Amazing Colors</span>
                         <h3 id="detail-modal-title" class="font-display text-2xl md:text-3xl text-white font-bold mb-4">Amapola</h3>
                         <p id="detail-modal-price" class="text-brand-accent font-semibold text-lg mb-6">$1,200 USD</p>
                         
-                        <!-- Descripción / Descriptivo -->
+                        <!-- Deskripsyon -->
                         <div class="mb-6">
-                            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-2 pb-1 border-b border-white/10">Descripción</h4>
+                            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-2 pb-1 border-b border-white/10">Deskripsyon</h4>
                             <p id="detail-modal-desc" class="text-slate-300 font-light text-sm leading-relaxed">
-                                Olvídate de las multitudes y diseña tu propio día...
+                                Hikalimti ang mga panon sa katawhan ug idisenyo ang imong kaugalingong adlaw...
                             </p>
                         </div>
 
-                        <!-- Qué incluye realmente -->
+                        <!-- Unsa ang gilakip -->
                         <div class="mb-6" id="detail-modal-includes-section">
-                            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-2 pb-1 border-b border-white/10">¿Qué incluye?</h4>
+                            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-2 pb-1 border-b border-white/10">Unsa ang gilakip?</h4>
                             <p id="detail-modal-includes" class="text-slate-300 font-light text-sm leading-relaxed">
-                                Bebidas, snorkel, capitan...
+                                Mga ilimnon, snorkel, kapitan...
                             </p>
                         </div>
 
-                        <!-- Ficha Técnica Dinámica -->
+                        <!-- Dinamikong Teknikal nga Impormasyon -->
                         <div id="detail-modal-specs" class="space-y-2 mt-4">
-                            <!-- Metadatos dinámicos -->
+                            <!-- Dinamikong metadata -->
                         </div>
                     </div>
 
-                    <!-- Botón de conversión directo -->
+                    <!-- Buton sa direkta nga pagkabig -->
                     <div class="pt-8 mt-8 border-t border-white/10">
                         <button id="detail-modal-reserve-btn" class="bg-brand-accent text-white px-6 py-4 font-bold tracking-wider uppercase hover:bg-white hover:text-brand-navy transition-all duration-300 w-full flex items-center justify-center rounded-full shadow-[0_10px_25px_rgba(189,160,106,0.3)]">
-                            Reservar por WhatsApp <i class="fab fa-whatsapp ml-3 text-lg"></i>
+                            I-reserba pinaagi sa WhatsApp <i class="fab fa-whatsapp ml-3 text-lg"></i>
                         </button>
                     </div>
                 </div>
@@ -394,7 +394,7 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- MODAL DE ZOOM & LIGHTBOX                   -->
+        <!-- MODAL ALANG SA ZOOM UG LIGHTBOX            -->
         <!-- ========================================== -->
         <div id="image-zoom-modal" class="fixed inset-0 bg-brand-dark/98 z-[60] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeZoomModal()">
             <button onclick="closeZoomModal()" class="absolute top-6 right-6 text-white text-4xl hover:text-brand-accent transition-colors z-50 focus:outline-none p-4">
@@ -404,12 +404,12 @@
                 <img id="zoom-modal-img" src="" alt="Detalle Premium" class="max-w-full max-h-[75vh] object-contain object-center transition-transform duration-100 ease-out origin-center select-none pointer-events-none rounded-xl shadow-2xl">
             </div>
             <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/50 text-xs tracking-widest uppercase pointer-events-none text-center px-4">
-                Desplaza el ratón sobre la imagen para explorar cada detalle con la lupa táctil
+                Ibalhin ang mouse sa ibabaw sa larawan aron masusi ang matag detalye gamit ang touch magnifier
             </div>
         </div>
 
         <!-- ========================================== -->
-        <!-- FOOTER PREMIUM                             -->
+        <!-- PREMIUM NGA FOOTER                         -->
         <!-- ========================================== -->
         <footer class="bg-[#071021] border-t border-white/10 pt-16 pb-10 mt-6 text-white relative z-40">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
@@ -420,7 +420,7 @@
                             <span class="font-display font-black text-2xl tracking-tighter text-white">AMAZING<span class="text-brand-accent">COLORS</span></span>
                         </button>
                         <p class="text-slate-400 font-light text-sm leading-relaxed max-w-sm mb-6">
-                            Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y personalizadas de alta gama.
+                            Nagbag-o sa kahulugan sa mga boutique nga itinerary sa Mexican Caribbean. Tinuod ug personal nga mga pakigsandurot sa taas nga kalidad.
                         </p>
                         <div class="flex space-x-6">
                             <a href="https://www.instagram.com/amazingcolorstours/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-accent transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
@@ -429,32 +429,32 @@
                     </div>
 
                     <div>
-                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Secciones</h4>
+                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Mga Seksyon</h4>
                         <ul class="space-y-4">
-                            <li><button onclick="navigateTo('home')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Inicio</button></li>
-                            <li><button onclick="navigateTo('legacy')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Legado</button></li>
-                            <li><button onclick="navigateTo('catalog', 'tour')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Tours</button></li>
-                            <li><button onclick="navigateTo('contact')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Reserva</button></li>
+                            <li><button onclick="navigateTo('home')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Sugod</button></li>
+                            <li><button onclick="navigateTo('legacy')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Kabilin</button></li>
+                            <li><button onclick="navigateTo('catalog', 'tour')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Mga Tour</button></li>
+                            <li><button onclick="navigateTo('contact')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Pag-reserba</button></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Ubicación</h4>
+                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Lokasyon</h4>
                         <p class="text-slate-400 font-light text-sm leading-relaxed mb-4">
-                            Cancún, Quintana Roo<br>México
+                            Cancún, Quintana Roo<br>Mexico
                         </p>
-                        <button onclick="openWhatsApp('Hola Concierge.')" class="text-brand-accent hover:text-white text-sm font-semibold transition-colors focus:outline-none">
-                            Contacto Directo <i class="fab fa-whatsapp ml-1"></i>
+                        <button onclick="openWhatsApp('Kumusta Concierge.')" class="text-brand-accent hover:text-white text-sm font-semibold transition-colors focus:outline-none">
+                            Direkta nga Kontakter <i class="fab fa-whatsapp ml-1"></i>
                         </button>
                     </div>
 
                 </div>
 
                 <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-xs font-light">
-                    <p>&copy; 2026 Amazing Colors Private Tours. Todos los derechos reservados.</p>
+                    <p>&copy; 2026 Amazing Colors Private Tours. Ang tanang katungod gigahin.</p>
                     <div class="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" class="hover:text-white transition-colors">Privacidad</a>
-                        <a href="#" class="hover:text-white transition-colors">Términos de servicio</a>
+                        <a href="#" class="hover:text-white transition-colors">Pribasiya</a>
+                        <a href="#" class="hover:text-white transition-colors">Mga Termino sa Serbisyo</a>
                     </div>
                 </div>
             </div>
@@ -463,22 +463,22 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- SCRIPTS DE NAVEGACIÓN, MOTOR Y TSV         -->
+    <!-- MGA SCRIPT SA PAG-NAVIGATE, ENGINE UG TSV  -->
     <!-- ========================================== -->
     <script>
-        const TSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFWLeg9DvMAXX5TwL8JXwY3fm0UDHeKxnqmtYVZGQNNHcTSJG32pLWZGHCMA2-Eo_lZ9sVHqKtgvIO/pub?output=tsv';
+        const TSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFWLeg9DvMAXX5TwL8JXwY3fm0UDHeKxnqmtYVZGQNNHcTSJG32pLWZVHCMA2-Eo_lZ9sVHqKtgvIO/pub?output=tsv';
         const WHATSAPP_NUMBER = "5219981234567";
 
         let fullData = [];
         let globalHeaders = [];
 
-        /* PARSER DE DATOS ADAPTATIVO EXTREMADAMENTE ROBUSTO */
+        /* LABING LIG-ON NGA ADAPTIVE DATA PARSER */
         function getCleanValue(item, possibleHeaders) {
             if (!item) return '';
-            // Crear versiones normalizadas de las llaves buscadas para un filtrado elástico
+            // Paghimo og normalized nga bersyon sa gipangita nga mga yawi alang sa elestiko nga pagsala
             const normalizedSearched = possibleHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
             
-            // 1. Intento de coincidencia exacta y normalizada
+            // 1. Pagsulay sa eksakto ug normalized nga tugma
             for (let originalKey in item) {
                 let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
                 if (normalizedSearched.includes(normalizedKey)) {
@@ -490,7 +490,7 @@
                 }
             }
             
-            // 2. Intento de coincidencia parcial elástica (por ejemplo si contiene "tipo" o "nombre")
+            // 2. Pagsulay sa elestiko nga bahin nga tugma (pananglitan kon kini adunay "tipo" o "ngalan")
             for (let originalKey in item) {
                 let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
                 for (let search of normalizedSearched) {
@@ -506,7 +506,7 @@
             return '';
         }
 
-        // PARSER DEL TSV ADAPTATIVO RFC 4180
+        // TSV PARSER NGA NALINYA SA RFC 4180 ALANG SA MGA MULTILINE CELL
         function parseTSV(text) {
             let rows = [];
             let row = [];
@@ -519,9 +519,9 @@
                     if (char === '"') {
                         if (nextChar === '"') {
                             field += '"';
-                            i++; // Saltar siguiente comilla
+                            i++; // Laktawan ang sunod nga quote
                         } else {
-                            inQuotes = false; // Cerrar comillas
+                            inQuotes = false; // Isira ang quotes
                         }
                     } else {
                         field += char;
@@ -550,15 +550,14 @@
             return rows;
         }
 
-        // Obtener ruta local relativa del archivo mapeada al Folio de la hoja de cálculo
+        // Pag-ila sa filename nga gibase sa Folio column
         function getImgUrlByFolio(folioValue) {
             if (!folioValue || folioValue === '') return '';
             let fileName = folioValue.trim();
             let lower = fileName.toLowerCase();
             
-            // Prefijo adaptativo para formatos PNG o JPG cargados en tu GitHub
+            // Pag-detect sa extension base sa folder sa GitHub
             if (!lower.endsWith('.jpg') && !lower.endsWith('.jpeg') && !lower.endsWith('.png')) {
-                // Catamaran privado imagen MRTT.png según lo solicitado, yates/traslados suelen empezar por mr/tr o ser CA
                 if (lower.startsWith('tr') || lower.startsWith('mr') || lower === 'ca') {
                     fileName += '.png';
                 } else {
@@ -573,18 +572,17 @@
                 const response = await fetch(TSV_URL);
                 const text = await response.text();
                 
-                // Limpiar el Byte Order Mark (BOM) que suele insertar Excel o Sheets al inicio y corromper el primer encabezado
+                // Paglimpyo sa Byte Order Mark (BOM) aron malikayan ang pagkadaut sa mga headers
                 let cleanText = text;
                 if (cleanText.charCodeAt(0) === 0xFEFF) {
                     cleanText = cleanText.substring(1);
                 }
                 
-                // Parser TSV robusto de doble comilla para evitar que se desalinee
                 const rows = parseTSV(cleanText).filter(r => r.length > 0 && r.some(cell => cell.trim() !== ''));
                 if (rows.length < 2) return;
                 
                 const rawHeaders = rows[0].map(h => h.trim());
-                globalHeaders = rawHeaders; // Almacenar los encabezados originales para evitar duplicaciones
+                globalHeaders = rawHeaders; // Pagluwas sa orihinal nga mga headers aron malikayan ang pag-duha sa "Pies:"
                 const cleanHeaders = rawHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
                 
                 fullData = rows.slice(1).map(row => {
@@ -598,7 +596,7 @@
                     return item;
                 });
                 
-                // Forzar el filtrado inicial del catálogo
+                // Inisyal nga pagsala sa katalogo
                 const hash = window.location.hash.replace('#', '');
                 let initialSub = 'tour';
                 if (hash && hash.startsWith('catalog-')) {
@@ -606,16 +604,15 @@
                 }
                 filterCatalog(initialSub);
 
-                // Inicializar carrusel aleatorio con imágenes de GitHub
+                // Pag-initialize sa random nga karusel sa balay
                 initHomeCarousel();
-            } catch (err) { console.error("Error al obtener la base de datos:", err); }
+            } catch (err) { console.error("Sipyat sa pagkuha sa database:", err); }
         }
 
         function initHomeCarousel() {
             const scrollContainer = document.getElementById('home-carousel-scroll');
             if (!scrollContainer || fullData.length === 0) return;
 
-            // Filtrar únicamente los elementos que contienen una imagen válida en la columna Folio
             let itemsWithImages = fullData.filter(item => {
                 let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
                 return folio && folio.trim() !== '';
@@ -623,10 +620,7 @@
 
             if (itemsWithImages.length === 0) return;
 
-            // Ordenar aleatoriamente
             itemsWithImages.sort(() => 0.5 - Math.random());
-
-            // Seleccionar hasta 5 elementos aleatorios para estructurar el carrusel infinito
             let selectedItems = itemsWithImages.slice(0, 5);
 
             let setHtml = '';
@@ -649,22 +643,21 @@
                 `;
             });
 
-            // Inyectar ambos sets idénticos para recrear el efecto infinito sin saltos
             scrollContainer.innerHTML = `
                 <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
                 <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
             `;
         }
 
-        // MOTOR DE COPY CREATIVO CONTEXTUAL (REPLAZA "MOMENTOS INOLVIDABLES")
+        // ADAPTIVE NGA COPYWRITING ENGINE ALANG SA PREMYO NGA MGA SLOGAN
         function getCreativeSlogan(item, index) {
             const slogansTours = [
-                "Travesía Mística Exclusiva",
-                "Aventura Premium a Medida",
-                "Exploración de Leyenda",
-                "Descubrimiento de Élite",
-                "Experiencia de Lujo Absoluto",
-                "Ruta Ancestral de Ensueño"
+                "Lahi nga Mistiko nga Panaw",
+                "Premium nga Pakigsandurot sa Imong Gusto",
+                "Pagsuhid sa Sugilanon",
+                "Elite nga Pagkaplag",
+                "Kasinatian sa Labing Kaluho",
+                "Sagradong Dalan sa Damgo"
             ];
             const slogansYates = [
                 "Navegación de Alta Costura",
@@ -692,7 +685,7 @@
         }
 
         function filterCatalog(category) {
-            // Sincronizar botones internos del catálogo
+            // Pag-sync sa mga button sa kategorya sa katalogo
             document.querySelectorAll('#page-catalog button[id^="sub-nav-"]').forEach(btn => {
                 const isTarget = btn.id === `sub-nav-${category}`;
                 btn.classList.toggle('bg-brand-accent', isTarget);
@@ -702,23 +695,22 @@
                 btn.classList.toggle('border-white/10', !isTarget);
             });
 
-            // Ajustar encabezados temáticos del catálogo
             const badge = document.getElementById('catalog-category-badge');
             const title = document.getElementById('catalog-category-title');
             const desc = document.getElementById('catalog-category-desc');
 
             if (category === 'tour') {
-                badge.innerText = "Momentos inolvidables";
-                title.innerHTML = `Tours & <span class="font-serif italic font-bold text-brand-accent">Aventuras</span>`;
-                desc.innerText = "Explora cenotes místicos, ruinas mayas sagradas y playas paradisíacas de manera completamente privada.";
+                badge.innerText = "Mga Eksklusibong Kasinatian";
+                title.innerHTML = `Mga Tour & <span class="font-serif italic font-bold text-brand-accent">Pakigsandurot</span>`;
+                desc.innerText = "Susiha ang misteryosong mga cenote, sagradong mga kagun-oban sa Maya, ug nindot kaayong mga baybayon sa pribadong paagi.";
             } else if (category === 'yate') {
-                badge.innerText = "Nuestra Flota";
-                title.innerHTML = `Yates & <span class="font-serif italic font-bold text-brand-accent">Catamaranes</span>`;
-                desc.innerText = "Navegación premium sobre el horizonte turquesa con servicio de tripulación de nivel internacional.";
+                badge.innerText = "Ang Among Plota";
+                title.innerHTML = `Mga Yate & <span class="font-serif italic font-bold text-brand-accent">Katamaran</span>`;
+                desc.innerText = "Premium nga paglayag sa turkesa nga kapunawpunawan uban sa tibuok kalibutan nga serbisyo sa mga tripulante.";
             } else if (category === 'transportacion') {
-                badge.innerText = "Logística de Élite";
-                title.innerHTML = `Traslados & <span class="font-serif italic font-bold text-brand-accent">Chauffeur</span>`;
-                desc.innerText = "Llegadas impecables sin esperas ni transbordos en vehículos climatizados Suburban o SUV de alta gama.";
+                badge.innerText = "Logistika sa Élite";
+                title.innerHTML = `Pribadong Traslado & <span class="font-serif italic font-bold text-brand-accent">Chauffeur</span>`;
+                desc.innerText = "Hapsay nga pag-abot nga walay paghulat sa de-aircon nga Suburban o high-end nga SUV nga mga sakyanan.";
             }
 
             const grid = document.getElementById('catalog-grid'); 
@@ -732,7 +724,6 @@
                 let nombre = getCleanValue(item, ['Nombre', 'NOMBRE']);
                 card.onclick = () => openDetailModal(nombre);
                 
-                // Mapear desde la columna 'Folio' de Google Sheets
                 let folioValue = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
                 let imgUrl = getImgUrlByFolio(folioValue);
                 
@@ -767,12 +758,10 @@
                     }
                 });
 
-                // BOTÓN RESERVAR REDISEÑADO (OUTLINE FINO, PREMIUM Y ESTÉTICO)
                 card.innerHTML = `
                     <div class="img-container group relative h-64 overflow-hidden bg-brand-dark">
                         ${imgUrl ? `<img src="${imgUrl}" onerror="handleImgError(this, '${category}')" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">` : ''}
                         
-                        <!-- Lupa de zoom interactiva (Alineada al nuevo flujo) -->
                         <button onclick="openZoomModal('${imgUrl}', event)" class="absolute bottom-4 right-4 bg-brand-dark/80 hover:bg-brand-accent text-white hover:text-brand-dark w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-110 focus:outline-none" title="Ver imagen completa">
                             <i class="fas fa-search-plus text-sm"></i>
                         </button>
@@ -784,10 +773,9 @@
                         </div>
                         ${extraSpecsHtml ? `<div class="card-extra-specs border-t border-dashed border-white/10 pt-3 mt-4 flex flex-col gap-1">${extraSpecsHtml}</div>` : ''}
                         
-                        <!-- Botón Reservar premium estilizado (Outline fino, estilizado, no robusto) -->
                         <div class="pt-6 mt-4 border-t border-white/5">
                             <button class="w-full border border-brand-accent/40 hover:border-brand-accent hover:bg-brand-accent/15 text-brand-accent hover:text-white font-medium tracking-[0.2em] text-[9px] uppercase transition-all duration-300 rounded-full py-2 px-4 flex items-center justify-center gap-1.5 focus:outline-none">
-                                Ver Detalles & Reserva <i class="fas fa-chevron-right text-[7px] transition-transform"></i>
+                                Tan-awa ang mga Detalye ug Pag-reserba <i class="fas fa-chevron-right text-[7px] transition-transform"></i>
                             </button>
                         </div>
                     </div>
@@ -805,7 +793,7 @@
             });
         }
 
-        // SISTEMA DE NAVEGACIÓN SPA SIN SALTOS VISUALES
+        // SISTEMA SA SPA NGA NAVIGATION WALAY PAG-RELOAD
         function navigateTo(pageId, subCategory = '') {
             const currentActive = document.querySelector('.page-view.active');
             const targetPage = document.getElementById(`page-${pageId}`);
@@ -830,7 +818,7 @@
                 filterCatalog(subCategory || 'tour');
             }
 
-            // Sincronizar clases activas del menú de navegación
+            // Pag-sync sa active classes sa nabigasyon
             document.querySelectorAll('.nav-bar .nav-btn').forEach(link => {
                 const isCatalog = pageId === 'catalog' && link.id === 'btn-nav-catalog';
                 const isCurrent = link.id === `btn-nav-${pageId}` || isCatalog;
@@ -846,7 +834,7 @@
             });
         }
 
-        /* LÓGICA DE APERTURA, CIERRE Y SELECCIÓN DEL DESPLEGABLE EN MÓVIL Y ESCRITORIO */
+        /* PAGKONTROL SA DROPDOWN SA KATALOGO ALANG SA MOBILE UG DESKTOP */
         function toggleCatalogDropdown(event) {
             if (event) event.stopPropagation();
             const menu = document.getElementById('catalog-dropdown-menu');
@@ -873,12 +861,11 @@
             navigateTo('catalog', category);
         }
 
-        // Cerrar dropdown si se hace clic fuera de él
         document.addEventListener('click', () => {
             closeCatalogDropdown();
         });
 
-        // SISTEMA DE DETALLES PREMIUM (MODAL COHERENTE CON REQUISITOS)
+        // MODAL SA MGA PREMYONG DETALYE
         function openDetailModal(nombreBusqueda) {
             const item = fullData.find(i => getCleanValue(i, ['Nombre', 'NOMBRE']) === nombreBusqueda);
             if (!item) return;
@@ -894,28 +881,23 @@
             const reserveBtn = document.getElementById('detail-modal-reserve-btn');
             const imgContainer = document.getElementById('detail-img-container');
 
-            // Mapear imagen usando Folio
             let folioValue = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
             let imgUrl = getImgUrlByFolio(folioValue);
             img.src = imgUrl;
             img.onerror = function() { handleImgError(this, 'general'); };
 
-            // Configurar click de imagen para abrir Zoom Lightbox
             imgContainer.onclick = function() {
                 openZoomModal(img.src);
             };
 
-            // Setear contenido principal
             title.innerText = getCleanValue(item, ['Nombre', 'NOMBRE']);
             
             let precio = getCleanValue(item, ['Precio', 'PRECIO']);
-            price.innerText = (precio === '' || precio.toLowerCase() === 'consultar') ? 'Consulte con su Concierge' : precio;
+            price.innerText = (precio === '' || precio.toLowerCase() === 'consultar') ? 'Pakigsulti sa imong Concierge' : precio;
 
-            // Descriptivo / Detalles
             let descriptivo = getCleanValue(item, ['Descriptivo', 'Detalles']);
-            desc.innerText = descriptivo || 'Ficha de experiencia de lujo a medida disponible bajo solicitud de nuestro concierge especializado.';
+            desc.innerText = descriptivo || 'Usa ka detalyado nga luxury sheet alang niining eksklusibo nga kasinatian ang magamit pinaagi sa paghangyo sa among concierge.';
 
-            // Incluye
             let incluye = getCleanValue(item, ['Incluye:', 'Incluye', 'INCLUYE']);
             if (incluye) {
                 includesSection.style.display = 'block';
@@ -948,9 +930,8 @@
                 }
             });
 
-            // Botón WhatsApp personalizado con el artículo de interés
             reserveBtn.onclick = function() {
-                openWhatsApp(`Hola Concierge. Deseo agendar y cotizar la experiencia de: ${title.innerText}.`);
+                openWhatsApp(`Kumusta Concierge. Gusto nako mag-book ug mangutana bahin sa: ${title.innerText}.`);
             };
 
             modal.classList.remove('opacity-0', 'pointer-events-none');
@@ -963,7 +944,7 @@
             document.body.classList.remove('no-scroll');
         }
 
-        /* SISTEMA DE RETRY DE IMÁGENES INTEGRADAS */
+        /* SISTEMA SA PAG-RETRY SA MGA INTEGRATED NGA LARAWAN */
         function handleImgError(img, fallbackCategory = 'general') {
             if (img.dataset.ultimateFailed) {
                 img.src = 'lg2.png';
@@ -975,7 +956,6 @@
 
             const currentSrc = img.src;
 
-            // Motor de reintentos rápidos de extensión en la raíz
             if (!currentSrc.includes('unsplash.com')) {
                 const lastDot = currentSrc.lastIndexOf('.');
                 const basePath = lastDot !== -1 ? currentSrc.substring(0, lastDot) : currentSrc;
@@ -1001,24 +981,23 @@
                 }
             }
 
-            // Fallback temático en alta resolución si no es posible cargarlo de tu GitHub
             img.dataset.ultimateFailed = "true";
 
             const fallbacks = {
-                tours: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=1200&q=80",      // Cenote Premium
-                yates: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",      // Yate Espectacular
-                transportacion: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80", // Suburban Premium
-                cenotes: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=1200&q=80",     // Cenotes
-                arqueologia: "https://images.unsplash.com/photo-1518638150341-f706e86654de?auto=format&fit=crop&w=1200&q=80", // Chichén Itzá
-                playas: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=80",      // Playa Caribeña
-                general: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"     // Atardecer Lujoso
+                tours: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=1200&q=80",
+                yates: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
+                transportacion: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
+                cenotes: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=1200&q=80",
+                arqueologia: "https://images.unsplash.com/photo-1518638150341-f706e86654de?auto=format&fit=crop&w=1200&q=80",
+                playas: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=80",
+                general: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
             };
 
             img.src = fallbacks[fallbackCategory] || fallbacks.general;
             img.style.objectFit = 'cover';
         }
 
-        // SISTEMA INTERACTIVO DE ZOOM LIGHTBOX
+        // PAG-APRE SA MODAL ALANG SA DETALYADONG ZOOM
         function openZoomModal(imgSrc, event) {
             if (event) { event.stopPropagation(); }
             const modal = document.getElementById('image-zoom-modal');
@@ -1034,7 +1013,6 @@
         function closeZoomModal() {
             const modal = document.getElementById('image-zoom-modal');
             modal.classList.add('opacity-0', 'pointer-events-none');
-            // Si el modal de detalle sigue abierto, mantenemos no-scroll, de lo contrario lo quitamos
             const detailModal = document.getElementById('activity-detail-modal');
             if (detailModal.classList.contains('pointer-events-none')) {
                 document.body.classList.remove('no-scroll');
@@ -1042,7 +1020,7 @@
             resetZoomImage();
         }
 
-        // Control del zoom interactivo
+        /* PAGKONTROL SA INTERACTIVE NGA ZOOM */
         function zoomImage(e) {
             const container = document.getElementById('zoom-container');
             const img = document.getElementById('zoom-modal-img');
@@ -1064,7 +1042,8 @@
             img.style.transformOrigin = "center center";
         }
 
-        // CONEXIÓN CON WHATSAPP
+        /* PAGKONEKTA SA WHATSAPP */
+        // Sumpay alang sa WhatsApp nga adunay mensahe
         function openWhatsApp(message) {
             trackConversion('Click_WhatsApp', { intent: message });
             const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -1075,12 +1054,12 @@
             event.preventDefault();
             const name = document.getElementById('f_name').value;
             const people = document.getElementById('f_people').value;
-            const destinos = document.getElementById('f_destinos').value || 'Varios de tu colección';
+            const destinos = document.getElementById('f_destinos').value || 'Nagkalain-laing mga kasinatian';
             trackConversion('Form_Submit', { name, size: people });
-            openWhatsApp(`Hola Concierge de Amazing Colors, mi nombre es ${name}. Estaremos viajando un grupo de: ${people}. Nos encantaría cotizar el itinerario de: ${destinos}.`);
+            openWhatsApp(`Kumusta Concierge sa Amazing Colors, ako diay si ${name}. Kami mobiyahe nga adunay pundok sa: ${people}. Gusto namo magpa-quote alang sa itinerary sa: ${destinos}.`);
         }
 
-        // CONFIGURAR REVEAL ON SCROLL
+        /* PAG-SET UP SA REVEAL ON SCROLL */
         function setupReveals() {
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
@@ -1100,7 +1079,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             init();
 
-            // Atajar la ruta inicial si contiene fragmentos de hash
             const hash = window.location.hash.replace('#', '');
             const validPages = ['home', 'legacy', 'catalog', 'contact'];
             
