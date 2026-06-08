@@ -304,7 +304,7 @@
                                 <div class="relative md:col-span-2">
                                     <input type="text" id="f_destinos" class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent" placeholder="Actividades de Interés">
                                     <label for="f_destinos" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Actividades de Interés</label>
-                                </div>
+                                }</div>
                             </div>
 
                             <div class="pt-6 text-center">
@@ -457,61 +457,6 @@
 
         let fullData = [];
 
-        /* SISTEMA DE RETRY DE IMÁGENES INTEGRADAS */
-        function handleImgError(img, fallbackCategory = 'general') {
-            if (img.dataset.ultimateFailed) {
-                img.src = 'logo.png';
-                img.style.objectFit = 'contain';
-                img.style.padding = '2rem';
-                img.style.backgroundColor = '#071021';
-                return;
-            }
-
-            const currentSrc = img.src;
-
-            // Motor de reintentos rápidos de extensión en la raíz
-            if (!currentSrc.includes('unsplash.com')) {
-                const lastDot = currentSrc.lastIndexOf('.');
-                const basePath = lastDot !== -1 ? currentSrc.substring(0, lastDot) : currentSrc;
-                const currentExt = lastDot !== -1 ? currentSrc.substring(lastDot).toLowerCase() : '';
-                
-                let attempts = parseInt(img.extAttempts || '0');
-                
-                if (attempts < 4) {
-                    img.extAttempts = attempts + 1;
-                    if (currentExt.includes('png')) {
-                        img.src = basePath + '.jpg';
-                        return;
-                    } else if (currentExt.includes('jpg')) {
-                        img.src = basePath + '.jpeg';
-                        return;
-                    } else if (currentExt.includes('jpeg')) {
-                        img.src = basePath + '.PNG';
-                        return;
-                    } else {
-                        img.src = basePath + '.JPG';
-                        return;
-                    }
-                }
-            }
-
-            // Fallback temático en alta resolución si no es posible cargarlo de tu GitHub
-            img.dataset.ultimateFailed = "true";
-
-            const fallbacks = {
-                tours: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=1200&q=80",      // Cenote Premium
-                yates: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",      // Yate Espectacular
-                transportacion: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80", // Suburban Premium
-                cenotes: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=1200&q=80",     // Cenotes
-                arqueologia: "https://images.unsplash.com/photo-1518638150341-f706e86654de?auto=format&fit=crop&w=1200&q=80", // Chichén Itzá
-                playas: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=80",      // Playa Caribeña
-                general: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"     // Atardecer Lujoso
-            };
-
-            img.src = fallbacks[fallbackCategory] || fallbacks.general;
-            img.style.objectFit = 'cover';
-        }
-
         /* PARSER DE DATOS ADAPTATIVO */
         function getCleanValue(item, possibleHeaders) {
             if (!item) return '';
@@ -577,15 +522,15 @@
             return rows;
         }
 
-        // Obtener ruta local relativa del archivo (subidas directamente a la raíz de tu proyecto en GitHub)
-        function getImgUrlByCodigo(codigoValue) {
-            if (!codigoValue || codigoValue === '') return '';
-            let fileName = codigoValue.trim();
+        // Obtener ruta local relativa del archivo mapeada al Folio de la hoja de cálculo
+        function getImgUrlByFolio(folioValue) {
+            if (!folioValue || folioValue === '') return '';
+            let fileName = folioValue.trim();
             let lower = fileName.toLowerCase();
             
             // Prefijo adaptativo para formatos PNG o JPG cargados en tu GitHub
             if (!lower.endsWith('.jpg') && !lower.endsWith('.jpeg') && !lower.endsWith('.png')) {
-                // Cataramaran privado imagen MRTT.png según lo solicitado, yates/traslados suelen empezar por mr/tr
+                // Catamaran privado imagen MRTT.png según lo solicitado, yates/traslados suelen empezar por mr/tr o ser CA
                 if (lower.startsWith('tr') || lower.startsWith('mr') || lower === 'ca') {
                     fileName += '.png';
                 } else {
@@ -630,10 +575,10 @@
             const scrollContainer = document.getElementById('home-carousel-scroll');
             if (!scrollContainer || fullData.length === 0) return;
 
-            // Filtrar únicamente los elementos que contienen un código de catálogo/imagen válido
+            // Filtrar únicamente los elementos que contienen una imagen válida en la columna Folio
             let itemsWithImages = fullData.filter(item => {
-                let code = getCleanValue(item, ['Catalogo', 'Catálogo', 'Codigo', 'Código', 'CDG']);
-                return code && code.trim() !== '';
+                let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
+                return folio && folio.trim() !== '';
             });
 
             if (itemsWithImages.length === 0) return;
@@ -647,8 +592,8 @@
             let setHtml = '';
             selectedItems.forEach(item => {
                 let name = getCleanValue(item, ['Nombre', 'NOMBRE']);
-                let code = getCleanValue(item, ['Catalogo', 'Catálogo', 'Codigo', 'Código', 'CDG']);
-                let imgUrl = getImgUrlByCodigo(code);
+                let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
+                let imgUrl = getImgUrlByFolio(folio);
                 let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
                 
                 let categoryType = 'tour';
@@ -712,9 +657,9 @@
                 let nombre = getCleanValue(item, ['Nombre', 'NOMBRE']);
                 card.onclick = () => openDetailModal(nombre);
                 
-                // Mapear desde la columna 'catalogo' o 'codigo' de Google Sheets
-                let catalogoCode = getCleanValue(item, ['Catalogo', 'Catálogo', 'Codigo', 'Código', 'CDG']);
-                let imgUrl = getImgUrlByCodigo(catalogoCode);
+                // Mapear desde la columna 'Folio' de Google Sheets
+                let folioValue = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
+                let imgUrl = getImgUrlByFolio(folioValue);
                 
                 let precio = getCleanValue(item, ['Precio', 'PRECIO']);
                 if (precio === '' || precio.toLowerCase() === 'consultar') {
@@ -723,7 +668,7 @@
 
                 // Generación de especificaciones dinámicas adicionales
                 let extraSpecsHtml = '';
-                const excludedHeaders = ['nombre', 'codigo', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye:', 'catalogo', 'catalogo:'];
+                const excludedHeaders = ['nombre', 'codigo', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye:', 'catalogo', 'catalogo:', 'folio', 'folio:'];
                 
                 for (let originalKey in item) {
                     let keyNormalized = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
@@ -838,9 +783,9 @@
             const reserveBtn = document.getElementById('detail-modal-reserve-btn');
             const imgContainer = document.getElementById('detail-img-container');
 
-            // Mapear imagen
-            let catalogoCode = getCleanValue(item, ['Catalogo', 'Catálogo', 'Codigo', 'Código', 'CDG']);
-            let imgUrl = getImgUrlByCodigo(catalogoCode);
+            // Mapear imagen usando Folio
+            let folioValue = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
+            let imgUrl = getImgUrlByFolio(folioValue);
             img.src = imgUrl;
             img.onerror = function() { handleImgError(this, 'general'); };
 
@@ -870,7 +815,7 @@
 
             // Specs dinámicas secundarias en el modal
             specsContainer.innerHTML = '';
-            const excludedHeaders = ['nombre', 'codigo', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye:', 'catalogo', 'catalogo:'];
+            const excludedHeaders = ['nombre', 'codigo', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye:', 'catalogo', 'catalogo:', 'folio', 'folio:'];
             for (let originalKey in item) {
                 let keyNormalized = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
                 let val = getCleanValue(item, [originalKey]); 
@@ -900,7 +845,62 @@
             document.body.classList.remove('no-scroll');
         }
 
-        // SISTEMA INTERACTIVO DE LUPA DE ZOOM LIGHTBOX
+        /* SISTEMA DE RETRY DE IMÁGENES INTEGRADAS */
+        function handleImgError(img, fallbackCategory = 'general') {
+            if (img.dataset.ultimateFailed) {
+                img.src = 'logo.png';
+                img.style.objectFit = 'contain';
+                img.style.padding = '2rem';
+                img.style.backgroundColor = '#071021';
+                return;
+            }
+
+            const currentSrc = img.src;
+
+            // Motor de reintentos rápidos de extensión en la raíz
+            if (!currentSrc.includes('unsplash.com')) {
+                const lastDot = currentSrc.lastIndexOf('.');
+                const basePath = lastDot !== -1 ? currentSrc.substring(0, lastDot) : currentSrc;
+                const currentExt = lastDot !== -1 ? currentSrc.substring(lastDot).toLowerCase() : '';
+                
+                let attempts = parseInt(img.extAttempts || '0');
+                
+                if (attempts < 4) {
+                    img.extAttempts = attempts + 1;
+                    if (currentExt.includes('png')) {
+                        img.src = basePath + '.jpg';
+                        return;
+                    } else if (currentExt.includes('jpg')) {
+                        img.src = basePath + '.jpeg';
+                        return;
+                    } else if (currentExt.includes('jpeg')) {
+                        img.src = basePath + '.PNG';
+                        return;
+                    } else {
+                        img.src = basePath + '.JPG';
+                        return;
+                    }
+                }
+            }
+
+            // Fallback temático en alta resolución si no es posible cargarlo de tu GitHub
+            img.dataset.ultimateFailed = "true";
+
+            const fallbacks = {
+                tours: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=1200&q=80",      // Cenote Premium
+                yates: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",      // Yate Espectacular
+                transportacion: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80", // Suburban Premium
+                cenotes: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=1200&q=80",     // Cenotes
+                arqueologia: "https://images.unsplash.com/photo-1518638150341-f706e86654de?auto=format&fit=crop&w=1200&q=80", // Chichén Itzá
+                playas: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=80",      // Playa Caribeña
+                general: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"     // Atardecer Lujoso
+            };
+
+            img.src = fallbacks[fallbackCategory] || fallbacks.general;
+            img.style.objectFit = 'cover';
+        }
+
+        // SISTEMA INTERACTIVO DE ZOOM LIGHTBOX
         function openZoomModal(imgSrc, event) {
             if (event) { event.stopPropagation(); }
             const modal = document.getElementById('image-zoom-modal');
