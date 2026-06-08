@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ceb" class="scroll-smooth bg-brand-dark">
+<html lang="es" class="scroll-smooth bg-brand-dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -140,22 +140,22 @@
 
             <!-- Premium nga Navigation Bar -->
             <nav class="nav-bar sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md py-5 border-b border-white/10 flex justify-center gap-4 md:gap-8 flex-wrap px-4">
-                <button id="btn-nav-home" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300 active" onclick="navigateTo('home')">Sugod</button>
-                <button id="btn-nav-legacy" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300" onclick="navigateTo('legacy')">Kabilin</button>
+                <button id="btn-nav-home" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300 active" onclick="navigateTo('home')">Inicio</button>
+                <button id="btn-nav-legacy" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300" onclick="navigateTo('legacy')">Legado</button>
                 
                 <!-- Katalogo uban sa mga Sub-kategorya -->
                 <div class="relative group" id="catalog-dropdown-container">
                     <button id="btn-nav-catalog" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300 flex items-center gap-1.5 focus:outline-none" onclick="toggleCatalogDropdown(event)">
-                        Katalogo <i class="fas fa-chevron-down text-[10px]"></i>
+                        Catálogo <i class="fas fa-chevron-down text-[10px]"></i>
                     </button>
                     <div id="catalog-dropdown-menu" class="absolute left-1/2 -translate-x-1/2 mt-2 w-48 bg-brand-dark border border-white/10 opacity-0 invisible transition-all duration-300 z-50 shadow-2xl rounded-lg py-2 dropdown-menu">
-                        <button onclick="selectCatalogSubCategory('tour', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Mga Tour</button>
-                        <button onclick="selectCatalogSubCategory('yate', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Mga Yate</button>
-                        <button onclick="selectCatalogSubCategory('transportacion', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Transportasyon</button>
+                        <button onclick="selectCatalogSubCategory('tour', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Tours</button>
+                        <button onclick="selectCatalogSubCategory('yate', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Yates</button>
+                        <button onclick="selectCatalogSubCategory('transportacion', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Transportación</button>
                     </div>
                 </div>
 
-                <button id="btn-nav-contact" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300" onclick="navigateTo('contact')">Pag-reserba</button>
+                <button id="btn-nav-contact" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300" onclick="navigateTo('contact')">Reserva</button>
             </nav>
 
             <!-- ========================================== -->
@@ -165,21 +165,21 @@
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                         <div class="reveal-up lg:pr-8">
-                            <span class="text-brand-accent tracking-widest text-xs font-bold uppercase mb-4 block">Ang Mayan Caribbean sa imong kaugalingong paagi</span>
+                            <span class="text-brand-accent tracking-widest text-xs font-bold uppercase mb-4 block">El Caribe Maya a tu manera</span>
                             <h2 class="font-display text-4xl lg:text-5xl text-white font-light leading-tight mb-8">
-                                Ang Cancún dili lang usa ka destinasyon, <br>kini usa ka <span class="font-serif italic font-bold text-brand-accent">kahimtang sa pagkakompleto.</span>
+                                Cancún no es solo un destino, <br>es un <span class="font-serif italic font-bold text-brand-accent">estado de plenitud.</span>
                             </h2>
                             <div class="w-12 h-[2px] bg-brand-accent mb-8"></div>
                             <p class="text-slate-300 font-light text-lg leading-relaxed mb-6">
-                                Ang mutya sa Quintana Roo. Usa ka dapit diin ang lasang sa mga esmeralda mosagol sa turkesa nga dagat ug ang panahon daw mohunong aron sa paghatag kanimo og dili hitupngan nga mga higayon. Ang Cancún nagtanyag kanimo sa hingpit nga kalainan sa sibilisasyong Maya ug modernong premium nga pagkamaabiabihon.
+                                La joya de Quintana Roo. Un lugar donde la selva de esmeraldas se funde con el mar turquesa y el tiempo parece detenerse para regalarte momentos inigualables. Cancún te ofrece el contraste perfecto de la civilización maya y la hospitalidad premium contemporánea.
                             </p>
                             <p class="text-white font-semibold text-lg italic border-l-2 border-brand-accent pl-4">
-                                "Batia ang hangin sa Caribbean nga walay kinutuban. Among ipadayag ang tinuod nga kolor sa paraiso."
+                                "Siente la brisa caribeña sin límites. Te revelamos el verdadero color del paraíso."
                             </p>
                         </div>
                         <!-- Larawan nga nagrepresentar sa Cancún (cun.png gikan sa repository) -->
                         <div class="relative h-[45vh] lg:h-[60vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
-                            <img id="inicio-playas-img" src="cun.png" alt="Mga Eksklusibong Baybayon sa Cancún" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'playas')">
+                            <img id="inicio-playas-img" src="cun.png" alt="Playas de Cancún" class="w-full h-full object-cover object-center" onerror="handleImgError(this, 'playas')">
                         </div>
                     </div>
                 </div>
@@ -188,29 +188,29 @@
                 <div class="bg-brand-dark text-white py-20 lg:py-28 border-t border-white/10">
                     <div class="max-w-7xl mx-auto px-6 lg:px-12">
                         <div class="text-center mb-16 lg:mb-20 reveal-up">
-                            <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Mga Makalingaw nga Kamatuoran</span>
-                            <h2 class="font-display text-3xl md:text-5xl text-white font-light">Mga Misteryo sa <span class="font-serif italic font-bold text-brand-accent">Quintana Roo</span></h2>
+                            <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Datos Curiosos</span>
+                            <h2 class="font-display text-3xl md:text-5xl text-white font-light">Misterios de <span class="font-serif italic font-bold text-brand-accent">Quintana Roo</span></h2>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
                             <div class="border border-white/10 p-8 lg:p-10 rounded-2xl bg-brand-navy hover:-translate-y-2 transition-transform duration-300 shadow-xl reveal-up flex flex-col justify-between">
                                 <div>
                                     <i class="fas fa-sun text-brand-accent text-3xl mb-6"></i>
-                                    <h3 class="font-display text-xl text-white font-semibold mb-4">Bas nga dili makapaso</h3>
-                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Ang among sinaw nga puti nga bas gihimo gikan sa nadugmok nga koral. Dili kini mosuhop sa enerhiya sa adlaw, nga magtugot kanimo sa paglakaw nga nagtiniil nga komportable sa udto.</p>
+                                    <h3 class="font-display text-xl text-white font-semibold mb-4">Arena que no quema</h3>
+                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Nuestra brillante arena blanca está hecha de coral triturado. No absorbe la energía solar, permitiendo caminar descalzo cómodamente a mediodía.</p>
                                 </div>
                             </div>
                             <div class="border border-white/10 p-8 lg:p-10 rounded-2xl bg-brand-navy hover:-translate-y-2 transition-transform duration-300 shadow-xl reveal-up flex flex-col justify-between">
                                 <div>
                                     <i class="fas fa-water text-brand-accent text-3xl mb-6"></i>
-                                    <h3 class="font-display text-xl text-white font-semibold mb-4">Ang Mesoamerican Reef</h3>
-                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Sa atubangan sa baybayon nahimutang ang ikaduhang labing dako nga babag sa koral sa kalibutan. Usa ka sangtuwaryo sa biodiversity nga sulundon nga dulaon nga pribado.</p>
+                                    <h3 class="font-display text-xl text-white font-semibold mb-4">El Arrecife Mesoamericano</h3>
+                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Frente a las costas descansa la segunda barrera de coral más grande del mundo. Un santuario de biodiversidad ideal para explorar de forma privada.</p>
                                 </div>
                             </div>
                             <div class="border border-white/10 p-8 lg:p-10 rounded-2xl bg-brand-navy hover:-translate-y-2 transition-transform duration-300 shadow-xl reveal-up flex flex-col justify-between">
                                 <div>
                                     <i class="fas fa-dharmachakra text-brand-accent text-3xl mb-6"></i>
-                                    <h3 class="font-display text-xl text-white font-semibold mb-4">Mga Portal padulong sa Underworld</h3>
-                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Ang Quintana Roo puy-anan sa labing lapad nga mga suba sa ilawom sa yuta ug nalunod nga mga langob (cenotes) sa planeta. Sagradong mga portal sa tin-aw nga tubig.</p>
+                                    <h3 class="font-display text-xl text-white font-semibold mb-4">Portales al Inframundo</h3>
+                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Quintana Roo alberga los ríos subterráneos y cuevas inundadas (cenotes) más extensos del planeta. Portales sagrados de aguas cristalinas.</p>
                                 </div>
                             </div>
                         </div>
@@ -222,11 +222,11 @@
                     <div class="text-center px-6 max-w-5xl mx-auto reveal-up mb-16">
                         <i class="fas fa-anchor text-brand-accent text-3xl mb-8"></i>
                         <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-white font-light leading-tight mb-6">
-                            Diin ang paraiso nagkuha sa <br>
-                            <span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-white">tinuod nga kolor niini.</span>
+                            Donde el paraíso toma su <br>
+                            <span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-white">verdadero color.</span>
                         </h2>
                         <div class="w-20 h-[1.5px] bg-brand-accent mx-auto my-8"></div>
-                        <p class="text-slate-400 font-medium text-xs md:text-sm tracking-[0.3em] uppercase">Ang kaluho sa hingpit nga kagawasan</p>
+                        <p class="text-slate-400 font-medium text-xs md:text-sm tracking-[0.3em] uppercase">El lujo de la libertad absoluta</p>
                     </div>
 
                     <!-- Container sa Karusel nga mapun-an nga random gikan sa Sheet -->
@@ -248,16 +248,16 @@
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                         <div class="reveal-up lg:pr-8">
-                            <span class="text-brand-accent tracking-widest text-xs font-bold uppercase mb-4 block">Ang Among Kasaysayan</span>
+                            <span class="text-brand-accent tracking-widest text-xs font-bold uppercase mb-4 block">Nuestra Historia</span>
                             <h2 class="font-display text-4xl lg:text-5xl text-white font-light leading-tight mb-8">
-                                Natawo kami sa <span class="font-serif italic font-bold text-brand-accent">2021</span> aron usbon ang kahulugan sa kaluho sa pribadong pagbiyahe.
+                                Nacimos en <span class="font-serif italic font-bold text-brand-accent">2021</span> para redefinir el lujo del viaje privado.
                             </h2>
                             <div class="w-12 h-[2px] bg-brand-accent mb-8"></div>
                             <p class="text-slate-300 font-light text-lg leading-relaxed mb-6">
-                                Samtang ang tibuok kalibutan nakasinati og lawom nga mga kausaban, kami nakahukom sa pagtan-aw sa kapunawpunawan sa Mexican Caribbean ug sa paghimo og usa ka lahi nga sugyot. Gitinguha namo ang pagdesinyo og mga kasinatian nga walay linya, detalyado nga gipahiangay ug nakatutok sa pagpadayag sa tinuod nga esensya ug kaputli sa Cancún ug Riviera Maya.
+                                Mientras el mundo entero experimentaba profundos cambios, nosotros decidimos mirar hacia el horizonte del Caribe Mexicano y crear una propuesta diferente. Nos propusimos diseñar experiencias completamente libres de filas, personalizadas al detalle y enfocadas en revelar la verdadera esencia y pureza de Cancún y la Riviera Maya.
                             </p>
                             <p class="text-white font-semibold text-xl leading-relaxed">
-                                Naghatag kami kanimo sa tinuod nga kolor sa paraiso sulod sa 5 ka tuig nga walay pagdali o mga panon sa katawhan.
+                                Llevamos 5 años entregándote el color real del paraíso sin prisas ni multitudes.
                             </p>
                         </div>
                         <div class="relative h-[45vh] lg:h-[65vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
@@ -274,16 +274,16 @@
             <section id="page-catalog" class="page-view bg-brand-dark">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
                     <div class="text-center mb-12 lg:mb-16 reveal-up">
-                        <span id="catalog-category-badge" class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Mga Eksklusibong Kasinatian</span>
-                        <h2 id="catalog-category-title" class="font-display text-3xl md:text-5xl text-white font-light">Koleksyon sa mga <span class="font-serif italic font-bold">Pakigsandurot</span></h2>
-                        <p id="catalog-category-desc" class="text-slate-300 font-light text-sm md:text-base max-w-2xl mx-auto mt-4">Usa ka katalogo nga makuti nga gipili alang niadtong nagtinguha sa pagkonektar sa tinuod nga katahum sa Caribbean.</p>
+                        <span id="catalog-category-badge" class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Experiencias Exclusivas</span>
+                        <h2 id="catalog-category-title" class="font-display text-3xl md:text-5xl text-white font-light">Colección de <span class="font-serif italic font-bold">Aventuras</span></h2>
+                        <p id="catalog-category-desc" class="text-slate-300 font-light text-sm md:text-base max-w-2xl mx-auto mt-4">Un catálogo meticulosamente seleccionado para aquellos que buscan conectar con la belleza real del Caribe.</p>
                     </div>
 
                     <!-- Sulod nga Navigation sa Katalogo -->
                     <div class="flex justify-center gap-4 mb-16 border-b border-white/10 pb-6 flex-wrap">
-                        <button id="sub-nav-tour" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('tour')">Mga Tour</button>
-                        <button id="sub-nav-yate" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('yate')">Mga Yate</button>
-                        <button id="sub-nav-transportacion" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('transportacion')">Transportasyon</button>
+                        <button id="sub-nav-tour" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('tour')">Tours</button>
+                        <button id="sub-nav-yate" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('yate')">Yates</button>
+                        <button id="sub-nav-transportacion" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('transportacion')">Transportación</button>
                     </div>
 
                     <!-- Maayong pagkabalanse ug nakasentro nga Grid sa Katalogo -->
@@ -299,9 +299,9 @@
             <section id="page-contact" class="page-view bg-brand-dark">
                 <div class="max-w-4xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="text-center mb-12 lg:mb-16 reveal-up">
-                        <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Personal nga Pagplano</span>
-                        <h2 class="font-display text-3xl md:text-5xl text-white font-light">Idisenyo ang imong <span class="font-serif italic font-bold">Pagpuyo</span></h2>
-                        <p class="text-slate-300 font-light text-base mt-4 max-w-lg mx-auto">Ipadala kanamo ang imong mga tinguha sa pagbiyahe ug usa ka espesyalista nga concierge maghimo sa imong sulundon nga itinerary.</p>
+                        <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Planificación Personalizada</span>
+                        <h2 class="font-display text-3xl md:text-5xl text-white font-light">Diseña tu <span class="font-serif italic font-bold">Estancia</span></h2>
+                        <p class="text-slate-300 font-light text-base mt-4 max-w-lg mx-auto">Envíanos tus deseos de viaje y un concierge especializado creará tu itinerary ideal.</p>
                     </div>
 
                     <div class="bg-brand-navy p-8 md:p-12 shadow-2xl rounded-2xl reveal-up border border-white/10 max-w-3xl mx-auto">
@@ -309,26 +309,26 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
                                 <div class="relative">
                                     <input type="text" id="f_name" required class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent" placeholder="Tu Nombre">
-                                    <label for="f_name" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Imong Ngalan *</label>
+                                    <label for="f_name" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Tu Nombre *</label>
                                 </div>
                                 <div class="relative">
                                     <select id="f_people" required class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors appearance-none cursor-pointer">
-                                        <option value="" disabled selected class="text-slate-400">Pila ang mobiyahe? *</option>
-                                        <option value="Pareja" class="text-brand-dark">Magtiayon (2 ka tawo)</option>
-                                        <option value="Familia Pequeña (3-5)" class="text-brand-dark">Gamay nga pamilya (3 hangtod 5)</option>
-                                        <option value="Grupo Familiar (6-10)" class="text-brand-dark">Grupo sa pamilya (6 hangtod 10)</option>
-                                        <option value="Gran Evento (10+)" class="text-brand-dark">Delegasyon / Dakong Grupo (10+)</option>
+                                        <option value="" disabled selected class="text-slate-400">¿Cuántos viajan? *</option>
+                                        <option value="Pareja" class="text-brand-dark">Pareja (2 personas)</option>
+                                        <option value="Familia Pequeña (3-5)" class="text-brand-dark">Familia pequeña (3 a 5)</option>
+                                        <option value="Grupo Familiar (6-10)" class="text-brand-dark">Grupo familiar (6 a 10)</option>
+                                        <option value="Gran Evento (10+)" class="text-brand-dark">Delegación / Grupo Grande (10+)</option>
                                     </select>
                                 </div>
                                 <div class="relative md:col-span-2">
                                     <input type="text" id="f_destinos" class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent" placeholder="Actividades de Interés">
-                                    <label for="f_destinos" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Mga Kalihokan nga Interesado</label>
+                                    <label for="f_destinos" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Actividades de Interés</label>
                                 </div>
                             </div>
 
                             <div class="pt-6 text-center">
                                 <button type="submit" class="border border-brand-accent hover:bg-brand-accent text-white py-3.5 px-8 font-medium tracking-[0.2em] text-[11px] uppercase transition-all duration-300 rounded-full w-full md:w-auto flex items-center justify-center mx-auto gap-2 focus:outline-none hover:shadow-[0_10px_25px_rgba(189,160,106,0.3)]">
-                                    Ipadala ang Hangyo sa WhatsApp <i class="fab fa-whatsapp text-sm"></i>
+                                    Enviar Solicitud a WhatsApp <i class="fab fa-whatsapp text-sm"></i>
                                 </button>
                             </div>
                         </form>
@@ -350,7 +350,7 @@
                 <div class="md:w-1/2 relative min-h-[300px] md:min-h-[500px] overflow-hidden bg-brand-dark cursor-zoom-in" id="detail-img-container">
                     <img id="detail-modal-img" src="" alt="Detalle Actividad" class="w-full h-full object-cover object-center absolute inset-0 transition-transform duration-500 hover:scale-105">
                     <div class="absolute bottom-4 left-4 bg-brand-dark/80 px-4 py-2 rounded-full text-xs text-brand-accent flex items-center gap-2 pointer-events-none">
-                        <i class="fas fa-search-plus"></i> I-klik aron madako ang larawan
+                        <i class="fas fa-search-plus"></i> Clic para ampliar imagen
                     </div>
                 </div>
 
@@ -363,17 +363,17 @@
                         
                         <!-- Deskripsyon -->
                         <div class="mb-6">
-                            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-2 pb-1 border-b border-white/10">Deskripsyon</h4>
+                            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-2 pb-1 border-b border-white/10">Descripción</h4>
                             <p id="detail-modal-desc" class="text-slate-300 font-light text-sm leading-relaxed">
-                                Hikalimti ang mga panon sa katawhan ug idisenyo ang imong kaugalingong adlaw...
+                                Olvídate de las multitudes y diseña tu propio día...
                             </p>
                         </div>
 
                         <!-- Unsa ang gilakip -->
                         <div class="mb-6" id="detail-modal-includes-section">
-                            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-2 pb-1 border-b border-white/10">Unsa ang gilakip?</h4>
+                            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-2 pb-1 border-b border-white/10">¿Qué incluye?</h4>
                             <p id="detail-modal-includes" class="text-slate-300 font-light text-sm leading-relaxed">
-                                Mga ilimnon, snorkel, kapitan...
+                                Bebidas, snorkel, capitán...
                             </p>
                         </div>
 
@@ -386,7 +386,7 @@
                     <!-- Buton sa direkta nga pagkabig -->
                     <div class="pt-8 mt-8 border-t border-white/10">
                         <button id="detail-modal-reserve-btn" class="bg-brand-accent text-white px-6 py-4 font-bold tracking-wider uppercase hover:bg-white hover:text-brand-navy transition-all duration-300 w-full flex items-center justify-center rounded-full shadow-[0_10px_25px_rgba(189,160,106,0.3)]">
-                            I-reserba pinaagi sa WhatsApp <i class="fab fa-whatsapp ml-3 text-lg"></i>
+                            Reservar por WhatsApp <i class="fab fa-whatsapp ml-3 text-lg"></i>
                         </button>
                     </div>
                 </div>
@@ -404,7 +404,7 @@
                 <img id="zoom-modal-img" src="" alt="Detalle Premium" class="max-w-full max-h-[75vh] object-contain object-center transition-transform duration-100 ease-out origin-center select-none pointer-events-none rounded-xl shadow-2xl">
             </div>
             <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/50 text-xs tracking-widest uppercase pointer-events-none text-center px-4">
-                Ibalhin ang mouse sa ibabaw sa larawan aron masusi ang matag detalye gamit ang touch magnifier
+                Desplaza el ratón sobre la imagen para explorar cada detalle con la lupa táctil
             </div>
         </div>
 
@@ -420,7 +420,7 @@
                             <span class="font-display font-black text-2xl tracking-tighter text-white">AMAZING<span class="text-brand-accent">COLORS</span></span>
                         </button>
                         <p class="text-slate-400 font-light text-sm leading-relaxed max-w-sm mb-6">
-                            Nagbag-o sa kahulugan sa mga boutique nga itinerary sa Mexican Caribbean. Tinuod ug personal nga mga pakigsandurot sa taas nga kalidad.
+                            Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y personalizadas de alta gama.
                         </p>
                         <div class="flex space-x-6">
                             <a href="https://www.instagram.com/amazingcolorstours/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-accent transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
@@ -429,32 +429,32 @@
                     </div>
 
                     <div>
-                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Mga Seksyon</h4>
+                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Secciones</h4>
                         <ul class="space-y-4">
-                            <li><button onclick="navigateTo('home')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Sugod</button></li>
-                            <li><button onclick="navigateTo('legacy')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Kabilin</button></li>
-                            <li><button onclick="navigateTo('catalog', 'tour')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Mga Tour</button></li>
-                            <li><button onclick="navigateTo('contact')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Pag-reserba</button></li>
+                            <li><button onclick="navigateTo('home')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Inicio</button></li>
+                            <li><button onclick="navigateTo('legacy')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Legado</button></li>
+                            <li><button onclick="navigateTo('catalog', 'tour')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Tours</button></li>
+                            <li><button onclick="navigateTo('contact')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Reserva</button></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Lokasyon</h4>
+                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Ubicación</h4>
                         <p class="text-slate-400 font-light text-sm leading-relaxed mb-4">
-                            Cancún, Quintana Roo<br>Mexico
+                            Cancún, Quintana Roo<br>México
                         </p>
-                        <button onclick="openWhatsApp('Kumusta Concierge.')" class="text-brand-accent hover:text-white text-sm font-semibold transition-colors focus:outline-none">
-                            Direkta nga Kontakter <i class="fab fa-whatsapp ml-1"></i>
+                        <button onclick="openWhatsApp('Hola Concierge.')" class="text-brand-accent hover:text-white text-sm font-semibold transition-colors focus:outline-none">
+                            Contacto Directo <i class="fab fa-whatsapp ml-1"></i>
                         </button>
                     </div>
 
                 </div>
 
                 <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-xs font-light">
-                    <p>&copy; 2026 Amazing Colors Private Tours. Ang tanang katungod gigahin.</p>
+                    <p>&copy; 2026 Amazing Colors Private Tours. Todos los derechos reservados.</p>
                     <div class="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" class="hover:text-white transition-colors">Pribasiya</a>
-                        <a href="#" class="hover:text-white transition-colors">Mga Termino sa Serbisyo</a>
+                        <a href="#" class="hover:text-white transition-colors">Privacidad</a>
+                        <a href="#" class="hover:text-white transition-colors">Términos de servicio</a>
                     </div>
                 </div>
             </div>
@@ -606,7 +606,7 @@
 
                 // Pag-initialize sa random nga karusel sa balay
                 initHomeCarousel();
-            } catch (err) { console.error("Sipyat sa pagkuha sa database:", err); }
+            } catch (err) { console.error("Error al obtener la base de datos:", err); }
         }
 
         function initHomeCarousel() {
@@ -652,12 +652,12 @@
         // ADAPTIVE NGA COPYWRITING ENGINE ALANG SA PREMYO NGA MGA SLOGAN
         function getCreativeSlogan(item, index) {
             const slogansTours = [
-                "Lahi nga Mistiko nga Panaw",
-                "Premium nga Pakigsandurot sa Imong Gusto",
-                "Pagsuhid sa Sugilanon",
-                "Elite nga Pagkaplag",
-                "Kasinatian sa Labing Kaluho",
-                "Sagradong Dalan sa Damgo"
+                "Travesía Mística Única",
+                "Aventura Premium a tu Medida",
+                "Exploración de Leyenda",
+                "Descubrimiento de Élite",
+                "Experiencia de Lujo Absoluto",
+                "Ruta Ancestral de Ensueño"
             ];
             const slogansYates = [
                 "Navegación de Alta Costura",
@@ -700,17 +700,17 @@
             const desc = document.getElementById('catalog-category-desc');
 
             if (category === 'tour') {
-                badge.innerText = "Mga Eksklusibong Kasinatian";
-                title.innerHTML = `Mga Tour & <span class="font-serif italic font-bold text-brand-accent">Pakigsandurot</span>`;
-                desc.innerText = "Susiha ang misteryosong mga cenote, sagradong mga kagun-oban sa Maya, ug nindot kaayong mga baybayon sa pribadong paagi.";
+                badge.innerText = "Experiencias Exclusivas";
+                title.innerHTML = `Tours & <span class="font-serif italic font-bold text-brand-accent">Aventuras</span>`;
+                desc.innerText = "Explora cenotes místicos, ruinas mayas sagradas y playas paradisíacas de manera completamente privada.";
             } else if (category === 'yate') {
-                badge.innerText = "Ang Among Plota";
-                title.innerHTML = `Mga Yate & <span class="font-serif italic font-bold text-brand-accent">Katamaran</span>`;
-                desc.innerText = "Premium nga paglayag sa turkesa nga kapunawpunawan uban sa tibuok kalibutan nga serbisyo sa mga tripulante.";
+                badge.innerText = "Nuestra Flota";
+                title.innerHTML = `Yates & <span class="font-serif italic font-bold text-brand-accent">Catamaranes</span>`;
+                desc.innerText = "Navegación premium sobre el horizonte turquesa con servicio de tripulación de nivel internacional.";
             } else if (category === 'transportacion') {
-                badge.innerText = "Logistika sa Élite";
-                title.innerHTML = `Pribadong Traslado & <span class="font-serif italic font-bold text-brand-accent">Chauffeur</span>`;
-                desc.innerText = "Hapsay nga pag-abot nga walay paghulat sa de-aircon nga Suburban o high-end nga SUV nga mga sakyanan.";
+                badge.innerText = "Logística de Élite";
+                title.innerHTML = `Traslados & <span class="font-serif italic font-bold text-brand-accent">Chauffeur</span>`;
+                desc.innerText = "Llegadas impecables sin esperas ni transbordos en vehículos climatizados Suburban o SUV de alta gama.";
             }
 
             const grid = document.getElementById('catalog-grid'); 
@@ -775,7 +775,7 @@
                         
                         <div class="pt-6 mt-4 border-t border-white/5">
                             <button class="w-full border border-brand-accent/40 hover:border-brand-accent hover:bg-brand-accent/15 text-brand-accent hover:text-white font-medium tracking-[0.2em] text-[9px] uppercase transition-all duration-300 rounded-full py-2 px-4 flex items-center justify-center gap-1.5 focus:outline-none">
-                                Tan-awa ang mga Detalye ug Pag-reserba <i class="fas fa-chevron-right text-[7px] transition-transform"></i>
+                                Ver Detalles & Reservar <i class="fas fa-chevron-right text-[7px] transition-transform"></i>
                             </button>
                         </div>
                     </div>
@@ -893,10 +893,10 @@
             title.innerText = getCleanValue(item, ['Nombre', 'NOMBRE']);
             
             let precio = getCleanValue(item, ['Precio', 'PRECIO']);
-            price.innerText = (precio === '' || precio.toLowerCase() === 'consultar') ? 'Pakigsulti sa imong Concierge' : precio;
+            price.innerText = (precio === '' || precio.toLowerCase() === 'consultar') ? 'Consulte con su Concierge' : precio;
 
             let descriptivo = getCleanValue(item, ['Descriptivo', 'Detalles']);
-            desc.innerText = descriptivo || 'Usa ka detalyado nga luxury sheet alang niining eksklusibo nga kasinatian ang magamit pinaagi sa paghangyo sa among concierge.';
+            desc.innerText = descriptivo || 'Una detallada ficha técnica y de lujo de esta experiencia está disponible bajo solicitud con nuestro concierge.';
 
             let incluye = getCleanValue(item, ['Incluye:', 'Incluye', 'INCLUYE']);
             if (incluye) {
@@ -931,7 +931,7 @@
             });
 
             reserveBtn.onclick = function() {
-                openWhatsApp(`Kumusta Concierge. Gusto nako mag-book ug mangutana bahin sa: ${title.innerText}.`);
+                openWhatsApp(`Hola Concierge. Deseo agendar y cotizar la experiencia de: ${title.innerText}.`);
             };
 
             modal.classList.remove('opacity-0', 'pointer-events-none');
@@ -1056,7 +1056,7 @@
             const people = document.getElementById('f_people').value;
             const destinos = document.getElementById('f_destinos').value || 'Nagkalain-laing mga kasinatian';
             trackConversion('Form_Submit', { name, size: people });
-            openWhatsApp(`Kumusta Concierge sa Amazing Colors, ako diay si ${name}. Kami mobiyahe nga adunay pundok sa: ${people}. Gusto namo magpa-quote alang sa itinerary sa: ${destinos}.`);
+            openWhatsApp(`Hola Concierge de Amazing Colors, mi nombre es ${name}. Estaremos viajando un grupo de: ${people}. Nos encantaría cotizar el itinerario de: ${destinos}.`);
         }
 
         /* PAG-SET UP SA REVEAL ON SCROLL */
