@@ -466,10 +466,11 @@
     <!-- SCRIPTS DE NAVEGACIÓN, MOTOR Y TSV         -->
     <!-- ========================================== -->
     <script>
-        const TSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFWLeg9DvMAXX5TwL8JXwY3fm0UDHeKxnqmtYVZGQNNHcTSJG32pLWZVHCMA2-Eo_lZ9sVHqKtgvIO/pub?output=tsv';
+        const TSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFWLeg9DvMAXX5TwL8JXwY3fm0UDHeKxnqmtYVZGQNNHcTSJG32pLWZGHCMA2-Eo_lZ9sVHqKtgvIO/pub?output=tsv';
         const WHATSAPP_NUMBER = "5219981234567";
 
         let fullData = [];
+        let globalHeaders = [];
 
         /* PARSER DE DATOS ADAPTATIVO EXTREMADAMENTE ROBUSTO */
         function getCleanValue(item, possibleHeaders) {
@@ -583,6 +584,7 @@
                 if (rows.length < 2) return;
                 
                 const rawHeaders = rows[0].map(h => h.trim());
+                globalHeaders = rawHeaders; // Almacenar los encabezados originales para evitar duplicaciones
                 const cleanHeaders = rawHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
                 
                 fullData = rows.slice(1).map(row => {
@@ -739,16 +741,19 @@
                     precio = getCreativeSlogan(item, idx);
                 }
 
-                // Generación de especificaciones dinámicas adicionales
                 let extraSpecsHtml = '';
-                const excludedHeaders = ['nombre', 'codigo', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye:', 'catalogo', 'catalogo:', 'folio', 'folio:'];
+                const excludedHeaders = ['nombre', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye', 'catalogo', 'folio', 'pax'];
                 
-                for (let originalKey in item) {
-                    let keyNormalized = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-                    let val = getCleanValue(item, [originalKey]); 
+                globalHeaders.forEach(header => {
+                    let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '').trim();
                     
-                    if (val && val !== '' && !excludedHeaders.includes(keyNormalized)) {
-                        let cleanLabel = originalKey.trim();
+                    if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) {
+                        return;
+                    }
+
+                    let val = getCleanValue(item, [header]); 
+                    if (val && val !== '') {
+                        let cleanLabel = header.trim();
                         if (cleanLabel.endsWith(':')) {
                             cleanLabel = cleanLabel.slice(0, -1).trim();
                         }
@@ -760,7 +765,7 @@
                             </div>
                         `;
                     }
-                }
+                });
 
                 // BOTÓN RESERVAR REDISEÑADO (OUTLINE FINO, PREMIUM Y ESTÉTICO)
                 card.innerHTML = `
@@ -919,14 +924,21 @@
                 includesSection.style.display = 'none';
             }
 
-            // Specs dinámicas secundarias en el modal
             specsContainer.innerHTML = '';
-            const excludedHeaders = ['nombre', 'codigo', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye:', 'catalogo', 'catalogo:', 'folio', 'folio:'];
-            for (let originalKey in item) {
-                let keyNormalized = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-                let val = getCleanValue(item, [originalKey]); 
-                if (val && val !== '' && !excludedHeaders.includes(keyNormalized)) {
-                    let cleanLabel = originalKey.trim().replace(/:$/, '');
+            const excludedHeaders = ['nombre', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye', 'catalogo', 'folio', 'pax'];
+            
+            globalHeaders.forEach(header => {
+                let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '').trim();
+                if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) {
+                    return;
+                }
+
+                let val = getCleanValue(item, [header]); 
+                if (val && val !== '') {
+                    let cleanLabel = header.trim();
+                    if (cleanLabel.endsWith(':')) {
+                        cleanLabel = cleanLabel.slice(0, -1).trim();
+                    }
                     specsContainer.insertAdjacentHTML('beforeend', `
                         <div class="flex justify-between text-xs py-1 border-b border-white/10">
                             <span class="font-bold text-brand-accent uppercase tracking-wider text-[10px]">${cleanLabel}:</span>
@@ -934,7 +946,7 @@
                         </div>
                     `);
                 }
-            }
+            });
 
             // Botón WhatsApp personalizado con el artículo de interés
             reserveBtn.onclick = function() {
