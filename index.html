@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth bg-brand-dark">
+<html lang="es" class="scroll-smooth bg-brand-dark w-full max-w-full overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Amazing Colors | Elite Ocean Journeys</title>
     
     <!-- Opisyal nga Premium Favicon sa Taas nga Resolusyon (Optimized with multiple sizes) -->
@@ -165,27 +165,29 @@
         }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden selection:bg-brand-accent selection:text-white bg-brand-dark">
+<body class="antialiased overflow-x-hidden w-full max-w-full selection:bg-brand-accent selection:text-white bg-brand-dark">
 
     <!-- ========================================== -->
     <!-- PANGUNAHING INTERFACE SA SITE (SPA KATALOGO) -->
     <!-- ========================================== -->
-    <div id="main-site-wrapper" class="bg-brand-dark min-h-screen flex flex-col justify-between opacity-100 relative">
+    <div id="main-site-wrapper" class="bg-brand-dark min-h-screen flex flex-col justify-between opacity-100 relative w-full max-w-full overflow-hidden">
         
-        <!-- Glows de Ambientación de Lujo -->
-        <div class="ambient-glow top-20 left-[-100px]"></div>
-        <div class="ambient-glow top-[40%] right-[-100px]"></div>
+        <!-- Contenedor Bounded para Destellos Ambientales (Previene desbordamiento horizontal) -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+            <div class="ambient-glow top-20 left-[-100px]"></div>
+            <div class="ambient-glow top-[40%] right-[-100px]"></div>
+        </div>
 
-        <div class="relative z-10">
+        <div class="relative z-10 w-full max-w-full">
             <!-- Ulohan sa Brand (Hinay nga moadto sa Sugod) -->
-            <header class="site-brand-header flex flex-col items-center justify-center pt-6 pb-4 px-4 cursor-pointer text-center" onclick="navigateTo('home')">
+            <header class="site-brand-header flex flex-col items-center justify-center pt-6 pb-4 px-4 cursor-pointer text-center w-full max-w-full" onclick="navigateTo('home')">
                 <img src="lg2.png" alt="Logo Amazing Colors" class="h-36 sm:h-48 md:h-56 w-auto mb-2 object-contain object-center transition-all duration-500 hover:scale-105" onerror="handleImgError(this, 'general')">
                 <span class="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.1em] sm:tracking-[0.2em] text-white hover:text-brand-accent transition-all duration-300 uppercase text-center block w-full px-2 break-words">Amazing Colors</span>
                 <p class="text-[9px] md:text-xs font-semibold uppercase tracking-[0.3em] sm:tracking-[0.4em] text-brand-accent/80 mt-2 text-center w-full px-2 block break-words">Elite Ocean Journeys</p>
             </header>
 
             <!-- Premium nga Navigation Bar -->
-            <nav class="nav-bar sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md py-5 border-b border-white/10 flex justify-center items-center gap-4 md:gap-8 flex-wrap px-4">
+            <nav class="nav-bar sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md py-5 border-b border-white/10 flex justify-center items-center gap-4 md:gap-8 flex-wrap px-4 w-full max-w-full">
                 <button id="btn-nav-home" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300 active" onclick="navigateTo('home')">Inicio</button>
                 <button id="btn-nav-legacy" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300" onclick="navigateTo('legacy')">Legado</button>
                 
@@ -207,7 +209,7 @@
             <!-- ========================================== -->
             <!-- TAN-AWONON 1: HOME / SUGOD                 -->
             <!-- ========================================== -->
-            <section id="page-home" class="page-view active bg-brand-dark">
+            <section id="page-home" class="page-view active bg-brand-dark w-full max-w-full">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                         <div class="reveal-up lg:pr-8">
@@ -231,7 +233,7 @@
                 </div>
 
                 <!-- Mga Misteryo sa Quintana Roo -->
-                <div class="bg-brand-dark text-white py-20 lg:py-28 border-t border-white/10">
+                <div class="bg-brand-dark text-white py-20 lg:py-28 border-t border-white/10 w-full max-w-full">
                     <div class="max-w-7xl mx-auto px-6 lg:px-12">
                         <div class="text-center mb-16 lg:mb-20 reveal-up">
                             <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Datos Curiosos</span>
@@ -264,7 +266,7 @@
                 </div>
 
                 <!-- Lema ug Karusel sa Balay -->
-                <div class="pt-24 pb-4 lg:pt-28 lg:pb-6 overflow-hidden border-t border-white/10">
+                <div class="pt-24 pb-4 lg:pt-28 lg:pb-6 overflow-hidden border-t border-white/10 w-full max-w-full">
                     <div class="text-center px-6 max-w-5xl mx-auto reveal-up mb-16">
                         <i class="fas fa-anchor text-brand-accent text-3xl mb-8"></i>
                         <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-white font-light leading-tight mb-6">
@@ -290,7 +292,7 @@
             <!-- ========================================== -->
             <!-- TAN-AWONON 2: ABOUT / KABILIN              -->
             <!-- ========================================== -->
-            <section id="page-legacy" class="page-view bg-brand-dark">
+            <section id="page-legacy" class="page-view bg-brand-dark w-full max-w-full">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                         <div class="reveal-up lg:pr-8">
@@ -317,7 +319,7 @@
             <!-- ========================================== -->
             <!-- TAN-AWONON 3: CATALOG / KATALOGO           -->
             <!-- ========================================== -->
-            <section id="page-catalog" class="page-view bg-brand-dark">
+            <section id="page-catalog" class="page-view bg-brand-dark w-full max-w-full">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
                     <div class="text-center mb-12 lg:mb-16 reveal-up">
                         <span id="catalog-category-badge" class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Experiencias Exclusivas</span>
@@ -326,14 +328,14 @@
                     </div>
 
                     <!-- Sulod nga Navigation sa Katalogo -->
-                    <div class="flex justify-center gap-4 mb-16 border-b border-white/10 pb-6 flex-wrap">
+                    <div class="flex justify-center gap-4 mb-16 border-b border-white/10 pb-6 flex-wrap w-full max-w-full">
                         <button id="sub-nav-tour" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('tour')">Tours</button>
                         <button id="sub-nav-yate" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('yate')">Yates</button>
                         <button id="sub-nav-transportacion" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none" onclick="filterCatalog('transportacion')">Transportación</button>
                     </div>
 
                     <!-- Maayong pagkabalanse ug nakasentro nga Grid sa Katalogo -->
-                    <div id="catalog-grid" class="flex flex-wrap justify-center gap-8 lg:gap-10">
+                    <div id="catalog-grid" class="flex flex-wrap justify-center gap-8 lg:gap-10 w-full max-w-full">
                         <!-- Mapun-an dinagmiko -->
                     </div>
                 </div>
@@ -342,7 +344,7 @@
             <!-- ========================================== -->
             <!-- TAN-AWONON 4: RESERVA / PAG-RESERBA        -->
             <!-- ========================================== -->
-            <section id="page-contact" class="page-view bg-brand-dark">
+            <section id="page-contact" class="page-view bg-brand-dark w-full max-w-full">
                 <div class="max-w-4xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="text-center mb-12 lg:mb-16 reveal-up">
                         <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Planificación Personalizada</span>
@@ -350,7 +352,7 @@
                         <p class="text-slate-300 font-light text-base mt-4 max-w-lg mx-auto">Envíanos tus deseos de viaje y un concierge especializado creará tu itinerario ideal.</p>
                     </div>
 
-                    <div class="bg-brand-navy p-8 md:p-12 shadow-2xl rounded-2xl reveal-up border border-white/10 max-w-3xl mx-auto">
+                    <div class="bg-brand-navy p-8 md:p-12 shadow-2xl rounded-2xl reveal-up border border-white/10 max-w-3xl mx-auto w-full">
                         <form id="bookingFunnel" class="space-y-8" onsubmit="handleFormSubmit(event)">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
                                 <div class="relative">
@@ -457,7 +459,7 @@
         <!-- ========================================== -->
         <!-- PREMIUM NGA FOOTER                         -->
         <!-- ========================================== -->
-        <footer class="bg-[#071021] border-t border-white/10 pt-16 pb-10 mt-6 text-white relative z-40">
+        <footer class="bg-[#071021] border-t border-white/10 pt-16 pb-10 mt-6 text-white relative z-40 w-full max-w-full">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
                     
@@ -801,7 +803,7 @@
             if (category === 'tour') {
                 badge.innerText = "Momentos inolvidables";
                 title.innerHTML = `Tours & <span class="font-serif italic font-bold text-brand-accent">Aventuras</span>`;
-                desc.innerText = "Explora cenotes místicos, ruinas mayas sagradas y playas paradisíacas de manera completamente privada.";
+                desc.innerText = "Explora cenotes místico, ruinas mayas sagradas y playas paradisíacas de manera completamente privada.";
             } else if (category === 'yate') {
                 badge.innerText = "Nuestra Flota";
                 title.innerHTML = `Yates & <span class="font-serif italic font-bold text-brand-accent">Catamaranes</span>`;
