@@ -710,6 +710,7 @@
             const scrollContainer = document.getElementById('home-carousel-scroll');
             if (!scrollContainer || fullData.length === 0) return;
 
+            // Filtrar únicamente los elementos que contienen una imagen válida en la columna Folio
             let itemsWithImages = fullData.filter(item => {
                 let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
                 return folio && folio.trim() !== '';
