@@ -1,8 +1,3 @@
-¡Claro que sí! Aquí tienes el código HTML completo con todas las integraciones (Tailwind, GSAP, Preloader, Cursor Personalizado y la lógica de Google Sheets TSV). 
-
-Puedes copiar todo el bloque a continuación y pegarlo en tu archivo final:
-
-```html
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth bg-brand-dark w-full max-w-full overflow-x-hidden">
 <head>
@@ -10,18 +5,11 @@ Puedes copiar todo el bloque a continuación y pegarlo en tu archivo final:
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Amazing Colors | Elite Ocean Journeys</title>
     
-    <!-- SEO Premium Meta Tags -->
-    <meta name="description" content="Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y personalizadas de alta gama en Cancún y Riviera Maya.">
-    <meta name="keywords" content="Yates Cancún, Tours Privados Cancún, Transporte VIP, Caribe Mexicano, Lujo, Elite Ocean Journeys, Amazing Colors">
-    <meta property="og:title" content="Amazing Colors | Elite Ocean Journeys">
-    <meta property="og:description" content="Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y personalizadas de alta gama.">
-    <meta property="og:image" content="https://beamazingcolors.github.io/amazingcolors/lg2.png">
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#071021">
-    
-    <!-- Favicon Oficial Premium en Alta Resolución -->
+    <!-- Favicon Oficial Premium en Alta Resolución (Optimizado para múltiples dispositivos) -->
     <link class="brand-favicon" rel="icon" type="image/png" sizes="32x32" href="https://beamazingcolors.github.io/amazingcolors/lg2.png">
     <link class="brand-favicon" rel="icon" type="image/png" sizes="16x16" href="https://beamazingcolors.github.io/amazingcolors/lg2.png">
+    <link class="brand-favicon" rel="icon" type="image/png" sizes="192x192" href="https://beamazingcolors.github.io/amazingcolors/lg2.png">
+    <link class="brand-favicon" rel="icon" type="image/png" sizes="512x512" href="https://beamazingcolors.github.io/amazingcolors/lg2.png">
     <link class="brand-favicon" rel="apple-touch-icon" sizes="180x180" href="https://beamazingcolors.github.io/amazingcolors/lg2.png">
     
     <!-- Fuentes Premium -->
@@ -29,13 +17,11 @@ Puedes copiar todo el bloque a continuación y pegarlo en tu archivo final:
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS y Librerías -->
+    <!-- Tailwind CSS y Iconos de FontAwesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <!-- Analíticas -->
+    <!-- Definición Global de Analíticas y Conversión -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function trackConversion(eventName, details) {
@@ -78,204 +64,239 @@ Puedes copiar todo el bloque a continuación y pegarlo en tu archivo final:
             --gradient: linear-gradient(135deg, #bda06a 0%, #dfcba5 100%);
         }
 
-        /* CUSTOM CURSOR */
-        body { cursor: none; }
-        .custom-cursor {
-            position: fixed; top: 0; left: 0;
-            width: 8px; height: 8px; border-radius: 50%;
-            background-color: var(--accent);
-            pointer-events: none; z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease-out;
-            mix-blend-mode: difference;
-        }
-        .custom-cursor-follower {
-            position: fixed; top: 0; left: 0;
-            width: 30px; height: 30px; border-radius: 50%;
-            border: 1px solid var(--accent);
-            pointer-events: none; z-index: 99998;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, transform 0.15s ease-out;
-            mix-blend-mode: difference;
-        }
-        .cursor-hover .custom-cursor { transform: translate(-50%, -50%) scale(1.5); }
-        .cursor-hover .custom-cursor-follower { width: 50px; height: 50px; background: rgba(189,160,106,0.1); }
-        
-        @media (max-width: 1024px) {
-            .custom-cursor, .custom-cursor-follower { display: none !important; }
-            body { cursor: auto; }
-        }
-
-        /* TRANSICIONES DE SPA CONTROLLER */
+        /* TRANSICIONES DE SPA CONTROLLER - CINEMATIC SCALE & BLUR */
         .page-view {
-            display: none;
+            display: none !important; 
             opacity: 0;
-            position: absolute;
-            width: 100%;
+            visibility: hidden;
+            position: absolute !important;
+            height: 0 !important;
+            overflow: hidden !important;
+            transform: scale(0.97) translateY(20px);
+            filter: blur(10px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, filter;
         }
+        
         .page-view.active {
-            display: block;
-            position: relative;
+            display: block !important; 
+            visibility: visible;
+            position: relative !important;
+            height: auto !important;
+            overflow: visible !important;
             opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: blur(0);
         }
 
-        /* LÍNEA DORADA NAV */
-        .nav-btn { position: relative; }
+        /* EFECTO DE LÍNEA DORADA EN ENLACES DEL MENÚ */
+        .nav-btn {
+            position: relative;
+        }
         .nav-btn::after {
-            content: ''; position: absolute;
-            bottom: -4px; left: 50%;
-            width: 0; height: 1.5px;
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 1.5px;
             background: #bda06a;
             transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .nav-btn:hover::after, .nav-btn.active::after { width: 100%; left: 0; }
-
-        /* PRELOADER ANIMATION */
-        @keyframes fill-progress {
-            0% { transform: scaleX(0); }
-            100% { transform: scaleX(1); }
+        .nav-btn:hover::after, .nav-btn.active::after {
+            width: 100%;
+            left: 0;
         }
-        .animate-progress { animation: fill-progress 2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
-        /* DESTELLOS AMBIENTALES */
+        /* ANIMACIÓN DEL CARRUSEL INFINITO */
+        @keyframes infinite-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-infinite-scroll {
+            animation: infinite-scroll 45s linear infinite;
+            width: max-content;
+        }
+        .carousel-hover-pause:hover .animate-infinite-scroll {
+            animation-play-state: paused;
+        }
+
+        /* EFECTOS DE REVELADO AL DESPLAZARSE */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* EFECTO CORTINA ULTRA SUAVE */
+        .reveal-curtain {
+            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+            transition: clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-curtain.active {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .no-scroll { overflow: hidden; }
+
+        /* Media query para manejar el menú desplegable en pantallas grandes */
+        @media (min-width: 1024px) {
+            .group:hover .dropdown-menu {
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+        }
+
+        /* DESTELLOS AMBIENTALES DE FONDO (Efecto Neblina de Oro) */
         .ambient-glow {
             position: absolute;
-            width: 600px; height: 600px;
+            width: 600px;
+            height: 600px;
             background: radial-gradient(circle, rgba(189,160,106,0.05) 0%, rgba(7,16,33,0) 70%);
-            pointer-events: none; z-index: 1;
+            pointer-events: none;
+            z-index: 1;
             filter: blur(80px);
-        }
-
-        /* CATALOG GRID HOVER */
-        .catalog-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        .catalog-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); border-color: rgba(189,160,106,0.5); }
-        .catalog-card img { transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .catalog-card:hover img { transform: scale(1.08); }
-
-        /* Hamburger Menu */
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .mobile-menu.open {
-            transform: translateX(0);
         }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden w-full max-w-full selection:bg-brand-accent selection:text-white bg-brand-dark">
 
-    <div class="custom-cursor"></div>
-    <div class="custom-cursor-follower"></div>
-
-    <!-- PRELOADER -->
-    <div id="preloader" class="fixed inset-0 z-[100] bg-brand-dark flex flex-col items-center justify-center transition-opacity duration-1000">
-        <img src="https://beamazingcolors.github.io/amazingcolors/lg2.png" alt="Amazing Colors" class="w-48 md:w-64 h-auto mb-8 animate-pulse drop-shadow-2xl">
-        <div class="h-[2px] w-48 bg-white/10 overflow-hidden">
-            <div class="h-full bg-brand-accent w-full origin-left animate-progress"></div>
-        </div>
-        <p class="mt-4 font-display text-brand-accent text-xs tracking-[0.3em] uppercase">Preparando el paraíso...</p>
-    </div>
-
-    <div id="main-site-wrapper" class="bg-brand-dark min-h-screen flex flex-col justify-between relative w-full max-w-full overflow-hidden opacity-0 transition-opacity duration-1000">
+    <!-- ========================================== -->
+    <!-- INTERFAZ PRINCIPAL DEL SITIO (SPA CATÁLOGO) -->
+    <!-- ========================================== -->
+    <div id="main-site-wrapper" class="bg-brand-dark min-h-screen flex flex-col justify-between opacity-100 relative w-full max-w-full overflow-hidden">
         
+        <!-- Contenedor Acotado para Destellos Ambientales (Previene desbordamiento horizontal) -->
         <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
             <div class="ambient-glow top-20 left-[-100px]"></div>
             <div class="ambient-glow top-[40%] right-[-100px]"></div>
         </div>
 
         <div class="relative z-10 w-full max-w-full">
-            <header class="site-brand-header flex flex-col items-center justify-center pt-8 pb-4 px-4 cursor-pointer text-center w-full max-w-full interactive-element" onclick="navigateTo('home')">
-                <img src="https://beamazingcolors.github.io/amazingcolors/lg2.png" alt="Logo Amazing Colors" class="h-36 sm:h-48 md:h-56 w-auto mb-2 object-contain object-center transition-transform duration-700 hover:scale-105 drop-shadow-2xl" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/beamazingcolors/amazingcolors/main/lg2.png';">
-                <span class="font-display text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.2em] text-white hover:text-brand-accent transition-all duration-300 uppercase block w-full px-2">Amazing Colors</span>
-                <p class="text-[9px] md:text-xs font-semibold uppercase tracking-[0.4em] text-brand-accent/80 mt-3 text-center w-full block">Elite Ocean Journeys</p>
+            <!-- Cabecera de Marca (Redirige suavemente al Inicio) -->
+            <header class="site-brand-header flex flex-col items-center justify-center pt-6 pb-4 px-4 cursor-pointer text-center w-full max-w-full" onclick="navigateTo('home')">
+                <img src="https://beamazingcolors.github.io/amazingcolors/lg2.png" alt="Logo Amazing Colors" class="h-36 sm:h-48 md:h-56 w-auto mb-2 object-contain object-center transition-all duration-500 hover:scale-105" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/beamazingcolors/amazingcolors@main/lg2.png';">
+                <span class="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.1em] sm:tracking-[0.2em] text-white hover:text-brand-accent transition-all duration-300 uppercase text-center block w-full px-2 break-words">Amazing Colors</span>
+                <p class="text-[9px] md:text-xs font-semibold uppercase tracking-[0.3em] sm:tracking-[0.4em] text-brand-accent/80 mt-2 text-center w-full px-2 block break-words">Elite Ocean Journeys</p>
             </header>
 
-            <!-- NAV BAR DESKTOP -->
-            <nav class="nav-bar sticky top-0 z-50 bg-brand-dark/90 backdrop-blur-lg py-5 border-b border-white/5 hidden md:flex justify-center items-center gap-10 w-full max-w-full shadow-2xl">
-                <button class="nav-btn text-white/80 hover:text-white font-semibold text-sm tracking-[0.2em] uppercase transition-all duration-300 interactive-element active" data-target="home" onclick="navigateTo('home')">Inicio</button>
-                <button class="nav-btn text-white/80 hover:text-white font-semibold text-sm tracking-[0.2em] uppercase transition-all duration-300 interactive-element" data-target="legacy" onclick="navigateTo('legacy')">Legado</button>
-                <button class="nav-btn text-white/80 hover:text-white font-semibold text-sm tracking-[0.2em] uppercase transition-all duration-300 interactive-element" data-target="catalog" onclick="navigateTo('catalog', 'tour')">Tours</button>
-                <button class="nav-btn text-white/80 hover:text-white font-semibold text-sm tracking-[0.2em] uppercase transition-all duration-300 interactive-element" data-target="catalog" onclick="navigateTo('catalog', 'yate')">Yates</button>
-                <button class="nav-btn text-white/80 hover:text-white font-semibold text-sm tracking-[0.2em] uppercase transition-all duration-300 interactive-element" data-target="contact" onclick="navigateTo('contact')">Reserva</button>
+            <!-- Barra de Navegación Premium -->
+            <nav class="nav-bar sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md py-5 border-b border-white/10 flex justify-center items-center gap-4 md:gap-8 flex-wrap px-4 w-full max-w-full">
+                <button id="btn-nav-home" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300 active" onclick="navigateTo('home')">Inicio</button>
+                <button id="btn-nav-legacy" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300" onclick="navigateTo('legacy')">Legado</button>
+                
+                <!-- Catálogo con Subcategorías -->
+                <div class="relative group" id="catalog-dropdown-container">
+                    <button id="btn-nav-catalog" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300 flex items-center gap-1.5 focus:outline-none" onclick="toggleCatalogDropdown(event)">
+                        Catálogo <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i>
+                    </button>
+                    <div id="catalog-dropdown-menu" class="absolute left-1/2 -translate-x-1/2 mt-2 w-48 bg-brand-dark/95 backdrop-blur-md border border-white/10 opacity-0 invisible transition-all duration-300 z-50 shadow-2xl rounded-lg py-2 dropdown-menu">
+                        <button onclick="selectCatalogSubCategory('tour', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Tours</button>
+                        <button onclick="selectCatalogSubCategory('yate', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Yates</button>
+                        <button onclick="selectCatalogSubCategory('transportacion', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-bold">Transportación</button>
+                    </div>
+                </div>
+
+                <button id="btn-nav-contact" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300" onclick="navigateTo('contact')">Reserva</button>
             </nav>
 
-            <!-- NAV BAR MOBILE (HAMBURGER) -->
-            <nav class="md:hidden sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-lg py-4 px-6 border-b border-white/5 flex justify-between items-center w-full shadow-2xl">
-                <span class="font-display text-brand-accent text-sm font-bold tracking-[0.2em] uppercase">Menu</span>
-                <button id="mobile-menu-btn" class="text-white text-2xl focus:outline-none interactive-element">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
-
-            <!-- MOBILE MENU PANEL -->
-            <div id="mobile-menu-panel" class="mobile-menu fixed inset-0 bg-brand-dark/98 z-[60] flex flex-col items-center justify-center space-y-8 backdrop-blur-xl">
-                <button id="close-mobile-menu" class="absolute top-6 right-6 text-white text-3xl hover:text-brand-accent transition-colors focus:outline-none interactive-element">
-                    <i class="fas fa-times"></i>
-                </button>
-                <button class="text-white text-2xl font-display uppercase tracking-widest hover:text-brand-accent transition-colors" onclick="navigateTo('home'); toggleMobileMenu()">Inicio</button>
-                <button class="text-white text-2xl font-display uppercase tracking-widest hover:text-brand-accent transition-colors" onclick="navigateTo('legacy'); toggleMobileMenu()">Legado</button>
-                <button class="text-white text-2xl font-display uppercase tracking-widest hover:text-brand-accent transition-colors" onclick="navigateTo('catalog', 'tour'); toggleMobileMenu()">Tours</button>
-                <button class="text-white text-2xl font-display uppercase tracking-widest hover:text-brand-accent transition-colors" onclick="navigateTo('catalog', 'yate'); toggleMobileMenu()">Yates</button>
-                <button class="text-brand-accent text-2xl font-display uppercase tracking-widest border-b border-brand-accent pb-2" onclick="navigateTo('contact'); toggleMobileMenu()">Reserva Directa</button>
-            </div>
-
-            <!-- SECCIÓN 1: INICIO -->
-            <section id="page-home" class="page-view active w-full max-w-full">
+            <!-- ========================================== -->
+            <!-- SECCIÓN 1: INICIO                          -->
+            <!-- ========================================== -->
+            <section id="page-home" class="page-view active bg-brand-dark w-full max-w-full">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                        <div class="gsap-reveal lg:pr-8">
-                            <span class="text-brand-accent tracking-[0.2em] text-xs font-bold uppercase mb-4 block">El Caribe Maya a tu manera</span>
-                            <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white font-light leading-tight mb-8">
+                        <div class="reveal-up lg:pr-8">
+                            <span class="text-brand-accent tracking-widest text-xs font-bold uppercase mb-4 block">El Caribe Maya a tu manera</span>
+                            <h2 class="font-display text-4xl lg:text-5xl text-white font-light leading-tight mb-8">
                                 Cancún no es solo un destino, <br>es un <span class="font-serif italic font-bold text-brand-accent">estado de plenitud.</span>
                             </h2>
                             <div class="w-12 h-[2px] bg-brand-accent mb-8"></div>
                             <p class="text-slate-300 font-light text-lg leading-relaxed mb-6">
                                 La joya de Quintana Roo. Un lugar donde la selva de esmeraldas se funde con el mar turquesa y el tiempo parece detenerse para regalarte momentos inigualables. Cancún te ofrece el contraste perfecto de la civilización maya y la hospitalidad premium contemporánea.
                             </p>
-                            <p class="text-white font-semibold text-lg italic border-l-2 border-brand-accent pl-5 opacity-90">
+                            <p class="text-white font-semibold text-lg italic border-l-2 border-brand-accent pl-4">
                                 "Siente la brisa caribeña sin límites. Te revelamos el verdadero color del paraíso."
                             </p>
                         </div>
-                        <div class="relative h-[50vh] lg:h-[70vh] w-full shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden bg-brand-navy gsap-reveal">
-                            <img src="https://beamazingcolors.github.io/amazingcolors/cun.png" alt="Playas de Cancún" class="w-full h-full object-cover object-center transition-transform duration-[2s] hover:scale-105" onerror="handleImgError(this, 'playas')">
-                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent pointer-events-none"></div>
+                        <!-- Imagen representativa de Cancún (cun.png del repositorio raíz absoluto en GitHub Pages) -->
+                        <div class="relative h-[45vh] lg:h-[60vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
+                            <img id="inicio-playas-img" src="https://beamazingcolors.github.io/amazingcolors/cun.png" alt="Playas de Cancún" class="w-full h-full object-cover object-center transition-transform duration-1000 hover:scale-105" onerror="handleImgError(this, 'playas')">
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-brand-dark py-24 lg:py-32 border-t border-white/5 w-full max-w-full relative">
-                    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-                        <div class="text-center mb-16 lg:mb-24 gsap-reveal">
-                            <span class="text-brand-accent uppercase tracking-[0.3em] text-xs font-bold mb-4 block">Datos Curiosos</span>
+                <!-- Datos Curiosos de Quintana Roo -->
+                <div class="bg-brand-dark text-white py-20 lg:py-28 border-t border-white/10 w-full max-w-full">
+                    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                        <div class="text-center mb-16 lg:mb-20 reveal-up">
+                            <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Datos Curiosos</span>
                             <h2 class="font-display text-3xl md:text-5xl text-white font-light">Misterios de <span class="font-serif italic font-bold text-brand-accent">Quintana Roo</span></h2>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-                            <div class="border border-white/5 p-10 rounded-2xl bg-gradient-to-b from-brand-navy to-brand-dark hover:-translate-y-3 transition-transform duration-500 shadow-2xl gsap-reveal flex flex-col group interactive-element">
-                                <i class="fas fa-sun text-brand-accent text-4xl mb-8 transform group-hover:scale-110 transition-transform"></i>
-                                <h3 class="font-display text-2xl text-white font-semibold mb-4">Arena que no quema</h3>
-                                <p class="text-slate-400 font-light text-sm leading-relaxed">Nuestra brillante arena blanca está hecha de coral triturado. No absorbe la energía solar, permitiendo caminar descalzo cómodamente a mediodía.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+                            <div class="border border-white/10 p-8 lg:p-10 rounded-2xl bg-brand-navy hover:-translate-y-2 transition-transform duration-300 shadow-xl reveal-up flex flex-col justify-between">
+                                <div>
+                                    <i class="fas fa-sun text-brand-accent text-3xl mb-6"></i>
+                                    <h3 class="font-display text-xl text-white font-semibold mb-4">Arena que no quema</h3>
+                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Nuestra brillante arena blanca está hecha de coral triturado. No absorbe la energía solar, permitiendo caminar descalzo cómodamente a mediodía.</p>
+                                </div>
                             </div>
-                            <div class="border border-white/5 p-10 rounded-2xl bg-gradient-to-b from-brand-navy to-brand-dark hover:-translate-y-3 transition-transform duration-500 shadow-2xl gsap-reveal flex flex-col group interactive-element" style="transition-delay: 100ms;">
-                                <i class="fas fa-water text-brand-accent text-4xl mb-8 transform group-hover:scale-110 transition-transform"></i>
-                                <h3 class="font-display text-2xl text-white font-semibold mb-4">El Arrecife</h3>
-                                <p class="text-slate-400 font-light text-sm leading-relaxed">Frente a las costas descansa la segunda barra de coral más grande del mundo. Un santuario de biodiversidad ideal para explorar de forma privada.</p>
+                            <div class="border border-white/10 p-8 lg:p-10 rounded-2xl bg-brand-navy hover:-translate-y-2 transition-transform duration-300 shadow-xl reveal-up flex flex-col justify-between">
+                                <div>
+                                    <i class="fas fa-water text-brand-accent text-3xl mb-6"></i>
+                                    <h3 class="font-display text-xl text-white font-semibold mb-4">El Arrecife Mesoamericano</h3>
+                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Frente a las costas descansa la segunda barra de coral más grande del mundo. Un santuario de biodiversidad ideal para explorar de forma privada.</p>
+                                </div>
                             </div>
-                            <div class="border border-white/5 p-10 rounded-2xl bg-gradient-to-b from-brand-navy to-brand-dark hover:-translate-y-3 transition-transform duration-500 shadow-2xl gsap-reveal flex flex-col group interactive-element" style="transition-delay: 200ms;">
-                                <i class="fas fa-dharmachakra text-brand-accent text-4xl mb-8 transform group-hover:scale-110 transition-transform"></i>
-                                <h3 class="font-display text-2xl text-white font-semibold mb-4">Portales Sagrados</h3>
-                                <p class="text-slate-400 font-light text-sm leading-relaxed">Quintana Roo alberga los ríos subterráneos y cuevas inundadas (cenotes) más extensos del planeta. Portales sagrados de aguas cristalinas.</p>
+                            <div class="border border-white/10 p-8 lg:p-10 rounded-2xl bg-brand-navy hover:-translate-y-2 transition-transform duration-300 shadow-xl reveal-up flex flex-col justify-between">
+                                <div>
+                                    <i class="fas fa-dharmachakra text-brand-accent text-3xl mb-6"></i>
+                                    <h3 class="font-display text-xl text-white font-semibold mb-4">Portales al Inframundo</h3>
+                                    <p class="text-slate-300 font-light text-sm leading-relaxed">Quintana Roo alberga los ríos subterráneos y cuevas inundadas (cenotes) más extensos del planeta. Portales sagrados de aguas cristalinas.</p>
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lema y Carrusel de Inicio -->
+                <div class="pt-24 pb-4 lg:pt-28 lg:pb-6 overflow-hidden border-t border-white/10 w-full max-w-full">
+                    <div class="text-center px-6 max-w-5xl mx-auto reveal-up mb-16">
+                        <i class="fas fa-anchor text-brand-accent text-3xl mb-8"></i>
+                        <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-white font-light leading-tight mb-6">
+                            Donde el paraíso toma su <br>
+                            <span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-white">verdadero color.</span>
+                        </h2>
+                        <div class="w-20 h-[1.5px] bg-brand-accent mx-auto my-8"></div>
+                        <p class="text-slate-400 font-medium text-xs md:text-sm tracking-[0.3em] uppercase">El lujo de la libertad absoluta</p>
+                    </div>
+
+                    <!-- Contenedor del Carrusel dinámico -->
+                    <div id="home-carousel-container" class="relative w-full pb-4 overflow-hidden carousel-hover-pause" style="clip-path: inset(0); contain: paint;">
+                        <div class="absolute inset-y-0 left-0 w-16 md:w-40 bg-gradient-to-r from-brand-dark to-transparent z-10 pointer-events-none"></div>
+                        <div class="absolute inset-y-0 right-0 w-16 md:w-40 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none"></div>
+                        
+                        <div id="home-carousel-scroll" class="flex animate-infinite-scroll">
+                            <!-- Se puebla de forma dinámica -->
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SECCIÓN 2: LEGADO -->
-            <section id="page-legacy" class="page-view w-full max-w-full">
+            <!-- ========================================== -->
+            <!-- SECCIÓN 2: LEGADO                          -->
+            <!-- ========================================== -->
+            <section id="page-legacy" class="page-view bg-brand-dark w-full max-w-full">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                        <div class="gsap-reveal lg:pr-8">
-                            <span class="text-brand-accent tracking-[0.2em] text-xs font-bold uppercase mb-4 block">Nuestra Historia</span>
+                        <div class="reveal-up lg:pr-8">
+                            <span class="text-brand-accent tracking-widest text-xs font-bold uppercase mb-4 block">Nuestra Historia</span>
                             <h2 class="font-display text-4xl lg:text-5xl text-white font-light leading-tight mb-8">
                                 Nacimos en <span class="font-serif italic font-bold text-brand-accent">2021</span> para redefinir el lujo del viaje privado.
                             </h2>
@@ -283,79 +304,79 @@ Puedes copiar todo el bloque a continuación y pegarlo en tu archivo final:
                             <p class="text-slate-300 font-light text-lg leading-relaxed mb-6">
                                 Mientras el mundo entero experimentaba profundos cambios, nosotros decidimos mirar hacia el horizonte del Caribe Mexicano y crear una propuesta diferente. Nos propusimos diseñar experiencias completamente libres de filas, personalizadas al detalle y enfocadas en revelar la verdadera esencia y pureza de Cancún y la Riviera Maya.
                             </p>
-                            <p class="text-brand-accent font-display text-xl leading-relaxed mt-8">
-                                Llevamos más de un lustro entregándote el color real del paraíso sin prisas ni multitudes.
+                            <p class="text-white font-semibold text-xl leading-relaxed">
+                                Llevamos 5 años entregándote el color real del paraíso sin prisas ni multitudes.
                             </p>
                         </div>
-                        <div class="relative h-[50vh] lg:h-[70vh] w-full shadow-2xl rounded-2xl overflow-hidden bg-brand-navy gsap-reveal">
-                            <img src="https://beamazingcolors.github.io/amazingcolors/cnt.jpg" alt="Chichén Itzá" class="w-full h-full object-cover object-center transition-transform duration-[3s] hover:scale-110" onerror="handleImgError(this, 'arqueologia')">
+                        <div class="relative h-[45vh] lg:h-[65vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
+                            <!-- Imagen cnt.jpg en GitHub Pages para compatibilidad absoluta como fue solicitada -->
+                            <img id="legado-yate-img" src="https://beamazingcolors.github.io/amazingcolors/cnt.jpg" alt="Chichén Itzá" class="w-full h-full object-cover object-center transition-transform duration-[2s] hover:scale-105" onerror="handleImgError(this, 'arqueologia')">
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SECCIÓN 3: CATÁLOGO -->
-            <section id="page-catalog" class="page-view w-full max-w-full min-h-screen">
-                <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-12 lg:py-20">
-                    <div class="text-center mb-16 lg:mb-20 gsap-reveal">
-                        <span class="text-brand-accent uppercase tracking-[0.3em] text-xs font-bold mb-4 block">Experiencias Exclusivas</span>
-                        <h2 id="catalog-category-title" class="font-display text-4xl md:text-5xl text-white font-light">Colección de <span class="font-serif italic font-bold text-brand-accent">Aventuras</span></h2>
-                        <p class="text-slate-400 font-light text-base mt-6 max-w-2xl mx-auto">Un catálogo meticulosamente seleccionado para aquellos que buscan conectar con la belleza real del Caribe.</p>
+            <!-- ========================================== -->
+            <!-- SECCIÓN 3: CATÁLOGO                        -->
+            <!-- ========================================== -->
+            <section id="page-catalog" class="page-view bg-brand-dark w-full max-w-full">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
+                    <div class="text-center mb-12 lg:mb-16 reveal-up">
+                        <span id="catalog-category-badge" class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Experiencias Exclusivas</span>
+                        <h2 id="catalog-category-title" class="font-display text-3xl md:text-5xl text-white font-light">Colección de <span class="font-serif italic font-bold">Aventuras</span></h2>
+                        <p id="catalog-category-desc" class="text-slate-300 font-light text-sm md:text-base max-w-2xl mx-auto mt-4">Un catálogo meticulosamente seleccionado para aquellos que buscan conectar con la belleza real del Caribe.</p>
                     </div>
 
-                    <div class="flex justify-center gap-4 md:gap-8 mb-16 border-b border-white/10 pb-8 flex-wrap w-full">
-                        <button class="cat-filter-btn px-8 py-3 text-xs md:text-sm font-bold tracking-[0.2em] uppercase rounded-full transition-all duration-300 border border-brand-accent text-white hover:bg-brand-accent hover:text-brand-dark interactive-element active" onclick="filterCatalog('tour', this)">Tours</button>
-                        <button class="cat-filter-btn px-8 py-3 text-xs md:text-sm font-bold tracking-[0.2em] uppercase rounded-full transition-all duration-300 border border-white/20 text-white hover:border-brand-accent hover:text-brand-accent interactive-element" onclick="filterCatalog('yate', this)">Yates</button>
-                        <button class="cat-filter-btn px-8 py-3 text-xs md:text-sm font-bold tracking-[0.2em] uppercase rounded-full transition-all duration-300 border border-white/20 text-white hover:border-brand-accent hover:text-brand-accent interactive-element" onclick="filterCatalog('transportacion', this)">Transportación</button>
+                    <!-- Navegación Interna del Catálogo -->
+                    <div class="flex justify-center gap-4 mb-16 border-b border-white/10 pb-6 flex-wrap w-full max-w-full">
+                        <button id="sub-nav-tour" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('tour')">Tours</button>
+                        <button id="sub-nav-yate" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('yate')">Yates</button>
+                        <button id="sub-nav-transportacion" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none animate-transition" onclick="filterCatalog('transportacion')">Transportación</button>
                     </div>
 
-                    <!-- Loader del grid -->
-                    <div id="catalog-loader" class="flex justify-center py-20 hidden">
-                        <div class="w-12 h-12 border-4 border-brand-accent border-t-transparent rounded-full animate-spin"></div>
-                    </div>
-
-                    <div id="catalog-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12 w-full">
-                        <!-- Renderizado dinámico -->
+                    <!-- Cuadrícula Dinámica del Catálogo -->
+                    <div id="catalog-grid" class="flex flex-wrap justify-center gap-8 lg:gap-10 w-full max-w-full">
+                        <!-- Se puebla de forma dinámica -->
                     </div>
                 </div>
             </section>
 
-            <!-- SECCIÓN 4: RESERVA -->
-            <section id="page-contact" class="page-view w-full max-w-full">
-                <div class="max-w-4xl mx-auto px-6 lg:px-12 py-20 lg:py-32">
-                    <div class="text-center mb-16 gsap-reveal">
-                        <span class="text-brand-accent uppercase tracking-[0.3em] text-xs font-bold mb-4 block">Planificación Personalizada</span>
-                        <h2 class="font-display text-4xl md:text-5xl text-white font-light">Diseña tu <span class="font-serif italic font-bold text-brand-accent">Estancia</span></h2>
-                        <p class="text-slate-400 font-light text-lg mt-6 max-w-xl mx-auto">Envíanos tus deseos de viaje y un concierge especializado creará tu itinerario ideal.</p>
+            <!-- ========================================== -->
+            <!-- SECCIÓN 4: RESERVA                         -->
+            <!-- ========================================== -->
+            <section id="page-contact" class="page-view bg-brand-dark w-full max-w-full">
+                <div class="max-w-4xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
+                    <div class="text-center mb-12 lg:mb-16 reveal-up">
+                        <span class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Planificación Personalizada</span>
+                        <h2 class="font-display text-3xl md:text-5xl text-white font-light">Diseña tu <span class="font-serif italic font-bold">Estancia</span></h2>
+                        <p class="text-slate-300 font-light text-base mt-4 max-w-lg mx-auto">Envíanos tus deseos de viaje y un concierge especializado creará tu itinerario ideal.</p>
                     </div>
 
-                    <div class="bg-gradient-to-br from-brand-navy to-[#050c18] p-10 md:p-16 shadow-[0_20px_60px_rgba(0,0,0,0.6)] rounded-3xl gsap-reveal border border-white/10 max-w-3xl mx-auto relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-accent/5 rounded-full blur-3xl pointer-events-none"></div>
-                        <form id="bookingFunnel" class="space-y-10 relative z-10" onsubmit="handleFormSubmit(event)">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="bg-brand-navy p-8 md:p-12 shadow-2xl rounded-2xl reveal-up border border-white/10 max-w-3xl mx-auto w-full">
+                        <form id="bookingFunnel" class="space-y-8" onsubmit="handleFormSubmit(event)">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
                                 <div class="relative">
                                     <input type="text" id="f_name" required class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent" placeholder="Tu Nombre">
-                                    <label for="f_name" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent pointer-events-none">Tu Nombre *</label>
+                                    <label for="f_name" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Tu Nombre *</label>
                                 </div>
                                 <div class="relative">
-                                    <select id="f_people" required class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors appearance-none cursor-pointer interactive-element">
+                                    <select id="f_people" required class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors appearance-none cursor-pointer">
                                         <option value="" disabled selected class="text-slate-400">¿Cuántos viajan? *</option>
                                         <option value="Pareja" class="text-brand-dark">Pareja (2 personas)</option>
                                         <option value="Familia Pequeña (3-5)" class="text-brand-dark">Familia pequeña (3 a 5)</option>
                                         <option value="Grupo Familiar (6-10)" class="text-brand-dark">Grupo familiar (6 a 10)</option>
                                         <option value="Gran Evento (10+)" class="text-brand-dark">Delegación / Grupo Grande (10+)</option>
                                     </select>
-                                    <i class="fas fa-chevron-down absolute right-0 top-4 text-slate-400 pointer-events-none text-xs"></i>
                                 </div>
                                 <div class="relative md:col-span-2">
                                     <input type="text" id="f_destinos" class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent" placeholder="Actividades de Interés">
-                                    <label for="f_destinos" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent pointer-events-none">¿Qué te gustaría experimentar?</label>
+                                    <label for="f_destinos" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Actividades de Interés</label>
                                 </div>
                             </div>
 
-                            <div class="pt-8 text-center">
-                                <button type="submit" class="bg-brand-accent hover:bg-white text-brand-dark hover:text-brand-navy py-4 px-10 font-bold tracking-[0.2em] text-xs md:text-sm uppercase transition-all duration-300 rounded-full inline-flex items-center justify-center gap-3 interactive-element shadow-[0_10px_30px_rgba(189,160,106,0.3)] hover:shadow-[0_15px_40px_rgba(255,255,255,0.4)]">
-                                    Enviar Solicitud <i class="fab fa-whatsapp text-lg"></i>
+                            <div class="pt-6 text-center">
+                                <button type="submit" class="border border-brand-accent hover:bg-brand-accent text-white py-3.5 px-8 font-medium tracking-[0.2em] text-[11px] uppercase transition-all duration-300 rounded-full w-full md:w-auto flex items-center justify-center mx-auto gap-2 focus:outline-none hover:shadow-[0_10px_25px_rgba(189,160,106,0.3)]">
+                                    Enviar Solicitud a WhatsApp <i class="fab fa-whatsapp text-sm"></i>
                                 </button>
                             </div>
                         </form>
@@ -364,231 +385,220 @@ Puedes copiar todo el bloque a continuación y pegarlo en tu archivo final:
             </section>
         </div>
 
-        <!-- MODAL DETALLE (PREMIUM) -->
-        <div id="activity-detail-modal" class="fixed inset-0 bg-brand-dark/95 backdrop-blur-xl z-[70] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500 overflow-y-auto p-4 md:p-8" onclick="closeDetailModal()">
-            <div class="bg-brand-navy/90 border border-white/10 rounded-3xl w-full max-w-5xl relative overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] flex flex-col md:flex-row transform scale-95 transition-transform duration-500" id="modal-inner" onclick="event.stopPropagation()">
-                
-                <button onclick="closeDetailModal()" class="absolute top-4 right-4 text-white hover:text-brand-accent transition-colors z-50 text-2xl focus:outline-none p-3 bg-brand-dark/80 rounded-full w-12 h-12 flex items-center justify-center interactive-element backdrop-blur-md">
+        <!-- ========================================== -->
+        <!-- MODAL DE DETALLE E INFORMACIÓN DE RESERVA   -->
+        <!-- ========================================== -->
+        <div id="activity-detail-modal" class="fixed inset-0 bg-brand-dark/95 backdrop-blur-md z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 overflow-y-auto p-4 md:p-6" onclick="closeDetailModal()">
+            <div class="bg-brand-navy border border-white/10 rounded-2xl w-full max-w-4xl relative overflow-hidden shadow-2xl flex flex-col md:flex-row my-auto" onclick="event.stopPropagation()">
+                <button onclick="closeDetailModal()" class="absolute top-4 right-4 text-white hover:text-brand-accent transition-colors z-50 text-2xl focus:outline-none p-2 bg-brand-dark/80 rounded-full h-10 w-10 flex items-center justify-center">
                     <i class="fas fa-times"></i>
                 </button>
                 
-                <div class="md:w-[55%] relative min-h-[300px] md:min-h-[600px] overflow-hidden bg-brand-dark interactive-element group" id="detail-img-container" onclick="openLightbox(document.getElementById('detail-modal-img').src)">
-                    <img id="detail-modal-img" src="" alt="Detalle" class="w-full h-full object-cover object-center absolute inset-0 transition-transform duration-[2s] group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent pointer-events-none"></div>
-                    <div class="absolute bottom-6 left-6 bg-brand-dark/80 backdrop-blur px-5 py-2.5 rounded-full text-xs text-white tracking-widest uppercase flex items-center gap-3 border border-white/10 pointer-events-none transition-colors group-hover:border-brand-accent group-hover:text-brand-accent">
-                        <i class="fas fa-expand"></i> Ampliar Galería
+                <!-- Columna Izquierda: Imagen (Click para zoom) -->
+                <div class="md:w-1/2 relative min-h-[300px] md:min-h-[500px] overflow-hidden bg-brand-dark cursor-zoom-in" id="detail-img-container">
+                    <img id="detail-modal-img" src="" alt="Detalle Actividad" class="w-full h-full object-cover object-center absolute inset-0 transition-transform duration-500 hover:scale-105">
+                    <div class="absolute bottom-4 left-4 bg-brand-dark/80 px-4 py-2 rounded-full text-xs text-brand-accent flex items-center gap-2 pointer-events-none">
+                        <i class="fas fa-search-plus"></i> Clic para ampliar imagen
                     </div>
                 </div>
 
-                <div class="md:w-[45%] p-8 md:p-12 flex flex-col justify-between max-h-[85vh] overflow-y-auto custom-scrollbar">
+                <!-- Columna Derecha: Información, Specs y Reserva -->
+                <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-between max-h-[85vh] overflow-y-auto">
                     <div>
-                        <span class="text-brand-accent text-xs font-bold uppercase tracking-[0.3em] block mb-3 border-b border-white/10 pb-3">Colección Élite</span>
-                        <h3 id="detail-modal-title" class="font-display text-3xl md:text-4xl text-white font-bold mb-4 leading-tight">Título</h3>
-                        <p id="detail-modal-price" class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-white font-display font-semibold text-2xl mb-8">Precio</p>
+                        <span id="detail-modal-pax" class="text-brand-accent text-xs font-bold uppercase tracking-widest block mb-2">Amazing Colors</span>
+                        <h3 id="detail-modal-title" class="font-display text-2xl md:text-3xl text-white font-bold mb-4">Amapola</h3>
+                        <p id="detail-modal-price" class="text-brand-accent font-semibold text-lg mb-6">$1,200 USD</p>
                         
-                        <div class="mb-8">
-                            <p id="detail-modal-desc" class="text-slate-300 font-light text-sm md:text-base leading-relaxed">
-                                Descripción
+                        <!-- Descripción -->
+                        <div class="mb-6">
+                            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-2 pb-1 border-b border-white/10">Descripción</h4>
+                            <p id="detail-modal-desc" class="text-slate-300 font-light text-sm leading-relaxed">
+                                Olvídate de las multitudes y diseña tu propio día...
                             </p>
                         </div>
 
-                        <div id="detail-modal-specs" class="space-y-4 border-t border-white/10 pt-6">
+                        <!-- Qué incluye -->
+                        <div class="mb-6" id="detail-modal-includes-section">
+                            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-2 pb-1 border-b border-white/10">¿Qué incluye?</h4>
+                            <p id="detail-modal-includes" class="text-slate-300 font-light text-sm leading-relaxed">
+                                Bebidas, snorkel, capitán...
+                            </p>
+                        </div>
+
+                        <!-- Ficha Técnica Dinámica -->
+                        <div id="detail-modal-specs" class="space-y-2 mt-4">
                             <!-- Metadatos dinámicos -->
                         </div>
                     </div>
 
+                    <!-- Botón de conversión directa -->
                     <div class="pt-8 mt-8 border-t border-white/10">
-                        <button id="detail-modal-reserve-btn" class="bg-brand-accent hover:bg-white text-brand-dark hover:text-brand-navy w-full py-4 font-bold tracking-[0.2em] text-xs uppercase transition-all duration-300 rounded-full flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(189,160,106,0.3)] interactive-element">
-                            Reservar por WhatsApp <i class="fab fa-whatsapp text-xl"></i>
+                        <button id="detail-modal-reserve-btn" class="bg-brand-accent text-white px-6 py-4 font-bold tracking-wider uppercase hover:bg-white hover:text-brand-navy transition-all duration-300 w-full flex items-center justify-center rounded-full shadow-[0_10px_25px_rgba(189,160,106,0.3)]">
+                            Reservar por WhatsApp <i class="fab fa-whatsapp ml-3 text-lg"></i>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- LIGHTBOX -->
-        <div id="image-zoom-modal" class="fixed inset-0 bg-brand-dark/98 backdrop-blur-xl z-[80] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeLightbox()">
-            <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white/50 hover:text-white text-4xl transition-colors z-50 focus:outline-none p-4 interactive-element">
+        <!-- ========================================== -->
+        <!-- MODAL PARA ZOOM Y LIGHTBOX                 -->
+        <!-- ========================================== -->
+        <div id="image-zoom-modal" class="fixed inset-0 bg-brand-dark/98 z-[60] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeZoomModal()">
+            <button onclick="closeZoomModal()" class="absolute top-6 right-6 text-white text-4xl hover:text-brand-accent transition-colors z-50 focus:outline-none p-4">
                 <i class="fas fa-times"></i>
             </button>
-            <img id="zoom-modal-img" src="" alt="Vista Completa" class="max-w-[95%] max-h-[90vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.8)]" onclick="event.stopPropagation()">
+            <div class="relative max-w-5xl max-h-[80vh] overflow-hidden cursor-zoom-out p-2" id="zoom-container" onclick="event.stopPropagation()" onmousemove="zoomImage(event)" onmouseleave="resetZoomImage()">
+                <img id="zoom-modal-img" src="" alt="Detalle Premium" class="max-w-full max-h-[75vh] object-contain object-center transition-transform duration-100 ease-out origin-center select-none pointer-events-none rounded-xl shadow-2xl">
+            </div>
+            <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/50 text-xs tracking-widest uppercase pointer-events-none text-center px-4">
+                Desplaza el ratón sobre la imagen para explorar cada detalle con la lupa táctil
+            </div>
         </div>
 
-        <!-- FOOTER PREMIUM -->
-        <footer class="bg-[#040914] border-t border-white/5 pt-20 pb-10 mt-10 text-white relative z-40 w-full max-w-full">
+        <!-- ========================================== -->
+        <!-- PREMIUM FOOTER                             -->
+        <!-- ========================================== -->
+        <footer class="bg-[#071021] border-t border-white/10 pt-16 pb-10 mt-6 text-white relative z-40 w-full max-w-full">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
-                    <div class="lg:col-span-2 pr-0 lg:pr-12">
-                        <button onclick="navigateTo('home')" class="mb-6 block text-left hover:opacity-80 transition-opacity focus:outline-none interactive-element">
-                            <span class="font-display font-black text-2xl md:text-3xl tracking-tighter text-white">AMAZING<span class="text-brand-accent">COLORS</span></span>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
+                    
+                    <div class="lg:col-span-1">
+                        <button onclick="navigateTo('home')" class="mb-6 block text-left hover:opacity-80 transition-opacity focus:outline-none">
+                            <span class="font-display font-black text-2xl tracking-tighter text-white">AMAZING<span class="text-brand-accent">COLORS</span></span>
                         </button>
-                        <p class="text-slate-400 font-light text-sm leading-relaxed max-w-md mb-8">
-                            Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y personalizadas de alta gama para viajeros exigentes.
+                        <p class="text-slate-400 font-light text-sm leading-relaxed max-w-sm mb-6">
+                            Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y personalizadas de alta gama.
                         </p>
-                        <div class="flex space-x-5">
-                            <a href="https://www.instagram.com/amazingcolorstours/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-brand-accent hover:text-brand-accent hover:bg-brand-accent/10 transition-all duration-300 interactive-element"><i class="fab fa-instagram text-lg"></i></a>
-                            <a href="https://www.facebook.com/p/Amazing-Colors-Tours-100088379184523/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-brand-accent hover:text-brand-accent hover:bg-brand-accent/10 transition-all duration-300 interactive-element"><i class="fab fa-facebook-f text-lg"></i></a>
+                        <div class="flex space-x-6">
+                            <a href="https://www.instagram.com/amazingcolorstours/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-accent transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
+                            <a href="https://www.facebook.com/p/Amazing-Colors-Tours-100088379184523/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-accent transition-colors duration-300"><i class="fab fa-facebook-f text-xl"></i></a>
                         </div>
                     </div>
 
                     <div>
-                        <h4 class="text-white font-display font-bold tracking-[0.2em] uppercase text-xs mb-8">Explorar</h4>
+                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Secciones</h4>
                         <ul class="space-y-4">
-                            <li><button onclick="navigateTo('home')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none interactive-element">Inicio</button></li>
-                            <li><button onclick="navigateTo('legacy')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none interactive-element">Nuestro Legado</button></li>
-                            <li><button onclick="navigateTo('catalog', 'tour')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none interactive-element">Catálogo de Tours</button></li>
-                            <li><button onclick="navigateTo('catalog', 'yate')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none interactive-element">Flota de Yates</button></li>
+                            <li><button onclick="navigateTo('home')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Inicio</button></li>
+                            <li><button onclick="navigateTo('legacy')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Legado</button></li>
+                            <li><button onclick="navigateTo('catalog', 'tour')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Tours</button></li>
+                            <li><button onclick="navigateTo('contact')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Reserva</button></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 class="text-white font-display font-bold tracking-[0.2em] uppercase text-xs mb-8">Contacto</h4>
-                        <p class="text-slate-400 font-light text-sm leading-relaxed mb-6">
+                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Ubicación</h4>
+                        <p class="text-slate-400 font-light text-sm leading-relaxed mb-4">
                             Cancún, Quintana Roo<br>México
                         </p>
-                        <button onclick="openWhatsApp('Hola Concierge.')" class="text-brand-accent hover:text-white text-sm font-semibold transition-colors focus:outline-none border-b border-brand-accent pb-1 interactive-element">
-                            Contactar Concierge <i class="fab fa-whatsapp ml-2"></i>
+                        <button onclick="openWhatsApp('Hola Concierge.')" class="text-brand-accent hover:text-white text-sm font-semibold transition-colors focus:outline-none">
+                            Contacto Directo <i class="fab fa-whatsapp ml-1"></i>
                         </button>
                     </div>
+
                 </div>
 
                 <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-xs font-light">
                     <p>&copy; 2026 Amazing Colors Private Tours. Todos los derechos reservados.</p>
                     <div class="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" class="hover:text-white transition-colors interactive-element">Privacidad</a>
-                        <a href="#" class="hover:text-white transition-colors interactive-element">Términos</a>
+                        <a href="#" class="hover:text-white transition-colors">Privacidad</a>
+                        <a href="#" class="hover:text-white transition-colors">Términos de servicio</a>
                     </div>
                 </div>
             </div>
         </footer>
+
     </div>
 
-    <!-- SCRIPTS -->
+    <!-- ========================================== -->
+    <!-- SCRIPTS DE NAVEGACIÓN, MOTOR Y TSV         -->
+    <!-- ========================================== -->
     <script>
         const TSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFWLeg9DvMAXX5TwL8JXwY3fm0UDHeKxnqmtYVZGQNNHcTSJG32pLWZVHCMA2-Eo_lZ9sVHqKtgvIO/pub?output=tsv';
-        const GITHUB_RAW = 'https://raw.githubusercontent.com/beamazingcolors/amazingcolors/main/';
-        const WHATSAPP_NUMBER = "5219983424168"; // Reemplazar con el correcto
+        const WHATSAPP_NUMBER = "5219981234567";
         
+        // Base de producción oficial en GitHub Pages para excelente compatibilidad en todos los navegadores
+        const GITHUB_BASE = 'https://beamazingcolors.github.io/amazingcolors/'; 
+        const GITHUB_FALLBACK_CDN = 'https://cdn.jsdelivr.net/gh/beamazingcolors/amazingcolors@main/';
+        const GITHUB_RAW_FALLBACK = 'https://raw.githubusercontent.com/beamazingcolors/amazingcolors/main/';
+
         let fullData = [];
-        let currentCategory = 'tour';
+        let globalHeaders = [];
 
-        // Custom Cursor Logic
-        const cursor = document.querySelector('.custom-cursor');
-        const follower = document.querySelector('.custom-cursor-follower');
-        let posX = 0, posY = 0, mouseX = 0, mouseY = 0;
+        /* SISTEMA ULTRA-ROBUSTO DE DETECCIÓN DE ERRORES (REINTENTO DINÁMICO MULTI-SERVIDOR SIN BUCLES) */
+        function handleImgError(img, fallbackCategory = 'general') {
+            let step = parseInt(img.dataset.failedSteps || "0");
+            img.dataset.failedSteps = (step + 1).toString();
 
-        if (window.innerWidth > 1024) {
-            gsap.to({}, 0.016, {
-                repeat: -1,
-                onRepeat: function() {
-                    posX += (mouseX - posX) / 5;
-                    posY += (mouseY - posY) / 5;
-                    gsap.set(follower, { css: { left: posX, top: posY }});
-                    gsap.set(cursor, { css: { left: mouseX, top: mouseY }});
-                }
-            });
+            const currentSrc = img.src;
+            const filenameWithQuery = currentSrc.split('/').pop();
+            const filename = filenameWithQuery.split('?')[0];
+            const lastDot = filename.lastIndexOf('.');
+            const baseName = lastDot !== -1 ? filename.substring(0, lastDot) : filename;
+            const currentExt = lastDot !== -1 ? filename.substring(lastDot).toLowerCase() : '';
 
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
+            // Intercambiar extensión (.jpg <-> .png) para dar soporte flexible
+            const nextExt = (currentExt.includes('png')) ? '.jpg' : '.png';
 
-            const interactives = document.querySelectorAll('.interactive-element, a, button, input, select');
-            interactives.forEach(el => {
-                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-            });
-        }
+            if (step === 0) {
+                // Paso 1: Mismo servidor, probar extensión alternativa
+                img.src = currentSrc.substring(0, currentSrc.lastIndexOf('/')) + '/' + baseName + nextExt;
+            } else if (step === 1) {
+                // Paso 2: Cambiar al CDN, intentar extensión original
+                img.src = GITHUB_FALLBACK_CDN + baseName + currentExt;
+            } else if (step === 2) {
+                // Paso 3: Cambiar al CDN, intentar extensión alternativa
+                img.src = GITHUB_FALLBACK_CDN + baseName + nextExt;
+            } else if (step === 3) {
+                // Paso 4: Cambiar a Raw GitHub, intentar extensión original
+                img.src = GITHUB_RAW_FALLBACK + baseName + currentExt;
+            } else if (step === 4) {
+                // Paso 5: Cambiar a Raw GitHub, intentar extensión alternativa
+                img.src = GITHUB_RAW_FALLBACK + baseName + nextExt;
+            } else {
+                // Paso 6: Cargar Unsplash de respaldo definitivo y remover onerror para prevenir bucles infinitos en Chrome
+                img.onerror = null;
 
-        // Init GSAP ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
-        function initGSAP() {
-            gsap.utils.toArray('.gsap-reveal').forEach(elem => {
-                gsap.fromTo(elem, 
-                    { y: 50, opacity: 0 }, 
-                    {
-                        y: 0, opacity: 1, duration: 1,
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: elem,
-                            start: "top 85%",
-                            toggleActions: "play none none reverse"
-                        }
-                    }
-                );
-            });
-        }
+                const fallbacks = {
+                    tours: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=600&q=70",
+                    yates: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=70",
+                    transportacion: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=70",
+                    cenotes: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=600&q=70",
+                    arqueologia: "https://images.unsplash.com/photo-1518638150341-f706e86654de?auto=format&fit=crop&w=600&q=70",
+                    playas: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=600&q=70",
+                    general: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=70"
+                };
 
-        // SPA Navigation
-        function navigateTo(pageId, subCategory = null) {
-            document.querySelectorAll('.page-view').forEach(p => {
-                p.classList.remove('active');
-            });
-            document.getElementById('page-' + pageId).classList.add('active');
-
-            document.querySelectorAll('.nav-bar .nav-btn').forEach(btn => btn.classList.remove('active'));
-            const activeBtn = document.querySelector(`.nav-bar .nav-btn[data-target="${pageId}"]`);
-            if(activeBtn) activeBtn.classList.add('active');
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            ScrollTrigger.refresh();
-
-            if (pageId === 'catalog') {
-                filterCatalog(subCategory || 'tour', document.querySelector(`.cat-filter-btn`));
+                img.src = fallbacks[fallbackCategory] || fallbacks.general;
+                img.style.objectFit = 'cover';
             }
         }
 
-        // Mobile Menu
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenuPanel = document.getElementById('mobile-menu-panel');
-        const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
-
-        function toggleMobileMenu() {
-            mobileMenuPanel.classList.toggle('open');
-            document.body.style.overflow = mobileMenuPanel.classList.contains('open') ? 'hidden' : 'auto';
-        }
-
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-        closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
-
-        // Fetch Data
-        async function initApp() {
-            try {
-                const response = await fetch(TSV_URL);
-                const text = await response.text();
-                const rows = text.replace(/\r/g, '').split('\n').filter(r => r.trim() !== '').map(r => r.split('\t'));
-                const headers = rows[0].map(h => h.trim());
-                fullData = rows.slice(1).map(row => {
-                    let item = {}; headers.forEach((h, i) => { item[h] = row[i]?.trim(); }); return item;
-                });
-                
-                // Hide preloader
-                setTimeout(() => {
-                    const preloader = document.getElementById('preloader');
-                    preloader.style.opacity = '0';
-                    setTimeout(() => {
-                        preloader.style.display = 'none';
-                        document.getElementById('main-site-wrapper').style.opacity = '1';
-                        initGSAP();
-                        filterCatalog('tour');
-                    }, 1000);
-                }, 2000);
-
-            } catch (err) { 
-                console.error("Error loading data:", err); 
-                document.getElementById('preloader').innerHTML = '<p class="text-white">Error de conexión. Recarga la página.</p>';
-            }
-        }
-
+        /* LECTOR DE DATOS ADAPTATIVO EXTREMADAMENTE ROBUSTO */
         function getCleanValue(item, possibleHeaders) {
             if (!item) return '';
-            const normalizedSearched = possibleHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim());
+            // Crear versiones normalizadas de las llaves buscadas para un filtrado elástico
+            const normalizedSearched = possibleHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
+            
+            // 1. Intento de coincidencia exacta y normalizada
             for (let originalKey in item) {
-                let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+                let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
+                if (normalizedSearched.includes(normalizedKey)) {
+                    let val = item[originalKey]?.trim();
+                    if (!val || val.toLowerCase() === 'undefined' || val.toLowerCase() === 'null') continue;
+                    if (val.startsWith('::')) val = val.substring(2).trim();
+                    else if (val.startsWith(':')) val = val.substring(1).trim();
+                    return val;
+                }
+            }
+            
+            // 2. Intento de coincidencia parcial elástica
+            for (let originalKey in item) {
+                let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
                 for (let search of normalizedSearched) {
-                    if (normalizedKey.includes(search)) {
+                    if (normalizedKey.includes(search) || search.includes(normalizedKey)) {
                         let val = item[originalKey]?.trim();
-                        if (!val || val.toLowerCase() === 'undefined' || val.toLowerCase() === 'null') return '';
+                        if (!val || val.toLowerCase() === 'undefined' || val.toLowerCase() === 'null') continue;
                         if (val.startsWith('::')) val = val.substring(2).trim();
                         else if (val.startsWith(':')) val = val.substring(1).trim();
                         return val;
@@ -598,184 +608,567 @@ Puedes copiar todo el bloque a continuación y pegarlo en tu archivo final:
             return '';
         }
 
-        function handleImgError(img, fallbackCategory = 'general') {
-            const fallbacks = {
-                tours: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=800&q=80",
-                yates: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-                transportacion: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80",
-                arqueologia: "https://images.unsplash.com/photo-1518638150341-f706e86654de?auto=format&fit=crop&w=800&q=80",
-                playas: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=800&q=80",
-                general: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
-            };
-            if(!img.dataset.retry) {
-                img.dataset.retry = true;
-                let src = img.src.toLowerCase();
-                img.src = src.includes('.jpg') ? img.src.replace(/\.jpg/i, '.png') : img.src.replace(/\.png/i, '.jpg');
-            } else if(!img.dataset.fallback) {
-                img.dataset.fallback = true;
-                img.src = fallbacks[fallbackCategory] || fallbacks.general;
+        // PARSER DEL TSV ADAPTATIVO RFC 4180
+        function parseTSV(text) {
+            let rows = [];
+            let row = [];
+            let field = '';
+            let inQuotes = false;
+            for (let i = 0; i < text.length; i++) {
+                let char = text[i];
+                let nextChar = text[i+1];
+                if (inQuotes) {
+                    if (char === '"') {
+                        if (nextChar === '"') {
+                            field += '"';
+                            i++; // Saltar siguiente comilla
+                        } else {
+                            inQuotes = false; // Cerrar comillas
+                        }
+                    } else {
+                        field += char;
+                    }
+                } else {
+                    if (char === '"') {
+                        inQuotes = true;
+                    } else if (char === '\t') {
+                        row.push(field);
+                        field = '';
+                    } else if (char === '\n' || char === '\r') {
+                        if (char === '\r' && nextChar === '\n') i++; 
+                        row.push(field);
+                        rows.push(row);
+                        row = [];
+                        field = '';
+                    } else {
+                        field += char;
+                    }
+                }
             }
+            if (field || row.length > 0) {
+                row.push(field);
+                rows.push(row);
+            }
+            return rows;
         }
 
-        function filterCatalog(category, btnElement = null) {
-            currentCategory = category;
+        // Obtener ruta de producción absoluta de la imagen mapeada al Folio de la hoja de cálculo
+        function getImgUrlByFolio(folioValue) {
+            if (!folioValue || folioValue === '') return '';
+            let fileName = folioValue.trim();
+            let lower = fileName.toLowerCase();
             
-            if (btnElement) {
-                document.querySelectorAll('.cat-filter-btn').forEach(b => {
-                    b.classList.remove('bg-brand-accent', 'text-brand-dark', 'active');
-                    b.classList.add('border-white/20', 'text-white');
-                    b.classList.remove('border-brand-accent');
+            // Prefijo adaptativo para formatos PNG o JPG cargados en tu GitHub
+            if (!lower.endsWith('.jpg') && !lower.endsWith('.jpeg') && !lower.endsWith('.png')) {
+                if (lower.startsWith('tr') || lower.startsWith('mr') || lower === 'ca') {
+                    fileName += '.png';
+                } else {
+                    fileName += '.jpg';
+                }
+            }
+            // Retornar la URL absoluta con base oficial de GitHub Pages para soporte de Chrome
+            return GITHUB_BASE + fileName;
+        }
+
+        async function init() {
+            try {
+                const response = await fetch(TSV_URL);
+                const text = await response.text();
+                
+                // Limpiar el Byte Order Mark (BOM)
+                let cleanText = text;
+                if (cleanText.charCodeAt(0) === 0xFEFF) {
+                    cleanText = cleanText.substring(1);
+                }
+                
+                const rows = parseTSV(cleanText).filter(r => r.length > 0 && r.some(cell => cell.trim() !== ''));
+                if (rows.length < 2) return;
+                
+                const rawHeaders = rows[0].map(h => h.trim());
+                globalHeaders = rawHeaders; // Guardar encabezados reales para evitar duplicidades
+                const cleanHeaders = rawHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
+                
+                fullData = rows.slice(1).map(row => {
+                    let item = {}; 
+                    rawHeaders.forEach((h, i) => { 
+                        const cleanH = cleanHeaders[i];
+                        const val = row[i] !== undefined ? row[i].trim() : '';
+                        item[cleanH] = val; 
+                        item[h] = val;
+                    }); 
+                    return item;
                 });
-                btnElement.classList.add('bg-brand-accent', 'text-brand-dark', 'active');
-                btnElement.classList.remove('border-white/20', 'text-white');
-            } else {
-                // Auto select button
-                const btns = document.querySelectorAll('.cat-filter-btn');
-                btns.forEach(b => {
-                    b.classList.remove('bg-brand-accent', 'text-brand-dark', 'active');
-                    if(b.innerText.toLowerCase().includes(category.substring(0,3))) {
-                        b.classList.add('bg-brand-accent', 'text-brand-dark', 'active');
-                    }
-                });
+                
+                // Sincronizar catálogo inicial
+                filterCatalog('tour');
+
+                // Inicializar carrusel dinámico de inicio
+                initHomeCarousel();
+            } catch (err) { console.error("Error al obtener la base de datos:", err); }
+        }
+
+        function initHomeCarousel() {
+            const scrollContainer = document.getElementById('home-carousel-scroll');
+            if (!scrollContainer || fullData.length === 0) return;
+
+            // Filtrar únicamente los elementos que contienen un folio válido
+            let itemsWithImages = fullData.filter(item => {
+                let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
+                return folio && folio.trim() !== '';
+            });
+
+            if (itemsWithImages.length === 0) return;
+
+            itemsWithImages.sort(() => 0.5 - Math.random());
+            let selectedItems = itemsWithImages.slice(0, 5);
+
+            let setHtml = '';
+            selectedItems.forEach(item => {
+                let name = getCleanValue(item, ['Nombre', 'NOMBRE']);
+                let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
+                let imgUrl = getImgUrlByFolio(folio);
+                let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
+                
+                let categoryType = 'tour';
+                if (tipo.includes('yate')) categoryType = 'yate';
+                if (tipo.includes('trans')) categoryType = 'transportacion';
+
+                setHtml += `
+                    <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', '${categoryType}')">
+                        <img src="${imgUrl}" alt="${name}" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, '${categoryType}')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                        <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">${name}</h4>
+                    </div>
+                `;
+            });
+
+            scrollContainer.innerHTML = `
+                <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
+                <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
+            `;
+        }
+
+        // MOTOR DE COPYWRITING DINÁMICO
+        function getCreativeSlogan(item, index) {
+            const slogansTours = [
+                "Travesía Mística Única",
+                "Aventura Premium a tu Medida",
+                "Exploración de Leyenda",
+                "Descubrimiento de Élite",
+                "Experiencia de Lujo Absoluto",
+                "Ruta Ancestral de Ensueño"
+            ];
+            const slogansYates = [
+                "Navegación de Alta Costura",
+                "Elegancia sobre el Mar Turquesa",
+                "Travesía Privada de Lujo",
+                "Atardecer Exclusivo en Popa",
+                "Carta Náutica de Ensueño",
+                "Libertad Absoluta en Alta Mar"
+            ];
+            const slogansTrans = [
+                "Arribo Impecable y Seguro",
+                "Logística VIP con Chauffeur",
+                "Confort de Primera Clase",
+                "Privacidad Total en Ruta",
+                "Conexión VIP Riviera Maya",
+                "Transportación de Alta Gama"
+            ];
+            
+            let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
+            let arr = slogansTours;
+            if (tipo.includes('yate')) arr = slogansYates;
+            else if (tipo.includes('trans') || tipo.includes('traslado')) arr = slogansTrans;
+            
+            return arr[index % arr.length];
+        }
+
+        function filterCatalog(category) {
+            // Sincronizar botones de categorías del catálogo
+            document.querySelectorAll('#page-catalog button[id^="sub-nav-"]').forEach(btn => {
+                const isTarget = btn.id === `sub-nav-${category}`;
+                btn.classList.toggle('bg-brand-accent', isTarget);
+                btn.classList.toggle('text-white', isTarget);
+                btn.classList.toggle('border-brand-accent', isTarget);
+                btn.classList.toggle('text-white/70', !isTarget);
+                btn.classList.toggle('border-white/10', !isTarget);
+            });
+
+            const badge = document.getElementById('catalog-category-badge');
+            const title = document.getElementById('catalog-category-title');
+            const desc = document.getElementById('catalog-category-desc');
+
+            if (category === 'tour') {
+                badge.innerText = "Momentos inolvidables";
+                title.innerHTML = `Tours & <span class="font-serif italic font-bold text-brand-accent">Aventuras</span>`;
+                desc.innerText = "Explora cenotes místicos, ruinas mayas sagradas y playas paradisíacas de manera completamente privada.";
+            } else if (category === 'yate') {
+                badge.innerText = "Nuestra Flota";
+                title.innerHTML = `Yates & <span class="font-serif italic font-bold text-brand-accent">Catamaranes</span>`;
+                desc.innerText = "Navegación premium sobre el horizonte turquesa con servicio de tripulación de nivel internacional.";
+            } else if (category === 'transportacion') {
+                badge.innerText = "Logística de Élite";
+                title.innerHTML = `Traslados & <span class="font-serif italic font-bold text-brand-accent">Chauffeur</span>`;
+                desc.innerText = "Llegadas impecables sin esperas ni transbordos en vehículos climatizados Suburban o SUV de alta gama.";
             }
 
-            const grid = document.getElementById('catalog-grid');
+            const grid = document.getElementById('catalog-grid'); 
             grid.innerHTML = '';
             
-            const filtered = fullData.filter(item => {
+            const filtered = globalActivitiesFiltered(category);
+            
+            filtered.forEach((item, idx) => {
+                const card = document.createElement('div'); 
+                card.className = 'card w-full max-w-[350px] bg-brand-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white';
+                let nombre = getCleanValue(item, ['Nombre', 'NOMBRE']);
+                card.onclick = () => openDetailModal(nombre);
+                
+                let folioValue = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
+                let imgUrl = getImgUrlByFolio(folioValue);
+                
+                let precio = getCleanValue(item, ['Precio', 'PRECIO']);
+                if (precio === '' || precio.toLowerCase() === 'consultar') {
+                    precio = getCreativeSlogan(item, idx);
+                }
+
+                let extraSpecsHtml = '';
+                const excludedHeaders = ['nombre', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye', 'catalogo', 'folio', 'pax'];
+                
+                globalHeaders.forEach(header => {
+                    let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '').trim();
+                    
+                    if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) {
+                        return;
+                    }
+
+                    let val = getCleanValue(item, [header]); 
+                    if (val && val !== '') {
+                        let cleanLabel = header.trim();
+                        if (cleanLabel.endsWith(':')) {
+                            cleanLabel = cleanLabel.slice(0, -1).trim();
+                        }
+
+                        extraSpecsHtml += `
+                            <div class="spec-row flex justify-between text-xs py-1 border-b border-white/5 last:border-0">
+                                <span class="spec-label font-bold text-brand-accent uppercase tracking-wider text-[10px]">${cleanLabel}:</span>
+                                <span class="spec-value text-slate-300 text-right">${val}</span>
+                            </div>
+                        `;
+                    }
+                });
+
+                card.innerHTML = `
+                    <div class="img-container group relative h-64 overflow-hidden bg-brand-dark">
+                        ${imgUrl ? `<img src="${imgUrl}" onerror="handleImgError(this, '${category}')" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">` : ''}
+                        
+                        <button onclick="openZoomModal('${imgUrl}', event)" class="absolute bottom-4 right-4 bg-brand-dark/80 hover:bg-brand-accent text-white hover:text-brand-dark w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-110 focus:outline-none" title="Ver imagen completa">
+                            <i class="fas fa-search-plus text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="card-info p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <h3 class="card-title text-xl font-bold font-display text-white mb-2">${nombre}</h3>
+                            <p class="card-price text-brand-accent font-semibold text-sm mb-4">${precio}</p>
+                        </div>
+                        ${extraSpecsHtml ? `<div class="card-extra-specs border-t border-dashed border-white/10 pt-3 mt-4 flex flex-col gap-1">${extraSpecsHtml}</div>` : ''}
+                        
+                        <div class="pt-6 mt-4 border-t border-white/5">
+                            <button class="w-full border border-brand-accent/40 hover:border-brand-accent hover:bg-brand-accent/15 text-brand-accent hover:text-white font-medium tracking-[0.2em] text-[9px] uppercase transition-all duration-300 rounded-full py-2 px-4 flex items-center justify-center gap-1.5 focus:outline-none">
+                                Ver Detalles & Reserva <i class="fas fa-chevron-right text-[7px] transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card); 
+                setTimeout(() => card.classList.add('visible'), idx * 80);
+            });
+        }
+
+        function globalActivitiesFiltered(category) {
+            return fullData.filter(item => {
                 let tipoSheet = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 let catTarget = category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 return tipoSheet.includes(catTarget);
             });
-
-            filtered.forEach((item, idx) => {
-                const nombre = getCleanValue(item, ['Nombre', 'NOMBRE']);
-                let codigo = getCleanValue(item, ['Codigo', 'CDG']);
-                let fallbackCat = category === 'yate' ? 'yates' : (category === 'transportacion' ? 'transportacion' : 'tours');
-                let imgUrl = codigo ? GITHUB_RAW + encodeURIComponent(codigo.trim() + '.jpg') : '';
-                
-                let precio = getCleanValue(item, ['Precio', 'PRECIO']);
-                if (!precio || precio.toLowerCase() === 'consultar') precio = 'Experiencia Premium';
-
-                const card = document.createElement('div');
-                card.className = 'catalog-card bg-brand-navy border border-white/5 rounded-2xl overflow-hidden cursor-pointer flex flex-col h-full interactive-element opacity-0 translate-y-10';
-                card.onclick = () => openDetailModal(nombre);
-                
-                card.innerHTML = `
-                    <div class="relative h-64 overflow-hidden bg-[#0a1526]">
-                        <img src="${imgUrl}" onerror="handleImgError(this, '${fallbackCat}')" alt="${nombre}" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 bg-brand-dark/80 backdrop-blur px-3 py-1 rounded-full border border-white/10 text-[10px] text-brand-accent font-bold tracking-widest uppercase">
-                            Descubrir
-                        </div>
-                    </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <h3 class="font-display text-xl text-white font-bold mb-2">${nombre}</h3>
-                        <p class="text-brand-accent font-semibold text-sm mb-6">${precio}</p>
-                        <div class="mt-auto border-t border-white/5 pt-4 flex justify-between items-center">
-                            <span class="text-slate-400 text-xs font-light">Ver detalles completos</span>
-                            <i class="fas fa-arrow-right text-brand-accent text-sm"></i>
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(card);
-                
-                gsap.to(card, {
-                    opacity: 1, y: 0, duration: 0.8, delay: idx * 0.1, ease: "power3.out"
-                });
-            });
-            ScrollTrigger.refresh();
         }
 
+        // SISTEMA DE NAVEGACIÓN SPA CINEMÁTICO SIN SALTOS
+        function navigateTo(pageId, subCategory = '') {
+            const currentActive = document.querySelector('.page-view.active');
+            const targetPage = document.getElementById(`page-${pageId}`);
+            
+            if(currentActive === targetPage && !subCategory) return;
+
+            const hash = subCategory ? `${pageId}-${subCategory}` : pageId;
+            if(history.pushState) history.pushState(null, null, `#${hash}`);
+            else location.hash = `#${hash}`;
+            trackConversion('Page_View', { page: pageId, sub: subCategory });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if(currentActive) {
+                // Transición cinemática de desvanecimiento
+                currentActive.style.opacity = '0';
+                currentActive.style.transform = 'scale(0.97) translateY(-20px)';
+                currentActive.style.filter = 'blur(10px)';
+                setTimeout(() => {
+                    currentActive.classList.remove('active');
+                    showTarget();
+                }, 300);
+            } else {
+                showTarget();
+            }
+
+            function showTarget() {
+                if(targetPage) {
+                    targetPage.classList.add('active');
+                    targetPage.offsetHeight; // Forzar reflow
+                    setTimeout(() => {
+                        targetPage.style.opacity = '1';
+                        targetPage.style.transform = 'scale(1) translateY(0)';
+                        targetPage.style.filter = 'blur(0)';
+                    }, 50);
+                    targetPage.querySelectorAll('.reveal-up, .reveal-curtain').forEach(el => el.classList.remove('active'));
+                    setTimeout(() => setupReveals(), 200);
+                }
+            }
+
+            if(pageId === 'catalog') {
+                filterCatalog(subCategory || 'tour');
+            }
+
+            // Sincronizar clases activas del menú de navegación
+            document.querySelectorAll('.nav-bar .nav-btn').forEach(link => {
+                const isCatalog = pageId === 'catalog' && link.id === 'btn-nav-catalog';
+                const isCurrent = link.id === `btn-nav-${pageId}` || isCatalog;
+                link.classList.toggle('active', isCurrent);
+                
+                if (isCurrent) {
+                    link.classList.add('text-brand-accent');
+                    link.classList.remove('text-white/70');
+                } else {
+                    link.classList.remove('text-brand-accent');
+                    link.classList.add('text-white/70');
+                }
+            });
+        }
+
+        /* MANEJO DE DESPLEGABLE DE CATÁLOGO */
+        function toggleCatalogDropdown(event) {
+            if (event) event.stopPropagation();
+            const menu = document.getElementById('catalog-dropdown-menu');
+            const isOpen = !menu.classList.contains('opacity-0');
+            if (isOpen) {
+                closeCatalogDropdown();
+            } else {
+                menu.classList.remove('opacity-0', 'invisible');
+                menu.classList.add('opacity-100', 'visible');
+            }
+        }
+
+        function closeCatalogDropdown() {
+            const menu = document.getElementById('catalog-dropdown-menu');
+            if (menu) {
+                menu.classList.add('opacity-0', 'invisible');
+                menu.classList.remove('opacity-100', 'visible');
+            }
+        }
+
+        function selectCatalogSubCategory(category, event) {
+            if (event) event.stopPropagation();
+            closeCatalogDropdown();
+            navigateTo('catalog', category);
+        }
+
+        document.addEventListener('click', () => {
+            closeCatalogDropdown();
+        });
+
+        // MODAL DE DETALLE PREMIUM COHERENTE CON REQUISITOS
         function openDetailModal(nombreBusqueda) {
             const item = fullData.find(i => getCleanValue(i, ['Nombre', 'NOMBRE']) === nombreBusqueda);
             if (!item) return;
 
-            document.getElementById('detail-modal-title').innerText = getCleanValue(item, ['Nombre', 'NOMBRE']);
+            const modal = document.getElementById('activity-detail-modal');
+            const img = document.getElementById('detail-modal-img');
+            const title = document.getElementById('detail-modal-title');
+            const price = document.getElementById('detail-modal-price');
+            const desc = document.getElementById('detail-modal-desc');
+            const includes = document.getElementById('detail-modal-includes');
+            const includesSection = document.getElementById('detail-modal-includes-section');
+            const specsContainer = document.getElementById('detail-modal-specs');
+            const reserveBtn = document.getElementById('detail-modal-reserve-btn');
+            const imgContainer = document.getElementById('detail-img-container');
+
+            let folioValue = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
+            let imgUrl = getImgUrlByFolio(folioValue);
+            img.src = imgUrl;
+            img.onerror = function() { handleImgError(this, 'general'); };
+
+            imgContainer.onclick = function() {
+                openZoomModal(img.src);
+            };
+
+            title.innerText = getCleanValue(item, ['Nombre', 'NOMBRE']);
             
             let precio = getCleanValue(item, ['Precio', 'PRECIO']);
-            document.getElementById('detail-modal-price').innerText = (!precio || precio.toLowerCase() === 'consultar') ? 'Momentos Inolvidables' : precio;
-            
-            document.getElementById('detail-modal-desc').innerText = getCleanValue(item, ['Descriptivo', 'Detalles']) || 'Ficha técnica premium disponible para esta experiencia.';
-            
-            let codigo = getCleanValue(item, ['Codigo', 'CDG']);
-            let fallbackCat = currentCategory === 'yate' ? 'yates' : 'tours';
-            document.getElementById('detail-modal-img').src = codigo ? GITHUB_RAW + encodeURIComponent(codigo.trim() + '.jpg') : '';
-            document.getElementById('detail-modal-img').onerror = function() { handleImgError(this, fallbackCat); };
+            price.innerText = (precio === '' || precio.toLowerCase() === 'consultar') ? 'Consulte con su Concierge' : precio;
 
-            let specsHtml = '';
-            const excl = ['nombre', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles'];
-            for (let k in item) {
-                let kNorm = k.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-                let v = getCleanValue(item, [k]);
-                if (v && !excl.includes(kNorm)) {
-                    let cleanL = k.trim().replace(/:$/, '');
-                    specsHtml += `
-                        <div class="flex justify-between items-center pb-3 border-b border-white/5 last:border-0">
-                            <span class="text-white/60 font-semibold text-xs uppercase tracking-widest">${cleanL}</span>
-                            <span class="text-white font-medium text-sm text-right max-w-[60%]">${v}</span>
+            let descriptivo = getCleanValue(item, ['Descriptivo', 'Detalles']);
+            desc.innerText = descriptivo || 'Ficha de experiencia de lujo a medida disponible bajo solicitud de nuestro concierge especializado.';
+
+            let incluye = getCleanValue(item, ['Incluye:', 'Incluye', 'INCLUYE']);
+            if (incluye) {
+                includesSection.style.display = 'block';
+                includes.innerText = incluye;
+            } else {
+                includesSection.style.display = 'none';
+            }
+
+            specsContainer.innerHTML = '';
+            const excludedHeaders = ['nombre', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye', 'catalogo', 'folio', 'pax'];
+            for (let originalKey in item) {
+                let keyNormalized = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '').trim();
+                let val = getCleanValue(item, [originalKey]); 
+                if (val && val !== '' && !excludedHeaders.includes(keyNormalized)) {
+                    let cleanLabel = originalKey.trim().replace(/:$/, '');
+                    specsContainer.insertAdjacentHTML('beforeend', `
+                        <div class="flex justify-between text-xs py-1 border-b border-white/10">
+                            <span class="font-bold text-brand-accent uppercase tracking-wider text-[10px]">${cleanLabel}:</span>
+                            <span class="text-slate-300 text-right">${val}</span>
                         </div>
-                    `;
+                    `);
                 }
             }
-            document.getElementById('detail-modal-specs').innerHTML = specsHtml;
 
-            let wsText = encodeURIComponent(`Hola Concierge, me interesa información sobre: ${getCleanValue(item, ['Nombre', 'NOMBRE'])}`);
-            document.getElementById('detail-modal-reserve-btn').onclick = () => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${wsText}`, '_blank');
+            reserveBtn.onclick = function() {
+                openWhatsApp(`Hola Concierge. Deseo agendar y cotizar la experiencia de: ${title.innerText}.`);
+            };
 
-            const modal = document.getElementById('activity-detail-modal');
-            const inner = document.getElementById('modal-inner');
+            modal.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+            modal.style.opacity = '0';
             modal.classList.remove('opacity-0', 'pointer-events-none');
-            inner.classList.remove('scale-95');
-            inner.classList.add('scale-100');
-            document.body.style.overflow = 'hidden';
+            modal.offsetHeight; // Forzar reflow
+            modal.style.opacity = '1';
+            document.body.classList.add('no-scroll');
         }
 
         function closeDetailModal() {
             const modal = document.getElementById('activity-detail-modal');
-            const inner = document.getElementById('modal-inner');
-            inner.classList.remove('scale-100');
-            inner.classList.add('scale-95');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            document.body.style.overflow = 'auto';
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                document.body.classList.remove('no-scroll');
+            }, 400);
         }
 
-        function openLightbox(src) {
-            if(!src) return;
-            document.getElementById('zoom-modal-img').src = src;
+        // SISTEMA INTERACTIVO DE ZOOM LIGHTBOX
+        function openZoomModal(imgSrc, event) {
+            if (event) { event.stopPropagation(); }
             const modal = document.getElementById('image-zoom-modal');
+            const img = document.getElementById('zoom-modal-img');
+            
+            img.src = imgSrc;
+            img.onerror = function() { handleImgError(img, 'general'); };
+
+            modal.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+            modal.style.opacity = '0';
             modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.offsetHeight; // Forzar reflow
+            modal.style.opacity = '1';
+            document.body.classList.add('no-scroll');
         }
 
-        function closeLightbox() {
+        function closeZoomModal() {
             const modal = document.getElementById('image-zoom-modal');
-            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                const detailModal = document.getElementById('activity-detail-modal');
+                if (detailModal.classList.contains('pointer-events-none')) {
+                    document.body.classList.remove('no-scroll');
+                }
+                resetZoomImage();
+            }, 400);
         }
 
-        function openWhatsApp(msg) {
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+        // Control del zoom interactivo
+        function zoomImage(e) {
+            const container = document.getElementById('zoom-container');
+            const img = document.getElementById('zoom-modal-img');
+            const rect = container.getBoundingClientRect();
+            
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const xPercent = (x / rect.width) * 100;
+            const yPercent = (y / rect.height) * 100;
+            
+            img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+            img.style.transform = "scale(2.2)";
         }
 
-        function handleFormSubmit(e) {
-            e.preventDefault();
+        function resetZoomImage() {
+            const img = document.getElementById('zoom-modal-img');
+            img.style.transform = "scale(1)";
+            img.style.transformOrigin = "center center";
+        }
+
+        // CONEXIÓN CON WHATSAPP
+        function openWhatsApp(message) {
+            trackConversion('Click_WhatsApp', { intent: message });
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
             const name = document.getElementById('f_name').value;
-            const pax = document.getElementById('f_people').value;
-            const int = document.getElementById('f_destinos').value;
-            const msg = `Hola Concierge. Soy ${name}, viajo en: ${pax}. Me interesa: ${int || 'Asesoría general'}.`;
-            openWhatsApp(msg);
+            const people = document.getElementById('f_people').value;
+            const destinos = document.getElementById('f_destinos').value || 'Varios de tu colección';
+            trackConversion('Form_Submit', { name, size: people });
+            openWhatsApp(`Hola Concierge de Amazing Colors, mi nombre es ${name}. Estaremos viajando un grupo de: ${people}. Nos encantaría cotizar el itinerario de: ${destinos}.`);
         }
 
-        // Initialize on load
-        window.addEventListener('load', initApp);
+        // CONFIGURAR REVEAL ON SCROLL
+        function setupReveals() {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
 
-        // Escape key to close modals
-        document.addEventListener('keydown', (e) => {
-            if(e.key === 'Escape') {
-                closeLightbox();
-                closeDetailModal();
-                if(mobileMenuPanel.classList.contains('open')) toggleMobileMenu();
+            const activePage = document.querySelector('.page-view.active');
+            if(activePage) {
+                activePage.querySelectorAll('.reveal-up:not(.active), .reveal-curtain:not(.active)').forEach(el => observer.observe(el));
             }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+
+            // Atajar la ruta inicial si contiene fragmentos de hash
+            const hash = window.location.hash.replace('#', '');
+            const validPages = ['home', 'legacy', 'catalog', 'contact'];
+            
+            let initialPage = 'home';
+            let initialSub = '';
+            
+            if (hash) {
+                if (hash.startsWith('catalog-')) {
+                    initialPage = 'catalog';
+                    initialSub = hash.replace('catalog-', '');
+                } else if (validPages.includes(hash)) {
+                    initialPage = hash;
+                }
+            }
+            
+            document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
+            navigateTo(initialPage, initialSub);
         });
     </script>
 </body>
 </html>
-```
