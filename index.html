@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Amazing Colors | Elite Ocean Journeys</title>
     
-    <!-- Favicon Oficial Premium en Alta Resolución -->
-    <link class="brand-favicon" rel="icon" type="image/png" sizes="32x32" href="https://beamazingcolors.github.io/oficial/logo.png">
-    <link class="brand-favicon" rel="icon" type="image/png" sizes="16x16" href="https://beamazingcolors.github.io/oficial/logo.png">
-    <link class="brand-favicon" rel="icon" type="image/png" sizes="192x192" href="https://beamazingcolors.github.io/oficial/logo.png">
-    <link class="brand-favicon" rel="icon" type="image/png" sizes="512x512" href="https://beamazingcolors.github.io/oficial/logo.png">
-    <link class="brand-favicon" rel="apple-touch-icon" sizes="180x180" href="https://beamazingcolors.github.io/oficial/logo.png">
+    <!-- Favicon Oficial Premium en Alta Resolución (Sincronizado de forma nativa con lg2.png) -->
+    <link class="brand-favicon" rel="icon" type="image/png" sizes="32x32" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <link class="brand-favicon" rel="icon" type="image/png" sizes="16x16" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <link class="brand-favicon" rel="icon" type="image/png" sizes="192x192" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <link class="brand-favicon" rel="icon" type="image/png" sizes="512x512" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <link class="brand-favicon" rel="apple-touch-icon" sizes="180x180" href="https://beamazingcolors.github.io/oficial/lg2.png">
     
     <!-- Fuentes Premium de Estilo Editorial -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -187,7 +187,7 @@
             background-color: #071021;
             z-index: 9999;
             display: flex;
-            flex-col: column;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -212,6 +212,25 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* SHIMMER EFFECT FOR SKELETON LOADERS */
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+        .shimmer-bg::after {
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.05) 20%,
+                rgba(255, 255, 255, 0.1) 60%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shimmer 2s infinite;
+            content: '';
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden w-full max-w-full selection:bg-brand-accent selection:text-white bg-brand-dark no-scroll">
@@ -223,8 +242,8 @@
         <div class="relative flex flex-col items-center">
             <!-- Anillo brújula de carga -->
             <div class="loader-ring absolute z-0"></div>
-            <!-- Logotipo oficial pulsante -->
-            <img src="https://beamazingcolors.github.io/oficial/logo.png" alt="Cargando Amazing Colors" class="h-16 w-auto relative z-10 animate-pulse my-4">
+            <!-- Logotipo oficial pulsante (Sin filtros aplicados) -->
+            <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Cargando Amazing Colors" class="h-16 w-auto relative z-10 animate-pulse my-4">
             <div class="mt-8 text-center">
                 <span class="font-display text-[10px] tracking-[0.4em] text-brand-accent uppercase block animate-pulse">Iniciando Travesía</span>
                 <span class="text-[8px] font-sans text-slate-400 uppercase tracking-widest mt-1 block">Amazing Colors Private Tours</span>
@@ -244,13 +263,14 @@
         </div>
 
         <div class="relative z-10 w-full max-w-full">
-            <!-- 1. Cabecera de Marca Oficial (Paso 1: logo.png en minúsculas absoluto con degradado Abismo) -->
+            <!-- 1. Cabecera de Marca Oficial (Paso 1: lg2.png de forma nativa) -->
             <header class="site-brand-header flex flex-col items-center justify-center pt-10 pb-6 px-4 cursor-pointer text-center w-full max-w-full relative border-b border-brand-accent/20 bg-gradient-to-b from-[#030914] via-[#071021] to-transparent shadow-[0_10px_30px_rgba(3,9,20,0.4)]" onclick="navigateTo('home')">
-                <!-- Sutil destello de fondo para el logotipo -->
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-brand-accent/5 rounded-full filter blur-xl pointer-events-none"></div>
                 
-                <img src="https://beamazingcolors.github.io/oficial/logo.png" alt="Logo Amazing Colors" class="h-32 sm:h-44 md:h-52 w-auto mb-3 object-contain object-center transition-all duration-700 hover:scale-105 select-none relative z-10" onerror="handleImgError(this, 'general')">
-                <span class="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.15em] sm:tracking-[0.25em] text-white hover:text-brand-accent transition-all duration-500 uppercase text-center block w-full px-2 break-words relative z-10">Amazing Colors</span>
+                <!-- Logotipo lg2.png renderizado de forma totalmente nativa -->
+                <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Logo Amazing Colors" class="h-32 sm:h-44 md:h-52 w-auto mb-3 object-contain object-center transition-all duration-700 hover:scale-105 select-none relative z-10" onerror="handleImgError(this, 'general')">
+                <!-- Título unificado bicolor: "Colors" en dorado como en el pie de página -->
+                <span class="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.15em] sm:tracking-[0.25em] text-white hover:text-brand-accent transition-all duration-500 uppercase text-center block w-full px-2 break-words relative z-10">Amazing <span class="text-brand-accent">Colors</span></span>
                 <p class="text-[9px] md:text-xs font-semibold uppercase tracking-[0.35em] sm:tracking-[0.45em] text-brand-accent mt-2.5 text-center w-full px-2 block break-words relative z-10">Elite Ocean Journeys</p>
             </header>
 
@@ -293,7 +313,7 @@
                                 "Siente la brisa caribeña sin límites. Te revelamos el verdadero color del paraíso."
                             </p>
                         </div>
-                        <!-- 2. Imagen Principal de Inicio (Paso 2: cun.png en minúsculas absoluto) -->
+                        <!-- 2. Imagen de Inicio (Paso 2: cun.png absoluto) -->
                         <div class="relative h-[45vh] lg:h-[60vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
                             <img id="inicio-playas-img" src="https://beamazingcolors.github.io/oficial/cun.png" alt="Playas de Cancún" class="w-full h-full object-cover object-center transition-transform duration-1000 hover:scale-105" onerror="handleImgError(this, 'playas')">
                         </div>
@@ -351,7 +371,12 @@
                         <div class="absolute inset-y-0 right-0 w-16 md:w-40 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none"></div>
                         
                         <div id="home-carousel-scroll" class="flex animate-infinite-scroll">
-                            <!-- Inyección dinámica desde Google Sheet -->
+                            <!-- Inyección dinámica asíncrona de Skeletons Iniciales -->
+                            <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">
+                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] bg-brand-navy/60 rounded-2xl overflow-hidden shimmer-bg"></div>
+                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] bg-brand-navy/60 rounded-2xl overflow-hidden shimmer-bg"></div>
+                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] bg-brand-navy/60 rounded-2xl overflow-hidden shimmer-bg"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -376,8 +401,8 @@
                                 Llevamos 5 años entregándote el color real del paraíso sin prisas ni multitudes.
                             </p>
                         </div>
+                        <!-- 3. Imagen Oficial de Legado (Paso 3: cnt.jpg absoluto) -->
                         <div class="relative h-[45vh] lg:h-[65vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
-                            <!-- 3. Imagen Oficial de Legado (Paso 3: cnt.jpg en minúsculas absoluto) -->
                             <img id="legado-yate-img" src="https://beamazingcolors.github.io/oficial/cnt.jpg" alt="Aventura de Legado Amazing Colors" class="w-full h-full object-cover object-center transition-transform duration-[2s] hover:scale-105" onerror="handleImgError(this, 'arqueologia')">
                         </div>
                     </div>
@@ -391,7 +416,7 @@
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
                     <div class="text-center mb-12 lg:mb-16 reveal-up">
                         <span id="catalog-category-badge" class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Experiencias Exclusivas</span>
-                        <h2 id="catalog-category-title" class="font-display text-3xl md:text-5xl text-white font-light">Colección de <span class="font-serif italic font-bold">Aventuras</span></h2>
+                        <h2 id="catalog-category-title" class="font-display text-3xl md:text-5xl text-white font-light">Colección de <span class="font-serif italic font-bold text-brand-accent">Aventuras</span></h2>
                         <p id="catalog-category-desc" class="text-slate-300 font-light text-sm md:text-base max-w-2xl mx-auto mt-4">Un catálogo meticulosamente seleccionado para aquellos que buscan conectar con la belleza real del Caribe.</p>
                     </div>
 
@@ -404,7 +429,10 @@
 
                     <!-- Cuadrícula de Tarjetas Integrada -->
                     <div id="catalog-grid" class="flex flex-wrap justify-center gap-8 lg:gap-10 w-full max-w-full">
-                        <!-- Inyección automatizada de la base de datos -->
+                        <!-- Skeletons dinámicos iniciales -->
+                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden shimmer-bg relative"></div>
+                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden shimmer-bg relative"></div>
+                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden shimmer-bg relative"></div>
                     </div>
                 </div>
             </section>
@@ -529,6 +557,7 @@
                     
                     <div class="lg:col-span-1">
                         <button onclick="navigateTo('home')" class="mb-6 block text-left hover:opacity-80 transition-opacity focus:outline-none">
+                            <!-- Pie de página coherente con la cabecera en branding -->
                             <span class="font-display font-black text-2xl tracking-tighter text-white">AMAZING<span class="text-brand-accent">COLORS</span></span>
                         </button>
                         <p class="text-slate-300 font-light text-sm leading-relaxed max-w-sm mb-6">
@@ -574,6 +603,9 @@
 
     </div>
 
+    <!-- ========================================== -->
+    <!-- SCRIPTS DE NAVEGACIÓN, MOTOR Y TSV         -->
+    <!-- ========================================== -->
     <script>
         const TSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFWLeg9DvMAXX5TwL8JXwY3fm0UDHeKxnqmtYVZGQNNHcTSJG32pLWZVHCMA2-Eo_lZ9sVHqKtgvIO/pub?output=tsv';
         const WHATSAPP_NUMBER = "5219981234567";
@@ -589,7 +621,8 @@
         /* MANEJADOR LINEAL DE IMÁGENES CONTRA BUCLES INFINITOS EN CHROME CON SOPORTE DE MAYÚSCULAS/MINÚSCULAS */
         function handleImgError(img, fallbackCategory = 'general') {
             if (img.dataset.ultimateFailed) {
-                img.src = GITHUB_BASE + 'logo.png';
+                img.src = GITHUB_BASE + 'lg2.png';
+                img.style.opacity = '1';
                 img.style.objectFit = 'contain';
                 img.style.padding = '2rem';
                 img.style.backgroundColor = '#071021';
@@ -761,6 +794,12 @@
         }
 
         async function init() {
+            // OPTIMIZACIÓN CRÍTICA: Programar el fin cinemático del Preloader rápido (700ms)
+            // Esto permite que el sitio se sienta instantáneamente rápido, sin esperar la conexión lenta de Google Sheets.
+            setTimeout(() => {
+                hidePreloader();
+            }, 700);
+
             try {
                 const response = await fetch(TSV_URL);
                 const text = await response.text();
@@ -784,20 +823,17 @@
                     return item;
                 });
                 
+                // Hydration asíncrona: Reemplazar skeletons con los datos cargados reales de forma elástica
                 filterCatalog('tour');
                 initHomeCarousel();
-                
-                // Desvanecer el Preloader una vez inicializados y renderizados los datos
-                hidePreloader();
             } catch (err) { 
                 console.error("Error en inicialización del TSV:", err);
-                hidePreloader(); // Forzar ocultamiento en caso de falla de conexión
             }
         }
 
         function hidePreloader() {
             const preloader = document.getElementById('site-preloader');
-            if (preloader) {
+            if (preloader && !preloader.classList.contains('fade-out')) {
                 preloader.classList.add('fade-out');
                 // Habilitar de nuevo el scroll del sitio
                 document.body.classList.remove('no-scroll');
@@ -832,7 +868,7 @@
                 if (tipo.includes('trans')) categoryType = 'transportacion';
 
                 setHtml += `
-                    <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', '${categoryType}')">
+                    <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl transition-all duration-500 opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]" style="animation-delay: 100ms">
                         <img src="${imgUrl}" alt="${name}" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, '${categoryType}')">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                         <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">${name}</h4>
@@ -874,7 +910,19 @@
                 desc.innerText = "Llegadas impecables sin esperas ni transbordos en vehículos climatizados Suburban o SUV de alta gama.";
             }
 
-            const grid = document.getElementById('catalog-grid'); grid.innerHTML = '';
+            const grid = document.getElementById('catalog-grid'); 
+            grid.innerHTML = '';
+
+            // Si los datos asíncronos aún no se han cargado, inyectar elegantes Skeletons de carga
+            if (fullData.length === 0) {
+                for (let i = 0; i < 3; i++) {
+                    grid.insertAdjacentHTML('beforeend', `
+                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden shimmer-bg relative"></div>
+                    `);
+                }
+                return;
+            }
+
             const filtered = fullData.filter(item => {
                 let tipoSheet = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 return tipoSheet.includes(category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
@@ -885,7 +933,8 @@
 
             filtered.forEach((item, idx) => {
                 const card = document.createElement('div'); 
-                card.className = 'card w-full max-w-[350px] bg-brand-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white';
+                card.className = 'card w-full max-w-[350px] bg-brand-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]';
+                card.style.animationDelay = `${idx * 50}ms`;
                 let nombre = getCleanValue(item, ['Nombre', 'NOMBRE']);
                 card.onclick = () => openDetailModal(nombre);
                 
@@ -899,7 +948,7 @@
                 
                 printedKeys.clear();
                 globalHeaders.forEach(header => {
-                    let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '').trim();
+                    let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '').trim();
                     if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) return;
                     
                     // Bloqueo estricto de columnas duplicadas o repetidas en el Excel (Ej: "Pies:" y "Pies")
@@ -1030,7 +1079,7 @@
             
             let printedModalKeys = new Set();
             globalHeaders.forEach(header => {
-                let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '').trim();
+                let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '').trim();
                 if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) return;
                 
                 if (printedModalKeys.has(keyNormalized)) return;
@@ -1102,7 +1151,7 @@
             const name = document.getElementById('f_name').value;
             const people = document.getElementById('f_people').value;
             const destinos = document.getElementById('f_destinos').value || 'Varios de tu colección';
-            openWhatsApp(`Hola Concierge de Amazing Colors, mi nombre es ${name}. Estaremos viajando un group de: ${people}. Nos encantaría cotizar el itinerario de: ${destinos}.`);
+            openWhatsApp(`Hola Concierge de Amazing Colors, mi nombre es ${name}. Estaremos viajando un grupo de: ${people}. Nos encantaría cotizar el itinerario de: ${destinos}.`);
         }
 
         function setupReveals() {
@@ -1112,6 +1161,16 @@
             const activePage = document.querySelector('.page-view.active');
             if(activePage) activePage.querySelectorAll('.reveal-up, .reveal-curtain').forEach(el => observer.observe(el));
         }
+
+        // Definición de animación en JS para navegadores que requieran inyección de clases elásticas
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(15px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
 
         document.addEventListener('DOMContentLoaded', () => {
             init();
