@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Amazing Colors | Elite Ocean Journeys</title>
     
+    <!-- Favicon Oficial Premium en Alta Resolución -->
     <link class="brand-favicon" rel="icon" type="image/png" sizes="32x32" href="https://beamazingcolors.github.io/oficial/logo.png">
     <link class="brand-favicon" rel="icon" type="image/png" sizes="16x16" href="https://beamazingcolors.github.io/oficial/logo.png">
     <link class="brand-favicon" rel="icon" type="image/png" sizes="192x192" href="https://beamazingcolors.github.io/oficial/logo.png">
     <link class="brand-favicon" rel="icon" type="image/png" sizes="512x512" href="https://beamazingcolors.github.io/oficial/logo.png">
     <link class="brand-favicon" rel="apple-touch-icon" sizes="180x180" href="https://beamazingcolors.github.io/oficial/logo.png">
     
+    <!-- Fuentes Premium de Estilo Editorial -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
+    <!-- Tailwind CSS y Iconos de FontAwesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Definición Global de Analíticas y Conversión -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function trackConversion(eventName, details) {
@@ -34,8 +38,8 @@
                         brand: {
                             navy: '#0b1a30',      /* Azul Abismo Náutico */
                             accent: '#bda06a',    /* Oro Cepillado / Champagne */
-                            light: '#2a5a7a',     /* Deep Slate Blue */
-                            pearl: '#f5f3ef',     /* Lino Arena Alabastro */
+                            sand: '#dfcba5',      /* Tono Arena Playa Sunset */
+                            pearl: '#ebdcb9',     /* Lino Arena Claro */
                             dark: '#071021'       /* Yacht Midnight Blue */
                         }
                     },
@@ -56,7 +60,7 @@
             --accent: #bda06a;  
             --light: #2a5a7a;   
             --white: #ffffff;
-            --pearl-bg: #f5f3ef;   
+            --pearl-bg: #ebdcb9;   
             --gradient: linear-gradient(135deg, #bda06a 0%, #dfcba5 100%);
         }
 
@@ -175,28 +179,87 @@
         .premium-btn:hover::before {
             left: 100%;
         }
+
+        /* PRELOADER CINEMÁTICO */
+        #site-preloader {
+            position: fixed;
+            inset: 0;
+            background-color: #071021;
+            z-index: 9999;
+            display: flex;
+            flex-col: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #site-preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* ANIMACIÓN DE BRÚJULA/COMPASS EN CARGA */
+        .loader-ring {
+            border: 2px solid rgba(189, 160, 106, 0.1);
+            border-top: 2px solid #bda06a;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden w-full max-w-full selection:bg-brand-accent selection:text-white bg-brand-dark">
+<body class="antialiased overflow-x-hidden w-full max-w-full selection:bg-brand-accent selection:text-white bg-brand-dark no-scroll">
 
+    <!-- ========================================== -->
+    <!-- PRELOADER MÍSTICO DE ENTRADA               -->
+    <!-- ========================================== -->
+    <div id="site-preloader">
+        <div class="relative flex flex-col items-center">
+            <!-- Anillo brújula de carga -->
+            <div class="loader-ring absolute z-0"></div>
+            <!-- Logotipo oficial pulsante -->
+            <img src="https://beamazingcolors.github.io/oficial/logo.png" alt="Cargando Amazing Colors" class="h-16 w-auto relative z-10 animate-pulse my-4">
+            <div class="mt-8 text-center">
+                <span class="font-display text-[10px] tracking-[0.4em] text-brand-accent uppercase block animate-pulse">Iniciando Travesía</span>
+                <span class="text-[8px] font-sans text-slate-400 uppercase tracking-widest mt-1 block">Amazing Colors Private Tours</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- ENVOLTORIO PRINCIPAL CON BLINDAJE GEOMÉTRICO -->
+    <!-- ========================================== -->
     <div id="main-site-wrapper" class="bg-brand-dark min-h-screen flex flex-col justify-between opacity-100 relative w-full max-w-full overflow-hidden">
         
+        <!-- Neblinas de iluminación asimétrica de fondo -->
         <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
             <div class="ambient-glow top-10 left-[-150px]"></div>
             <div class="ambient-glow top-[50%] right-[-150px]"></div>
         </div>
 
         <div class="relative z-10 w-full max-w-full">
-            <header class="site-brand-header flex flex-col items-center justify-center pt-8 pb-5 px-4 cursor-pointer text-center w-full max-w-full" onclick="navigateTo('home')">
-                <img src="https://beamazingcolors.github.io/oficial/logo.png" alt="Logo Amazing Colors" class="h-32 sm:h-44 md:h-52 w-auto mb-3 object-contain object-center transition-all duration-700 hover:scale-105 select-none" onerror="handleImgError(this, 'general')">
-                <span class="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.15em] sm:tracking-[0.25em] text-white hover:text-brand-accent transition-all duration-500 uppercase text-center block w-full px-2 break-words">Amazing Colors</span>
-                <p class="text-[9px] md:text-xs font-semibold uppercase tracking-[0.35em] sm:tracking-[0.45em] text-brand-accent/80 mt-2.5 text-center w-full px-2 block break-words">Elite Ocean Journeys</p>
+            <!-- 1. Cabecera de Marca Oficial (Paso 1: logo.png en minúsculas absoluto con degradado Abismo) -->
+            <header class="site-brand-header flex flex-col items-center justify-center pt-10 pb-6 px-4 cursor-pointer text-center w-full max-w-full relative border-b border-brand-accent/20 bg-gradient-to-b from-[#030914] via-[#071021] to-transparent shadow-[0_10px_30px_rgba(3,9,20,0.4)]" onclick="navigateTo('home')">
+                <!-- Sutil destello de fondo para el logotipo -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-brand-accent/5 rounded-full filter blur-xl pointer-events-none"></div>
+                
+                <img src="https://beamazingcolors.github.io/oficial/logo.png" alt="Logo Amazing Colors" class="h-32 sm:h-44 md:h-52 w-auto mb-3 object-contain object-center transition-all duration-700 hover:scale-105 select-none relative z-10" onerror="handleImgError(this, 'general')">
+                <span class="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.15em] sm:tracking-[0.25em] text-white hover:text-brand-accent transition-all duration-500 uppercase text-center block w-full px-2 break-words relative z-10">Amazing Colors</span>
+                <p class="text-[9px] md:text-xs font-semibold uppercase tracking-[0.35em] sm:tracking-[0.45em] text-brand-accent mt-2.5 text-center w-full px-2 block break-words relative z-10">Elite Ocean Journeys</p>
             </header>
 
+            <!-- Barra de Navegación Premium Flotante -->
             <nav class="nav-bar sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md py-5 border-b border-white/10 flex justify-center items-center gap-5 md:gap-10 flex-wrap px-4 w-full max-w-full">
                 <button id="btn-nav-home" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300 active" onclick="navigateTo('home')">Inicio</button>
                 <button id="btn-nav-legacy" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300" onclick="navigateTo('legacy')">Legado</button>
                 
+                <!-- Menú Desplegable Flotante -->
                 <div class="relative group" id="catalog-dropdown-container">
                     <button id="btn-nav-catalog" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300 flex items-center gap-1.5 focus:outline-none" onclick="toggleCatalogDropdown(event)">
                         Catálogo <i class="fas fa-chevron-down text-[10px] transition-transform duration-500 group-hover:rotate-180"></i>
@@ -211,6 +274,9 @@
                 <button id="btn-nav-contact" class="nav-btn text-white/70 hover:text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all duration-300" onclick="navigateTo('contact')">Reserva</button>
             </nav>
 
+            <!-- ========================================== -->
+            <!-- VISTA 1: INICIO (HOME)                     -->
+            <!-- ========================================== -->
             <section id="page-home" class="page-view active bg-brand-dark w-full max-w-full">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -227,12 +293,14 @@
                                 "Siente la brisa caribeña sin límites. Te revelamos el verdadero color del paraíso."
                             </p>
                         </div>
+                        <!-- 2. Imagen Principal de Inicio (Paso 2: cun.png en minúsculas absoluto) -->
                         <div class="relative h-[45vh] lg:h-[60vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
                             <img id="inicio-playas-img" src="https://beamazingcolors.github.io/oficial/cun.png" alt="Playas de Cancún" class="w-full h-full object-cover object-center transition-transform duration-1000 hover:scale-105" onerror="handleImgError(this, 'playas')">
                         </div>
                     </div>
                 </div>
 
+                <!-- Bloque Editorial: Curiosidades del Destino -->
                 <div class="bg-brand-dark text-white py-20 lg:py-28 border-t border-white/10 w-full max-w-full">
                     <div class="max-w-7xl mx-auto px-6 lg:px-12">
                         <div class="text-center mb-16 lg:mb-20 reveal-up">
@@ -265,6 +333,7 @@
                     </div>
                 </div>
 
+                <!-- Galería en Movimiento Perpetuo -->
                 <div class="pt-24 pb-4 lg:pt-28 lg:pb-6 overflow-hidden border-t border-white/10 w-full max-w-full">
                     <div class="text-center px-6 max-w-5xl mx-auto reveal-up mb-16">
                         <i class="fas fa-anchor text-brand-accent text-3xl mb-8"></i>
@@ -276,16 +345,21 @@
                         <p class="text-slate-400 font-medium text-xs md:text-sm tracking-[0.3em] uppercase">El lujo de la libertad absoluta</p>
                     </div>
 
+                    <!-- Slider Infinito Balanceado -->
                     <div id="home-carousel-container" class="relative w-full pb-4 overflow-hidden carousel-hover-pause" style="clip-path: inset(0); contain: paint;">
                         <div class="absolute inset-y-0 left-0 w-16 md:w-40 bg-gradient-to-r from-brand-dark to-transparent z-10 pointer-events-none"></div>
                         <div class="absolute inset-y-0 right-0 w-16 md:w-40 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none"></div>
                         
                         <div id="home-carousel-scroll" class="flex animate-infinite-scroll">
-                            </div>
+                            <!-- Inyección dinámica desde Google Sheet -->
+                        </div>
                     </div>
                 </div>
             </section>
 
+            <!-- ========================================== -->
+            <!-- VISTA 2: LEGADO (ABOUT)                    -->
+            <!-- ========================================== -->
             <section id="page-legacy" class="page-view bg-brand-dark w-full max-w-full">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -303,12 +377,16 @@
                             </p>
                         </div>
                         <div class="relative h-[45vh] lg:h-[65vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
+                            <!-- 3. Imagen Oficial de Legado (Paso 3: cnt.jpg en minúsculas absoluto) -->
                             <img id="legado-yate-img" src="https://beamazingcolors.github.io/oficial/cnt.jpg" alt="Aventura de Legado Amazing Colors" class="w-full h-full object-cover object-center transition-transform duration-[2s] hover:scale-105" onerror="handleImgError(this, 'arqueologia')">
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- ========================================== -->
+            <!-- VISTA 3: CATÁLOGO DINÁMICO                 -->
+            <!-- ========================================== -->
             <section id="page-catalog" class="page-view bg-brand-dark w-full max-w-full">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
                     <div class="text-center mb-12 lg:mb-16 reveal-up">
@@ -317,17 +395,23 @@
                         <p id="catalog-category-desc" class="text-slate-300 font-light text-sm md:text-base max-w-2xl mx-auto mt-4">Un catálogo meticulosamente seleccionado para aquellos que buscan conectar con la belleza real del Caribe.</p>
                     </div>
 
+                    <!-- Selectores de Subcategoría Estilo Cápsula Premium -->
                     <div class="flex justify-center gap-4 mb-16 border-b border-white/10 pb-6 flex-wrap w-full max-w-full">
                         <button id="sub-nav-tour" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none" onclick="filterCatalog('tour')">Tours</button>
                         <button id="sub-nav-yate" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none" onclick="filterCatalog('yate')">Yates</button>
                         <button id="sub-nav-transportacion" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none" onclick="filterCatalog('transportacion')">Transportación</button>
                     </div>
 
+                    <!-- Cuadrícula de Tarjetas Integrada -->
                     <div id="catalog-grid" class="flex flex-wrap justify-center gap-8 lg:gap-10 w-full max-w-full">
-                        </div>
+                        <!-- Inyección automatizada de la base de datos -->
+                    </div>
                 </div>
             </section>
 
+            <!-- ========================================== -->
+            <!-- VISTA 4: PASARELA DE RESERVA               -->
+            <!-- ========================================== -->
             <section id="page-contact" class="page-view bg-brand-dark w-full max-w-full">
                 <div class="max-w-4xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="text-center mb-12 lg:mb-16 reveal-up">
@@ -369,12 +453,16 @@
             </section>
         </div>
 
+        <!-- ========================================== -->
+        <!-- MODAL DE DETALLE E INFORMACIÓN DE RESERVA   -->
+        <!-- ========================================== -->
         <div id="activity-detail-modal" class="fixed inset-0 bg-brand-dark/95 backdrop-blur-md z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 overflow-y-auto p-4 md:p-6" onclick="closeDetailModal()">
             <div class="bg-brand-navy border border-white/10 rounded-2xl w-full max-w-4xl relative overflow-hidden shadow-2xl flex flex-col md:flex-row my-auto" onclick="event.stopPropagation()">
                 <button onclick="closeDetailModal()" class="absolute top-4 right-4 text-white hover:text-brand-accent transition-colors z-50 text-2xl focus:outline-none p-2 bg-brand-dark/80 rounded-full h-10 w-10 flex items-center justify-center">
                     <i class="fas fa-times"></i>
                 </button>
                 
+                <!-- Visor Lateral Izquierdo de Imagen -->
                 <div class="md:w-1/2 relative min-h-[300px] md:min-h-[500px] overflow-hidden bg-brand-dark cursor-zoom-in" id="detail-img-container">
                     <img id="detail-modal-img" src="" alt="Detalle Actividad" class="w-full h-full object-cover object-center absolute inset-0 transition-transform duration-500 hover:scale-105">
                     <div class="absolute bottom-4 left-4 bg-brand-dark/80 px-4 py-2 rounded-full text-xs text-brand-accent flex items-center gap-2 pointer-events-none">
@@ -382,6 +470,7 @@
                     </div>
                 </div>
 
+                <!-- Descriptor Técnico de Ficha Técnica Especializada -->
                 <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-between max-h-[85vh] overflow-y-auto">
                     <div>
                         <span id="detail-modal-pax" class="text-brand-accent text-xs font-bold uppercase tracking-widest block mb-2">Amazing Colors</span>
@@ -403,7 +492,8 @@
                         </div>
 
                         <div id="detail-modal-specs" class="space-y-2 mt-4">
-                            </div>
+                            <!-- Inyección elástica libre de filas duplicadas de especificaciones técnicas -->
+                        </div>
                     </div>
 
                     <div class="pt-8 mt-8 border-t border-white/10">
@@ -415,6 +505,9 @@
             </div>
         </div>
 
+        <!-- ========================================== -->
+        <!-- INTERPOLADOR LIGHTBOX INTERACTIVO DE LUPA  -->
+        <!-- ========================================== -->
         <div id="image-zoom-modal" class="fixed inset-0 bg-brand-dark/98 z-[60] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeZoomModal()">
             <button onclick="closeZoomModal()" class="absolute top-6 right-6 text-white text-4xl hover:text-brand-accent transition-colors z-50 focus:outline-none p-4">
                 <i class="fas fa-times"></i>
@@ -427,7 +520,10 @@
             </div>
         </div>
 
-        <footer class="bg-[#071021] border-t border-white/10 pt-16 pb-10 mt-6 text-white relative z-40 w-full max-w-full">
+        <!-- ========================================== -->
+        <!-- PIE DE PÁGINA EDITORIAL (Fondo Abismo y Arena) -->
+        <!-- ========================================== -->
+        <footer class="bg-[#050b14] border-t-2 border-brand-accent pt-16 pb-10 mt-6 text-brand-pearl relative z-40 w-full max-w-full shadow-[0_-15px_30px_rgba(3,9,20,0.5)]">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
                     
@@ -435,28 +531,28 @@
                         <button onclick="navigateTo('home')" class="mb-6 block text-left hover:opacity-80 transition-opacity focus:outline-none">
                             <span class="font-display font-black text-2xl tracking-tighter text-white">AMAZING<span class="text-brand-accent">COLORS</span></span>
                         </button>
-                        <p class="text-slate-400 font-light text-sm leading-relaxed max-w-sm mb-6">
+                        <p class="text-slate-300 font-light text-sm leading-relaxed max-w-sm mb-6">
                             Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y personalizadas de alta gama.
                         </p>
                         <div class="flex space-x-6">
-                            <a href="https://www.instagram.com/amazingcolorstours/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-accent transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
-                            <a href="https://www.facebook.com/p/Amazing-Colors-Tours-100088379184523/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-accent transition-colors duration-300"><i class="fab fa-facebook-f text-xl"></i></a>
+                            <a href="https://www.instagram.com/amazingcolorstours/" target="_blank" rel="noopener noreferrer" class="text-brand-pearl/80 hover:text-brand-accent transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
+                            <a href="https://www.facebook.com/p/Amazing-Colors-Tours-100088379184523/" target="_blank" rel="noopener noreferrer" class="text-brand-pearl/80 hover:text-brand-accent transition-colors duration-300"><i class="fab fa-facebook-f text-xl"></i></a>
                         </div>
                     </div>
 
                     <div>
-                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Secciones</h4>
+                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6 border-b border-brand-accent/20 pb-2">Secciones</h4>
                         <ul class="space-y-4">
-                            <li><button onclick="navigateTo('home')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Inicio</button></li>
-                            <li><button onclick="navigateTo('legacy')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Legado</button></li>
-                            <li><button onclick="navigateTo('catalog', 'tour')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Tours</button></li>
-                            <li><button onclick="navigateTo('contact')" class="text-slate-400 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Reserva</button></li>
+                            <li><button onclick="navigateTo('home')" class="text-slate-300 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Inicio</button></li>
+                            <li><button onclick="navigateTo('legacy')" class="text-slate-300 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Legado</button></li>
+                            <li><button onclick="navigateTo('catalog', 'tour')" class="text-slate-300 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Tours</button></li>
+                            <li><button onclick="navigateTo('contact')" class="text-slate-300 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none">Reserva</button></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6">Ubicación</h4>
-                        <p class="text-slate-400 font-light text-sm leading-relaxed mb-4">
+                        <h4 class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6 border-b border-brand-accent/20 pb-2">Ubicación</h4>
+                        <p class="text-slate-300 font-light text-sm leading-relaxed mb-4">
                             Cancún, Quintana Roo<br>México
                         </p>
                         <button onclick="openWhatsApp('Hola Concierge.')" class="text-brand-accent hover:text-white text-sm font-semibold transition-colors focus:outline-none">
@@ -466,7 +562,7 @@
 
                 </div>
 
-                <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-xs font-light">
+                <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-400 text-xs font-light">
                     <p>&copy; 2026 Amazing Colors Private Tours. Todos los derechos reservados.</p>
                     <div class="flex space-x-6 mt-4 md:mt-0">
                         <a href="#" class="hover:text-white transition-colors">Privacidad</a>
@@ -690,7 +786,25 @@
                 
                 filterCatalog('tour');
                 initHomeCarousel();
-            } catch (err) { console.error("Error en inicialización del TSV:", err); }
+                
+                // Desvanecer el Preloader una vez inicializados y renderizados los datos
+                hidePreloader();
+            } catch (err) { 
+                console.error("Error en inicialización del TSV:", err);
+                hidePreloader(); // Forzar ocultamiento en caso de falla de conexión
+            }
+        }
+
+        function hidePreloader() {
+            const preloader = document.getElementById('site-preloader');
+            if (preloader) {
+                preloader.classList.add('fade-out');
+                // Habilitar de nuevo el scroll del sitio
+                document.body.classList.remove('no-scroll');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 800);
+            }
         }
 
         function initHomeCarousel() {
@@ -916,7 +1030,7 @@
             
             let printedModalKeys = new Set();
             globalHeaders.forEach(header => {
-                let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '').trim();
+                let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '').trim();
                 if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) return;
                 
                 if (printedModalKeys.has(keyNormalized)) return;
