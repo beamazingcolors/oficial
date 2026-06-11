@@ -181,7 +181,7 @@
         <div class="relative z-10 w-full max-w-full">
             <!-- Cabecera de Marca (Redirige suavemente al Inicio) -->
             <header class="site-brand-header flex flex-col items-center justify-center pt-6 pb-4 px-4 cursor-pointer text-center w-full max-w-full" onclick="navigateTo('home')">
-                <img src="https://beamazingcolors.github.io/amazingcolors/lg2.png" alt="Logo Amazing Colors" class="h-36 sm:h-48 md:h-56 w-auto mb-2 object-contain object-center transition-all duration-500 hover:scale-105" onerror="handleImgError(this, 'general')">
+                <img src="https://beamazingcolors.github.io/amazingcolors/lg2.png" alt="Logo Amazing Colors" class="h-36 sm:h-48 md:h-56 w-auto mb-2 object-contain object-center transition-all duration-500 hover:scale-105" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/beamazingcolors/amazingcolors@main/lg2.png';">
                 <span class="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.1em] sm:tracking-[0.2em] text-white hover:text-brand-accent transition-all duration-300 uppercase text-center block w-full px-2 break-words">Amazing Colors</span>
                 <p class="text-[9px] md:text-xs font-semibold uppercase tracking-[0.3em] sm:tracking-[0.4em] text-brand-accent/80 mt-2 text-center w-full px-2 block break-words">Elite Ocean Journeys</p>
             </header>
@@ -517,7 +517,7 @@
         const TSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFWLeg9DvMAXX5TwL8JXwY3fm0UDHeKxnqmtYVZGQNNHcTSJG32pLWZVHCMA2-Eo_lZ9sVHqKtgvIO/pub?output=tsv';
         const WHATSAPP_NUMBER = "5219981234567";
         
-        // Base de producción absoluta y CDN para renderizado perfecto libre de bloqueos de MIME tipo y CORS en Chrome
+        // Base de producción oficial en GitHub Pages para excelente compatibilidad en todos los navegadores
         const GITHUB_BASE = 'https://beamazingcolors.github.io/amazingcolors/'; 
         const GITHUB_FALLBACK_CDN = 'https://cdn.jsdelivr.net/gh/beamazingcolors/amazingcolors@main/';
         const GITHUB_RAW_FALLBACK = 'https://raw.githubusercontent.com/beamazingcolors/amazingcolors/main/';
@@ -525,69 +525,53 @@
         let fullData = [];
         let globalHeaders = [];
 
-        /* SISTEMA ULTRA-ROBUSTO DE DETECCIÓN DE ERRORES (REINTENTO DINÁMICO MULTI-SERVIDOR) */
+        /* SISTEMA ULTRA-ROBUSTO DE DETECCIÓN DE ERRORES (REINTENTO DINÁMICO MULTI-SERVIDOR SIN BUCLES) */
         function handleImgError(img, fallbackCategory = 'general') {
-            // Evitar bucles infinitos si la imagen de fallback definitiva también falla
-            if (img.dataset.ultimateFailed) {
-                img.src = GITHUB_BASE + 'lg2.png';
-                img.style.objectFit = 'contain';
-                img.style.padding = '2rem';
-                img.style.backgroundColor = '#071021';
-                return;
-            }
+            let step = parseInt(img.dataset.failedSteps || "0");
+            img.dataset.failedSteps = (step + 1).toString();
 
             const currentSrc = img.src;
-            let attempts = parseInt(img.dataset.extAttempts || '0');
+            const filenameWithQuery = currentSrc.split('/').pop();
+            const filename = filenameWithQuery.split('?')[0];
+            const lastDot = filename.lastIndexOf('.');
+            const baseName = lastDot !== -1 ? filename.substring(0, lastDot) : filename;
+            const currentExt = lastDot !== -1 ? filename.substring(lastDot).toLowerCase() : '';
 
-            if (attempts < 8) {
-                img.dataset.extAttempts = (attempts + 1).toString();
-                
-                // Extraer el nombre base del archivo y su extensión actual
-                const filenameWithQuery = currentSrc.split('/').pop();
-                const filename = filenameWithQuery.split('?')[0];
-                const lastDot = filename.lastIndexOf('.');
-                const baseName = lastDot !== -1 ? filename.substring(0, lastDot) : filename;
-                const currentExt = lastDot !== -1 ? filename.substring(lastDot).toLowerCase() : '';
+            // Intercambiar extensión (.jpg <-> .png) para dar soporte flexible
+            const nextExt = (currentExt.includes('png')) ? '.jpg' : '.png';
 
-                // Rotación inteligente de extensiones para encontrar el recurso existente
-                let nextExt = '.jpg';
-                if (currentExt.includes('png')) {
-                    nextExt = '.jpg';
-                } else if (currentExt.includes('jpg')) {
-                    nextExt = '.jpeg';
-                } else if (currentExt.includes('jpeg')) {
-                    nextExt = '.PNG';
-                } else {
-                    nextExt = '.png';
-                }
+            if (step === 0) {
+                // Paso 1: Mismo servidor, probar extensión alternativa
+                img.src = currentSrc.substring(0, currentSrc.lastIndexOf('/')) + '/' + baseName + nextExt;
+            } else if (step === 1) {
+                // Paso 2: Cambiar al CDN, intentar extensión original
+                img.src = GITHUB_FALLBACK_CDN + baseName + currentExt;
+            } else if (step === 2) {
+                // Paso 3: Cambiar al CDN, intentar extensión alternativa
+                img.src = GITHUB_FALLBACK_CDN + baseName + nextExt;
+            } else if (step === 3) {
+                // Paso 4: Cambiar a Raw GitHub, intentar extensión original
+                img.src = GITHUB_RAW_FALLBACK + baseName + currentExt;
+            } else if (step === 4) {
+                // Paso 5: Cambiar a Raw GitHub, intentar extensión alternativa
+                img.src = GITHUB_RAW_FALLBACK + baseName + nextExt;
+            } else {
+                // Paso 6: Cargar Unsplash de respaldo definitivo y remover onerror para prevenir bucles infinitos en Chrome
+                img.onerror = null;
 
-                // Rotación inteligente de servidores para burlar bloqueos de CORS y MIME-sniffing en Chrome
-                let nextServer = GITHUB_BASE;
-                if (attempts >= 4 && attempts < 6) {
-                    nextServer = GITHUB_FALLBACK_CDN;
-                } else if (attempts >= 6) {
-                    nextServer = GITHUB_RAW_FALLBACK;
-                }
+                const fallbacks = {
+                    tours: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=600&q=70",
+                    yates: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=70",
+                    transportacion: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=70",
+                    cenotes: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=600&q=70",
+                    arqueologia: "https://images.unsplash.com/photo-1518638150341-f706e86654de?auto=format&fit=crop&w=600&q=70",
+                    playas: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=600&q=70",
+                    general: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=70"
+                };
 
-                img.src = nextServer + baseName + nextExt;
-                return;
+                img.src = fallbacks[fallbackCategory] || fallbacks.general;
+                img.style.objectFit = 'cover';
             }
-
-            // Marcar la imagen como fallida para mostrar el respaldo estético de Unsplash
-            img.dataset.ultimateFailed = "true";
-
-            const fallbacks = {
-                tours: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=600&q=70",
-                yates: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=70",
-                transportacion: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=70",
-                cenotes: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=600&q=70",
-                arqueologia: "https://images.unsplash.com/photo-1518638150341-f706e86654de?auto=format&fit=crop&w=600&q=70",
-                playas: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=600&q=70",
-                general: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=70"
-            };
-
-            img.src = fallbacks[fallbackCategory] || fallbacks.general;
-            img.style.objectFit = 'cover';
         }
 
         /* LECTOR DE DATOS ADAPTATIVO EXTREMADAMENTE ROBUSTO */
@@ -851,7 +835,7 @@
                 const excludedHeaders = ['nombre', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye', 'catalogo', 'folio', 'pax'];
                 
                 globalHeaders.forEach(header => {
-                    let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '').trim();
+                    let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '').trim();
                     
                     if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) {
                         return;
