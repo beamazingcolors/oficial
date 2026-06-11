@@ -181,6 +181,9 @@
 </head>
 <body class="antialiased overflow-x-hidden w-full max-w-full selection:bg-brand-accent selection:text-white bg-brand-dark">
 
+    <!-- Canvas para el sistema interactivo de orbes flotantes mágicos -->
+    <canvas id="orb-particle-canvas" class="fixed inset-0 pointer-events-none z-[9999] w-full h-full"></canvas>
+
     <!-- ========================================== -->
     <!-- ENVOLTORIO PRINCIPAL CON BLINDAJE GEOMÉTRICO -->
     <!-- ========================================== -->
@@ -597,6 +600,90 @@
         let fullData = [];
         let globalHeaders = [];
 
+        // Sistema de partículas con canvas para los orbes de colores flotantes
+        const canvas = document.getElementById('orb-particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                // "Tamaño pequeño" (entre 2px y 5px para un look flotante premium estilo polvo de hadas)
+                this.size = Math.random() * 3 + 2; 
+                // "Hacia arriba, sin gravedad" (fuerza vertical negativa y velocidad x muy sutil)
+                this.speedY = -(Math.random() * 1.0 + 0.5); 
+                this.speedX = (Math.random() - 0.5) * 0.3; 
+                // "Colores al azar" vibrantes con alta luminosidad sobre fondo azul marino
+                this.color = `hsla(${Math.random() * 360}, 95%, 70%, 0.95)`; 
+                this.alpha = 1.0;
+                // "Duren" (taza de desvanecimiento extremadamente lenta para que permanezcan mucho tiempo flotando)
+                this.decay = Math.random() * 0.002 + 0.0015; 
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.alpha -= this.decay;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                // Soft glow radial premium
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // Limitador de tasa de spawn para evitar saturación de memoria
+        let lastX = 0, lastY = 0;
+        const movementThreshold = 8; 
+
+        function spawnOrbs(clientX, clientY) {
+            let dx = clientX - lastX;
+            let dy = clientY - lastY;
+            if (Math.sqrt(dx*dx + dy*dy) > movementThreshold) {
+                particlesArray.push(new Particle(clientX, clientY));
+                lastX = clientX;
+                lastY = clientY;
+            }
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            spawnOrbs(e.clientX, e.clientY);
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if(e.touches.length > 0) {
+                spawnOrbs(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        });
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = particlesArray.length - 1; i >= 0; i--) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+                if (particlesArray[i].alpha <= 0) {
+                    particlesArray.splice(i, 1);
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        // Iniciar animación en loop de inmediato
+        animateParticles();
+
         /* MANEJADOR LINEAL DE IMÁGENES CONTRA BUCLES INFINITOS EN CHROME CON SOPORTE DE MAYÚSCULAS/MINÚSCULAS */
         function handleImgError(img, fallbackCategory = 'general') {
             if (img.dataset.ultimateFailed) {
@@ -662,41 +749,6 @@
             img.style.objectFit = 'cover';
         }
 
-        // MOTOR DE COPY CREATIVO CONTEXTUAL (REPLAZA "MOMENTOS INOLVIDABLES")
-        function getCreativeSlogan(item, index) {
-            const slogansTours = [
-                "Travesía Mística Exclusiva",
-                "Aventura Premium a Medida",
-                "Exploración de Leyenda",
-                "Descubrimiento de Élite",
-                "Experiencia de Lujo Absoluto",
-                "Ruta Ancestral de Ensueño"
-            ];
-            const slogansYates = [
-                "Navegación de Alta Costura",
-                "Elegancia sobre el Mar Turquesa",
-                "Travesía Privada de Lujo",
-                "Atardecer Exclusivo en Popa",
-                "Carta Náutica de Ensueño",
-                "Libertad Absoluta en Alta Mar"
-            ];
-            const slogansTrans = [
-                "Arribo Impecable y Seguro",
-                "Logística VIP con Chauffeur",
-                "Confort de Primera Clase",
-                "Privacidad Total en Ruta",
-                "Conexión VIP Riviera Maya",
-                "Transportación de Alta Gama"
-            ];
-            
-            let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
-            let arr = slogansTours;
-            if (tipo.includes('yate')) arr = slogansYates;
-            else if (tipo.includes('trans') || tipo.includes('traslado')) arr = slogansTrans;
-            
-            return arr[index % arr.length];
-        }
-
         function getCleanValue(item, possibleHeaders) {
             if (!item) return '';
             const normalizedSearched = possibleHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
@@ -727,28 +779,18 @@
             return '';
         }
 
-        function parseTSV(text) {
-            let rows = []; let row = []; let field = ''; let inQuotes = false;
-            for (let i = 0; i < text.length; i++) {
-                let char = text[i]; let nextChar = text[i+1];
-                if (inQuotes) {
-                    if (char === '"') {
-                        if (nextChar === '"') { field += '"'; i++; } else { inQuotes = false; }
-                    } else { field += char; }
-                } else {
-                    if (char === '"') { inQuotes = true; } 
-                    else if (char === '\t') { row.push(field); field = ''; } 
-                    else if (char === '\n' || char === '\r') {
-                        if (char === '\r' && nextChar === '\n') i++; 
-                        row.push(field); rows.push(row); row = []; field = '';
-                    } else { field += char; }
-                }
+        // Mapeador de recursos de imagen del catálogo con interceptor para Xcaret y Columbus
+        function getImgUrlByFolio(folioValue, activityName = '') {
+            let lowerName = (activityName || '').toLowerCase();
+            
+            // Interceptor de asignaciones manuales solicitadas de forma estricta
+            if (lowerName.includes('xcaret')) {
+                return GITHUB_BASE + 'XCT.png';
             }
-            if (field || row.length > 0) { row.push(field); rows.push(row); }
-            return rows;
-        }
+            if (lowerName.includes('columbus')) {
+                return GITHUB_BASE + 'CLM.png';
+            }
 
-        function getImgUrlByFolio(folioValue) {
             if (!folioValue || folioValue === '') return '';
             let fileName = folioValue.trim();
             let lower = fileName.toLowerCase();
@@ -796,7 +838,7 @@
                     return item;
                 });
                 
-                // Hydration asíncrona: Reemplazar skeletons con los datos cargados reales de forma elástica
+                // Hydration asíncrona
                 filterCatalog('tour');
                 initHomeCarousel();
             } catch (err) { 
@@ -821,7 +863,7 @@
             selectedItems.forEach(item => {
                 let name = getCleanValue(item, ['Nombre', 'NOMBRE']);
                 let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
-                let imgUrl = getImgUrlByFolio(folio);
+                let imgUrl = getImgUrlByFolio(folio, name);
                 let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
                 
                 let categoryType = 'tour';
@@ -868,7 +910,8 @@
                 desc.innerText = "Navegación premium sobre el horizonte turquesa con servicio de tripulación de nivel internacional.";
             } else if (category === 'transportacion') {
                 badge.innerText = "Logística de Élite";
-                title.innerHTML = `Traslados & <span class="font-serif italic font-bold text-brand-accent">Chauffeur</span>`;
+                // Modificado de "Traslados & Chauffeur" a "Traslados & Chofer Privados" de forma estricta
+                title.innerHTML = `Traslados & <span class="font-serif italic font-bold text-brand-accent">Chofer Privados</span>`;
                 desc.innerText = "Llegadas impecables sin esperas ni transbordos en vehículos climatizados Suburban o SUV de alta gama.";
             }
 
@@ -888,7 +931,7 @@
                 card.onclick = () => openDetailModal(nombre);
                 
                 let folioValue = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
-                let imgUrl = getImgUrlByFolio(folioValue);
+                let imgUrl = getImgUrlByFolio(folioValue, nombre);
                 let precio = getCleanValue(item, ['Precio', 'PRECIO']);
                 if (precio === '' || precio.toLowerCase() === 'consultar') precio = getCreativeSlogan(item, idx);
 
@@ -1022,7 +1065,7 @@
             const reserveBtn = document.getElementById('detail-modal-reserve-btn');
 
             let folioValue = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
-            img.src = getImgUrlByFolio(folioValue);
+            img.src = getImgUrlByFolio(folioValue, nombreBusqueda);
             img.onerror = function() { handleImgError(this, 'general'); };
 
             title.innerText = getCleanValue(item, ['Nombre', 'NOMBRE']);
