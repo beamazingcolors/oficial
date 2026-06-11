@@ -143,8 +143,6 @@
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
         }
 
-        .no-scroll { overflow: hidden; }
-
         @media (min-width: 1024px) {
             .group:hover .dropdown-menu {
                 opacity: 1 !important;
@@ -179,77 +177,9 @@
         .premium-btn:hover::before {
             left: 100%;
         }
-
-        /* PRELOADER CINEMÁTICO */
-        #site-preloader {
-            position: fixed;
-            inset: 0;
-            background-color: #071021;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        #site-preloader.fade-out {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        /* ANIMACIÓN DE BRÚJULA/COMPASS EN CARGA */
-        .loader-ring {
-            border: 2px solid rgba(189, 160, 106, 0.1);
-            border-top: 2px solid #bda06a;
-            border-radius: 50%;
-            width: 90px;
-            height: 90px;
-            animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* SHIMMER EFFECT FOR SKELETON LOADERS */
-        @keyframes shimmer {
-            100% { transform: translateX(100%); }
-        }
-        .shimmer-bg::after {
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            transform: translateX(-100%);
-            background-image: linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.05) 20%,
-                rgba(255, 255, 255, 0.1) 60%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            animation: shimmer 2s infinite;
-            content: '';
-        }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden w-full max-w-full selection:bg-brand-accent selection:text-white bg-brand-dark no-scroll">
-
-    <!-- ========================================== -->
-    <!-- PRELOADER MÍSTICO DE ENTRADA               -->
-    <!-- ========================================== -->
-    <div id="site-preloader">
-        <div class="relative flex flex-col items-center">
-            <!-- Anillo brújula de carga -->
-            <div class="loader-ring absolute z-0"></div>
-            <!-- Logotipo oficial pulsante (Sin filtros aplicados) -->
-            <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Cargando Amazing Colors" class="h-16 w-auto relative z-10 animate-pulse my-4">
-            <div class="mt-8 text-center">
-                <span class="font-display text-[10px] tracking-[0.4em] text-brand-accent uppercase block animate-pulse">Iniciando Travesía</span>
-                <span class="text-[8px] font-sans text-slate-400 uppercase tracking-widest mt-1 block">Amazing Colors Private Tours</span>
-            </div>
-        </div>
-    </div>
+<body class="antialiased overflow-x-hidden w-full max-w-full selection:bg-brand-accent selection:text-white bg-brand-dark">
 
     <!-- ========================================== -->
     <!-- ENVOLTORIO PRINCIPAL CON BLINDAJE GEOMÉTRICO -->
@@ -365,18 +295,67 @@
                         <p class="text-slate-400 font-medium text-xs md:text-sm tracking-[0.3em] uppercase">El lujo de la libertad absoluta</p>
                     </div>
 
-                    <!-- Slider Infinito Balanceado -->
+                    <!-- Slider Infinito Balanceado Pre-poblado Directamente para visualización instantánea sin latencia -->
                     <div id="home-carousel-container" class="relative w-full pb-4 overflow-hidden carousel-hover-pause" style="clip-path: inset(0); contain: paint;">
                         <div class="absolute inset-y-0 left-0 w-16 md:w-40 bg-gradient-to-r from-brand-dark to-transparent z-10 pointer-events-none"></div>
                         <div class="absolute inset-y-0 right-0 w-16 md:w-40 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none"></div>
                         
-                        <div id="home-carousel-scroll" class="flex animate-infinite-scroll">
-                            <!-- Inyección dinámica asíncrona de Skeletons Iniciales -->
-                            <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">
-                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] bg-brand-navy/60 rounded-2xl overflow-hidden shimmer-bg"></div>
-                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] bg-brand-navy/60 rounded-2xl overflow-hidden shimmer-bg"></div>
-                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] bg-brand-navy/60 rounded-2xl overflow-hidden shimmer-bg"></div>
+                        <div id="home-carousel-scroll" class="flex flex-nowrap animate-infinite-scroll gap-4 md:gap-6">
+                            
+                            <!-- Set 1 (Instant Loading) -->
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
+                                <img src="https://beamazingcolors.github.io/oficial/TRW.png" alt="Yacht Charter" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Yates Privados</h4>
                             </div>
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
+                                <img src="https://beamazingcolors.github.io/oficial/cun.png" alt="Cancun Beach" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Aventuras Cancún</h4>
+                            </div>
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
+                                <img src="https://beamazingcolors.github.io/oficial/XCT.png" alt="Yacht Experience" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Travesías de Ensueño</h4>
+                            </div>
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
+                                <img src="https://beamazingcolors.github.io/oficial/cnt.jpg" alt="Legacy Destination" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Legado Maya</h4>
+                            </div>
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
+                                <img src="https://beamazingcolors.github.io/oficial/MNT.jpg" alt="MNT Boat" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Catamaranes de Élite</h4>
+                            </div>
+
+                            <!-- Set 2 (Symmetric Infinite Loop) -->
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
+                                <img src="https://beamazingcolors.github.io/oficial/TRW.png" alt="Yacht Charter" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Yates Privados</h4>
+                            </div>
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
+                                <img src="https://beamazingcolors.github.io/oficial/cun.png" alt="Cancun Beach" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Aventuras Cancún</h4>
+                            </div>
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
+                                <img src="https://beamazingcolors.github.io/oficial/XCT.png" alt="Yacht Experience" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Travesías de Ensueño</h4>
+                            </div>
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
+                                <img src="https://beamazingcolors.github.io/oficial/cnt.jpg" alt="Legacy Destination" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Legado Maya</h4>
+                            </div>
+                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
+                                <img src="https://beamazingcolors.github.io/oficial/MNT.jpg" alt="MNT Boat" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Catamaranes de Élite</h4>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -430,9 +409,9 @@
                     <!-- Cuadrícula de Tarjetas Integrada -->
                     <div id="catalog-grid" class="flex flex-wrap justify-center gap-8 lg:gap-10 w-full max-w-full">
                         <!-- Skeletons dinámicos iniciales -->
-                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden shimmer-bg relative"></div>
-                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden shimmer-bg relative"></div>
-                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden shimmer-bg relative"></div>
+                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden relative"></div>
+                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden relative"></div>
+                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden relative"></div>
                     </div>
                 </div>
             </section>
@@ -794,12 +773,6 @@
         }
 
         async function init() {
-            // OPTIMIZACIÓN CRÍTICA: Programar el fin cinemático del Preloader rápido (700ms)
-            // Esto permite que el sitio se sienta instantáneamente rápido, sin esperar la conexión lenta de Google Sheets.
-            setTimeout(() => {
-                hidePreloader();
-            }, 700);
-
             try {
                 const response = await fetch(TSV_URL);
                 const text = await response.text();
@@ -831,18 +804,6 @@
             }
         }
 
-        function hidePreloader() {
-            const preloader = document.getElementById('site-preloader');
-            if (preloader && !preloader.classList.contains('fade-out')) {
-                preloader.classList.add('fade-out');
-                // Habilitar de nuevo el scroll del sitio
-                document.body.classList.remove('no-scroll');
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 800);
-            }
-        }
-
         function initHomeCarousel() {
             const scrollContainer = document.getElementById('home-carousel-scroll');
             if (!scrollContainer || fullData.length === 0) return;
@@ -868,7 +829,7 @@
                 if (tipo.includes('trans')) categoryType = 'transportacion';
 
                 setHtml += `
-                    <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl transition-all duration-500 opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]" style="animation-delay: 100ms">
+                    <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', '${categoryType}')">
                         <img src="${imgUrl}" alt="${name}" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, '${categoryType}')">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                         <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">${name}</h4>
@@ -876,9 +837,10 @@
                 `;
             });
 
+            // Reemplazar de forma elástica las imágenes por defecto del carrusel una vez que el TSV responda con éxito
             scrollContainer.innerHTML = `
-                <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
-                <div class="flex gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
+                <div class="flex flex-nowrap animate-infinite-scroll gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
+                <div class="flex flex-nowrap animate-infinite-scroll gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
             `;
         }
 
@@ -1076,7 +1038,7 @@
             
             let printedModalKeys = new Set();
             globalHeaders.forEach(header => {
-                let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '').trim();
+                let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '').trim();
                 if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) return;
                 
                 if (printedModalKeys.has(keyNormalized)) return;
