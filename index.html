@@ -899,7 +899,7 @@
             if (category === 'tour') {
                 badge.innerText = "Momentos inolvidables";
                 title.innerHTML = `Tours & <span class="font-serif italic font-bold text-brand-accent">Aventuras</span>`;
-                desc.innerText = "Explora cenotes místicos, ruinas mayas sagradas y playas paradisíacas de manera completamente privada.";
+                desc.innerText = "Explora cenotes misticos, ruinas mayas sagradas y playas paradisiacas de manera completamente privada.";
             } else if (category === 'yate') {
                 badge.innerText = "Nuestra Flota";
                 title.innerHTML = `Yates & <span class="font-serif italic font-bold text-brand-accent">Catamaranes</span>`;
@@ -910,19 +910,7 @@
                 desc.innerText = "Llegadas impecables sin esperas ni transbordos en vehículos climatizados Suburban o SUV de alta gama.";
             }
 
-            const grid = document.getElementById('catalog-grid'); 
-            grid.innerHTML = '';
-
-            // Si los datos asíncronos aún no se han cargado, inyectar elegantes Skeletons de carga
-            if (fullData.length === 0) {
-                for (let i = 0; i < 3; i++) {
-                    grid.insertAdjacentHTML('beforeend', `
-                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden shimmer-bg relative"></div>
-                    `);
-                }
-                return;
-            }
-
+            const grid = document.getElementById('catalog-grid'); grid.innerHTML = '';
             const filtered = fullData.filter(item => {
                 let tipoSheet = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 return tipoSheet.includes(category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
@@ -933,8 +921,7 @@
 
             filtered.forEach((item, idx) => {
                 const card = document.createElement('div'); 
-                card.className = 'card w-full max-w-[350px] bg-brand-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]';
-                card.style.animationDelay = `${idx * 50}ms`;
+                card.className = 'card w-full max-w-[350px] bg-brand-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white';
                 let nombre = getCleanValue(item, ['Nombre', 'NOMBRE']);
                 card.onclick = () => openDetailModal(nombre);
                 
@@ -994,7 +981,17 @@
         function navigateTo(pageId, subCategory = '') {
             const currentActive = document.querySelector('.page-view.active');
             const targetPage = document.getElementById(`page-${pageId}`);
-            if(currentActive === targetPage && !subCategory) return;
+            
+            // Si la página de destino ya está activa (pantalla de carga inicial), forzamos su renderizado y revelados
+            if(currentActive === targetPage && !subCategory) {
+                if(targetPage) {
+                    targetPage.style.opacity = '1';
+                    targetPage.style.transform = 'scale(1) translateY(0)';
+                    targetPage.style.filter = 'blur(0)';
+                    setupReveals();
+                }
+                return;
+            }
 
             if(history.pushState) history.pushState(null, null, `#${subCategory ? `${pageId}-${subCategory}` : pageId}`);
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1157,20 +1154,10 @@
         function setupReveals() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); } });
-            }, { threshold: 0.15 });
+            }, { threshold: 0.05 }); // Umbral optimizado al 5% para soporte total en móviles y iPads
             const activePage = document.querySelector('.page-view.active');
             if(activePage) activePage.querySelectorAll('.reveal-up, .reveal-curtain').forEach(el => observer.observe(el));
         }
-
-        // Definición de animación en JS para navegadores que requieran inyección de clases elásticas
-        const styleSheet = document.createElement("style");
-        styleSheet.innerText = `
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(15px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-        `;
-        document.head.appendChild(styleSheet);
 
         document.addEventListener('DOMContentLoaded', () => {
             init();
