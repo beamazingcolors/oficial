@@ -72,12 +72,10 @@
             position: absolute !important;
             height: 0 !important;
             overflow: hidden !important;
-            transform: scale(0.96) translateY(30px);
-            filter: blur(15px);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
-                        filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform, opacity, filter;
+            transform: scale(0.98) translate3d(0, 15px, 0);
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
         }
         
         .page-view.active {
@@ -87,8 +85,7 @@
             height: auto !important;
             overflow: visible !important;
             opacity: 1;
-            transform: scale(1) translateY(0);
-            filter: blur(0);
+            transform: scale(1) translate3d(0, 0, 0);
         }
 
         /* MICRO-ANIMACIONES DE ENLACES EDITORIALES */
@@ -112,12 +109,13 @@
 
         /* CARRUSEL INFINITO DE ALTA VELOCIDAD COMPACTO */
         @keyframes infinite-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
         }
         .animate-infinite-scroll {
             animation: infinite-scroll 45s linear infinite;
             width: max-content;
+            will-change: transform;
         }
         .carousel-hover-pause:hover .animate-infinite-scroll {
             animation-play-state: paused;
@@ -126,18 +124,20 @@
         /* REVELADOS NATURALES AL HACER SCROLL */
         .reveal-up {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translate3d(0, 30px, 0);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
         }
         .reveal-up.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translate3d(0, 0, 0);
         }
 
         /* CORTINA INTERACTIVA ELEGANTE */
         .reveal-curtain {
             clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-            transition: clip-path 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: clip-path;
         }
         .reveal-curtain.active {
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -597,35 +597,78 @@
         const GITHUB_FALLBACK_CDN = 'https://cdn.jsdelivr.net/gh/beamazingcolors/oficial@main/';
         const GITHUB_RAW_FALLBACK = 'https://raw.githubusercontent.com/beamazingcolors/oficial/main/';
 
-        let fullData = [];
-        let globalHeaders = [];
+        // Banco de datos local de respaldo instantáneo (Garantiza que la web funcione perfectamente sin red)
+        let fullData = [
+            {
+                tipo: 'tour',
+                nombre: 'Chichén Itzá Privado',
+                precio: '$850 USD',
+                folio: 'cnt',
+                descriptivo: 'Descubre una de las maravillas del mundo de forma exclusiva, libre de filas y multitudes.',
+                incluye: 'Transportación de lujo, chofer privado, guía arqueológico, entradas VIP.'
+            },
+            {
+                tipo: 'yate',
+                nombre: 'Yate Azimut 58ft',
+                precio: '$1,800 USD',
+                folio: 'TRW',
+                descriptivo: 'Navegación premium sobre las aguas turquesas de Isla Mujeres con servicio de tripulación estelar.',
+                incluye: 'Capitán, marinero, barra libre premium, equipo de snorkel.'
+            },
+            {
+                tipo: 'yate',
+                nombre: 'Catamarán Fountaine Pajot 44ft',
+                precio: '$1,400 USD',
+                folio: 'MNT',
+                descriptivo: 'El equilibrio perfecto entre confort, lujo y estabilidad para navegar en familia o grupo.',
+                incluye: 'Barra libre, bocadillos premium, capitán y marinero.'
+            },
+            {
+                tipo: 'tour',
+                nombre: 'Aventura en Cenotes Sagrados',
+                precio: '$650 USD',
+                folio: 'XCT',
+                descriptivo: 'Exploración privada de ríos subterráneos sagrados y nado libre en cenotes de aguas cristalinas.',
+                incluye: 'Transportación privada, guía de aventura, equipo de snorkel, comida maya.'
+            },
+            {
+                tipo: 'transportacion',
+                nombre: 'Traslado Suburban VIP',
+                precio: '$120 USD',
+                folio: 'logo',
+                descriptivo: 'Llegada impecable y traslado privado directo a tu hotel en vehículo Suburban climatizado.',
+                incluye: 'Chofer bilingüe, agua embotellada, peajes incluidos.'
+            }
+        ];
+        let globalHeaders = ['TIPO', 'Nombre', 'Precio', 'Folio', 'Descriptivo', 'Incluye'];
 
-        // Sistema de partículas con canvas para los orbes de colores flotantes
+        // Sistema de partículas con canvas para los orbes de colores flotantes ultraligero
         const canvas = document.getElementById('orb-particle-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
+        const MAX_PARTICLES = 25; // Cantidad baja y segura para un rendimiento estelar en móviles
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('resize', resizeCanvas, { passive: true });
         resizeCanvas();
 
         class Particle {
             constructor(x, y) {
                 this.x = x;
                 this.y = y;
-                // "Tamaño pequeño" (entre 2px y 5px para un look flotante premium estilo polvo de hadas)
-                this.size = Math.random() * 3 + 2; 
-                // "Hacia arriba, sin gravedad" (fuerza vertical negativa y velocidad x muy sutil)
-                this.speedY = -(Math.random() * 1.0 + 0.5); 
-                this.speedX = (Math.random() - 0.5) * 0.3; 
-                // "Colores al azar" vibrantes con alta luminosidad sobre fondo azul marino
-                this.color = `hsla(${Math.random() * 360}, 95%, 70%, 0.95)`; 
+                // Tamaño pequeño (entre 1.5px y 3.5px para look de polvo de hadas premium)
+                this.size = Math.random() * 2 + 1.5; 
+                // Ascenso veloz hacia arriba
+                this.speedY = -(Math.random() * 2.5 + 1.5); 
+                this.speedX = (Math.random() - 0.5) * 0.4; 
+                this.hue = Math.random() * 360;
+                this.color = `hsla(${this.hue}, 95%, 70%, 0.95)`; 
                 this.alpha = 1.0;
-                // "Duren" (taza de desvanecimiento extremadamente lenta para que permanezcan mucho tiempo flotando)
-                this.decay = Math.random() * 0.002 + 0.0015; 
+                // Desvanecimiento acelerado para que desaparezcan muy rápido (menos de 1 segundo de vida)
+                this.decay = Math.random() * 0.035 + 0.025; 
             }
             update() {
                 this.y += this.speedY;
@@ -638,23 +681,27 @@
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fillStyle = this.color;
-                // Soft glow radial premium
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = this.color;
+                ctx.fill();
+                
+                // Efecto de halo difuminado nativo extremadamente ligero (sin shadowBlur lento)
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${this.hue}, 95%, 70%, 0.15)`;
                 ctx.fill();
                 ctx.restore();
             }
         }
 
-        // Limitador de tasa de spawn para evitar saturación de memoria
         let lastX = 0, lastY = 0;
-        const movementThreshold = 8; 
+        const movementThreshold = 25; // Alta distancia requerida para generar menos cantidad de orbes
 
         function spawnOrbs(clientX, clientY) {
             let dx = clientX - lastX;
             let dy = clientY - lastY;
             if (Math.sqrt(dx*dx + dy*dy) > movementThreshold) {
-                particlesArray.push(new Particle(clientX, clientY));
+                if (particlesArray.length < MAX_PARTICLES) {
+                    particlesArray.push(new Particle(clientX, clientY));
+                }
                 lastX = clientX;
                 lastY = clientY;
             }
@@ -662,13 +709,13 @@
 
         window.addEventListener('mousemove', (e) => {
             spawnOrbs(e.clientX, e.clientY);
-        });
+        }, { passive: true });
 
         window.addEventListener('touchmove', (e) => {
             if(e.touches.length > 0) {
                 spawnOrbs(e.touches[0].clientX, e.touches[0].clientY);
             }
-        });
+        }, { passive: true });
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -681,7 +728,6 @@
             }
             requestAnimationFrame(animateParticles);
         }
-        // Iniciar animación en loop de inmediato
         animateParticles();
 
         /* MANEJADOR LINEAL DE IMÁGENES CONTRA BUCLES INFINITOS EN CHROME CON SOPORTE DE MAYÚSCULAS/MINÚSCULAS */
@@ -749,36 +795,6 @@
             img.style.objectFit = 'cover';
         }
 
-        function getCleanValue(item, possibleHeaders) {
-            if (!item) return '';
-            const normalizedSearched = possibleHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
-            
-            for (let originalKey in item) {
-                let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
-                if (normalizedSearched.includes(normalizedKey)) {
-                    let val = item[originalKey]?.trim();
-                    if (!val || val.toLowerCase() === 'undefined' || val.toLowerCase() === 'null') continue;
-                    if (val.startsWith('::')) val = val.substring(2).trim();
-                    else if (val.startsWith(':')) val = val.substring(1).trim();
-                    return val;
-                }
-            }
-            
-            for (let originalKey in item) {
-                let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
-                for (let search of normalizedSearched) {
-                    if (normalizedKey.includes(search) || search.includes(normalizedKey)) {
-                        let val = item[originalKey]?.trim();
-                        if (!val || val.toLowerCase() === 'undefined' || val.toLowerCase() === 'null') continue;
-                        if (val.startsWith('::')) val = val.substring(2).trim();
-                        else if (val.startsWith(':')) val = val.substring(1).trim();
-                        return val;
-                    }
-                }
-            }
-            return '';
-        }
-
         // Mapeador de recursos de imagen del catálogo con interceptor para Xcaret y Columbus
         function getImgUrlByFolio(folioValue, activityName = '') {
             let lowerName = (activityName || '').toLowerCase();
@@ -814,7 +830,51 @@
             return GITHUB_BASE + fileName;
         }
 
+        function getCleanValue(item, possibleHeaders) {
+            if (!item) return '';
+            const normalizedSearched = possibleHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
+            
+            for (let originalKey in item) {
+                let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
+                if (normalizedSearched.includes(normalizedKey)) {
+                    let val = item[originalKey]?.trim();
+                    if (!val || val.toLowerCase() === 'undefined' || val.toLowerCase() === 'null') continue;
+                    if (val.startsWith('::')) val = val.substring(2).trim();
+                    else if (val.startsWith(':')) val = val.substring(1).trim();
+                    return val;
+                }
+            }
+            return '';
+        }
+
+        function parseTSV(text) {
+            let rows = []; let row = []; let field = ''; let inQuotes = false;
+            for (let i = 0; i < text.length; i++) {
+                let char = text[i]; let nextChar = text[i+1];
+                if (inQuotes) {
+                    if (char === '"') {
+                        if (nextChar === '"') { field += '"'; i++; } else { inQuotes = false; }
+                    } else { field += char; }
+                } else {
+                    if (char === '"') { inQuotes = true; } 
+                    else if (char === '\t') { row.push(field); field = ''; } 
+                    else if (char === '\n' || char === '\r') {
+                        if (char === '\r' && nextChar === '\n') i++; 
+                        row.push(field); rows.push(row); row = []; field = '';
+                    } else { field += char; }
+                }
+            }
+            if (field || row.length > 0) { row.push(field); rows.push(row); }
+            return rows;
+        }
+
+        /* INICIALIZACIÓN ASÍNCRONA ROBUSTA CON PRE-CARGA LOCAL COHERENTE */
         async function init() {
+            // Renderizar la información inicial inmediatamente para visualización instantánea
+            filterCatalog('tour');
+            initHomeCarousel();
+            setupReveals();
+
             try {
                 const response = await fetch(TSV_URL);
                 const text = await response.text();
@@ -828,6 +888,7 @@
                 globalHeaders = rawHeaders;
                 const cleanHeaders = rawHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
                 
+                // Sobrescribir datos locales con los datos actualizados en tiempo real del Google Sheet
                 fullData = rows.slice(1).map(row => {
                     let item = {}; 
                     rawHeaders.forEach((h, i) => { 
@@ -838,11 +899,12 @@
                     return item;
                 });
                 
-                // Hydration asíncrona
+                // Re-filtrar e hidratar el catálogo de forma fluida
                 filterCatalog('tour');
                 initHomeCarousel();
+                setupReveals();
             } catch (err) { 
-                console.error("Error en inicialización del TSV:", err);
+                console.error("Error al obtener la base de datos de Google. Usando datos offline estables:", err);
             }
         }
 
@@ -879,7 +941,7 @@
                 `;
             });
 
-            // Reemplazar de forma elástica las imágenes por defecto del carrusel una vez que el TSV responda con éxito
+            // Reemplazar el carrusel estático de forma asíncrona una vez que la base de datos esté lista
             scrollContainer.innerHTML = `
                 <div class="flex flex-nowrap animate-infinite-scroll gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
                 <div class="flex flex-nowrap animate-infinite-scroll gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
@@ -903,14 +965,13 @@
             if (category === 'tour') {
                 badge.innerText = "Momentos inolvidables";
                 title.innerHTML = `Tours & <span class="font-serif italic font-bold text-brand-accent">Aventuras</span>`;
-                desc.innerText = "Explora cenotes misticos, ruinas mayas sagradas y playas paradisiacas de manera completamente privada.";
+                desc.innerText = "Explora cenotes místicos, ruinas mayas sagradas y playas paradisíacas de manera completamente privada.";
             } else if (category === 'yate') {
                 badge.innerText = "Nuestra Flota";
                 title.innerHTML = `Yates & <span class="font-serif italic font-bold text-brand-accent">Catamaranes</span>`;
                 desc.innerText = "Navegación premium sobre el horizonte turquesa con servicio de tripulación de nivel internacional.";
             } else if (category === 'transportacion') {
                 badge.innerText = "Logística de Élite";
-                // Modificado de "Traslados & Chauffeur" a "Traslados & Chofer Privados" de forma estricta
                 title.innerHTML = `Traslados & <span class="font-serif italic font-bold text-brand-accent">Chofer Privados</span>`;
                 desc.innerText = "Llegadas impecables sin esperas ni transbordos en vehículos climatizados Suburban o SUV de alta gama.";
             }
@@ -926,7 +987,7 @@
 
             filtered.forEach((item, idx) => {
                 const card = document.createElement('div'); 
-                card.className = 'card w-full max-w-[350px] bg-brand-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white';
+                card.className = 'card w-full max-w-[350px] bg-brand-navy/30 border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white';
                 let nombre = getCleanValue(item, ['Nombre', 'NOMBRE']);
                 card.onclick = () => openDetailModal(nombre);
                 
@@ -983,16 +1044,16 @@
             });
         }
 
+        // SISTEMA DE NAVEGACIÓN SPA RECONSTRUIDO CON ENFOQUE FLUIDO EN DOS TIEMPOS
         function navigateTo(pageId, subCategory = '') {
             const currentActive = document.querySelector('.page-view.active');
             const targetPage = document.getElementById(`page-${pageId}`);
             
-            // Si la página de destino ya está activa (pantalla de carga inicial), forzamos su renderizado y revelados
+            // Forzar renderizado y revelado cinemático si es la página de carga inicial
             if(currentActive === targetPage && !subCategory) {
                 if(targetPage) {
                     targetPage.style.opacity = '1';
-                    targetPage.style.transform = 'scale(1) translateY(0)';
-                    targetPage.style.filter = 'blur(0)';
+                    targetPage.style.transform = 'scale(1) translate3d(0, 0, 0)';
                     setupReveals();
                 }
                 return;
@@ -1003,19 +1064,17 @@
 
             if(currentActive) {
                 currentActive.style.opacity = '0';
-                currentActive.style.transform = 'scale(0.97) translateY(-20px)';
-                currentActive.style.filter = 'blur(10px)';
+                currentActive.style.transform = 'scale(0.98) translate3d(0, 15px, 0)';
                 setTimeout(() => { currentActive.classList.remove('active'); showTarget(); }, 300);
             } else { showTarget(); }
 
             function showTarget() {
                 if(targetPage) {
                     targetPage.classList.add('active');
-                    targetPage.offsetHeight;
+                    targetPage.offsetHeight; // Forzar reflow
                     setTimeout(() => {
                         targetPage.style.opacity = '1';
-                        targetPage.style.transform = 'scale(1) translateY(0)';
-                        targetPage.style.filter = 'blur(0)';
+                        targetPage.style.transform = 'scale(1) translate3d(0, 0, 0)';
                     }, 50);
                     setTimeout(() => setupReveals(), 200);
                 }
@@ -1135,7 +1194,7 @@
             const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
             const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
             img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
-            img.style.transform = "scale(2.2)";
+            img.style.transform = "scale(2.0)";
         }
 
         function resetZoomImage() {
