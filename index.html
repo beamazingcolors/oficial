@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Amazing Colors | Elite Ocean Journeys</title>
     
-    <!-- Favicon Oficial Premium en Alta Resolución (Sincronizado de forma nativa con lg2.png) -->
+    <!-- Favicon Oficial Premium en Alta Resolución -->
     <link class="brand-favicon" rel="icon" type="image/png" sizes="32x32" href="https://beamazingcolors.github.io/oficial/lg2.png">
     <link class="brand-favicon" rel="icon" type="image/png" sizes="16x16" href="https://beamazingcolors.github.io/oficial/lg2.png">
     <link class="brand-favicon" rel="icon" type="image/png" sizes="192x192" href="https://beamazingcolors.github.io/oficial/lg2.png">
@@ -21,7 +21,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Definición Global de Analíticas y Conversión -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function trackConversion(eventName, details) {
@@ -72,10 +71,12 @@
             position: absolute !important;
             height: 0 !important;
             overflow: hidden !important;
-            transform: scale(0.98) translate3d(0, 15px, 0);
-            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform, opacity;
+            transform: scale(0.96) translateY(30px);
+            filter: blur(15px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, filter;
         }
         
         .page-view.active {
@@ -85,7 +86,8 @@
             height: auto !important;
             overflow: visible !important;
             opacity: 1;
-            transform: scale(1) translate3d(0, 0, 0);
+            transform: scale(1) translateY(0);
+            filter: blur(0);
         }
 
         /* MICRO-ANIMACIONES DE ENLACES EDITORIALES */
@@ -109,13 +111,12 @@
 
         /* CARRUSEL INFINITO DE ALTA VELOCIDAD COMPACTO */
         @keyframes infinite-scroll {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-50%, 0, 0); }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
         .animate-infinite-scroll {
             animation: infinite-scroll 45s linear infinite;
             width: max-content;
-            will-change: transform;
         }
         .carousel-hover-pause:hover .animate-infinite-scroll {
             animation-play-state: paused;
@@ -124,20 +125,18 @@
         /* REVELADOS NATURALES AL HACER SCROLL */
         .reveal-up {
             opacity: 0;
-            transform: translate3d(0, 30px, 0);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform, opacity;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal-up.active {
             opacity: 1;
-            transform: translate3d(0, 0, 0);
+            transform: translateY(0);
         }
 
         /* CORTINA INTERACTIVA ELEGANTE */
         .reveal-curtain {
             clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-            transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: clip-path;
+            transition: clip-path 1.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal-curtain.active {
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -181,9 +180,6 @@
 </head>
 <body class="antialiased overflow-x-hidden w-full max-w-full selection:bg-brand-accent selection:text-white bg-brand-dark">
 
-    <!-- Canvas para el sistema interactivo de orbes flotantes mágicos -->
-    <canvas id="orb-particle-canvas" class="fixed inset-0 pointer-events-none z-[9999] w-full h-full"></canvas>
-
     <!-- ========================================== -->
     <!-- ENVOLTORIO PRINCIPAL CON BLINDAJE GEOMÉTRICO -->
     <!-- ========================================== -->
@@ -196,13 +192,11 @@
         </div>
 
         <div class="relative z-10 w-full max-w-full">
-            <!-- 1. Cabecera de Marca Oficial (Paso 1: lg2.png de forma nativa) -->
+            <!-- 1. Cabecera de Marca Oficial (Paso 1: lg2.png nativo absoluto con degradado Abismo) -->
             <header class="site-brand-header flex flex-col items-center justify-center pt-10 pb-6 px-4 cursor-pointer text-center w-full max-w-full relative border-b border-brand-accent/20 bg-gradient-to-b from-[#030914] via-[#071021] to-transparent shadow-[0_10px_30px_rgba(3,9,20,0.4)]" onclick="navigateTo('home')">
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-brand-accent/5 rounded-full filter blur-xl pointer-events-none"></div>
                 
-                <!-- Logotipo lg2.png renderizado de forma totalmente nativa -->
                 <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Logo Amazing Colors" class="h-32 sm:h-44 md:h-52 w-auto mb-3 object-contain object-center transition-all duration-700 hover:scale-105 select-none relative z-10" onerror="handleImgError(this, 'general')">
-                <!-- Título unificado bicolor: "Colors" en dorado como en el pie de página -->
                 <span class="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.15em] sm:tracking-[0.25em] text-white hover:text-brand-accent transition-all duration-500 uppercase text-center block w-full px-2 break-words relative z-10">Amazing <span class="text-brand-accent">Colors</span></span>
                 <p class="text-[9px] md:text-xs font-semibold uppercase tracking-[0.35em] sm:tracking-[0.45em] text-brand-accent mt-2.5 text-center w-full px-2 block break-words relative z-10">Elite Ocean Journeys</p>
             </header>
@@ -246,7 +240,7 @@
                                 "Siente la brisa caribeña sin límites. Te revelamos el verdadero color del paraíso."
                             </p>
                         </div>
-                        <!-- 2. Imagen de Inicio (Paso 2: cun.png absoluto) -->
+                        <!-- 2. Imagen Principal de Inicio (Paso 2: cun.png en minúsculas absoluto) -->
                         <div class="relative h-[45vh] lg:h-[60vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
                             <img id="inicio-playas-img" src="https://beamazingcolors.github.io/oficial/cun.png" alt="Playas de Cancún" class="w-full h-full object-cover object-center transition-transform duration-1000 hover:scale-105" onerror="handleImgError(this, 'playas')">
                         </div>
@@ -298,67 +292,58 @@
                         <p class="text-slate-400 font-medium text-xs md:text-sm tracking-[0.3em] uppercase">El lujo de la libertad absoluta</p>
                     </div>
 
-                    <!-- Slider Infinito Balanceado Pre-poblado Directamente para visualización instantánea sin latencia -->
+                    <!-- Slider Infinito Pre-Poblado para evitar la pantalla vacía de red -->
                     <div id="home-carousel-container" class="relative w-full pb-4 overflow-hidden carousel-hover-pause" style="clip-path: inset(0); contain: paint;">
                         <div class="absolute inset-y-0 left-0 w-16 md:w-40 bg-gradient-to-r from-brand-dark to-transparent z-10 pointer-events-none"></div>
                         <div class="absolute inset-y-0 right-0 w-16 md:w-40 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none"></div>
                         
-                        <div id="home-carousel-scroll" class="flex flex-nowrap animate-infinite-scroll gap-4 md:gap-6">
-                            
-                            <!-- Set 1 (Instant Loading) -->
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
-                                <img src="https://beamazingcolors.github.io/oficial/TRW.png" alt="Yacht Charter" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
-                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Yates Privados</h4>
+                        <div id="home-carousel-scroll" class="flex animate-infinite-scroll flex-nowrap">
+                            <!-- Grupo 1 para animación infinita instantánea -->
+                            <div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap">
+                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
+                                    <img src="https://beamazingcolors.github.io/oficial/TRW.png" alt="Yates de Élite" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Flota de Yates</h4>
+                                </div>
+                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
+                                    <img src="https://beamazingcolors.github.io/oficial/cun.png" alt="Aventuras en el Caribe" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Tours Privados</h4>
+                                </div>
+                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
+                                    <img src="https://beamazingcolors.github.io/oficial/XCT.png" alt="Xcaret Experiencia" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'tours')">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Parques y Legado</h4>
+                                </div>
+                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'transportacion')">
+                                    <img src="https://beamazingcolors.github.io/oficial/MNT.jpg" alt="Chofer Privado" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'transportacion')">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Chofer de Lujo</h4>
+                                </div>
                             </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
-                                <img src="https://beamazingcolors.github.io/oficial/cun.png" alt="Cancun Beach" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
-                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Aventuras Cancún</h4>
+                            <!-- Grupo 2 duplicado para el bucle continuo -->
+                            <div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap">
+                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
+                                    <img src="https://beamazingcolors.github.io/oficial/TRW.png" alt="Yates de Élite" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Flota de Yates</h4>
+                                </div>
+                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
+                                    <img src="https://beamazingcolors.github.io/oficial/cun.png" alt="Aventuras en el Caribe" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Tours Privados</h4>
+                                </div>
+                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
+                                    <img src="https://beamazingcolors.github.io/oficial/XCT.png" alt="Xcaret Experiencia" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'tours')">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Parques y Legado</h4>
+                                </div>
+                                <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'transportacion')">
+                                    <img src="https://beamazingcolors.github.io/oficial/MNT.jpg" alt="Chofer Privado" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'transportacion')">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                                    <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Chofer de Lujo</h4>
+                                </div>
                             </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
-                                <img src="https://beamazingcolors.github.io/oficial/XCT.png" alt="Yacht Experience" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
-                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Travesías de Ensueño</h4>
-                            </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
-                                <img src="https://beamazingcolors.github.io/oficial/cnt.jpg" alt="Legacy Destination" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
-                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Legado Maya</h4>
-                            </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
-                                <img src="https://beamazingcolors.github.io/oficial/MNT.jpg" alt="MNT Boat" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
-                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Catamaranes de Élite</h4>
-                            </div>
-
-                            <!-- Set 2 (Symmetric Infinite Loop) -->
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
-                                <img src="https://beamazingcolors.github.io/oficial/TRW.png" alt="Yacht Charter" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
-                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Yates Privados</h4>
-                            </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
-                                <img src="https://beamazingcolors.github.io/oficial/cun.png" alt="Cancun Beach" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'playas')">
-                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Aventuras Cancún</h4>
-                            </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
-                                <img src="https://beamazingcolors.github.io/oficial/XCT.png" alt="Yacht Experience" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
-                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Travesías de Ensueño</h4>
-                            </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'tour')">
-                                <img src="https://beamazingcolors.github.io/oficial/cnt.jpg" alt="Legacy Destination" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'arqueologia')">
-                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Legado Maya</h4>
-                            </div>
-                            <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl" onclick="navigateTo('catalog', 'yate')">
-                                <img src="https://beamazingcolors.github.io/oficial/MNT.jpg" alt="MNT Boat" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, 'yates')">
-                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
-                                <h4 class="absolute bottom-6 left-6 text-white font-display font-semibold tracking-widest uppercase text-sm">Catamaranes de Élite</h4>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -383,8 +368,8 @@
                                 Llevamos 5 años entregándote el color real del paraíso sin prisas ni multitudes.
                             </p>
                         </div>
-                        <!-- 3. Imagen Oficial de Legado (Paso 3: cnt.jpg absoluto) -->
                         <div class="relative h-[45vh] lg:h-[65vh] w-full reveal-curtain shadow-2xl rounded-2xl overflow-hidden bg-brand-dark">
+                            <!-- 3. Imagen Oficial de Legado (Paso 3: cnt.jpg en minúsculas absoluto) -->
                             <img id="legado-yate-img" src="https://beamazingcolors.github.io/oficial/cnt.jpg" alt="Aventura de Legado Amazing Colors" class="w-full h-full object-cover object-center transition-transform duration-[2s] hover:scale-105" onerror="handleImgError(this, 'arqueologia')">
                         </div>
                     </div>
@@ -398,7 +383,7 @@
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
                     <div class="text-center mb-12 lg:mb-16 reveal-up">
                         <span id="catalog-category-badge" class="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Experiencias Exclusivas</span>
-                        <h2 id="catalog-category-title" class="font-display text-3xl md:text-5xl text-white font-light">Colección de <span class="font-serif italic font-bold text-brand-accent">Aventuras</span></h2>
+                        <h2 id="catalog-category-title" class="font-display text-3xl md:text-5xl text-white font-light">Colección de <span class="font-serif italic font-bold">Aventuras</span></h2>
                         <p id="catalog-category-desc" class="text-slate-300 font-light text-sm md:text-base max-w-2xl mx-auto mt-4">Un catálogo meticulosamente seleccionado para aquellos que buscan conectar con la belleza real del Caribe.</p>
                     </div>
 
@@ -406,15 +391,13 @@
                     <div class="flex justify-center gap-4 mb-16 border-b border-white/10 pb-6 flex-wrap w-full max-w-full">
                         <button id="sub-nav-tour" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none" onclick="filterCatalog('tour')">Tours</button>
                         <button id="sub-nav-yate" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none" onclick="filterCatalog('yate')">Yates</button>
-                        <button id="sub-nav-transportacion" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none" onclick="filterCatalog('transportacion')">Transportación</button>
+                        <!-- Cambio de nomenclatura a: Traslados & Chofer Privados -->
+                        <button id="sub-nav-transportacion" class="px-6 py-2.5 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none" onclick="filterCatalog('transportacion')">Traslados & Chofer Privados</button>
                     </div>
 
                     <!-- Cuadrícula de Tarjetas Integrada -->
                     <div id="catalog-grid" class="flex flex-wrap justify-center gap-8 lg:gap-10 w-full max-w-full">
-                        <!-- Skeletons dinámicos iniciales -->
-                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden relative"></div>
-                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden relative"></div>
-                        <div class="card w-full max-w-[350px] h-[450px] bg-brand-navy/40 border border-white/10 rounded-2xl overflow-hidden relative"></div>
+                        <!-- Inyección automatizada de la base de datos -->
                     </div>
                 </div>
             </section>
@@ -539,7 +522,6 @@
                     
                     <div class="lg:col-span-1">
                         <button onclick="navigateTo('home')" class="mb-6 block text-left hover:opacity-80 transition-opacity focus:outline-none">
-                            <!-- Pie de página coherente con la cabecera en branding -->
                             <span class="font-display font-black text-2xl tracking-tighter text-white">AMAZING<span class="text-brand-accent">COLORS</span></span>
                         </button>
                         <p class="text-slate-300 font-light text-sm leading-relaxed max-w-sm mb-6">
@@ -586,7 +568,7 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- SCRIPTS DE NAVEGACIÓN, MOTOR Y TSV         -->
+    <!-- NÚCLEO LOGÍSTICO Y PROCESADOR DE DATOS TSV -->
     <!-- ========================================== -->
     <script>
         const TSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFWLeg9DvMAXX5TwL8JXwY3fm0UDHeKxnqmtYVZGQNNHcTSJG32pLWZVHCMA2-Eo_lZ9sVHqKtgvIO/pub?output=tsv';
@@ -597,144 +579,13 @@
         const GITHUB_FALLBACK_CDN = 'https://cdn.jsdelivr.net/gh/beamazingcolors/oficial@main/';
         const GITHUB_RAW_FALLBACK = 'https://raw.githubusercontent.com/beamazingcolors/oficial/main/';
 
-        // Banco de datos local de respaldo instantáneo (Garantiza que la web funcione perfectamente sin red)
-        let fullData = [
-            {
-                tipo: 'tour',
-                nombre: 'Chichén Itzá Privado',
-                precio: '$850 USD',
-                folio: 'cnt',
-                descriptivo: 'Descubre una de las maravillas del mundo de forma exclusiva, libre de filas y multitudes.',
-                incluye: 'Transportación de lujo, chofer privado, guía arqueológico, entradas VIP.'
-            },
-            {
-                tipo: 'yate',
-                nombre: 'Yate Azimut 58ft',
-                precio: '$1,800 USD',
-                folio: 'TRW',
-                descriptivo: 'Navegación premium sobre las aguas turquesas de Isla Mujeres con servicio de tripulación estelar.',
-                incluye: 'Capitán, marinero, barra libre premium, equipo de snorkel.'
-            },
-            {
-                tipo: 'yate',
-                nombre: 'Catamarán Fountaine Pajot 44ft',
-                precio: '$1,400 USD',
-                folio: 'MNT',
-                descriptivo: 'El equilibrio perfecto entre confort, lujo y estabilidad para navegar en familia o grupo.',
-                incluye: 'Barra libre, bocadillos premium, capitán y marinero.'
-            },
-            {
-                tipo: 'tour',
-                nombre: 'Aventura en Cenotes Sagrados',
-                precio: '$650 USD',
-                folio: 'XCT',
-                descriptivo: 'Exploración privada de ríos subterráneos sagrados y nado libre en cenotes de aguas cristalinas.',
-                incluye: 'Transportación privada, guía de aventura, equipo de snorkel, comida maya.'
-            },
-            {
-                tipo: 'transportacion',
-                nombre: 'Traslado Suburban VIP',
-                precio: '$120 USD',
-                folio: 'logo',
-                descriptivo: 'Llegada impecable y traslado privado directo a tu hotel en vehículo Suburban climatizado.',
-                incluye: 'Chofer bilingüe, agua embotellada, peajes incluidos.'
-            }
-        ];
-        let globalHeaders = ['TIPO', 'Nombre', 'Precio', 'Folio', 'Descriptivo', 'Incluye'];
-
-        // Sistema de partículas con canvas para los orbes de colores flotantes ultraligero
-        const canvas = document.getElementById('orb-particle-canvas');
-        const ctx = canvas.getContext('2d');
-        let particlesArray = [];
-        const MAX_PARTICLES = 25; // Cantidad baja y segura para un rendimiento estelar en móviles
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas, { passive: true });
-        resizeCanvas();
-
-        class Particle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                // Tamaño pequeño (entre 1.5px y 3.5px para look de polvo de hadas premium)
-                this.size = Math.random() * 2 + 1.5; 
-                // Ascenso veloz hacia arriba
-                this.speedY = -(Math.random() * 2.5 + 1.5); 
-                this.speedX = (Math.random() - 0.5) * 0.4; 
-                this.hue = Math.random() * 360;
-                this.color = `hsla(${this.hue}, 95%, 70%, 0.95)`; 
-                this.alpha = 1.0;
-                // Desvanecimiento acelerado para que desaparezcan muy rápido (menos de 1 segundo de vida)
-                this.decay = Math.random() * 0.035 + 0.025; 
-            }
-            update() {
-                this.y += this.speedY;
-                this.x += this.speedX;
-                this.alpha -= this.decay;
-            }
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = this.alpha;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-                
-                // Efecto de halo difuminado nativo extremadamente ligero (sin shadowBlur lento)
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
-                ctx.fillStyle = `hsla(${this.hue}, 95%, 70%, 0.15)`;
-                ctx.fill();
-                ctx.restore();
-            }
-        }
-
-        let lastX = 0, lastY = 0;
-        const movementThreshold = 25; // Alta distancia requerida para generar menos cantidad de orbes
-
-        function spawnOrbs(clientX, clientY) {
-            let dx = clientX - lastX;
-            let dy = clientY - lastY;
-            if (Math.sqrt(dx*dx + dy*dy) > movementThreshold) {
-                if (particlesArray.length < MAX_PARTICLES) {
-                    particlesArray.push(new Particle(clientX, clientY));
-                }
-                lastX = clientX;
-                lastY = clientY;
-            }
-        }
-
-        window.addEventListener('mousemove', (e) => {
-            spawnOrbs(e.clientX, e.clientY);
-        }, { passive: true });
-
-        window.addEventListener('touchmove', (e) => {
-            if(e.touches.length > 0) {
-                spawnOrbs(e.touches[0].clientX, e.touches[0].clientY);
-            }
-        }, { passive: true });
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = particlesArray.length - 1; i >= 0; i--) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-                if (particlesArray[i].alpha <= 0) {
-                    particlesArray.splice(i, 1);
-                }
-            }
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
+        let fullData = [];
+        let globalHeaders = [];
 
         /* MANEJADOR LINEAL DE IMÁGENES CONTRA BUCLES INFINITOS EN CHROME CON SOPORTE DE MAYÚSCULAS/MINÚSCULAS */
         function handleImgError(img, fallbackCategory = 'general') {
             if (img.dataset.ultimateFailed) {
                 img.src = GITHUB_BASE + 'lg2.png';
-                img.style.opacity = '1';
                 img.style.objectFit = 'contain';
                 img.style.padding = '2rem';
                 img.style.backgroundColor = '#071021';
@@ -795,39 +646,39 @@
             img.style.objectFit = 'cover';
         }
 
-        // Mapeador de recursos de imagen del catálogo con interceptor para Xcaret y Columbus
-        function getImgUrlByFolio(folioValue, activityName = '') {
-            let lowerName = (activityName || '').toLowerCase();
+        // MOTOR DE COPY CREATIVO CONTEXTUAL (REPLAZA "MOMENTOS INOLVIDABLES")
+        function getCreativeSlogan(item, index) {
+            const slogansTours = [
+                "Travesía Mística Exclusiva",
+                "Aventura Premium a Medida",
+                "Exploración de Leyenda",
+                "Descubrimiento de Élite",
+                "Experiencia de Lujo Absoluto",
+                "Ruta Ancestral de Ensueño"
+            ];
+            const slogansYates = [
+                "Navegación de Alta Costura",
+                "Elegancia sobre el Mar Turquesa",
+                "Travesía Privada de Lujo",
+                "Atardecer Exclusivo en Popa",
+                "Carta Náutica de Ensueño",
+                "Libertad Absoluta en Alta Mar"
+            ];
+            const slogansTrans = [
+                "Arribo Impecable y Seguro",
+                "Logística VIP con Chofer",
+                "Confort de Primera Clase",
+                "Privacidad Total en Ruta",
+                "Conexión VIP Riviera Maya",
+                "Transportación de Alta Gama"
+            ];
             
-            // Interceptor de asignaciones manuales solicitadas de forma estricta
-            if (lowerName.includes('xcaret')) {
-                return GITHUB_BASE + 'XCT.png';
-            }
-            if (lowerName.includes('columbus')) {
-                return GITHUB_BASE + 'CLM.png';
-            }
-
-            if (!folioValue || folioValue === '') return '';
-            let fileName = folioValue.trim();
-            let lower = fileName.toLowerCase();
+            let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
+            let arr = slogansTours;
+            if (tipo.includes('yate')) arr = slogansYates;
+            else if (tipo.includes('trans') || tipo.includes('traslado')) arr = slogansTrans;
             
-            // Forzar conversión a MAYÚSCULAS para las imágenes del inventario (MNT, XCT, etc.) manteniendo los assets core en minúsculas
-            if (lower !== 'cun' && lower !== 'cnt' && lower !== 'logo' && lower !== 'lg2') {
-                fileName = fileName.toUpperCase();
-            } else {
-                fileName = lower;
-            }
-
-            let fileLower = fileName.toLowerCase();
-            if (!fileLower.endsWith('.jpg') && !fileLower.endsWith('.jpeg') && !fileLower.endsWith('.png')) {
-                // Mapear extensiones nativas según patrón observado en el repositorio
-                if (fileName.startsWith('TR') || fileName.startsWith('MR') || fileName === 'CA' || fileName.startsWith('XC')) {
-                    fileName += '.png';
-                } else {
-                    fileName += '.jpg';
-                }
-            }
-            return GITHUB_BASE + fileName;
+            return arr[index % arr.length];
         }
 
         function getCleanValue(item, possibleHeaders) {
@@ -842,6 +693,19 @@
                     if (val.startsWith('::')) val = val.substring(2).trim();
                     else if (val.startsWith(':')) val = val.substring(1).trim();
                     return val;
+                }
+            }
+            
+            for (let originalKey in item) {
+                let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
+                for (let search of normalizedSearched) {
+                    if (normalizedKey.includes(search) || search.includes(normalizedKey)) {
+                        let val = item[originalKey]?.trim();
+                        if (!val || val.toLowerCase() === 'undefined' || val.toLowerCase() === 'null') continue;
+                        if (val.startsWith('::')) val = val.substring(2).trim();
+                        else if (val.startsWith(':')) val = val.substring(1).trim();
+                        return val;
+                    }
                 }
             }
             return '';
@@ -868,13 +732,41 @@
             return rows;
         }
 
-        /* INICIALIZACIÓN ASÍNCRONA ROBUSTA CON PRE-CARGA LOCAL COHERENTE */
-        async function init() {
-            // Renderizar la información inicial inmediatamente para visualización instantánea
-            filterCatalog('tour');
-            initHomeCarousel();
-            setupReveals();
+        function getImgUrlByFolio(folioValue, nameValue = '') {
+            if (!folioValue || folioValue === '') return '';
+            let fileName = folioValue.trim();
+            let lower = fileName.toLowerCase();
+            let lowerName = nameValue ? nameValue.toLowerCase() : '';
 
+            // 1. REGLA CRÍTICA: Forzado de Columbus a CLM.png
+            if (lowerName.includes('columbus')) {
+                return GITHUB_BASE + 'CLM.png';
+            }
+            // 2. REGLA CRÍTICA: Forzado de Xcaret a XCT.png
+            if (lowerName.includes('xcaret')) {
+                return GITHUB_BASE + 'XCT.png';
+            }
+            
+            // Forzar conversión a MAYÚSCULAS para las imágenes del inventario (MNT, XCT, etc.) manteniendo los assets core en minúsculas
+            if (lower !== 'cun' && lower !== 'cnt' && lower !== 'logo' && lower !== 'lg2') {
+                fileName = fileName.toUpperCase();
+            } else {
+                fileName = lower;
+            }
+
+            let fileLower = fileName.toLowerCase();
+            if (!fileLower.endsWith('.jpg') && !fileLower.endsWith('.jpeg') && !fileLower.endsWith('.png')) {
+                // Mapear extensiones nativas según patrón observado en el repositorio
+                if (fileName.startsWith('TR') || fileName.startsWith('MR') || fileName === 'CA' || fileName.startsWith('XC')) {
+                    fileName += '.png';
+                } else {
+                    fileName += '.jpg';
+                }
+            }
+            return GITHUB_BASE + fileName;
+        }
+
+        async function init() {
             try {
                 const response = await fetch(TSV_URL);
                 const text = await response.text();
@@ -888,7 +780,6 @@
                 globalHeaders = rawHeaders;
                 const cleanHeaders = rawHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
                 
-                // Sobrescribir datos locales con los datos actualizados en tiempo real del Google Sheet
                 fullData = rows.slice(1).map(row => {
                     let item = {}; 
                     rawHeaders.forEach((h, i) => { 
@@ -899,13 +790,9 @@
                     return item;
                 });
                 
-                // Re-filtrar e hidratar el catálogo de forma fluida
                 filterCatalog('tour');
                 initHomeCarousel();
-                setupReveals();
-            } catch (err) { 
-                console.error("Error al obtener la base de datos de Google. Usando datos offline estables:", err);
-            }
+            } catch (err) { console.error("Error en inicialización del TSV:", err); }
         }
 
         function initHomeCarousel() {
@@ -941,10 +828,10 @@
                 `;
             });
 
-            // Reemplazar el carrusel estático de forma asíncrona una vez que la base de datos esté lista
+            // Duplicar el set generado de Google Sheets para mantener la fluidez sin fin del CSS animado
             scrollContainer.innerHTML = `
-                <div class="flex flex-nowrap animate-infinite-scroll gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
-                <div class="flex flex-nowrap animate-infinite-scroll gap-4 md:gap-6 pr-4 md:pr-6">${setHtml}</div>
+                <div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap">${setHtml}</div>
+                <div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap">${setHtml}</div>
             `;
         }
 
@@ -972,7 +859,7 @@
                 desc.innerText = "Navegación premium sobre el horizonte turquesa con servicio de tripulación de nivel internacional.";
             } else if (category === 'transportacion') {
                 badge.innerText = "Logística de Élite";
-                title.innerHTML = `Traslados & <span class="font-serif italic font-bold text-brand-accent">Chofer Privados</span>`;
+                title.innerHTML = `Traslados & <span class="font-serif italic font-bold text-brand-accent">Chofer Privado</span>`;
                 desc.innerText = "Llegadas impecables sin esperas ni transbordos en vehículos climatizados Suburban o SUV de alta gama.";
             }
 
@@ -987,7 +874,7 @@
 
             filtered.forEach((item, idx) => {
                 const card = document.createElement('div'); 
-                card.className = 'card w-full max-w-[350px] bg-brand-navy/30 border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white';
+                card.className = 'card w-full max-w-[350px] bg-brand-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white transform translate3d(0,0,0)';
                 let nombre = getCleanValue(item, ['Nombre', 'NOMBRE']);
                 card.onclick = () => openDetailModal(nombre);
                 
@@ -1001,7 +888,7 @@
                 
                 printedKeys.clear();
                 globalHeaders.forEach(header => {
-                    let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '').trim();
+                    let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '').trim();
                     if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) return;
                     
                     // Bloqueo estricto de columnas duplicadas o repetidas en el Excel (Ej: "Pies:" y "Pies")
@@ -1044,18 +931,16 @@
             });
         }
 
-        // SISTEMA DE NAVEGACIÓN SPA RECONSTRUIDO CON ENFOQUE FLUIDO EN DOS TIEMPOS
         function navigateTo(pageId, subCategory = '') {
             const currentActive = document.querySelector('.page-view.active');
             const targetPage = document.getElementById(`page-${pageId}`);
             
-            // Forzar renderizado y revelado cinemático si es la página de carga inicial
+            // Forzar actualización si ya estamos en la página para corregir el bug de pantalla inicial negra
             if(currentActive === targetPage && !subCategory) {
-                if(targetPage) {
-                    targetPage.style.opacity = '1';
-                    targetPage.style.transform = 'scale(1) translate3d(0, 0, 0)';
-                    setupReveals();
-                }
+                targetPage.style.opacity = '1';
+                targetPage.style.transform = 'scale(1) translateY(0)';
+                targetPage.style.filter = 'blur(0)';
+                setTimeout(() => setupReveals(), 100);
                 return;
             }
 
@@ -1064,17 +949,19 @@
 
             if(currentActive) {
                 currentActive.style.opacity = '0';
-                currentActive.style.transform = 'scale(0.98) translate3d(0, 15px, 0)';
+                currentActive.style.transform = 'scale(0.97) translateY(-20px)';
+                currentActive.style.filter = 'blur(10px)';
                 setTimeout(() => { currentActive.classList.remove('active'); showTarget(); }, 300);
             } else { showTarget(); }
 
             function showTarget() {
                 if(targetPage) {
                     targetPage.classList.add('active');
-                    targetPage.offsetHeight; // Forzar reflow
+                    targetPage.offsetHeight;
                     setTimeout(() => {
                         targetPage.style.opacity = '1';
-                        targetPage.style.transform = 'scale(1) translate3d(0, 0, 0)';
+                        targetPage.style.transform = 'scale(1) translateY(0)';
+                        targetPage.style.filter = 'blur(0)';
                     }, 50);
                     setTimeout(() => setupReveals(), 200);
                 }
@@ -1194,7 +1081,7 @@
             const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
             const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
             img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
-            img.style.transform = "scale(2.0)";
+            img.style.transform = "scale(2.2)";
         }
 
         function resetZoomImage() {
@@ -1218,7 +1105,7 @@
         function setupReveals() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); } });
-            }, { threshold: 0.05 }); // Umbral optimizado al 5% para soporte total en móviles y iPads
+            }, { threshold: 0.05 }); // Umbral bajo para que se activen de inmediato en pantallas móviles
             const activePage = document.querySelector('.page-view.active');
             if(activePage) activePage.querySelectorAll('.reveal-up, .reveal-curtain').forEach(el => observer.observe(el));
         }
