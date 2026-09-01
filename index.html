@@ -10,7 +10,7 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://beamazingcolors.github.io https://raw.githubusercontent.com https://cdn.jsdelivr.net https://docs.google.com https://images.unsplash.com; img-src 'self' data: https://beamazingcolors.github.io https://raw.githubusercontent.com https://cdn.jsdelivr.net https://images.unsplash.com; connect-src 'self' https://docs.google.com;">
     
     <script>
-        // Forzar HTTPS en producción (Ignorar en entorno de desarrollo local)
+        // Forzar HTTPS en producción para evitar interceptación de red
         if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace(`https:${location.href.substring(location.protocol.length)}`);
         }
@@ -1011,100 +1011,13 @@
             "transportación privada": "Private transportation"
         };
 
-        const MASTER_PHRASES_EN = [
-            { es: /navegación privada de lujo a isla mujeres/gi, en: "private luxury sailing charter to Isla Mujeres" },
-            { es: /con capitán y marinero/gi, en: "with certified captain and sailor crew" },
-            { es: /recepción de lujo en aeropuerto y traslado directo/gi, en: "VIP luxury airport meet & greet with direct transfer" },
-            { es: /transportación privada redonda con a\/a/gi, en: "round-trip private air-conditioned transportation" },
-            { es: /chofer profesional bilingüe/gi, en: "professional bilingual chauffeur" },
-            { es: /aguas, refrescos y cervezas frías/gi, en: "bottled water, soft drinks and ice-cold beers" },
-            { es: /barra libre nacional ilimitada/gi, en: "unlimited open domestic bar" },
-            { es: /equipo de snorkel completo/gi, en: "complete snorkeling gear" },
-            { es: /toallas y amenidades/gi, en: "towels and amenities" },
-            { es: /comida buffet regional y bebidas/gi, en: "regional buffet lunch and beverages" },
-            { es: /entradas incluidas sin filas/gi, en: "admission tickets included with skip-the-line access" },
-            { es: /tiempo libre en playa norte/gi, en: "leisure time at Playa Norte" },
-            { es: /cenote sagrado maya/gi, en: "sacred Mayan cenote" },
-            { es: /aguas cristalinas y turquesas/gi, en: "crystalline turquoise waters" },
-            { es: /segunda barrera de coral/gi, en: "second largest coral reef" },
-            { es: /impuesto de muelle incluido/gi, en: "dock fee included" },
-            { es: /seguro de viajero incluido/gi, en: "traveler insurance included" },
-            { es: /sujeto a condiciones climáticas/gi, en: "subject to weather conditions" },
-            { es: /zona hotelera de cancún/gi, en: "Cancun Hotel Zone" }
-        ];
-
-        const MASTER_WORDS_EN = {
-            'tours': 'tours', 'tour': 'tour', 'aventuras': 'adventures', 'aventura': 'adventure',
-            'yates': 'yachts', 'yate': 'yacht', 'barcos': 'boats', 'barco': 'boat',
-            'catamaranes': 'catamarans', 'catamaran': 'catamaran', 'catamarán': 'catamaran',
-            'traslados': 'transfers', 'traslado': 'transfer', 'transportacion': 'transportation', 'transportación': 'transportation',
-            'experiencia': 'experience', 'experiencias': 'experiences', 'viaje': 'journey', 'viajes': 'journeys',
-            'itinerario': 'itinerary', 'itinerarios': 'itineraries', 'capacidad': 'capacity',
-            'pasajeros': 'passengers / guests', 'pasajero': 'passenger', 'personas': 'guests', 'persona': 'guest',
-            'adultos': 'adults', 'adulto': 'adult', 'ninos': 'children', 'niños': 'children',
-            'duracion': 'duration', 'duración': 'duration', 'horas': 'hours', 'hora': 'hour', 'hrs': 'hrs',
-            'pies': 'feet', 'pie': 'foot', 'ft': 'ft', 'metros': 'meters', 'metro': 'meter',
-            'incluye': 'includes', 'incluyen': 'include', 'incluido': 'included', 'incluida': 'included',
-            'no': 'not', 'sin': 'without', 'con': 'with', 'para': 'for', 'por': 'per',
-            'de': 'of', 'del': 'of the', 'la': 'the', 'el': 'the', 'los': 'the', 'las': 'the',
-            'un': 'a', 'una': 'a', 'unos': 'some', 'unas': 'some', 'en': 'in', 'al': 'to the', 'a': 'to',
-            'y': 'and', 'e': 'and', 'o': 'or', 'u': 'or', 'mas': 'more', 'más': 'more', 'menos': 'less',
-            'todo': 'all', 'toda': 'all', 'todos': 'all', 'todas': 'all', 'dia': 'day', 'día': 'day',
-            'completo': 'full', 'completa': 'full', 'medio': 'half', 'media': 'half',
-            'noche': 'night', 'noches': 'nights', 'tarde': 'afternoon', 'manana': 'morning', 'mañana': 'morning',
-            'atardecer': 'sunset', 'amanecer': 'sunrise', 'diario': 'daily', 'diaria': 'daily',
-            'salida': 'departure', 'salidas': 'departures', 'llegada': 'arrival', 'llegadas': 'arrivals',
-            'aeropuerto': 'airport', 'hotel': 'hotel', 'hoteles': 'hotels', 'resort': 'resort',
-            'playa': 'beach', 'playas': 'beaches', 'mar': 'ocean', 'oceano': 'ocean', 'océano': 'ocean',
-            'cenote': 'cenote', 'cenotes': 'cenotes', 'ruinas': 'ruins', 'arrecife': 'reef', 'arrecifes': 'reefs',
-            'coral': 'coral', 'corales': 'corals', 'isla': 'island', 'islas': 'islands', 'selva': 'jungle',
-            'cueva': 'cave', 'cuevas': 'caves', 'caverna': 'cavern', 'cavernas': 'caverns', 'rio': 'river',
-            'aguas': 'waters', 'agua': 'water', 'cristalina': 'crystalline', 'cristalinas': 'crystal-clear',
-            'turquesa': 'turquoise', 'turquesas': 'turquoise', 'azul': 'blue', 'azules': 'blue',
-            'arena': 'sand', 'arenas': 'sands', 'blanca': 'white', 'blancas': 'white',
-            'sol': 'sun', 'paraiso': 'paradise', 'paraíso': 'paradise', 'sagrado': 'sacred', 'sagrada': 'sacred',
-            'mistico': 'mystical', 'místico': 'mystical', 'ancestral': 'ancestral', 'arqueologico': 'archaeological',
-            'entrada': 'admission pass', 'entradas': 'admission tickets', 'boleto': 'ticket', 'boletos': 'tickets',
-            'acceso': 'access', 'comida': 'meal / lunch', 'comidas': 'meals', 'almuerzo': 'lunch',
-            'desayuno': 'breakfast', 'cena': 'dinner', 'buffet': 'buffet', 'gourmet': 'gourmet', 'regional': 'regional',
-            'mariscos': 'seafood', 'pescado': 'fish', 'camaron': 'shrimp', 'camarón': 'shrimp',
-            'ceviche': 'ceviche', 'guacamole': 'guacamole', 'totopos': 'artisan chips', 'botana': 'snacks',
-            'fruta': 'fruit', 'fresca': 'fresh', 'temporada': 'season',
-            'bebida': 'drink', 'bebidas': 'drinks', 'refresco': 'soft drink', 'refrescos': 'soft drinks',
-            'cerveza': 'beer', 'cervezas': 'beers', 'vino': 'wine', 'ron': 'rum', 'tequila': 'tequila',
-            'vodka': 'vodka', 'coctel': 'cocktail', 'cóctel': 'cocktail', 'cocteles': 'cocktails', 'cócteles': 'cocktails',
-            'barra': 'bar', 'libre': 'open', 'hielo': 'ice', 'jugo': 'juice', 'jugos': 'juices',
-            'snorkel': 'snorkeling', 'esnorquel': 'snorkeling', 'esnórquel': 'snorkeling',
-            'equipo': 'gear', 'chaleco': 'life jacket', 'chalecos': 'life jackets', 'salvavidas': 'life-saving',
-            'visor': 'mask', 'aletas': 'fins', 'tubo': 'snorkel tube', 'toalla': 'towel', 'toallas': 'towels',
-            'amenidades': 'amenities', 'paddle': 'paddle board', 'kayak': 'kayak', 'inflable': 'inflatable',
-            'pesca': 'fishing', 'camarote': 'cabin', 'camarotes': 'cabins', 'bano': 'restroom', 'baño': 'restroom',
-            'sala': 'lounge', 'clima': 'A/C', 'climatizado': 'air-conditioned', 'sonido': 'sound system',
-            'muelle': 'marina dock', 'puerto': 'marina port', 'marina': 'marina',
-            'impuesto': 'tax fee', 'impuestos': 'tax fees', 'tarifa': 'rate', 'tarifas': 'rates',
-            'propina': 'gratuity', 'propinas': 'gratuities', 'combustible': 'fuel', 'seguro': 'insurance',
-            'servicio': 'service', 'vip': 'VIP', 'deluxe': 'deluxe', 'elite': 'elite', 'élite': 'elite',
-            'lujo': 'luxury', 'privado': 'private', 'privada': 'private', 'privados': 'private', 'privadas': 'private',
-            'exclusivo': 'exclusive', 'exclusiva': 'exclusive', 'confort': 'comfort', 'seguridad': 'safety',
-            'vehiculo': 'vehicle', 'vehículo': 'vehicle', 'camioneta': 'SUV', 'unidad': 'vehicle',
-            'chofer': 'chauffeur', 'conductor': 'driver', 'capitan': 'captain', 'capitán': 'captain',
-            'marinero': 'sailor', 'chef': 'chef', 'tripulacion': 'crew', 'tripulación': 'crew',
-            'guia': 'guide', 'guía': 'guide', 'bilingue': 'bilingual', 'bilingüe': 'bilingual', 'certificado': 'certified',
-            'wifi': 'Wi-Fi', 'cargador': 'charger', 'solicitud': 'request', 'costo': 'cost', 'adicional': 'additional',
-            'gratis': 'complimentary', 'gratuito': 'complimentary', 'redondo': 'round-trip', 'sencillo': 'one-way',
-            'fotos': 'photos', 'compras': 'shopping', 'souvenirs': 'souvenirs', 'recuerdos': 'souvenirs',
-            'romantico': 'romantic', 'romántico': 'romantic', 'familiar': 'family', 'pareja': 'couple',
-            'grupo': 'group', 'evento': 'event', 'privacidad': 'privacy', 'absoluta': 'absolute', 'total': 'total',
-            'inolvidable': 'unforgettable', 'unico': 'unique', 'único': 'unique', 'maravilla': 'wonder',
-            'hermoso': 'beautiful', 'espectacular': 'spectacular', 'increible': 'incredible', 'increíble': 'incredible',
-            'magico': 'magical', 'mágico': 'magical', 'disfruta': 'enjoy', 'vive': 'live', 'conoce': 'discover',
-            'descubre': 'discover', 'explora': 'explore', 'navega': 'sail', 'reserva': 'book', 'cotiza': 'quote',
-            'contacta': 'contact', 'requiere': 'requires', 'permite': 'allows', 'ofrece': 'offers', 'cuenta': 'features',
-            'sujeto': 'subject to', 'condiciones': 'conditions', 'climaticas': 'weather', 'climáticas': 'weather',
-            'disponibilidad': 'availability', 'apto': 'suitable', 'ideal': 'ideal', 'perfecto': 'perfect',
-            'traer': 'bring', 'usar': 'wear', 'traje': 'swimsuit', 'bloqueador': 'sunscreen', 'biodegradable': 'biodegradable',
-            'lentes': 'sunglasses', 'ropa': 'clothing', 'comoda': 'comfortable', 'calzado': 'footwear'
-        };
+        // PROTECCIÓN XSS: Sanitiza cualquier cadena para que no se ejecute como HTML
+        function escapeHTML(str) {
+            if (typeof str !== 'string') return '';
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[tag] || tag));
+        }
 
         function translateCatalogText(text, targetLang) {
             if (!text || typeof text !== 'string') return text;
@@ -1196,7 +1109,7 @@
 
             const detailModal = document.getElementById('activity-detail-modal');
             if (detailModal && !detailModal.classList.contains('opacity-0') && lastOpenedItemName) {
-                openDetailModal(lastOpenedItemName);
+                openDetailModal(encodeURIComponent(lastOpenedItemName));
             }
         }
 
@@ -1345,7 +1258,7 @@
                 console.warn("Aviso en carga de TSV. Activando Catálogo de Respaldo.", err);
                 renderFallbackCatalog();
             }
-            checkCookies(); // Muestra el banner si no existe la cookie
+            checkCookies(); 
         }
 
         function initHomeCarousel() {
@@ -1355,13 +1268,14 @@
             let itemsWithImages = source.filter(item => { let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']); return folio && folio.trim() !== ''; });
             if (itemsWithImages.length === 0) return;
             let selectedItems = itemsWithImages.slice(0, 6);
-            let badgeText = i18n[currentLang].featured_badge;
+            let badgeText = escapeHTML(i18n[currentLang].featured_badge);
             let setHtml = '';
+            
             selectedItems.forEach(item => {
                 let rawName = getCleanValue(item, ['Nombre', 'NOMBRE']);
-                let name = translateCatalogText(rawName, currentLang);
+                let name = escapeHTML(translateCatalogText(rawName, currentLang));
                 let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
-                let imgUrl = getImgUrlByFolio(folio, rawName);
+                let imgUrl = escapeHTML(getImgUrlByFolio(folio, rawName));
                 let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
                 let categoryType = 'tour';
                 if (tipo.includes('yate')) categoryType = 'yate';
@@ -1381,10 +1295,13 @@
             scrollContainer.innerHTML = `<div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap">${setHtml}</div><div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap">${setHtml}</div>`;
         }
 
+        // Validación estricta para evitar inyección en Subcategorías
         function filterCatalog(category) {
-            currentCategory = category;
+            const safeCategory = ['tour', 'yate', 'transportacion'].includes(category) ? category : 'tour';
+            currentCategory = safeCategory;
+            
             document.querySelectorAll('#page-catalog button[id^="sub-nav-"]').forEach(btn => {
-                const isTarget = btn.id === `sub-nav-${category}`;
+                const isTarget = btn.id === `sub-nav-${safeCategory}`;
                 if (isTarget) {
                     btn.classList.add('bg-brand-accent', 'text-brand-dark', 'font-bold', 'border-brand-accent');
                     btn.classList.remove('text-white', 'border-white/10', 'glass-panel');
@@ -1397,9 +1314,9 @@
             const title = document.getElementById('catalog-category-title');
             const desc = document.getElementById('catalog-category-desc');
             const t = i18n[currentLang];
-            if (category === 'tour') { badge.innerText = t.cat_tour_badge; title.innerHTML = t.cat_tour_title; desc.innerText = t.cat_tour_desc; }
-            else if (category === 'yate') { badge.innerText = t.cat_yate_badge; title.innerHTML = t.cat_yate_title; desc.innerText = t.cat_yate_desc; }
-            else if (category === 'transportacion') { badge.innerText = t.cat_trans_badge; title.innerHTML = t.cat_trans_title; desc.innerText = t.cat_trans_desc; }
+            if (safeCategory === 'tour') { badge.innerText = t.cat_tour_badge; title.innerHTML = t.cat_tour_title; desc.innerText = t.cat_tour_desc; }
+            else if (safeCategory === 'yate') { badge.innerText = t.cat_yate_badge; title.innerHTML = t.cat_yate_title; desc.innerText = t.cat_yate_desc; }
+            else if (safeCategory === 'transportacion') { badge.innerText = t.cat_trans_badge; title.innerHTML = t.cat_trans_title; desc.innerText = t.cat_trans_desc; }
             renderCatalog();
         }
 
@@ -1429,8 +1346,8 @@
                 grid.innerHTML = `
                     <div class="text-center py-16 text-slate-400 w-full">
                         <i class="fas fa-search text-3xl text-brand-accent/50 mb-4 block"></i>
-                        <p class="text-base text-white font-medium mb-1">${t.catalog_not_found_title}</p>
-                        <p class="text-xs text-slate-400">${t.catalog_not_found_desc}</p>
+                        <p class="text-base text-white font-medium mb-1">${escapeHTML(t.catalog_not_found_title)}</p>
+                        <p class="text-xs text-slate-400">${escapeHTML(t.catalog_not_found_desc)}</p>
                     </div>
                 `;
                 return;
@@ -1442,12 +1359,16 @@
                 card.className = 'card w-full max-w-[350px] glass-card hover:border-brand-accent/40 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white group';
                 
                 let rawNombre = getCleanValue(item, ['Nombre', 'NOMBRE']) || 'Private Experience';
-                let nombre = translateCatalogText(rawNombre, currentLang);
+                // Sanitización estricta antes de renderizar
+                let nombre = escapeHTML(translateCatalogText(rawNombre, currentLang));
+                let safeEncodedNombre = encodeURIComponent(rawNombre);
+                
                 let folioValue = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
-                let imgUrl = getImgUrlByFolio(folioValue, rawNombre);
+                let imgUrl = escapeHTML(getImgUrlByFolio(folioValue, rawNombre));
+                
                 let precio = getCleanValue(item, ['Precio', 'PRECIO']);
-                if (precio === '' || precio.toLowerCase() === 'consultar' || precio.toLowerCase() === 'inquire') precio = getCreativeSlogan(item, idx);
-                else precio = translateCatalogText(precio, currentLang);
+                if (precio === '' || precio.toLowerCase() === 'consultar' || precio.toLowerCase() === 'inquire') precio = escapeHTML(getCreativeSlogan(item, idx));
+                else precio = escapeHTML(translateCatalogText(precio, currentLang));
 
                 let extraSpecsHtml = '';
                 const excludedHeaders = ['nombre', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye', 'catalogo', 'folio', 'pax'];
@@ -1458,14 +1379,17 @@
                     if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) return;
                     if (printedKeys.has(keyNormalized)) return;
                     printedKeys.add(keyNormalized);
+                    
                     let val = getCleanValue(item, [header]); 
                     if (val && val !== '') {
                         let cleanLabel = header.trim().replace(/:$/, '');
                         if (specHeaderTranslations[keyNormalized] && specHeaderTranslations[keyNormalized][currentLang]) cleanLabel = specHeaderTranslations[keyNormalized][currentLang];
-                        let translatedVal = translateCatalogText(val, currentLang);
+                        let translatedVal = escapeHTML(translateCatalogText(val, currentLang));
+                        let safeLabel = escapeHTML(cleanLabel);
+                        
                         extraSpecsHtml += `
                             <div class="spec-row flex justify-between text-xs py-1 border-b border-white/5 last:border-0">
-                                <span class="spec-label font-semibold text-brand-accent uppercase tracking-wider text-[10px]">${cleanLabel}:</span>
+                                <span class="spec-label font-semibold text-brand-accent uppercase tracking-wider text-[10px]">${safeLabel}:</span>
                                 <span class="spec-value text-slate-300 text-right font-light">${translatedVal}</span>
                             </div>
                         `;
@@ -1473,22 +1397,22 @@
                 });
 
                 card.innerHTML = `
-                    <div class="img-container relative h-60 overflow-hidden bg-brand-dark cursor-pointer" onclick="openDetailModal('${rawNombre.replace(/'/g, "\\'")}')">
+                    <div class="img-container relative h-60 overflow-hidden bg-brand-dark cursor-pointer" onclick="openDetailModal('${safeEncodedNombre}')">
                         ${imgUrl ? `<img src="${imgUrl}" onerror="handleImgError(this, '${currentCategory}')" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" alt="${nombre}">` : ''}
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-transparent to-transparent"></div>
-                        <button onclick="openZoomModal('${imgUrl}', event)" class="absolute top-4 right-4 glass-panel hover:bg-brand-accent text-white hover:text-brand-dark w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none border border-white/10" title="${t.modal_zoom_hint}">
+                        <button onclick="openZoomModal('${imgUrl}', event)" class="absolute top-4 right-4 glass-panel hover:bg-brand-accent text-white hover:text-brand-dark w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none border border-white/10" title="${escapeHTML(t.modal_zoom_hint)}">
                             <i class="fas fa-search-plus text-xs"></i>
                         </button>
                     </div>
                     <div class="card-info p-6 flex flex-col justify-between flex-grow">
                         <div>
-                            <h3 class="card-title text-xl font-bold font-display text-white mb-2 cursor-pointer hover:text-brand-accent transition-colors" onclick="openDetailModal('${rawNombre.replace(/'/g, "\\'")}')">${nombre}</h3>
+                            <h3 class="card-title text-xl font-bold font-display text-white mb-2 cursor-pointer hover:text-brand-accent transition-colors" onclick="openDetailModal('${safeEncodedNombre}')">${nombre}</h3>
                             <p class="card-price text-brand-accent font-semibold text-sm mb-4">${precio}</p>
                         </div>
                         ${extraSpecsHtml ? `<div class="card-extra-specs border-t border-dashed border-white/10 pt-3 mt-3 flex flex-col gap-1 bg-brand-dark/30 p-3 rounded-xl">${extraSpecsHtml}</div>` : ''}
                         <div class="pt-6 mt-4 border-t border-white/10">
-                            <button onclick="openDetailModal('${rawNombre.replace(/'/g, "\\'")}')" class="w-full glass-panel hover:bg-brand-accent text-brand-accent hover:text-brand-dark font-bold tracking-[0.2em] text-[10px] uppercase transition-all duration-300 rounded-full py-2.5 px-4 flex items-center justify-center gap-2 focus:outline-none shadow-md border-brand-accent/40 hover:border-brand-accent">
-                                ${t.card_view_details} <i class="fas fa-chevron-right text-[8px]"></i>
+                            <button onclick="openDetailModal('${safeEncodedNombre}')" class="w-full glass-panel hover:bg-brand-accent text-brand-accent hover:text-brand-dark font-bold tracking-[0.2em] text-[10px] uppercase transition-all duration-300 rounded-full py-2.5 px-4 flex items-center justify-center gap-2 focus:outline-none shadow-md border-brand-accent/40 hover:border-brand-accent">
+                                ${escapeHTML(t.card_view_details)} <i class="fas fa-chevron-right text-[8px]"></i>
                             </button>
                         </div>
                     </div>
@@ -1536,7 +1460,7 @@
             initHomeCarousel();
         }
 
-        // SISTEMA DE ENRUTAMIENTO ÚNICO POR URL
+        // SISTEMA DE ENRUTAMIENTO ÚNICO POR URL CORREGIDO
         function navigateTo(pageId, subCategory = '') {
             const validPages = ['home', 'legacy', 'catalog', 'contact'];
             if (!validPages.includes(pageId)) pageId = '404';
@@ -1552,10 +1476,24 @@
             const titles = { 'home': i18n[currentLang].nav_home, 'legacy': i18n[currentLang].nav_legacy, 'catalog': i18n[currentLang].nav_catalog, 'contact': i18n[currentLang].nav_contact, '404': i18n[currentLang].p404_title };
             document.title = `Amazing Colors | ${titles[pageId] || ''}`;
 
-            if(currentActive === targetPage && !subCategory) return;
+            // Actualizar botones visuales
+            document.querySelectorAll('.nav-bar .nav-btn').forEach(link => {
+                const isCatalog = pageId === 'catalog' && link.id === 'btn-nav-catalog';
+                const isCurrent = link.id === `btn-nav-${pageId}` || isCatalog;
+                link.classList.toggle('active', isCurrent);
+                if (isCurrent) { link.classList.add('text-brand-accent'); link.classList.remove('text-white/80'); } 
+                else { link.classList.remove('text-brand-accent'); link.classList.add('text-white/80'); }
+            });
+
+            // BugFix: Si ya es la página actual, forzamos las animaciones para que no se quede oculta en la primera carga
+            if(currentActive === targetPage && !subCategory) {
+                setupReveals();
+                return;
+            }
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            if(currentActive) {
+            if(currentActive && currentActive !== targetPage) {
                 currentActive.style.opacity = '0';
                 currentActive.style.transform = 'scale(0.97) translateY(-20px)';
                 currentActive.style.filter = 'blur(10px)';
@@ -1568,25 +1506,18 @@
             function showTarget() {
                 if(targetPage) {
                     targetPage.classList.add('active');
-                    targetPage.offsetHeight;
+                    targetPage.offsetHeight; // Forzar Reflow
                     setTimeout(() => {
                         targetPage.style.opacity = '1';
                         targetPage.style.transform = 'scale(1) translateY(0)';
                         targetPage.style.filter = 'blur(0)';
                     }, 40);
+                    // Dispara las animaciones internas (reveal-up)
                     setTimeout(() => setupReveals(), 150);
                 }
             }
 
             if(pageId === 'catalog') filterCatalog(subCategory || 'tour');
-
-            document.querySelectorAll('.nav-bar .nav-btn').forEach(link => {
-                const isCatalog = pageId === 'catalog' && link.id === 'btn-nav-catalog';
-                const isCurrent = link.id === `btn-nav-${pageId}` || isCatalog;
-                link.classList.toggle('active', isCurrent);
-                if (isCurrent) { link.classList.add('text-brand-accent'); link.classList.remove('text-white/80'); } 
-                else { link.classList.remove('text-brand-accent'); link.classList.add('text-white/80'); }
-            });
         }
 
         window.addEventListener('hashchange', () => {
@@ -1597,7 +1528,7 @@
             let hash = hashStr.replace(/^#\/?/, '');
             if (!hash) { navigateTo('home'); return; }
             let parts = hash.split('/');
-            navigateTo(parts[0], parts[1] || '');
+            navigateTo(escapeHTML(parts[0]), escapeHTML(parts[1] || ''));
         }
 
         function toggleCatalogDropdown(event) {
@@ -1621,7 +1552,8 @@
 
         document.addEventListener('click', () => closeCatalogDropdown());
 
-        function openDetailModal(nombreBusqueda) {
+        function openDetailModal(encodedNombreBusqueda) {
+            const nombreBusqueda = decodeURIComponent(encodedNombreBusqueda);
             lastOpenedItemName = nombreBusqueda;
             const item = fullData.find(i => getCleanValue(i, ['Nombre', 'NOMBRE']) === nombreBusqueda);
             if (!item) return;
@@ -1638,28 +1570,28 @@
             const reserveBtn = document.getElementById('detail-modal-reserve-btn');
 
             let folioValue = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
-            let imgUrl = getImgUrlByFolio(folioValue, nombreBusqueda);
+            let imgUrl = escapeHTML(getImgUrlByFolio(folioValue, nombreBusqueda));
             img.src = imgUrl;
             img.onerror = function() { handleImgError(this, 'general'); };
             document.getElementById('detail-img-container').onclick = () => openZoomModal(imgUrl);
 
             let rawNombre = getCleanValue(item, ['Nombre', 'NOMBRE']);
-            let translatedTitle = translateCatalogText(rawNombre, currentLang);
+            let translatedTitle = escapeHTML(translateCatalogText(rawNombre, currentLang));
             title.innerText = translatedTitle;
 
             let precio = getCleanValue(item, ['Precio', 'PRECIO']);
             if (precio === '' || precio.toLowerCase() === 'consultar' || precio.toLowerCase() === 'inquire') {
-                price.innerText = t.consult_concierge;
+                price.innerText = escapeHTML(t.consult_concierge);
             } else {
-                price.innerText = translateCatalogText(precio, currentLang);
+                price.innerText = escapeHTML(translateCatalogText(precio, currentLang));
             }
 
             let rawDesc = getCleanValue(item, ['Descriptivo', 'Detalles', 'DESCRIPTIVO']);
-            if (rawDesc) desc.innerText = translateCatalogText(rawDesc, currentLang);
+            if (rawDesc) desc.innerText = escapeHTML(translateCatalogText(rawDesc, currentLang));
             else desc.innerText = currentLang === 'en' ? 'Bespoke boutique itinerary file available upon request from our dedicated concierge team.' : 'Ficha de experiencia boutique personalizada disponible bajo solicitud de nuestro concierge.';
             
             let rawIncluye = getCleanValue(item, ['Incluye:', 'Incluye', 'INCLUYE']);
-            if (rawIncluye) { includesSection.style.display = 'block'; includes.innerText = translateCatalogText(rawIncluye, currentLang); } 
+            if (rawIncluye) { includesSection.style.display = 'block'; includes.innerText = escapeHTML(translateCatalogText(rawIncluye, currentLang)); } 
             else { includesSection.style.display = 'none'; }
 
             specsContainer.innerHTML = '';
@@ -1676,11 +1608,11 @@
                 if (val && val !== '') {
                     let cleanLabel = header.trim().replace(/:$/, '');
                     if (specHeaderTranslations[keyNormalized] && specHeaderTranslations[keyNormalized][currentLang]) cleanLabel = specHeaderTranslations[keyNormalized][currentLang];
-                    let translatedVal = translateCatalogText(val, currentLang);
+                    let translatedVal = escapeHTML(translateCatalogText(val, currentLang));
 
                     specsContainer.insertAdjacentHTML('beforeend', `
                         <div class="flex justify-between text-xs py-1 border-b border-white/10 last:border-0">
-                            <span class="font-semibold text-brand-accent uppercase tracking-wider text-[10px]">${cleanLabel}:</span>
+                            <span class="font-semibold text-brand-accent uppercase tracking-wider text-[10px]">${escapeHTML(cleanLabel)}:</span>
                             <span class="text-slate-300 text-right font-light">${translatedVal}</span>
                         </div>
                     `);
@@ -1708,7 +1640,7 @@
             if (event) event.stopPropagation();
             const modal = document.getElementById('image-zoom-modal');
             const img = document.getElementById('zoom-modal-img');
-            img.src = imgSrc;
+            img.src = escapeHTML(imgSrc);
             modal.classList.remove('opacity-0', 'pointer-events-none');
             modal.offsetHeight; 
             modal.style.opacity = '1';
@@ -1759,24 +1691,17 @@
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(finalMessage)}`, '_blank');
         }
 
-        // SEGURIDAD FRONTEND EN EL FORMULARIO
         function showFormError(msg) {
             const errEl = document.getElementById('form-error-msg');
             errEl.textContent = msg;
             errEl.classList.remove('hidden');
         }
 
-        function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g, tag => ({
-                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-            }[tag] || tag));
-        }
-
         function handleFormSubmit(event) {
             event.preventDefault();
             const now = Date.now();
             
-            // Rate Limiting de 60 segundos
+            // Limitador de seguridad: 1 reserva por minuto
             if (now - lastFormSubmitTime < 60000) {
                 showFormError(i18n[currentLang].form_err_rate_limit);
                 return;
@@ -1801,7 +1726,6 @@
                 return;
             }
 
-            // Sanitización de Texto
             const name = escapeHTML(nameInput.value);
             const people = escapeHTML(selectEl.options[selectEl.selectedIndex].text);
             const rawDate = document.getElementById('f_date').value;
@@ -1837,13 +1761,19 @@
             if (e.key === 'Escape') { closeZoomModal(); closeDetailModal(); }
         });
 
+        // Evento principal protegido y corregido
         document.addEventListener('DOMContentLoaded', () => {
             init();
+            
+            if (!window.location.hash) {
+                window.location.hash = '#/home';
+            }
             handleRoute(window.location.hash);
+            
+            // Forzar animaciones de la vista inicial (Corrige bug de elementos invisibles)
+            setTimeout(() => setupReveals(), 100);
         });
     </script>
 </body>
 </html>
 ```
-
-Pégalo exactamente así y todo funcionará a la perfección. ¡Disfrútalo!
