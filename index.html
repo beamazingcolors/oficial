@@ -1,9 +1,10 @@
+Trabajemos con este codigo, no le modifiques nada, solo analizalo
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth bg-brand-dark w-full max-w-full overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Amazing Colors | Viajes Oceánicos de Élite y Experiencias Privadas</title>
+    <title>Amazing Colors | Elite Ocean Journeys & Private Experiences</title>
     
     <!-- Favicon Oficial Premium en Alta Resolución -->
     <link class="brand-favicon" rel="icon" type="image/png" sizes="32x32" href="https://beamazingcolors.github.io/oficial/lg2.png">
@@ -217,7 +218,7 @@
                 
                 <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Logo Amazing Colors" class="h-32 sm:h-44 md:h-52 w-auto mb-3 object-contain object-center transition-all duration-700 hover:scale-105 select-none relative z-10 filter drop-shadow-[0_4px_15px_rgba(0,0,0,0.6)]" onerror="handleImgError(this, 'general')">
                 <span class="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.15em] sm:tracking-[0.25em] text-white hover:text-brand-accent transition-all duration-500 uppercase text-center block w-full px-2 break-words relative z-10">Amazing <span class="text-brand-accent">Colors</span></span>
-                <p data-i18n="brand_tagline" class="text-[9px] md:text-xs font-semibold uppercase tracking-[0.35em] sm:tracking-[0.5em] text-brand-accent mt-2 text-center w-full px-2 block break-words relative z-10">Viajes Oceánicos de Élite y Experiencias Privadas</p>
+                <p data-i18n="brand_tagline" class="text-[9px] md:text-xs font-semibold uppercase tracking-[0.35em] sm:tracking-[0.5em] text-brand-accent mt-2 text-center w-full px-2 block break-words relative z-10">Elite Ocean Journeys & Private Experiences</p>
             </header>
 
             <!-- Barra de Navegación Premium Flotante con Selector de Idioma -->
@@ -239,7 +240,7 @@
                             <i class="fas fa-umbrella-beach text-brand-accent w-4"></i> <span data-i18n="sub_tour">Tours & Aventuras</span>
                         </button>
                         <button onclick="selectCatalogSubCategory('yate', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-semibold flex items-center gap-3">
-                            <i class="fas fa-ship text-brand-accent w-4"></i> <span data-i18n="sub_yacht">Yates & Catamaranes</span>
+                            <i class="fas fa-ship text-brand-accent w-4"></i> <span data-i18n="sub_yacht">Yates & Barcos</span>
                         </button>
                         <button onclick="selectCatalogSubCategory('transportacion', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-semibold flex items-center gap-3">
                             <i class="fas fa-car-side text-brand-accent w-4"></i> <span data-i18n="sub_trans">Traslados VIP</span>
@@ -301,7 +302,7 @@
                             <img id="inicio-playas-img" src="https://beamazingcolors.github.io/oficial/cun.png" alt="Playas de Cancún" class="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" onerror="handleImgError(this, 'playas')">
                             <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent pointer-events-none"></div>
                             <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs text-white/80 bg-brand-dark/70 backdrop-blur-md py-3 px-5 rounded-2xl border border-white/10">
-                                <span data-i18n-html="badge_location" class="font-display tracking-widest uppercase"><i class="fas fa-map-pin text-brand-accent mr-2"></i>Cancún, Quintana Roo</span>
+                                <span class="font-display tracking-widest uppercase"><i class="fas fa-map-pin text-brand-accent mr-2"></i>Cancún, Quintana Roo</span>
                                 <span data-i18n="badge_mexican_caribbean" class="text-brand-accent font-semibold tracking-wider">Caribe Mexicano</span>
                             </div>
                         </div>
@@ -444,10 +445,10 @@
                             <i class="fas fa-compass text-[10px]"></i> <span data-i18n="sub_tour">Tours & Aventuras</span>
                         </button>
                         <button id="sub-nav-yate" class="px-6 py-2.5 text-[11px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none flex items-center gap-2" onclick="filterCatalog('yate')">
-                            <i class="fas fa-ship text-[10px]"></i> <span data-i18n="sub_yacht">Yates & Catamaranes</span>
+                            <i class="fas fa-ship text-[10px]"></i> <span data-i18n="sub_yacht">Yates & Catamarán</span>
                         </button>
                         <button id="sub-nav-transportacion" class="px-6 py-2.5 text-[11px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none flex items-center gap-2" onclick="filterCatalog('transportacion')">
-                            <i class="fas fa-car-side text-[10px]"></i> <span data-i18n="sub_trans">Traslados VIP</span>
+                            <i class="fas fa-car-side text-[10px]"></i> <span data-i18n="sub_trans">Traslados & Chofer Privados</span>
                         </button>
                     </div>
 
@@ -481,16 +482,16 @@
                         <form id="bookingFunnel" class="space-y-8" onsubmit="handleFormSubmit(event)">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
                                 <div class="relative">
-                                    <input type="text" id="f_name" required class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent text-sm" data-i18n-placeholder="form_ph_name" placeholder="Tu Nombre">
+                                    <input type="text" id="f_name" required class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent text-sm" placeholder="Tu Nombre">
                                     <label for="f_name" data-i18n="form_lbl_name" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Tu Nombre Completo *</label>
                                 </div>
                                 <div class="relative">
                                     <select id="f_people" required class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors appearance-none cursor-pointer text-sm">
                                         <option value="" disabled selected class="text-slate-400 bg-brand-dark" data-i18n="form_opt_choose">¿Cuántos viajan? *</option>
-                                        <option value="couple" class="text-white bg-brand-dark" data-i18n="form_opt_couple">Pareja (2 personas)</option>
-                                        <option value="small_family" class="text-white bg-brand-dark" data-i18n="form_opt_small_family">Familia pequeña (3 a 5 personas)</option>
-                                        <option value="medium_group" class="text-white bg-brand-dark" data-i18n="form_opt_med_group">Grupo mediano (6 a 10 personas)</option>
-                                        <option value="event" class="text-white bg-brand-dark" data-i18n="form_opt_event">Delegación / Evento Privado (10+ personas)</option>
+                                        <option value="Pareja (2 personas)" class="text-white bg-brand-dark" data-i18n="form_opt_couple">Pareja (2 personas)</option>
+                                        <option value="Familia Pequeña (3 a 5 personas)" class="text-white bg-brand-dark" data-i18n="form_opt_small_family">Familia pequeña (3 a 5 personas)</option>
+                                        <option value="Grupo Familiar / Amigos (6 a 10 personas)" class="text-white bg-brand-dark" data-i18n="form_opt_med_group">Grupo mediano (6 a 10 personas)</option>
+                                        <option value="Delegación / Evento Privado (10+ personas)" class="text-white bg-brand-dark" data-i18n="form_opt_event">Delegación / Evento Privado (10+ personas)</option>
                                     </select>
                                     <i class="fas fa-chevron-down absolute right-2 top-4 text-xs text-brand-accent pointer-events-none"></i>
                                 </div>
@@ -499,11 +500,11 @@
                                     <label for="f_date" data-i18n="form_lbl_date" class="block text-xs text-brand-accent uppercase tracking-widest font-semibold mb-1">Fecha Estimada de Viaje</label>
                                 </div>
                                 <div class="relative">
-                                    <input type="text" id="f_hotel" class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent text-sm" data-i18n-placeholder="form_ph_hotel" placeholder="Hotel o Zona de Hospedaje">
+                                    <input type="text" id="f_hotel" class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent text-sm" placeholder="Hotel o Zona de Hospedaje">
                                     <label for="f_hotel" data-i18n="form_lbl_hotel" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Hotel o Zona de Hospedaje</label>
                                 </div>
                                 <div class="relative md:col-span-2">
-                                    <input type="text" id="f_destinos" class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent text-sm" data-i18n-placeholder="form_ph_interests" placeholder="Actividades de Interés">
+                                    <input type="text" id="f_destinos" class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent text-sm" placeholder="Actividades de Interés">
                                     <label for="f_destinos" data-i18n="form_lbl_interests" class="absolute left-0 -top-3.5 text-xs text-brand-accent uppercase tracking-widest font-semibold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-accent">Actividades o Yates de Interés (Ej: Chichén Itzá, Catamarán Isla Mujeres)</label>
                                 </div>
                             </div>
@@ -621,14 +622,14 @@
                             <li><button onclick="navigateTo('home')" class="text-slate-300 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none flex items-center gap-2"><i class="fas fa-chevron-right text-[9px] text-brand-accent/50"></i> <span data-i18n="nav_home">Inicio</span></button></li>
                             <li><button onclick="navigateTo('legacy')" class="text-slate-300 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none flex items-center gap-2"><i class="fas fa-chevron-right text-[9px] text-brand-accent/50"></i> <span data-i18n="nav_legacy">Legado</span></button></li>
                             <li><button onclick="navigateTo('catalog', 'tour')" class="text-slate-300 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none flex items-center gap-2"><i class="fas fa-chevron-right text-[9px] text-brand-accent/50"></i> <span data-i18n="sub_tour">Tours & Parques</span></button></li>
-                            <li><button onclick="navigateTo('catalog', 'yate')" class="text-slate-300 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none flex items-center gap-2"><i class="fas fa-chevron-right text-[9px] text-brand-accent/50"></i> <span data-i18n="sub_yacht">Yates & Catamaranes</span></button></li>
+                            <li><button onclick="navigateTo('catalog', 'yate')" class="text-slate-300 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none flex items-center gap-2"><i class="fas fa-chevron-right text-[9px] text-brand-accent/50"></i> <span data-i18n="sub_yacht">Yates & Catamarán</span></button></li>
                             <li><button onclick="navigateTo('contact')" class="text-slate-300 hover:text-brand-accent text-sm font-light transition-colors focus:outline-none flex items-center gap-2"><i class="fas fa-chevron-right text-[9px] text-brand-accent/50"></i> <span data-i18n="nav_contact">Reservar Itinerario</span></button></li>
                         </ul>
                     </div>
 
                     <div>
                         <h4 data-i18n="footer_concierge_title" class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6 border-b border-brand-accent/20 pb-2">Contacto Concierge</h4>
-                        <p data-i18n-html="footer_address" class="text-slate-300 font-light text-sm leading-relaxed mb-4">
+                        <p class="text-slate-300 font-light text-sm leading-relaxed mb-4">
                             Cancún, Quintana Roo & Riviera Maya<br>México
                         </p>
                         <button onclick="openWhatsApp()" class="text-brand-accent hover:text-white text-sm font-semibold transition-colors focus:outline-none flex items-center gap-2 bg-brand-accent/10 border border-brand-accent/30 py-2.5 px-4 rounded-full">
@@ -669,13 +670,13 @@
 
         const i18n = {
             es: {
-                brand_tagline: "Viajes Oceánicos de Élite y Experiencias Privadas",
+                brand_tagline: "Elite Ocean Journeys & Private Tours",
                 nav_home: "Inicio",
                 nav_legacy: "Legado",
                 nav_catalog: "Catálogo",
                 nav_contact: "Reserva",
                 sub_tour: "Tours & Aventuras",
-                sub_yacht: "Yates & Catamaranes",
+                sub_yacht: "Yates & Barcos",
                 sub_trans: "Traslados VIP",
                 hero_badge: "El Caribe Maya a tu manera",
                 hero_title: `Cancún no es solo un destino, <br class="hidden sm:inline">es un <span class="font-serif italic font-bold text-brand-accent">estado de plenitud.</span>`,
@@ -683,7 +684,6 @@
                 hero_quote: `"Siente la brisa caribeña sin límites ni prisas. Te revelamos el verdadero color del paraíso."`,
                 btn_explore_catalog: "Explorar Catálogo",
                 btn_design_itinerary: "Diseñar Itinerario",
-                badge_location: `<i class="fas fa-map-pin text-brand-accent mr-2"></i>Cancún, Quintana Roo`,
                 badge_mexican_caribbean: "Caribe Mexicano",
                 facts_badge: "Secretos del Caribe",
                 facts_title: `Misterios de <span class="font-serif italic font-bold text-brand-accent">Quintana Roo</span>`,
@@ -720,7 +720,6 @@
                 contact_title: `Diseña tu <span class="font-serif italic font-bold text-brand-accent">Estancia</span>`,
                 contact_desc: "Envíanos tus deseos de viaje y un concierge especializado creará tu itinerario ideal en minutos.",
                 contact_card_pill: "Atención Directa 24/7",
-                form_ph_name: "Tu Nombre",
                 form_lbl_name: "Tu Nombre Completo *",
                 form_opt_choose: "¿Cuántos viajan? *",
                 form_opt_couple: "Pareja (2 personas)",
@@ -728,16 +727,13 @@
                 form_opt_med_group: "Grupo mediano (6 a 10 personas)",
                 form_opt_event: "Delegación / Evento Privado (10+ personas)",
                 form_lbl_date: "Fecha Estimada de Viaje",
-                form_ph_hotel: "Hotel o Zona de Hospedaje",
                 form_lbl_hotel: "Hotel o Zona de Hospedaje",
-                form_ph_interests: "Actividades de Interés",
                 form_lbl_interests: "Actividades o Yates de Interés (Ej: Chichén Itzá, Catamarán Isla Mujeres)",
                 form_btn_submit: "Enviar Solicitud a WhatsApp",
                 form_subtext: "Respuesta inmediata con cotización formal e itinerario detallado.",
                 footer_desc: "Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas, yates exclusivos y logística de lujo.",
                 footer_sections_title: "Secciones Rápidas",
                 footer_concierge_title: "Contacto Concierge",
-                footer_address: "Cancún, Quintana Roo & Riviera Maya<br>México",
                 footer_direct_contact: "Contacto Concierge Directo",
                 footer_copyright: "© 2026 Amazing Colors Private Tours. Todos los derechos reservados.",
                 footer_privacy: "Privacidad y Confidencialidad Garantizada",
@@ -762,7 +758,7 @@
                 nav_catalog: "Catalog",
                 nav_contact: "Bookings",
                 sub_tour: "Tours & Adventures",
-                sub_yacht: "Yachts & Catamarans",
+                sub_yacht: "Yachts & Boats",
                 sub_trans: "VIP Transfers",
                 hero_badge: "The Mayan Caribbean Your Way",
                 hero_title: `Cancún is not just a destination, <br class="hidden sm:inline">it is a <span class="font-serif italic font-bold text-brand-accent">state of bliss.</span>`,
@@ -770,7 +766,6 @@
                 hero_quote: `"Embrace the Caribbean breeze with no limits or rush. We reveal the authentic colors of paradise."`,
                 btn_explore_catalog: "Explore Catalog",
                 btn_design_itinerary: "Design Itinerary",
-                badge_location: `<i class="fas fa-map-pin text-brand-accent mr-2"></i>Cancun, Quintana Roo`,
                 badge_mexican_caribbean: "Mexican Caribbean",
                 facts_badge: "Caribbean Secrets",
                 facts_title: `Mysteries of <span class="font-serif italic font-bold text-brand-accent">Quintana Roo</span>`,
@@ -807,7 +802,6 @@
                 contact_title: `Design Your <span class="font-serif italic font-bold text-brand-accent">Stay</span>`,
                 contact_desc: "Share your travel desires and our dedicated concierge will tailor your dream itinerary in minutes.",
                 contact_card_pill: "24/7 Dedicated Concierge",
-                form_ph_name: "Your Name",
                 form_lbl_name: "Your Full Name *",
                 form_opt_choose: "Party Size? *",
                 form_opt_couple: "Couple (2 people)",
@@ -815,16 +809,13 @@
                 form_opt_med_group: "Medium Group (6 to 10 people)",
                 form_opt_event: "Private Delegation / Event (10+ people)",
                 form_lbl_date: "Estimated Travel Date",
-                form_ph_hotel: "Hotel or Resort Area",
                 form_lbl_hotel: "Hotel or Resort Area",
-                form_ph_interests: "Activities of Interest",
                 form_lbl_interests: "Activities or Yachts of Interest (e.g. Chichén Itzá, Isla Mujeres Catamaran)",
                 form_btn_submit: "Send Request to WhatsApp",
                 form_subtext: "Instant response with a tailored proposal and detailed itinerary.",
                 footer_desc: "Redefining boutique travel across the Mexican Caribbean. Authentic private adventures, luxury yacht charters, and VIP executive logistics.",
                 footer_sections_title: "Quick Navigation",
                 footer_concierge_title: "Concierge Contact",
-                footer_address: "Cancun, Quintana Roo & Riviera Maya<br>Mexico",
                 footer_direct_contact: "Direct Concierge WhatsApp",
                 footer_copyright: "© 2026 Amazing Colors Private Tours. All rights reserved.",
                 footer_privacy: "Guaranteed Privacy & Discretion",
@@ -1558,7 +1549,6 @@
         function switchLanguage(lang) {
             currentLang = lang;
             document.documentElement.lang = lang;
-            document.title = "Amazing Colors | " + i18n[lang].brand_tagline; // Actualizar pestaña de navegador
             
             const btnEs = document.getElementById('lang-btn-es');
             const btnEn = document.getElementById('lang-btn-en');
@@ -1858,7 +1848,7 @@
                 let rawName = getCleanValue(item, ['Nombre', 'NOMBRE']);
                 let name = translateCatalogText(rawName, currentLang);
                 let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
-                let imgUrl = getImgUrlByFolio(folioValue, rawName);
+                let imgUrl = getImgUrlByFolio(folio, rawName);
                 let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
                 
                 let categoryType = 'tour';
@@ -2266,8 +2256,7 @@
         function handleFormSubmit(event) {
             event.preventDefault();
             const name = document.getElementById('f_name').value;
-            const selectEl = document.getElementById('f_people');
-            const people = selectEl.options[selectEl.selectedIndex].text;
+            const people = document.getElementById('f_people').value;
             const date = document.getElementById('f_date').value || (currentLang === 'en' ? 'Flexible dates' : 'Fecha flexible');
             const hotel = document.getElementById('f_hotel').value || (currentLang === 'en' ? 'To be confirmed' : 'Por definir');
             const destinos = document.getElementById('f_destinos').value || (currentLang === 'en' ? 'Custom Collection' : 'Colección personalizada');
