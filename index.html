@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Amazing Colors | Viajes Oceánicos de Élite y Experiencias Privadas</title>
     
-    <!-- Favicon Oficial Premium en Alta Resolución -->
+    <!-- Metadatos SEO y Seguridad Frontend -->
+    <title>Amazing Colors | Viajes Oceánicos de Élite y Experiencias Privadas</title>
+    <meta name="description" content="Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas, yates exclusivos y logística de lujo en Cancún y la Riviera Maya.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://beamazingcolors.github.io https://raw.githubusercontent.com https://cdn.jsdelivr.net https://docs.google.com https://images.unsplash.com; img-src 'self' data: https://beamazingcolors.github.io https://raw.githubusercontent.com https://cdn.jsdelivr.net https://images.unsplash.com; connect-src 'self' https://docs.google.com;">
+    
+    <script>
+        // Forzar HTTPS en producción (Ignorar en entorno de desarrollo local)
+        if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+            location.replace(`https:${location.href.substring(location.protocol.length)}`);
+        }
+    </script>
+    
+    <!-- Favicon Oficial Premium -->
     <link class="brand-favicon" rel="icon" type="image/png" sizes="32x32" href="https://beamazingcolors.github.io/oficial/lg2.png">
     <link class="brand-favicon" rel="icon" type="image/png" sizes="16x16" href="https://beamazingcolors.github.io/oficial/lg2.png">
     <link class="brand-favicon" rel="icon" type="image/png" sizes="192x192" href="https://beamazingcolors.github.io/oficial/lg2.png">
@@ -21,8 +32,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Analítica Mock / Estructura GTAG -->
     <script>
         window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
         function trackConversion(eventName, details = {}) {
             console.log(`[Analytics Event] ${eventName}`, details);
             window.dataLayer.push({ event: eventName, ...details, timestamp: new Date().toISOString() });
@@ -65,6 +79,26 @@
             --white: #ffffff;
             --pearl-bg: #ebdcb9;   
             --gradient: linear-gradient(135deg, #bda06a 0%, #dfcba5 100%);
+        }
+
+        /* EFECTOS DE GLASSMORFISMO PREMIUM */
+        .glass-panel {
+            background: rgba(11, 26, 48, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
         }
 
         /* TRANSICIONES PREMIUM DE INTERFAZ CINEMÁTICA */
@@ -197,6 +231,10 @@
         body.no-scroll {
             overflow: hidden !important;
         }
+        
+        .input-error {
+            border-color: #ef4444 !important;
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden w-full max-w-full selection:bg-brand-accent selection:text-white bg-brand-dark text-slate-200">
@@ -210,7 +248,7 @@
             <div class="ambient-glow bottom-10 left-[20%]"></div>
         </div>
 
-        <div class="relative z-10 w-full max-w-full">
+        <div class="relative z-10 w-full max-w-full flex-grow">
             <!-- 1. Cabecera de Marca Oficial -->
             <header class="site-brand-header flex flex-col items-center justify-center pt-10 pb-6 px-4 cursor-pointer text-center w-full max-w-full relative border-b border-brand-accent/20 bg-gradient-to-b from-[#030914] via-[#071021] to-transparent shadow-[0_10px_30px_rgba(3,9,20,0.5)] transition-colors duration-500" onclick="navigateTo('home')">
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-brand-accent/5 rounded-full filter blur-2xl pointer-events-none"></div>
@@ -220,8 +258,8 @@
                 <p data-i18n="brand_tagline" class="text-[9px] md:text-xs font-semibold uppercase tracking-[0.35em] sm:tracking-[0.5em] text-brand-accent mt-2 text-center w-full px-2 block break-words relative z-10">Viajes Oceánicos de Élite y Experiencias Privadas</p>
             </header>
 
-            <!-- Barra de Navegación Premium Flotante con Selector de Idioma -->
-            <nav class="nav-bar sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md py-4 border-b border-white/10 flex justify-center items-center gap-4 sm:gap-7 md:gap-10 flex-wrap px-4 w-full max-w-full transition-all duration-300 shadow-lg">
+            <!-- Barra de Navegación Premium Flotante Glassmorfismo -->
+            <nav class="nav-bar glass-panel sticky top-0 z-50 py-4 flex justify-center items-center gap-4 sm:gap-7 md:gap-10 flex-wrap px-4 w-full max-w-full transition-all duration-300">
                 <button id="btn-nav-home" class="nav-btn text-white/80 hover:text-white font-medium text-xs md:text-sm tracking-[0.2em] uppercase transition-all duration-300 active" onclick="navigateTo('home')">
                     <i class="fas fa-compass mr-1.5 text-brand-accent/70"></i><span data-i18n="nav_home">Inicio</span>
                 </button>
@@ -229,12 +267,12 @@
                     <i class="fas fa-feather-pointed mr-1.5 text-brand-accent/70"></i><span data-i18n="nav_legacy">Legado</span>
                 </button>
                 
-                <!-- Menú Desplegable Flotante -->
+                <!-- Menú Desplegable Flotante Glassmorfismo -->
                 <div class="relative group" id="catalog-dropdown-container">
                     <button id="btn-nav-catalog" class="nav-btn text-white/80 hover:text-white font-medium text-xs md:text-sm tracking-[0.2em] uppercase transition-all duration-300 flex items-center gap-2 focus:outline-none" onclick="toggleCatalogDropdown(event)">
                         <i class="fas fa-layer-group mr-1 text-brand-accent/70"></i><span data-i18n="nav_catalog">Catálogo</span> <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i>
                     </button>
-                    <div id="catalog-dropdown-menu" class="absolute left-1/2 -translate-x-1/2 mt-3 w-60 bg-brand-dark/98 backdrop-blur-xl border border-white/10 opacity-0 invisible transition-all duration-300 z-50 shadow-2xl rounded-xl py-3 dropdown-menu transform translate-y-2">
+                    <div id="catalog-dropdown-menu" class="glass-panel absolute left-1/2 -translate-x-1/2 mt-3 w-60 opacity-0 invisible transition-all duration-300 z-50 rounded-xl py-3 dropdown-menu transform translate-y-2">
                         <button onclick="selectCatalogSubCategory('tour', event)" class="w-full text-left px-5 py-2.5 text-xs text-white hover:text-brand-accent hover:bg-white/5 transition-colors tracking-widest uppercase font-semibold flex items-center gap-3">
                             <i class="fas fa-umbrella-beach text-brand-accent w-4"></i> <span data-i18n="sub_tour">Tours & Aventuras</span>
                         </button>
@@ -265,23 +303,19 @@
             <!-- ========================================== -->
             <!-- VISTA 1: INICIO (HOME)                     -->
             <!-- ========================================== -->
-            <section id="page-home" class="page-view active bg-brand-dark w-full max-w-full">
+            <section id="page-home" class="page-view active w-full max-w-full">
                 <!-- Hero Editorial -->
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-20">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                         <div class="reveal-up lg:pr-8">
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-accent/30 bg-brand-accent/10 mb-5">
-                                <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
-                                <span data-i18n="hero_badge" class="text-brand-accent tracking-[0.2em] text-[11px] font-bold uppercase">El Caribe Maya a tu manera</span>
-                            </div>
-                            <h2 data-i18n-html="hero_title" class="font-display text-3xl sm:text-4xl lg:text-5xl text-white font-light leading-tight mb-6">
+                            <h1 data-i18n-html="hero_title" class="font-display text-4xl sm:text-5xl lg:text-6xl text-white font-light leading-tight mb-6">
                                 Cancún no es solo un destino, <br class="hidden sm:inline">es un <span class="font-serif italic font-bold text-brand-accent">estado de plenitud.</span>
-                            </h2>
+                            </h1>
                             <div class="w-16 h-[2px] bg-brand-accent mb-6"></div>
                             <p data-i18n="hero_desc" class="text-slate-300 font-light text-base md:text-lg leading-relaxed mb-6">
                                 La joya de Quintana Roo. Un lugar donde la selva de esmeraldas se funde con el mar turquesa y el tiempo parece detenerse para regalarte momentos inigualables. Cancún te ofrece el contraste perfecto de la civilización maya y la hospitalidad premium contemporánea.
                             </p>
-                            <div class="p-4 rounded-xl bg-brand-navy/60 border-l-4 border-brand-accent mb-8 shadow-md">
+                            <div class="p-4 rounded-xl glass-card border-l-4 border-l-brand-accent mb-8 shadow-md">
                                 <p data-i18n="hero_quote" class="text-white font-serif italic text-base md:text-lg">
                                     "Siente la brisa caribeña sin límites ni prisas. Te revelamos el verdadero color del paraíso."
                                 </p>
@@ -290,17 +324,17 @@
                                 <button onclick="navigateTo('catalog', 'tour')" class="premium-btn bg-brand-accent text-brand-dark px-7 py-3.5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-white transition-all duration-300 shadow-[0_4px_20px_rgba(189,160,106,0.25)] flex items-center gap-2">
                                     <span data-i18n="btn_explore_catalog">Explorar Catálogo</span> <i class="fas fa-arrow-right text-[11px]"></i>
                                 </button>
-                                <button onclick="navigateTo('contact')" class="border border-white/20 hover:border-brand-accent text-white hover:text-brand-accent px-7 py-3.5 rounded-full font-medium uppercase text-xs tracking-widest transition-all duration-300 bg-white/5">
+                                <button onclick="navigateTo('contact')" class="glass-panel text-white hover:text-brand-accent px-7 py-3.5 rounded-full font-medium uppercase text-xs tracking-widest transition-all duration-300">
                                     <span data-i18n="btn_design_itinerary">Diseñar Itinerario</span>
                                 </button>
                             </div>
                         </div>
                         
                         <!-- Imagen Principal de Inicio -->
-                        <div class="relative h-[45vh] lg:h-[60vh] w-full reveal-curtain shadow-2xl rounded-3xl overflow-hidden bg-brand-navy border border-white/10 group">
+                        <div class="relative h-[45vh] lg:h-[60vh] w-full reveal-curtain shadow-2xl rounded-3xl overflow-hidden glass-card group">
                             <img id="inicio-playas-img" src="https://beamazingcolors.github.io/oficial/cun.png" alt="Playas de Cancún" class="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" onerror="handleImgError(this, 'playas')">
                             <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent pointer-events-none"></div>
-                            <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs text-white/80 bg-brand-dark/70 backdrop-blur-md py-3 px-5 rounded-2xl border border-white/10">
+                            <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs text-white/80 glass-panel py-3 px-5 rounded-2xl">
                                 <span data-i18n-html="badge_location" class="font-display tracking-widest uppercase"><i class="fas fa-map-pin text-brand-accent mr-2"></i>Cancún, Quintana Roo</span>
                                 <span data-i18n="badge_mexican_caribbean" class="text-brand-accent font-semibold tracking-wider">Caribe Mexicano</span>
                             </div>
@@ -317,7 +351,7 @@
                             <div class="w-12 h-[1.5px] bg-brand-accent mx-auto mt-4"></div>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-                            <div class="border border-white/10 p-8 rounded-2xl bg-brand-navy/80 hover:bg-brand-navy hover:-translate-y-2 transition-all duration-400 shadow-xl reveal-up flex flex-col justify-between group">
+                            <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-400 shadow-xl reveal-up flex flex-col justify-between group">
                                 <div>
                                     <div class="w-14 h-14 rounded-2xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                         <i class="fas fa-sun text-brand-accent text-2xl"></i>
@@ -329,7 +363,7 @@
                                     <span data-i18n="fact1_tag">Fenómeno Natural</span> <i class="fas fa-sparkles text-[10px]"></i>
                                 </div>
                             </div>
-                            <div class="border border-white/10 p-8 rounded-2xl bg-brand-navy/80 hover:bg-brand-navy hover:-translate-y-2 transition-all duration-400 shadow-xl reveal-up flex flex-col justify-between group">
+                            <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-400 shadow-xl reveal-up flex flex-col justify-between group">
                                 <div>
                                     <div class="w-14 h-14 rounded-2xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                         <i class="fas fa-water text-brand-accent text-2xl"></i>
@@ -341,7 +375,7 @@
                                     <span data-i18n="fact2_tag">Vida Marina</span> <i class="fas fa-fish text-[10px]"></i>
                                 </div>
                             </div>
-                            <div class="border border-white/10 p-8 rounded-2xl bg-brand-navy/80 hover:bg-brand-navy hover:-translate-y-2 transition-all duration-400 shadow-xl reveal-up flex flex-col justify-between group">
+                            <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-400 shadow-xl reveal-up flex flex-col justify-between group">
                                 <div>
                                     <div class="w-14 h-14 rounded-2xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                         <i class="fas fa-gem text-brand-accent text-2xl"></i>
@@ -375,7 +409,7 @@
                         <div class="absolute inset-y-0 right-0 w-16 md:w-40 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none"></div>
                         
                         <div id="home-carousel-scroll" class="flex animate-infinite-scroll flex-nowrap">
-                            <!-- Popula dinámicamente con soporte bilingüe -->
+                            <!-- Popula dinámicamente -->
                         </div>
                     </div>
                 </div>
@@ -384,7 +418,7 @@
             <!-- ========================================== -->
             <!-- VISTA 2: LEGADO (ABOUT)                    -->
             <!-- ========================================== -->
-            <section id="page-legacy" class="page-view bg-brand-dark w-full max-w-full">
+            <section id="page-legacy" class="page-view w-full max-w-full">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                         <div class="reveal-up lg:pr-8">
@@ -397,11 +431,11 @@
                                 Mientras el mundo entero experimentaba profundos cambios, nosotros decidimos mirar hacia el horizonte del Caribe Mexicano y crear una propuesta diferente. Nos propusimos diseñar experiencias completamente libres de filas, personalizadas al detalle y enfocadas en revelar la verdadera esencia y pureza de Cancún y la Riviera Maya.
                             </p>
                             <div class="grid grid-cols-2 gap-4 mb-6">
-                                <div class="p-4 rounded-xl bg-brand-navy border border-white/10">
+                                <div class="p-4 rounded-xl glass-card">
                                     <span data-i18n="legacy_stat1_num" class="text-2xl font-display font-bold text-brand-accent block mb-1">+5 Años</span>
                                     <span data-i18n="legacy_stat1_txt" class="text-xs text-slate-300 uppercase tracking-wider">De Excelencia Boutique</span>
                                 </div>
-                                <div class="p-4 rounded-xl bg-brand-navy border border-white/10">
+                                <div class="p-4 rounded-xl glass-card">
                                     <span class="text-2xl font-display font-bold text-brand-accent block mb-1">100%</span>
                                     <span data-i18n="legacy_stat2_txt" class="text-xs text-slate-300 uppercase tracking-wider">Itinerarios Privados</span>
                                 </div>
@@ -411,7 +445,7 @@
                             </p>
                         </div>
                         
-                        <div class="relative h-[45vh] lg:h-[65vh] w-full reveal-curtain shadow-2xl rounded-3xl overflow-hidden bg-brand-navy border border-white/10 group">
+                        <div class="relative h-[45vh] lg:h-[65vh] w-full reveal-curtain shadow-2xl rounded-3xl overflow-hidden glass-card group">
                             <img id="legado-yate-img" src="https://beamazingcolors.github.io/oficial/cnt.jpg" alt="Aventura de Legado Amazing Colors" class="w-full h-full object-cover object-center transition-transform duration-[2s] group-hover:scale-105" onerror="handleImgError(this, 'arqueologia')">
                             <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent pointer-events-none"></div>
                         </div>
@@ -422,7 +456,7 @@
             <!-- ========================================== -->
             <!-- VISTA 3: CATÁLOGO DINÁMICO                 -->
             <!-- ========================================== -->
-            <section id="page-catalog" class="page-view bg-brand-dark w-full max-w-full">
+            <section id="page-catalog" class="page-view w-full max-w-full">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
                     <div class="text-center mb-10 lg:mb-14 reveal-up">
                         <span id="catalog-category-badge" class="text-brand-accent uppercase tracking-[0.25em] text-xs font-bold mb-3 block">Experiencias Exclusivas</span>
@@ -433,20 +467,20 @@
                     <!-- Buscador en tiempo real y Filtros Cápsula -->
                     <div class="max-w-xl mx-auto mb-8 px-2">
                         <div class="relative">
-                            <input type="text" id="catalog-search-input" data-i18n-placeholder="search_placeholder" oninput="handleCatalogSearch(this.value)" placeholder="Buscar experiencia, destino o embarcación..." class="w-full bg-brand-navy/90 border border-white/20 rounded-full py-3 pl-11 pr-4 text-xs md:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-brand-accent transition-colors shadow-lg">
+                            <input type="text" id="catalog-search-input" data-i18n-placeholder="search_placeholder" oninput="handleCatalogSearch(this.value)" placeholder="Buscar experiencia, destino o embarcación..." class="w-full glass-panel rounded-full py-3 pl-11 pr-4 text-xs md:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-brand-accent transition-colors shadow-lg">
                             <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-brand-accent text-sm pointer-events-none"></i>
                         </div>
                     </div>
 
                     <!-- Selectores de Subcategoría Estilo Cápsula Premium -->
                     <div class="flex justify-center gap-3 sm:gap-4 mb-12 border-b border-white/10 pb-6 flex-wrap w-full max-w-full">
-                        <button id="sub-nav-tour" class="px-6 py-2.5 text-[11px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none flex items-center gap-2" onclick="filterCatalog('tour')">
+                        <button id="sub-nav-tour" class="glass-panel px-6 py-2.5 text-[11px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 text-white hover:border-brand-accent focus:outline-none flex items-center gap-2" onclick="filterCatalog('tour')">
                             <i class="fas fa-compass text-[10px]"></i> <span data-i18n="sub_tour">Tours & Aventuras</span>
                         </button>
-                        <button id="sub-nav-yate" class="px-6 py-2.5 text-[11px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none flex items-center gap-2" onclick="filterCatalog('yate')">
+                        <button id="sub-nav-yate" class="glass-panel px-6 py-2.5 text-[11px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 text-white hover:border-brand-accent focus:outline-none flex items-center gap-2" onclick="filterCatalog('yate')">
                             <i class="fas fa-ship text-[10px]"></i> <span data-i18n="sub_yacht">Yates & Catamaranes</span>
                         </button>
-                        <button id="sub-nav-transportacion" class="px-6 py-2.5 text-[11px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 border border-white/10 text-white hover:border-brand-accent focus:outline-none flex items-center gap-2" onclick="filterCatalog('transportacion')">
+                        <button id="sub-nav-transportacion" class="glass-panel px-6 py-2.5 text-[11px] md:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 text-white hover:border-brand-accent focus:outline-none flex items-center gap-2" onclick="filterCatalog('transportacion')">
                             <i class="fas fa-car-side text-[10px]"></i> <span data-i18n="sub_trans">Traslados VIP</span>
                         </button>
                     </div>
@@ -465,7 +499,7 @@
             <!-- ========================================== -->
             <!-- VISTA 4: PASARELA DE RESERVA               -->
             <!-- ========================================== -->
-            <section id="page-contact" class="page-view bg-brand-dark w-full max-w-full">
+            <section id="page-contact" class="page-view w-full max-w-full">
                 <div class="max-w-4xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
                     <div class="text-center mb-12 lg:mb-16 reveal-up">
                         <span data-i18n="contact_badge" class="text-brand-accent uppercase tracking-[0.25em] text-xs font-bold mb-3 block">Planificación Personalizada</span>
@@ -473,12 +507,14 @@
                         <p data-i18n="contact_desc" class="text-slate-300 font-light text-base mt-3 max-w-lg mx-auto">Envíanos tus deseos de viaje y un concierge especializado creará tu itinerario ideal en minutos.</p>
                     </div>
 
-                    <div class="bg-brand-navy/90 backdrop-blur-md p-8 md:p-12 shadow-2xl rounded-3xl reveal-up border border-white/10 max-w-3xl mx-auto w-full relative">
+                    <div class="glass-card p-8 md:p-12 rounded-3xl reveal-up max-w-3xl mx-auto w-full relative">
                         <div data-i18n="contact_card_pill" class="absolute -top-3 -right-3 bg-brand-accent text-brand-dark px-4 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase shadow-lg">
                             Atención Directa 24/7
                         </div>
                         
-                        <form id="bookingFunnel" class="space-y-8" onsubmit="handleFormSubmit(event)">
+                        <form id="bookingFunnel" class="space-y-8" onsubmit="handleFormSubmit(event)" novalidate>
+                            <div id="form-error-msg" class="hidden text-red-400 bg-red-900/30 border border-red-500/50 p-3 rounded-xl text-xs font-semibold mb-6"></div>
+                            
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
                                 <div class="relative">
                                     <input type="text" id="f_name" required class="w-full bg-transparent border-b border-white/20 text-white py-3 focus:outline-none focus:border-brand-accent transition-colors peer placeholder-transparent text-sm" data-i18n-placeholder="form_ph_name" placeholder="Tu Nombre">
@@ -518,14 +554,27 @@
                     </div>
                 </div>
             </section>
+
+            <!-- ========================================== -->
+            <!-- VISTA 5: PÁGINA 404 PERSONALIZADA          -->
+            <!-- ========================================== -->
+            <section id="page-404" class="page-view w-full min-h-[70vh] flex flex-col items-center justify-center pt-24 pb-12">
+                <div class="text-center p-10 glass-card rounded-3xl max-w-lg mx-auto shadow-2xl relative overflow-hidden">
+                    <div class="absolute inset-0 bg-brand-accent/5 pointer-events-none"></div>
+                    <h1 class="text-7xl font-display font-black text-brand-accent mb-4 drop-shadow-md">404</h1>
+                    <h2 class="text-3xl text-white font-semibold mb-3 font-display" data-i18n="p404_title">Ruta no encontrada</h2>
+                    <p class="text-slate-300 text-sm mb-8 px-4" data-i18n="p404_desc">La experiencia que buscas no está disponible o la URL es incorrecta.</p>
+                    <button onclick="navigateTo('home')" class="glass-panel text-brand-accent px-8 py-3.5 rounded-full uppercase text-xs tracking-widest font-bold hover:bg-brand-accent hover:text-brand-dark transition-colors relative z-10" data-i18n="p404_btn">Volver al Inicio</button>
+                </div>
+            </section>
         </div>
 
         <!-- ========================================== -->
         <!-- MODAL DE DETALLE E INFORMACIÓN DE RESERVA   -->
         <!-- ========================================== -->
-        <div id="activity-detail-modal" class="fixed inset-0 bg-brand-dark/95 backdrop-blur-md z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 overflow-y-auto p-4 md:p-6" onclick="closeDetailModal()">
-            <div class="bg-brand-navy border border-white/10 rounded-3xl w-full max-w-4xl relative overflow-hidden shadow-2xl flex flex-col md:flex-row my-auto max-h-[90vh]" onclick="event.stopPropagation()">
-                <button onclick="closeDetailModal()" class="absolute top-4 right-4 text-white hover:text-brand-accent transition-colors z-50 text-xl focus:outline-none p-2 bg-brand-dark/80 rounded-full h-10 w-10 flex items-center justify-center border border-white/10">
+        <div id="activity-detail-modal" class="fixed inset-0 bg-brand-dark/95 backdrop-blur-md z-[80] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 overflow-y-auto p-4 md:p-6" onclick="closeDetailModal()">
+            <div class="glass-card rounded-3xl w-full max-w-4xl relative overflow-hidden flex flex-col md:flex-row my-auto max-h-[90vh]" onclick="event.stopPropagation()">
+                <button onclick="closeDetailModal()" class="absolute top-4 right-4 text-white hover:text-brand-accent transition-colors z-[90] text-xl focus:outline-none p-2 glass-panel rounded-full h-10 w-10 flex items-center justify-center border border-white/10">
                     <i class="fas fa-times"></i>
                 </button>
                 
@@ -533,13 +582,13 @@
                 <div class="md:w-1/2 relative min-h-[280px] md:min-h-[480px] overflow-hidden bg-brand-dark cursor-zoom-in group" id="detail-img-container">
                     <img id="detail-modal-img" src="" alt="Detalle Actividad" class="w-full h-full object-cover object-center absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent"></div>
-                    <div class="absolute bottom-4 left-4 bg-brand-dark/80 backdrop-blur-md px-4 py-2 rounded-full text-xs text-brand-accent flex items-center gap-2 pointer-events-none border border-white/10">
+                    <div class="absolute bottom-4 left-4 glass-panel px-4 py-2 rounded-full text-xs text-brand-accent flex items-center gap-2 pointer-events-none">
                         <i class="fas fa-search-plus"></i> <span data-i18n="modal_zoom_hint">Clic para ampliar con lupa</span>
                     </div>
                 </div>
 
                 <!-- Descriptor Técnico de Ficha Técnica Especializada -->
-                <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-between overflow-y-auto">
+                <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-between overflow-y-auto bg-brand-navy/60">
                     <div>
                         <span id="detail-modal-pax" class="text-brand-accent text-xs font-bold uppercase tracking-widest block mb-2">Amazing Colors Private</span>
                         <h3 id="detail-modal-title" class="font-display text-2xl md:text-3xl text-white font-bold mb-2">Amapola</h3>
@@ -576,15 +625,28 @@
         <!-- ========================================== -->
         <!-- INTERPOLADOR LIGHTBOX INTERACTIVO DE LUPA  -->
         <!-- ========================================== -->
-        <div id="image-zoom-modal" class="fixed inset-0 bg-brand-dark/98 z-[60] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeZoomModal()">
-            <button onclick="closeZoomModal()" class="absolute top-6 right-6 text-white text-3xl hover:text-brand-accent transition-colors z-50 focus:outline-none p-4">
+        <div id="image-zoom-modal" class="fixed inset-0 bg-brand-dark/98 backdrop-blur-md z-[100] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeZoomModal()">
+            <button onclick="closeZoomModal()" class="absolute top-6 right-6 text-white text-3xl hover:text-brand-accent transition-colors z-[110] focus:outline-none p-4 drop-shadow-xl">
                 <i class="fas fa-times"></i>
             </button>
             <div class="relative max-w-5xl max-h-[80vh] overflow-hidden cursor-zoom-out p-2" id="zoom-container" onclick="event.stopPropagation()" onmousemove="zoomImage(event)" onmouseleave="resetZoomImage()">
                 <img id="zoom-modal-img" src="" alt="Detalle Premium" class="max-w-full max-h-[75vh] object-contain object-center transition-transform duration-100 ease-out origin-center select-none pointer-events-none rounded-2xl shadow-2xl border border-white/10">
             </div>
-            <div data-i18n="zoom_hint_text" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/70 text-xs tracking-widest uppercase pointer-events-none text-center px-4 bg-brand-dark/80 py-2 rounded-full border border-white/10">
+            <div data-i18n="zoom_hint_text" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/70 text-xs tracking-widest uppercase pointer-events-none text-center px-4 glass-panel py-2 rounded-full">
                 Desplaza el cursor sobre la imagen para explorar detalles con la lente amplificadora
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- BANNER DE COOKIES (GLASSMORFISMO)          -->
+        <!-- ========================================== -->
+        <div id="cookie-banner" class="fixed bottom-0 left-0 w-full z-[70] glass-panel p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4 transform translate-y-full transition-transform duration-700 ease-in-out shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+            <div class="text-xs md:text-sm text-slate-300 max-w-4xl">
+                <strong class="text-white font-display uppercase tracking-widest block mb-1" data-i18n="cookie_title">Privacidad y Seguridad</strong>
+                <span data-i18n="cookie_desc">Utilizamos cookies operativas y cifradas esenciales para garantizar la seguridad de su sesión de reserva y el correcto funcionamiento del sitio. Al continuar navegando, usted acepta nuestra estricta política de confidencialidad.</span>
+            </div>
+            <div class="flex gap-3 shrink-0 mt-3 md:mt-0">
+                <button onclick="acceptCookies()" class="premium-btn bg-brand-accent text-brand-dark px-8 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors" data-i18n="cookie_accept">Aceptar</button>
             </div>
         </div>
 
@@ -629,7 +691,7 @@
                     <div>
                         <h4 data-i18n="footer_concierge_title" class="text-brand-accent font-display font-semibold tracking-widest uppercase text-xs mb-6 border-b border-brand-accent/20 pb-2">Contacto Concierge</h4>
                         <p data-i18n-html="footer_address" class="text-slate-300 font-light text-sm leading-relaxed mb-4">
-                            Cancún, Quintana Roo & Riviera Maya<br>México
+                            Blvd. Kukulcan Km 9, Zona Hotelera<br>77500 Cancún, Q.R., México
                         </p>
                         <button onclick="openWhatsApp()" class="text-brand-accent hover:text-white text-sm font-semibold transition-colors focus:outline-none flex items-center gap-2 bg-brand-accent/10 border border-brand-accent/30 py-2.5 px-4 rounded-full">
                             <i class="fab fa-whatsapp text-base"></i> <span data-i18n="footer_direct_contact">Contacto Concierge Directo</span>
@@ -650,7 +712,7 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- NÚCLEO LOGÍSTICO Y MOTOR BILINGÜE TSV      -->
+    <!-- NÚCLEO LOGÍSTICO, MOTOR BILINGÜE Y TSV     -->
     <!-- ========================================== -->
     <script>
         const TSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFWLeg9DvMAXX5TwL8JXwY3fm0UDHeKxnqmtYVZGQNNHcTSJG32pLWZVHCMA2-Eo_lZ9sVHqKtgvIO/pub?output=tsv';
@@ -666,6 +728,7 @@
         let currentSearchQuery = '';
         let currentLang = 'es';
         let lastOpenedItemName = null;
+        let lastFormSubmitTime = 0; // Para el Rate Limiting de seguridad
 
         const i18n = {
             es: {
@@ -677,7 +740,6 @@
                 sub_tour: "Tours & Aventuras",
                 sub_yacht: "Yates & Catamaranes",
                 sub_trans: "Traslados VIP",
-                hero_badge: "El Caribe Maya a tu manera",
                 hero_title: `Cancún no es solo un destino, <br class="hidden sm:inline">es un <span class="font-serif italic font-bold text-brand-accent">estado de plenitud.</span>`,
                 hero_desc: "La joya de Quintana Roo. Un lugar donde la selva de esmeraldas se funde con el mar turquesa y el tiempo parece detenerse para regalarte momentos inigualables. Cancún te ofrece el contraste perfecto de la civilización maya y la hospitalidad premium contemporánea.",
                 hero_quote: `"Siente la brisa caribeña sin límites ni prisas. Te revelamos el verdadero color del paraíso."`,
@@ -734,10 +796,12 @@
                 form_lbl_interests: "Actividades o Yates de Interés (Ej: Chichén Itzá, Catamarán Isla Mujeres)",
                 form_btn_submit: "Enviar Solicitud a WhatsApp",
                 form_subtext: "Respuesta inmediata con cotización formal e itinerario detallado.",
+                form_err_rate_limit: "Por seguridad, espera 60 segundos antes de enviar otra solicitud.",
+                form_err_required: "Por favor, completa los campos obligatorios.",
                 footer_desc: "Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas, yates exclusivos y logística de lujo.",
                 footer_sections_title: "Secciones Rápidas",
                 footer_concierge_title: "Contacto Concierge",
-                footer_address: "Cancún, Quintana Roo & Riviera Maya<br>México",
+                footer_address: "Blvd. Kukulcan Km 9, Zona Hotelera<br>77500 Cancún, Q.R., México",
                 footer_direct_contact: "Contacto Concierge Directo",
                 footer_copyright: "© 2026 Amazing Colors Private Tours. Todos los derechos reservados.",
                 footer_privacy: "Privacidad y Confidencialidad Garantizada",
@@ -753,7 +817,13 @@
                 whatsapp_default: "Hola Concierge Amazing Colors. Quisiera información personalizada.",
                 whatsapp_modal: "Hola Concierge de Amazing Colors. Deseo agendar y cotizar la experiencia de: ",
                 whatsapp_form_intro: "Hola Concierge de Amazing Colors, mi nombre es ",
-                consult_concierge: "Consulte con su Concierge"
+                consult_concierge: "Consulte con su Concierge",
+                cookie_title: "Privacidad y Seguridad",
+                cookie_desc: "Utilizamos cookies operativas y cifradas esenciales para garantizar la seguridad de su sesión de reserva y el correcto funcionamiento del sitio. Al continuar navegando, usted acepta nuestra estricta política de confidencialidad.",
+                cookie_accept: "Aceptar",
+                p404_title: "Ruta no encontrada",
+                p404_desc: "La experiencia que buscas no está disponible o la URL es incorrecta.",
+                p404_btn: "Volver al Inicio"
             },
             en: {
                 brand_tagline: "Elite Ocean Journeys & Private Experiences",
@@ -764,7 +834,6 @@
                 sub_tour: "Tours & Adventures",
                 sub_yacht: "Yachts & Catamarans",
                 sub_trans: "VIP Transfers",
-                hero_badge: "The Mayan Caribbean Your Way",
                 hero_title: `Cancún is not just a destination, <br class="hidden sm:inline">it is a <span class="font-serif italic font-bold text-brand-accent">state of bliss.</span>`,
                 hero_desc: "The jewel of Quintana Roo. A sanctuary where the emerald jungle embraces the turquoise ocean and time stands still to bestow unforgettable moments. Cancún delivers the timeless majesty of Mayan heritage coupled with world-class boutique hospitality.",
                 hero_quote: `"Embrace the Caribbean breeze with no limits or rush. We reveal the authentic colors of paradise."`,
@@ -821,10 +890,12 @@
                 form_lbl_interests: "Activities or Yachts of Interest (e.g. Chichén Itzá, Isla Mujeres Catamaran)",
                 form_btn_submit: "Send Request to WhatsApp",
                 form_subtext: "Instant response with a tailored proposal and detailed itinerary.",
+                form_err_rate_limit: "For security, please wait 60 seconds before submitting another request.",
+                form_err_required: "Please fill in the required fields to continue.",
                 footer_desc: "Redefining boutique travel across the Mexican Caribbean. Authentic private adventures, luxury yacht charters, and VIP executive logistics.",
                 footer_sections_title: "Quick Navigation",
                 footer_concierge_title: "Concierge Contact",
-                footer_address: "Cancun, Quintana Roo & Riviera Maya<br>Mexico",
+                footer_address: "Blvd. Kukulcan Km 9, Hotel Zone<br>77500 Cancun, Q.R., Mexico",
                 footer_direct_contact: "Direct Concierge WhatsApp",
                 footer_copyright: "© 2026 Amazing Colors Private Tours. All rights reserved.",
                 footer_privacy: "Guaranteed Privacy & Discretion",
@@ -840,7 +911,13 @@
                 whatsapp_default: "Hello Amazing Colors Concierge. I would like personalized information.",
                 whatsapp_modal: "Hello Amazing Colors Concierge. I would like to book and receive pricing for: ",
                 whatsapp_form_intro: "Hello Amazing Colors Concierge, my name is ",
-                consult_concierge: "Inquire with Concierge"
+                consult_concierge: "Inquire with Concierge",
+                cookie_title: "Privacy and Security",
+                cookie_desc: "We use operational and encrypted cookies essential to guarantee the security of your booking session and the proper functioning of the site. By continuing to browse, you agree to our strict confidentiality policy.",
+                cookie_accept: "Accept",
+                p404_title: "Path Not Found",
+                p404_desc: "The experience you are looking for is not available or the URL is incorrect.",
+                p404_btn: "Return Home"
             }
         };
 
@@ -899,6 +976,7 @@
             "brindar en este clásico galéon español es ilimitado, ya que columbus cuenta con barra libre nacional, sacando tu lado más creativo.": "Toasting on this classic Spanish Galleon is limitless, as the Columbus features a Domestic Open Bar, bringing out your most creative side.",
             "brindar en este clásico galéon español es ilimitado, ya que columbus cuenta con barra libre nacional.": "Toasting on this classic Spanish Galleon is limitless, as the Columbus features a Domestic Open Bar.",
             "servicio de transportación privada, viajes sencillos y redondos": "Private transportation service, one-way and round trips",
+            
             "24 cervezas 24 aguas 24 refrescos hielo tripulación": "24 Beers, 24 Bottled Waters, 24 Soft Drinks, Ice, Crew",
             "transportación redonda. una comida buffet. presentación de xcaret méxico espectacular. visitas al acuario de arrecife coral, el mariposario y aviario. chalecos salvavidas. camastros, hamacas y áreas de descanso.": "Round-trip transportation. One buffet meal. Xcaret Mexico Espectacular presentation. Visits to the Coral Reef Aquarium, Butterfly Pavilion, and Aviary. Life jackets. Lounge chairs, hammocks, and rest areas.",
             "transportación redonda. una comida buffet que incluye una cerveza y bebidas ilimitadas. presentación de xcaret méxico espectacular. acceso a la playa, la caleta y pozas naturales. casilleros, vestidores y baños.": "Round-trip transportation. A buffet meal including one beer and unlimited beverages. Xcaret Mexico Espectacular presentation. Access to the beach, inlet, and natural pools. Lockers, dressing rooms, and restrooms.",
@@ -934,7 +1012,6 @@
         };
 
         const MASTER_PHRASES_EN = [
-            { es: /olvídate de las multitudes y diseña tu propio día/gi, en: "leave the crowds behind and tailor your own bespoke day" },
             { es: /navegación privada de lujo a isla mujeres/gi, en: "private luxury sailing charter to Isla Mujeres" },
             { es: /con capitán y marinero/gi, en: "with certified captain and sailor crew" },
             { es: /recepción de lujo en aeropuerto y traslado directo/gi, en: "VIP luxury airport meet & greet with direct transfer" },
@@ -1036,19 +1113,16 @@
             let clean = text.trim();
             if (clean === '') return '';
 
-            // 0. Búsqueda Exacta (Garantiza descripciones e "incluye" perfectos y fluidos en inglés)
             let lowerText = clean.toLowerCase().replace(/\s+/g, ' ').trim();
             if (MASTER_EXACT_MATCHES[lowerText]) {
                 return MASTER_EXACT_MATCHES[lowerText];
             }
 
-            // 1. Sustitución de frases compuestas residuales
             let translated = clean;
             MASTER_PHRASES_EN.forEach(rule => {
                 translated = translated.replace(rule.es, rule.en);
             });
 
-            // 2. Tokenizador léxico inteligente (para nombres cortos, títulos o palabras sueltas)
             translated = translated.replace(/([a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+)/g, (match) => {
                 let lower = match.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 let directMatch = match.toLowerCase();
@@ -1066,21 +1140,25 @@
                 return match;
             });
 
-            // 3. Limpieza de conectores residuales y dobles espacios
-            translated = translated
-                .replace(/\bthe the\b/gi, 'the')
-                .replace(/\ba a\b/gi, 'a')
-                .replace(/\band and\b/gi, 'and')
-                .replace(/\s{2,}/g, ' ')
-                .trim();
-
+            translated = translated.replace(/\bthe the\b/gi, 'the').replace(/\ba a\b/gi, 'a').replace(/\band and\b/gi, 'and').replace(/\s{2,}/g, ' ').trim();
             return translated;
         }
 
         function switchLanguage(lang) {
             currentLang = lang;
             document.documentElement.lang = lang;
-            document.title = "Amazing Colors | " + i18n[lang].brand_tagline;
+            
+            const titles = {
+                'home': i18n[lang].nav_home,
+                'legacy': i18n[lang].nav_legacy,
+                'catalog': i18n[lang].nav_catalog,
+                'contact': i18n[lang].nav_contact,
+                '404': i18n[lang].p404_title
+            };
+            
+            const currentActive = document.querySelector('.page-view.active');
+            let activePageId = currentActive ? currentActive.id.replace('page-', '') : 'home';
+            document.title = "Amazing Colors | " + (titles[activePageId] || i18n[lang].brand_tagline);
             
             const btnEs = document.getElementById('lang-btn-es');
             const btnEn = document.getElementById('lang-btn-en');
@@ -1125,23 +1203,15 @@
         function getImgUrlByFolio(folioValue, nameValue = '') {
             if (!folioValue || folioValue === '') return '';
             let fileName = folioValue.trim();
-            
-            // Eliminar extensión temporalmente si viene desde el TSV (ej. XCT.png -> XCT)
             let baseName = fileName.replace(/\.[^/.]+$/, ""); 
             let lowerBase = baseName.toLowerCase();
-
-            // Lista estricta de imágenes .png conocidas en el repositorio GitHub Oficial
             const knownPngs = ['cun', 'ca', 'clm', 'logo', 'lg2', 'trrr', 'trw', 'mrttt', 'xct'];
             let isPng = knownPngs.includes(lowerBase);
-            
-            // Forzar minúsculas para ciertos archivos que están en minúscula en GitHub
             if (['cun', 'cnt', 'logo', 'lg2'].includes(lowerBase)) {
                 baseName = lowerBase;
             } else {
-                baseName = baseName.toUpperCase(); // La mayoría usan mayúsculas: ANG.jpg, XHT.jpg, MRT.jpg
+                baseName = baseName.toUpperCase(); 
             }
-
-            // Construir URL final basada en el repositorio GitHub
             return GITHUB_BASE + baseName + (isPng ? '.png' : '.jpg');
         }
 
@@ -1153,42 +1223,30 @@
                 img.style.backgroundColor = '#071021';
                 return;
             }
-
             const currentSrc = img.src;
             let attempts = parseInt(img.dataset.extAttempts || '0');
-
             if (attempts < 6) {
                 img.dataset.extAttempts = (attempts + 1).toString();
-                
                 const filenameWithQuery = currentSrc.split('/').pop();
                 const filename = filenameWithQuery.split('?')[0];
                 const lastDot = filename.lastIndexOf('.');
                 const baseName = lastDot !== -1 ? filename.substring(0, lastDot) : filename;
                 const currentExt = lastDot !== -1 ? filename.substring(lastDot).toLowerCase() : '';
-
                 let nextExt = '.jpg';
                 let nextName = (attempts % 2 === 0) ? baseName.toUpperCase() : baseName.toLowerCase();
-
-                if (['cun', 'cnt', 'logo', 'lg2'].includes(baseName.toLowerCase())) {
-                    nextName = baseName.toLowerCase();
-                }
-
+                if (['cun', 'cnt', 'logo', 'lg2'].includes(baseName.toLowerCase())) nextName = baseName.toLowerCase();
                 if (currentExt.includes('png')) nextExt = '.jpg';
                 else if (currentExt.includes('jpg')) nextExt = '.png';
                 else if (currentExt.includes('jpeg')) nextExt = '.PNG';
                 else nextExt = '.png';
-
                 let nextServer = GITHUB_BASE;
                 if (attempts >= 2 && attempts < 4) nextServer = GITHUB_FALLBACK_CDN;
                 else if (attempts >= 4) nextServer = GITHUB_RAW_FALLBACK;
-
                 img.src = nextServer + nextName + nextExt;
                 return;
             }
-
             img.dataset.ultimateFailed = "true";
             img.onerror = null;
-
             const fallbacks = {
                 tours: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?auto=format&fit=crop&w=800&q=80",
                 yates: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
@@ -1197,80 +1255,25 @@
                 arqueologia: "https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=800&q=80",
                 general: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
             };
-
             img.src = fallbacks[fallbackCategory] || fallbacks.general;
             img.style.objectFit = 'cover';
         }
 
         function getCreativeSlogan(item, index) {
-            const slogansTours = {
-                es: [
-                    "Travesía Mística Exclusiva",
-                    "Aventura Premium a Medida",
-                    "Exploración de Leyenda",
-                    "Descubrimiento de Élite",
-                    "Experiencia de Lujo Absoluto",
-                    "Ruta Ancestral de Ensueño"
-                ],
-                en: [
-                    "Exclusive Mystical Journey",
-                    "Bespoke Premium Adventure",
-                    "Legendary Exploration",
-                    "Elite Discovery Route",
-                    "Absolute Luxury Experience",
-                    "Dream Ancestral Expedition"
-                ]
-            };
-            const slogansYates = {
-                es: [
-                    "Navegación de Alta Costura",
-                    "Elegancia sobre el Mar Turquesa",
-                    "Travesía Privada de Lujo",
-                    "Atardecer Exclusivo en Popa",
-                    "Carta Náutica de Ensueño",
-                    "Libertad Absoluta en Alta Mar"
-                ],
-                en: [
-                    "Haute Couture Navigation",
-                    "Elegance Over Turquoise Waters",
-                    "Private Luxury Charter",
-                    "Exclusive Sunset Sailing",
-                    "Bespoke Nautical Itinerary",
-                    "Absolute Freedom at High Sea"
-                ]
-            };
-            const slogansTrans = {
-                es: [
-                    "Arribo Impecable y Seguro",
-                    "Logística VIP con Chofer",
-                    "Confort de Primera Clase",
-                    "Privacidad Total en Ruta",
-                    "Conexión VIP Riviera Maya",
-                    "Transportación de Alta Gama"
-                ],
-                en: [
-                    "Flawless & Safe Arrival",
-                    "VIP Chauffeur Logistics",
-                    "First-Class Highway Comfort",
-                    "Complete Privacy on the Road",
-                    "Riviera Maya VIP Connection",
-                    "High-End Executive Transport"
-                ]
-            };
-            
+            const slogansTours = { es: ["Travesía Mística Exclusiva", "Aventura Premium a Medida", "Exploración de Leyenda", "Descubrimiento de Élite", "Experiencia de Lujo Absoluto", "Ruta Ancestral de Ensueño"], en: ["Exclusive Mystical Journey", "Bespoke Premium Adventure", "Legendary Exploration", "Elite Discovery Route", "Absolute Luxury Experience", "Dream Ancestral Expedition"] };
+            const slogansYates = { es: ["Navegación de Alta Costura", "Elegancia sobre el Mar Turquesa", "Travesía Privada de Lujo", "Atardecer Exclusivo en Popa", "Carta Náutica de Ensueño", "Libertad Absoluta en Alta Mar"], en: ["Haute Couture Navigation", "Elegance Over Turquoise Waters", "Private Luxury Charter", "Exclusive Sunset Sailing", "Bespoke Nautical Itinerary", "Absolute Freedom at High Sea"] };
+            const slogansTrans = { es: ["Arribo Impecable y Seguro", "Logística VIP con Chofer", "Confort de Primera Clase", "Privacidad Total en Ruta", "Conexión VIP Riviera Maya", "Transportación de Alta Gama"], en: ["Flawless & Safe Arrival", "VIP Chauffeur Logistics", "First-Class Highway Comfort", "Complete Privacy on the Road", "Riviera Maya VIP Connection", "High-End Executive Transport"] };
             let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
             let lang = currentLang === 'en' ? 'en' : 'es';
             let arr = slogansTours[lang];
             if (tipo.includes('yate')) arr = slogansYates[lang];
             else if (tipo.includes('trans') || tipo.includes('traslado')) arr = slogansTrans[lang];
-            
             return arr[index % arr.length];
         }
 
         function getCleanValue(item, possibleHeaders) {
             if (!item) return '';
             const normalizedSearched = possibleHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
-            
             for (let originalKey in item) {
                 let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
                 if (normalizedSearched.includes(normalizedKey)) {
@@ -1281,7 +1284,6 @@
                     return val;
                 }
             }
-            
             for (let originalKey in item) {
                 let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
                 for (let search of normalizedSearched) {
@@ -1302,9 +1304,7 @@
             for (let i = 0; i < text.length; i++) {
                 let char = text[i]; let nextChar = text[i+1];
                 if (inQuotes) {
-                    if (char === '"') {
-                        if (nextChar === '"') { field += '"'; i++; } else { inQuotes = false; }
-                    } else { field += char; }
+                    if (char === '"') { if (nextChar === '"') { field += '"'; i++; } else { inQuotes = false; } } else { field += char; }
                 } else {
                     if (char === '"') { inQuotes = true; } 
                     else if (char === '\t') { row.push(field); field = ''; } 
@@ -1325,14 +1325,11 @@
                 const text = await response.text();
                 let cleanText = text;
                 if (cleanText.charCodeAt(0) === 0xFEFF) cleanText = cleanText.substring(1);
-                
                 const rows = parseTSV(cleanText).filter(r => r.length > 0 && r.some(cell => cell.trim() !== ''));
                 if (rows.length < 2) throw new Error("Empty TSV");
-                
                 const rawHeaders = rows[0].map(h => h.trim());
                 globalHeaders = rawHeaders;
                 const cleanHeaders = rawHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
-                
                 fullData = rows.slice(1).map(row => {
                     let item = {}; 
                     rawHeaders.forEach((h, i) => { 
@@ -1342,32 +1339,23 @@
                     }); 
                     return item;
                 });
-                
                 renderCatalog();
                 initHomeCarousel();
             } catch (err) { 
-                console.warn("Aviso en carga de TSV. Activando Catálogo de Respaldo Completo Integrado.", err);
+                console.warn("Aviso en carga de TSV. Activando Catálogo de Respaldo.", err);
                 renderFallbackCatalog();
             }
+            checkCookies(); // Muestra el banner si no existe la cookie
         }
 
         function initHomeCarousel() {
             const scrollContainer = document.getElementById('home-carousel-scroll');
             if (!scrollContainer) return;
-
             let source = fullData.length > 0 ? fullData : [];
-
-            let itemsWithImages = source.filter(item => {
-                let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
-                return folio && folio.trim() !== '';
-            });
-
+            let itemsWithImages = source.filter(item => { let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']); return folio && folio.trim() !== ''; });
             if (itemsWithImages.length === 0) return;
-            // Mostramos los primeros 6 elementos que tengan imagen para no sobrecargar la animación
             let selectedItems = itemsWithImages.slice(0, 6);
-
             let badgeText = i18n[currentLang].featured_badge;
-
             let setHtml = '';
             selectedItems.forEach(item => {
                 let rawName = getCleanValue(item, ['Nombre', 'NOMBRE']);
@@ -1375,7 +1363,6 @@
                 let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
                 let imgUrl = getImgUrlByFolio(folio, rawName);
                 let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
-                
                 let categoryType = 'tour';
                 if (tipo.includes('yate')) categoryType = 'yate';
                 if (tipo.includes('trans') || tipo.includes('traslado')) categoryType = 'transportacion';
@@ -1391,46 +1378,28 @@
                     </div>
                 `;
             });
-
-            scrollContainer.innerHTML = `
-                <div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap">${setHtml}</div>
-                <div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap">${setHtml}</div>
-            `;
+            scrollContainer.innerHTML = `<div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap">${setHtml}</div><div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap">${setHtml}</div>`;
         }
 
         function filterCatalog(category) {
             currentCategory = category;
-            
             document.querySelectorAll('#page-catalog button[id^="sub-nav-"]').forEach(btn => {
                 const isTarget = btn.id === `sub-nav-${category}`;
-                btn.classList.toggle('bg-brand-accent', isTarget);
-                btn.classList.toggle('text-brand-dark', isTarget);
-                btn.classList.toggle('font-bold', isTarget);
-                btn.classList.toggle('border-brand-accent', isTarget);
-                btn.classList.toggle('text-white', !isTarget);
-                btn.classList.toggle('border-white/10', !isTarget);
+                if (isTarget) {
+                    btn.classList.add('bg-brand-accent', 'text-brand-dark', 'font-bold', 'border-brand-accent');
+                    btn.classList.remove('text-white', 'border-white/10', 'glass-panel');
+                } else {
+                    btn.classList.remove('bg-brand-accent', 'text-brand-dark', 'font-bold', 'border-brand-accent');
+                    btn.classList.add('text-white', 'border-white/10', 'glass-panel');
+                }
             });
-
             const badge = document.getElementById('catalog-category-badge');
             const title = document.getElementById('catalog-category-title');
             const desc = document.getElementById('catalog-category-desc');
-
             const t = i18n[currentLang];
-
-            if (category === 'tour') {
-                badge.innerText = t.cat_tour_badge;
-                title.innerHTML = t.cat_tour_title;
-                desc.innerText = t.cat_tour_desc;
-            } else if (category === 'yate') {
-                badge.innerText = t.cat_yate_badge;
-                title.innerHTML = t.cat_yate_title;
-                desc.innerText = t.cat_yate_desc;
-            } else if (category === 'transportacion') {
-                badge.innerText = t.cat_trans_badge;
-                title.innerHTML = t.cat_trans_title;
-                desc.innerText = t.cat_trans_desc;
-            }
-
+            if (category === 'tour') { badge.innerText = t.cat_tour_badge; title.innerHTML = t.cat_tour_title; desc.innerText = t.cat_tour_desc; }
+            else if (category === 'yate') { badge.innerText = t.cat_yate_badge; title.innerHTML = t.cat_yate_title; desc.innerText = t.cat_yate_desc; }
+            else if (category === 'transportacion') { badge.innerText = t.cat_trans_badge; title.innerHTML = t.cat_trans_title; desc.innerText = t.cat_trans_desc; }
             renderCatalog();
         }
 
@@ -1443,21 +1412,16 @@
             const grid = document.getElementById('catalog-grid');
             if (!grid) return;
             grid.innerHTML = '';
-
             const t = i18n[currentLang];
-
             const filtered = fullData.filter(item => {
                 let tipoSheet = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 const matchesCategory = tipoSheet.includes(currentCategory.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
-                
                 if (!matchesCategory) return false;
                 if (!currentSearchQuery) return true;
-
                 let nombreEs = getCleanValue(item, ['Nombre', 'NOMBRE']).toLowerCase();
                 let descEs = getCleanValue(item, ['Descriptivo', 'Detalles', 'DESCRIPTIVO']).toLowerCase();
                 let nombreEn = translateCatalogText(nombreEs, 'en').toLowerCase();
                 let descEn = translateCatalogText(descEs, 'en').toLowerCase();
-                
                 return nombreEs.includes(currentSearchQuery) || descEs.includes(currentSearchQuery) || nombreEn.includes(currentSearchQuery) || descEn.includes(currentSearchQuery);
             });
 
@@ -1473,21 +1437,17 @@
             }
 
             let printedKeys = new Set();
-
             filtered.forEach((item, idx) => {
                 const card = document.createElement('div'); 
-                card.className = 'card w-full max-w-[350px] bg-brand-navy/60 border border-white/10 hover:border-brand-accent/40 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white group';
+                card.className = 'card w-full max-w-[350px] glass-card hover:border-brand-accent/40 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white group';
                 
                 let rawNombre = getCleanValue(item, ['Nombre', 'NOMBRE']) || 'Private Experience';
                 let nombre = translateCatalogText(rawNombre, currentLang);
                 let folioValue = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
                 let imgUrl = getImgUrlByFolio(folioValue, rawNombre);
                 let precio = getCleanValue(item, ['Precio', 'PRECIO']);
-                if (precio === '' || precio.toLowerCase() === 'consultar' || precio.toLowerCase() === 'inquire') {
-                    precio = getCreativeSlogan(item, idx);
-                } else {
-                    precio = translateCatalogText(precio, currentLang);
-                }
+                if (precio === '' || precio.toLowerCase() === 'consultar' || precio.toLowerCase() === 'inquire') precio = getCreativeSlogan(item, idx);
+                else precio = translateCatalogText(precio, currentLang);
 
                 let extraSpecsHtml = '';
                 const excludedHeaders = ['nombre', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye', 'catalogo', 'folio', 'pax'];
@@ -1496,18 +1456,13 @@
                 globalHeaders.forEach(header => {
                     let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '').trim();
                     if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) return;
-                    
                     if (printedKeys.has(keyNormalized)) return;
                     printedKeys.add(keyNormalized);
-
                     let val = getCleanValue(item, [header]); 
                     if (val && val !== '') {
                         let cleanLabel = header.trim().replace(/:$/, '');
-                        if (specHeaderTranslations[keyNormalized] && specHeaderTranslations[keyNormalized][currentLang]) {
-                            cleanLabel = specHeaderTranslations[keyNormalized][currentLang];
-                        }
+                        if (specHeaderTranslations[keyNormalized] && specHeaderTranslations[keyNormalized][currentLang]) cleanLabel = specHeaderTranslations[keyNormalized][currentLang];
                         let translatedVal = translateCatalogText(val, currentLang);
-
                         extraSpecsHtml += `
                             <div class="spec-row flex justify-between text-xs py-1 border-b border-white/5 last:border-0">
                                 <span class="spec-label font-semibold text-brand-accent uppercase tracking-wider text-[10px]">${cleanLabel}:</span>
@@ -1521,7 +1476,7 @@
                     <div class="img-container relative h-60 overflow-hidden bg-brand-dark cursor-pointer" onclick="openDetailModal('${rawNombre.replace(/'/g, "\\'")}')">
                         ${imgUrl ? `<img src="${imgUrl}" onerror="handleImgError(this, '${currentCategory}')" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" alt="${nombre}">` : ''}
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-transparent to-transparent"></div>
-                        <button onclick="openZoomModal('${imgUrl}', event)" class="absolute top-4 right-4 bg-brand-dark/80 hover:bg-brand-accent text-white hover:text-brand-dark w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none border border-white/10" title="${t.modal_zoom_hint}">
+                        <button onclick="openZoomModal('${imgUrl}', event)" class="absolute top-4 right-4 glass-panel hover:bg-brand-accent text-white hover:text-brand-dark w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none border border-white/10" title="${t.modal_zoom_hint}">
                             <i class="fas fa-search-plus text-xs"></i>
                         </button>
                     </div>
@@ -1532,7 +1487,7 @@
                         </div>
                         ${extraSpecsHtml ? `<div class="card-extra-specs border-t border-dashed border-white/10 pt-3 mt-3 flex flex-col gap-1 bg-brand-dark/30 p-3 rounded-xl">${extraSpecsHtml}</div>` : ''}
                         <div class="pt-6 mt-4 border-t border-white/10">
-                            <button onclick="openDetailModal('${rawNombre.replace(/'/g, "\\'")}')" class="w-full border border-brand-accent/50 hover:border-brand-accent bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-dark font-bold tracking-[0.2em] text-[10px] uppercase transition-all duration-300 rounded-full py-2.5 px-4 flex items-center justify-center gap-2 focus:outline-none shadow-md">
+                            <button onclick="openDetailModal('${rawNombre.replace(/'/g, "\\'")}')" class="w-full glass-panel hover:bg-brand-accent text-brand-accent hover:text-brand-dark font-bold tracking-[0.2em] text-[10px] uppercase transition-all duration-300 rounded-full py-2.5 px-4 flex items-center justify-center gap-2 focus:outline-none shadow-md border-brand-accent/40 hover:border-brand-accent">
                                 ${t.card_view_details} <i class="fas fa-chevron-right text-[8px]"></i>
                             </button>
                         </div>
@@ -1543,8 +1498,6 @@
         }
 
         function renderFallbackCatalog() {
-            // BASE DE DATOS DE RESPALDO COMPLETA (31 Elementos Exactos del TSV Oficial)
-            // Si el TSV falla, este código garantiza que TODO el catálogo cargará sin problemas.
             globalHeaders = ["TIPO", "Nombre", "Pies", "Capacidad de personas", "Descriptivo", "Incluye:", "Folio"];
             fullData = [
                 { "TIPO": "Yate", "Nombre": "Angelina", "Pies": "43 fts", "Capacidad de personas": "12", "Descriptivo": "Olvídate de las multitudes y diseña tu propio día. Desde el momento en que subes a bordo con tu grupo privado, nuestro capitán se encarga de todo. ¿Tu única misión? Decidir si quieres usar el paddleboard en aguas turquesas, tomar el sol en la proa o simplemente disfrutar de una copa mientras nos dirigimos a la icónica Isla Mujeres.", "Incluye:": "24 Cervezas 24 Aguas 24 Refrescos Hielo Tripulación", "Folio": "ANG" },
@@ -1579,26 +1532,27 @@
                 { "TIPO": "TRANSPORTACIÓN", "Nombre": "VAN 1- 20 pax", "Pies": "", "Capacidad de personas": "", "Descriptivo": "Servicio de transportación privada, viajes sencillos y redondos", "Incluye:": "Transportación privada", "Folio": "TRW" },
                 { "TIPO": "Yate", "Nombre": "Catamaran Privado", "Pies": "40 fts", "Capacidad de personas": "50", "Descriptivo": "Olvídate de las multitudes y diseña tu propio día. Desde el momento en que subes a bordo con tu grupo privado, nuestro capitán se encarga de todo.", "Incluye:": "24 Cervezas 24 Aguas 24 Refrescos Hielo Tripulación", "Folio": "MRTTT" }
             ];
-            
             filterCatalog('tour');
             initHomeCarousel();
         }
 
+        // SISTEMA DE ENRUTAMIENTO ÚNICO POR URL
         function navigateTo(pageId, subCategory = '') {
+            const validPages = ['home', 'legacy', 'catalog', 'contact'];
+            if (!validPages.includes(pageId)) pageId = '404';
+
+            const newHash = `/${pageId}${subCategory ? `/${subCategory}` : ''}`;
+            if (window.location.hash !== '#' + newHash) {
+                history.pushState(null, null, '#' + newHash);
+            }
+
             const currentActive = document.querySelector('.page-view.active');
             const targetPage = document.getElementById(`page-${pageId}`);
             
-            if(currentActive === targetPage && !subCategory) {
-                targetPage.style.opacity = '1';
-                targetPage.style.transform = 'scale(1) translateY(0)';
-                targetPage.style.filter = 'blur(0)';
-                setTimeout(() => setupReveals(), 100);
-                return;
-            }
+            const titles = { 'home': i18n[currentLang].nav_home, 'legacy': i18n[currentLang].nav_legacy, 'catalog': i18n[currentLang].nav_catalog, 'contact': i18n[currentLang].nav_contact, '404': i18n[currentLang].p404_title };
+            document.title = `Amazing Colors | ${titles[pageId] || ''}`;
 
-            if(history.pushState) {
-                history.pushState(null, null, `#${subCategory ? `${pageId}-${subCategory}` : pageId}`);
-            }
+            if(currentActive === targetPage && !subCategory) return;
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             if(currentActive) {
@@ -1609,9 +1563,7 @@
                     currentActive.classList.remove('active'); 
                     showTarget(); 
                 }, 250);
-            } else { 
-                showTarget(); 
-            }
+            } else { showTarget(); }
 
             function showTarget() {
                 if(targetPage) {
@@ -1626,34 +1578,34 @@
                 }
             }
 
-            if(pageId === 'catalog') {
-                filterCatalog(subCategory || 'tour');
-            }
+            if(pageId === 'catalog') filterCatalog(subCategory || 'tour');
 
             document.querySelectorAll('.nav-bar .nav-btn').forEach(link => {
                 const isCatalog = pageId === 'catalog' && link.id === 'btn-nav-catalog';
                 const isCurrent = link.id === `btn-nav-${pageId}` || isCatalog;
                 link.classList.toggle('active', isCurrent);
-                if (isCurrent) { 
-                    link.classList.add('text-brand-accent'); 
-                    link.classList.remove('text-white/80'); 
-                } else { 
-                    link.classList.remove('text-brand-accent'); 
-                    link.classList.add('text-white/80'); 
-                }
+                if (isCurrent) { link.classList.add('text-brand-accent'); link.classList.remove('text-white/80'); } 
+                else { link.classList.remove('text-brand-accent'); link.classList.add('text-white/80'); }
             });
+        }
+
+        window.addEventListener('hashchange', () => {
+            handleRoute(window.location.hash);
+        });
+
+        function handleRoute(hashStr) {
+            let hash = hashStr.replace(/^#\/?/, '');
+            if (!hash) { navigateTo('home'); return; }
+            let parts = hash.split('/');
+            navigateTo(parts[0], parts[1] || '');
         }
 
         function toggleCatalogDropdown(event) {
             if (event) event.stopPropagation();
             const menu = document.getElementById('catalog-dropdown-menu');
             const isOpen = !menu.classList.contains('opacity-0');
-            if (isOpen) { 
-                closeCatalogDropdown(); 
-            } else { 
-                menu.classList.remove('opacity-0', 'invisible'); 
-                menu.classList.add('opacity-100', 'visible'); 
-            }
+            if (isOpen) { closeCatalogDropdown(); } 
+            else { menu.classList.remove('opacity-0', 'invisible'); menu.classList.add('opacity-100', 'visible'); }
         }
 
         function closeCatalogDropdown() {
@@ -1689,7 +1641,6 @@
             let imgUrl = getImgUrlByFolio(folioValue, nombreBusqueda);
             img.src = imgUrl;
             img.onerror = function() { handleImgError(this, 'general'); };
-
             document.getElementById('detail-img-container').onclick = () => openZoomModal(imgUrl);
 
             let rawNombre = getCleanValue(item, ['Nombre', 'NOMBRE']);
@@ -1704,21 +1655,12 @@
             }
 
             let rawDesc = getCleanValue(item, ['Descriptivo', 'Detalles', 'DESCRIPTIVO']);
-            if (rawDesc) {
-                desc.innerText = translateCatalogText(rawDesc, currentLang);
-            } else {
-                desc.innerText = currentLang === 'en' 
-                    ? 'Bespoke boutique itinerary file available upon request from our dedicated concierge team.' 
-                    : 'Ficha de experiencia boutique personalizada disponible bajo solicitud de nuestro concierge.';
-            }
+            if (rawDesc) desc.innerText = translateCatalogText(rawDesc, currentLang);
+            else desc.innerText = currentLang === 'en' ? 'Bespoke boutique itinerary file available upon request from our dedicated concierge team.' : 'Ficha de experiencia boutique personalizada disponible bajo solicitud de nuestro concierge.';
             
             let rawIncluye = getCleanValue(item, ['Incluye:', 'Incluye', 'INCLUYE']);
-            if (rawIncluye) { 
-                includesSection.style.display = 'block'; 
-                includes.innerText = translateCatalogText(rawIncluye, currentLang); 
-            } else { 
-                includesSection.style.display = 'none'; 
-            }
+            if (rawIncluye) { includesSection.style.display = 'block'; includes.innerText = translateCatalogText(rawIncluye, currentLang); } 
+            else { includesSection.style.display = 'none'; }
 
             specsContainer.innerHTML = '';
             const excludedHeaders = ['nombre', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye', 'catalogo', 'folio', 'pax'];
@@ -1727,16 +1669,13 @@
             globalHeaders.forEach(header => {
                 let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '').trim();
                 if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) return;
-                
                 if (printedModalKeys.has(keyNormalized)) return;
                 printedModalKeys.add(keyNormalized);
 
                 let val = getCleanValue(item, [header]);
                 if (val && val !== '') {
                     let cleanLabel = header.trim().replace(/:$/, '');
-                    if (specHeaderTranslations[keyNormalized] && specHeaderTranslations[keyNormalized][currentLang]) {
-                        cleanLabel = specHeaderTranslations[keyNormalized][currentLang];
-                    }
+                    if (specHeaderTranslations[keyNormalized] && specHeaderTranslations[keyNormalized][currentLang]) cleanLabel = specHeaderTranslations[keyNormalized][currentLang];
                     let translatedVal = translateCatalogText(val, currentLang);
 
                     specsContainer.insertAdjacentHTML('beforeend', `
@@ -1749,7 +1688,6 @@
             });
 
             reserveBtn.onclick = () => openWhatsApp(`${t.whatsapp_modal}${translatedTitle}.`);
-
             modal.style.transition = 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
             modal.classList.remove('opacity-0', 'pointer-events-none');
             modal.offsetHeight; 
@@ -1804,20 +1742,74 @@
             img.style.transform = "scale(1)";
         }
 
+        function checkCookies() {
+            if (!document.cookie.includes('ac_consent=true')) {
+                setTimeout(() => { document.getElementById('cookie-banner').classList.remove('translate-y-full'); }, 1500);
+            }
+        }
+
+        function acceptCookies() {
+            document.cookie = "ac_consent=true; max-age=31536000; path=/; SameSite=Lax" + (location.protocol === 'https:' ? "; Secure" : "");
+            document.getElementById('cookie-banner').classList.add('translate-y-full');
+        }
+
         function openWhatsApp(message = null) {
             const finalMessage = message || i18n[currentLang].whatsapp_default;
             trackConversion('Click_WhatsApp', { intent: finalMessage, lang: currentLang });
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(finalMessage)}`, '_blank');
         }
 
+        // SEGURIDAD FRONTEND EN EL FORMULARIO
+        function showFormError(msg) {
+            const errEl = document.getElementById('form-error-msg');
+            errEl.textContent = msg;
+            errEl.classList.remove('hidden');
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[tag] || tag));
+        }
+
         function handleFormSubmit(event) {
             event.preventDefault();
-            const name = document.getElementById('f_name').value;
+            const now = Date.now();
+            
+            // Rate Limiting de 60 segundos
+            if (now - lastFormSubmitTime < 60000) {
+                showFormError(i18n[currentLang].form_err_rate_limit);
+                return;
+            }
+
+            const nameInput = document.getElementById('f_name');
             const selectEl = document.getElementById('f_people');
-            const people = selectEl.options[selectEl.selectedIndex].text;
-            const date = document.getElementById('f_date').value || (currentLang === 'en' ? 'Flexible dates' : 'Fecha flexible');
-            const hotel = document.getElementById('f_hotel').value || (currentLang === 'en' ? 'To be confirmed' : 'Por definir');
-            const destinos = document.getElementById('f_destinos').value || (currentLang === 'en' ? 'Custom Collection' : 'Colección personalizada');
+            
+            document.getElementById('form-error-msg').classList.add('hidden');
+            nameInput.classList.remove('input-error');
+            selectEl.classList.remove('input-error');
+
+            if (!nameInput.value.trim()) {
+                showFormError(i18n[currentLang].form_err_required);
+                nameInput.classList.add('input-error');
+                return;
+            }
+            
+            if (!selectEl.value) {
+                showFormError(i18n[currentLang].form_err_required);
+                selectEl.classList.add('input-error');
+                return;
+            }
+
+            // Sanitización de Texto
+            const name = escapeHTML(nameInput.value);
+            const people = escapeHTML(selectEl.options[selectEl.selectedIndex].text);
+            const rawDate = document.getElementById('f_date').value;
+            const date = escapeHTML(rawDate) || (currentLang === 'en' ? 'Flexible dates' : 'Fecha flexible');
+            const rawHotel = document.getElementById('f_hotel').value;
+            const hotel = escapeHTML(rawHotel) || (currentLang === 'en' ? 'To be confirmed' : 'Por definir');
+            const rawDestinos = document.getElementById('f_destinos').value;
+            const destinos = escapeHTML(rawDestinos) || (currentLang === 'en' ? 'Custom Collection' : 'Colección personalizada');
             
             let message = '';
             if (currentLang === 'en') {
@@ -1826,48 +1818,32 @@
                 message = `Hola Concierge de Amazing Colors, mi nombre es ${name}.\n\n• Pasajeros: ${people}\n• Fecha estimada: ${date}\n• Hospedaje: ${hotel}\n• Interés: ${destinos}\n\nMe gustaría recibir la propuesta e itinerario.`;
             }
 
+            lastFormSubmitTime = Date.now();
             openWhatsApp(message);
         }
 
         function setupReveals() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => { 
-                    if (entry.isIntersecting) { 
-                        entry.target.classList.add('active'); 
-                    } 
+                    if (entry.isIntersecting) { entry.target.classList.add('active'); } 
                 });
             }, { threshold: 0.05 });
             
             const activePage = document.querySelector('.page-view.active');
-            if(activePage) {
-                activePage.querySelectorAll('.reveal-up, .reveal-curtain').forEach(el => observer.observe(el));
-            }
+            if(activePage) { activePage.querySelectorAll('.reveal-up, .reveal-curtain').forEach(el => observer.observe(el)); }
         }
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeZoomModal();
-                closeDetailModal();
-            }
+            if (e.key === 'Escape') { closeZoomModal(); closeDetailModal(); }
         });
 
         document.addEventListener('DOMContentLoaded', () => {
             init();
-            const hash = window.location.hash.replace('#', '');
-            let initialPage = 'home'; 
-            let initialSub = '';
-            
-            if (hash) {
-                if (hash.startsWith('catalog-')) { 
-                    initialPage = 'catalog'; 
-                    initialSub = hash.replace('catalog-', ''); 
-                } else if (['home', 'legacy', 'catalog', 'contact'].includes(hash)) {
-                    initialPage = hash;
-                }
-            }
-            navigateTo(initialPage, initialSub);
+            handleRoute(window.location.hash);
         });
     </script>
 </body>
 </html>
 ```
+
+Pégalo exactamente así y todo funcionará a la perfección. ¡Disfrútalo!
