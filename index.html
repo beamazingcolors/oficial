@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="https://beamazingcolors.github.io/oficial/logo.png">
     
     <!-- Seguridad Básica (Relajada para permitir Google Sheets TSV) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:;">
     
     <!-- Tailwind CSS (CDN para SPA) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -90,18 +90,13 @@
                                 <i class="fas fa-leaf opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_legacy">Legado</span>
                                 <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
                             </button>
-                            <div class="relative group">
-                                <button onclick="toggleCatalogDropdown(event)" id="btn-nav-catalog" class="nav-btn text-white/80 flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative">
-                                    <i class="fas fa-layer-group opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_catalog">Catálogo</span> <i class="fas fa-chevron-down text-[8px] ml-1"></i>
-                                </button>
-                                <div id="catalog-dropdown-menu" class="absolute top-full left-0 mt-2 w-48 glass-panel rounded-xl shadow-2xl border border-white/10 opacity-0 invisible transition-all duration-300 overflow-hidden z-50 transform origin-top">
-                                    <div class="py-2 flex flex-col">
-                                        <button onclick="selectCatalogSubCategory('tour', event)" class="text-left px-4 py-3 text-xs text-white/80 hover:bg-brand-accent hover:text-brand-dark transition-colors font-medium tracking-wider uppercase border-b border-white/5" data-i18n="sub_tour">Tours & Aventuras</button>
-                                        <button onclick="selectCatalogSubCategory('yate', event)" class="text-left px-4 py-3 text-xs text-white/80 hover:bg-brand-accent hover:text-brand-dark transition-colors font-medium tracking-wider uppercase border-b border-white/5" data-i18n="sub_yacht">Yates & Catamaranes</button>
-                                        <button onclick="selectCatalogSubCategory('transportacion', event)" class="text-left px-4 py-3 text-xs text-white/80 hover:bg-brand-accent hover:text-brand-dark transition-colors font-medium tracking-wider uppercase" data-i18n="sub_trans">Traslados VIP</button>
-                                    </div>
-                                </div>
-                            </div>
+                            
+                            <!-- Botón directo de Catálogo, como estaba antes -->
+                            <button onclick="navigateTo('catalog')" id="btn-nav-catalog" class="nav-btn text-white/80 flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
+                                <i class="fas fa-layer-group opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_catalog">Catálogo</span>
+                                <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
+                            </button>
+                            
                             <button onclick="navigateTo('contact')" id="btn-nav-contact" class="nav-btn text-white/80 flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
                                 <i class="far fa-calendar-check opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_contact">Reserva</span>
                                 <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
@@ -121,7 +116,8 @@
                 <!-- HERO SECTION -->
                 <div class="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden">
                     <div class="absolute inset-0 z-0">
-                        <img src="https://images.unsplash.com/photo-1552074284-5e88ef1aef18?auto=format&fit=crop&w=2000&q=80" alt="Cancun Aerial View" class="w-full h-full object-cover object-center opacity-40">
+                        <!-- Imagen actualizada: Mar Caribe Turquesa Espectacular -->
+                        <img src="https://images.unsplash.com/photo-1582967676645-8120d8f07fb0?auto=format&fit=crop&w=2000&q=80" alt="Caribbean Sea" class="w-full h-full object-cover object-center opacity-50">
                         <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/30"></div>
                     </div>
@@ -161,8 +157,8 @@
                     </div>
                     
                     <div class="w-full overflow-x-auto no-scrollbar pb-10 cursor-grab active:cursor-grabbing pl-4 sm:pl-6 lg:pl-8 reveal-up" id="home-carousel-scroll">
-                        <!-- Llenado por JS -->
-                        <div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap" id="home-carousel-track">
+                        <!-- Llenado por JS. Ya no repite las imágenes -->
+                        <div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap pb-4" id="home-carousel-track">
                         </div>
                     </div>
                 </div>
@@ -174,7 +170,8 @@
                     <div class="flex flex-col lg:flex-row items-center gap-16">
                         <div class="w-full lg:w-1/2 reveal-up relative">
                             <div class="absolute -inset-4 border border-brand-accent/20 rounded-3xl transform -rotate-3 z-0"></div>
-                            <img src="https://images.unsplash.com/photo-1599827552599-eadf5af3c723?auto=format&fit=crop&w=1000&q=80" alt="Yacht Lifestyle" class="w-full rounded-3xl shadow-2xl relative z-10 object-cover h-[500px]">
+                            <!-- Imagen actualizada y robusta -->
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=80" alt="Yacht Lifestyle" class="w-full rounded-3xl shadow-2xl relative z-10 object-cover h-[500px]">
                             <div class="absolute -bottom-8 -right-8 glass-panel p-6 rounded-2xl z-20 shadow-2xl border-brand-accent/30 hidden md:block">
                                 <p class="text-4xl font-display font-bold text-brand-accent mb-1" data-i18n="legacy_stat1_num">+5 Años</p>
                                 <p class="text-xs uppercase tracking-widest text-slate-300 font-medium" data-i18n="legacy_stat1_txt">De Excelencia Boutique</p>
@@ -462,7 +459,7 @@
     </div>
 
     <script>
-        // CONFIGURACIONES GLOBALES (Editadas para no causar errores de sintaxis en copiados)
+        // CONFIGURACIONES GLOBALES
         const TSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFWLeg9DvMAXX5TwL8JXwY3fm0UDHeKxnqmtYVZGQNNHcTSJG32pLWZVHCMA2-Eo_lZ9sVHqKtgvIO/pub?output=tsv';
         const WHATSAPP_NUMBER = "5219981234567"; // Número para reservas
         
@@ -489,15 +486,15 @@
                 sub_tour: "Tours & Aventuras",
                 sub_yacht: "Yates & Catamaranes",
                 sub_trans: "Traslados VIP",
-                hero_title: "Cancún no es solo un destino, <br class='hidden sm:inline'>es un <span class='font-serif italic font-bold text-brand-accent'>estado de plenitud.</span>",
+                hero_title: `Cancún no es solo un destino, <br class="hidden sm:inline">es un <span class="font-serif italic font-bold text-brand-accent">estado de plenitud.</span>`,
                 hero_desc: "La joya de Quintana Roo. Un lugar donde la selva de esmeraldas se funde con el mar turquesa y el tiempo parece detenerse para regalarte momentos inigualables. Cancún te ofrece el contraste perfecto de la civilización maya y la hospitalidad premium contemporánea.",
-                hero_quote: "\"Siente la brisa caribeña sin límites ni prisas. Te revelamos el verdadero color del paraíso.\"",
+                hero_quote: `"Siente la brisa caribeña sin límites ni prisas. Te revelamos el verdadero color del paraíso."`,
                 btn_explore_catalog: "Explorar Catálogo",
                 btn_design_itinerary: "Diseñar Itinerario",
-                badge_location: "<i class='fas fa-map-pin text-brand-accent mr-2'></i>Cancún, Quintana Roo",
+                badge_location: `<i class="fas fa-map-pin text-brand-accent mr-2"></i>Cancún, Quintana Roo`,
                 badge_mexican_caribbean: "Caribe Mexicano",
                 facts_badge: "Secretos del Caribe",
-                facts_title: "Misterios de <span class='font-serif italic font-bold text-brand-accent'>Quintana Roo</span>",
+                facts_title: `Misterios de <span class="font-serif italic font-bold text-brand-accent">Quintana Roo</span>`,
                 fact1_title: "Arena que no quema",
                 fact1_desc: "Nuestra brillante arena blanca está hecha de coral fino triturado por milenios. No absorbe la energía solar, permitiendo caminar descalzo placenteramente a pleno mediodía.",
                 fact1_tag: "Fenómeno Natural",
@@ -507,10 +504,10 @@
                 fact3_title: "Portales al Inframundo",
                 fact3_desc: "Quintana Roo alberga los sistemas de ríos subterráneos y cuevas inundadas (cenotes) más extensos y sagrados del mundo maya. Aguas puras y cristalinas.",
                 fact3_tag: "Misticismo Maya",
-                carousel_title: "Donde el paraíso toma su <br><span class='font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-sand to-white'>verdadero color.</span>",
+                carousel_title: `Donde el paraíso toma su <br><span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-sand to-white">verdadero color.</span>`,
                 carousel_sub: "El lujo de la libertad absoluta",
                 legacy_badge: "Nuestra Trayectoria & Filosofía",
-                legacy_title: "Nacimos en <span class='font-serif italic font-bold text-brand-accent'>2021</span> para redefinir el viaje privado de alta gama.",
+                legacy_title: `Nacimos en <span class="font-serif italic font-bold text-brand-accent">2021</span> para redefinir el viaje privado de alta gama.`,
                 legacy_desc: "Mientras el mundo entero experimentaba profundos cambios, nosotros decidimos mirar hacia el horizonte del Caribe Mexicano y crear una propuesta diferente. Nos propusimos diseñar experiencias completamente libres de filas, personalizadas al detalle y enfocadas en revelar la verdadera esencia y pureza de Cancún y la Riviera Maya.",
                 legacy_stat1_num: "+5 Años",
                 legacy_stat1_txt: "De Excelencia Boutique",
@@ -528,7 +525,7 @@
                 modal_reserve_btn: "Reservar por WhatsApp",
                 zoom_hint_text: "Desplaza el cursor sobre la imagen para explorar detalles con la lente amplificadora",
                 contact_badge: "Planificación Personalizada",
-                contact_title: "Diseña tu <span class='font-serif italic font-bold text-brand-accent'>Estancia</span>",
+                contact_title: `Diseña tu <span class="font-serif italic font-bold text-brand-accent">Estancia</span>`,
                 contact_desc: "Envíanos tus deseos de viaje y un concierge especializado creará tu itinerario ideal en minutos.",
                 contact_card_pill: "Atención Directa 24/7",
                 form_ph_name: "Tu Nombre",
@@ -555,13 +552,13 @@
                 footer_copyright: "© 2026 Amazing Colors Private Tours. Todos los derechos reservados.",
                 footer_privacy: "Privacidad y Confidencialidad Garantizada",
                 cat_tour_badge: "Momentos inolvidables",
-                cat_tour_title: "Tours & <span class='font-serif italic font-bold text-brand-accent'>Aventuras</span>",
+                cat_tour_title: `Tours & <span class="font-serif italic font-bold text-brand-accent">Aventuras</span>`,
                 cat_tour_desc: "Explora cenotes místicos, ruinas mayas sagradas y parques temáticos de manera completamente privada.",
                 cat_yate_badge: "Nuestra Flota",
-                cat_yate_title: "Yates & <span class='font-serif italic font-bold text-brand-accent'>Catamaranes</span>",
+                cat_yate_title: `Yates & <span class="font-serif italic font-bold text-brand-accent">Catamaranes</span>`,
                 cat_yate_desc: "Navegación premium sobre el horizonte turquesa con servicio de tripulación de nivel internacional.",
                 cat_trans_badge: "Logística de Élite",
-                cat_trans_title: "Traslados & <span class='font-serif italic font-bold text-brand-accent'>Chofer Privado</span>",
+                cat_trans_title: `Traslados & <span class="font-serif italic font-bold text-brand-accent">Chofer Privado</span>`,
                 cat_trans_desc: "Llegadas impecables sin esperas ni transbordos en vehículos climatizados Suburban o SUV de alta gama.",
                 whatsapp_default: "Hola Concierge Amazing Colors. Quisiera información personalizada.",
                 whatsapp_modal: "Hola Concierge de Amazing Colors. Deseo agendar y cotizar la experiencia de: ",
@@ -583,15 +580,15 @@
                 sub_tour: "Tours & Adventures",
                 sub_yacht: "Yachts & Catamarans",
                 sub_trans: "VIP Transfers",
-                hero_title: "Cancún is not just a destination, <br class='hidden sm:inline'>it is a <span class='font-serif italic font-bold text-brand-accent'>state of bliss.</span>",
+                hero_title: `Cancún is not just a destination, <br class="hidden sm:inline">it is a <span class="font-serif italic font-bold text-brand-accent">state of bliss.</span>`,
                 hero_desc: "The jewel of Quintana Roo. A sanctuary where the emerald jungle embraces the turquoise ocean and time stands still to bestow unforgettable moments. Cancún delivers the timeless majesty of Mayan heritage coupled with world-class boutique hospitality.",
-                hero_quote: "\"Embrace the Caribbean breeze with no limits or rush. We reveal the authentic colors of paradise.\"",
+                hero_quote: `"Embrace the Caribbean breeze with no limits or rush. We reveal the authentic colors of paradise."`,
                 btn_explore_catalog: "Explore Catalog",
                 btn_design_itinerary: "Design Itinerary",
-                badge_location: "<i class='fas fa-map-pin text-brand-accent mr-2'></i>Cancun, Quintana Roo",
+                badge_location: `<i class="fas fa-map-pin text-brand-accent mr-2"></i>Cancun, Quintana Roo`,
                 badge_mexican_caribbean: "Mexican Caribbean",
                 facts_badge: "Caribbean Secrets",
-                facts_title: "Mysteries of <span class='font-serif italic font-bold text-brand-accent'>Quintana Roo</span>",
+                facts_title: `Mysteries of <span class="font-serif italic font-bold text-brand-accent">Quintana Roo</span>`,
                 fact1_title: "Sand that Never Burns",
                 fact1_desc: "Our brilliant white sands are formed from finely crushed coral over millennia. They do not absorb solar heat, allowing you to walk barefoot comfortably at high noon.",
                 fact1_tag: "Natural Phenomenon",
@@ -601,10 +598,10 @@
                 fact3_title: "Portals to the Underworld",
                 fact3_desc: "Quintana Roo harbors the planet's most extensive subterranean river networks and sacred cenotes. Pure, crystalline waters honored by ancient Mayan civilization.",
                 fact3_tag: "Mayan Mysticism",
-                carousel_title: "Where paradise reveals its <br><span class='font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-sand to-white'>true colors.</span>",
+                carousel_title: `Where paradise reveals its <br><span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-sand to-white">true colors.</span>`,
                 carousel_sub: "The luxury of absolute freedom",
                 legacy_badge: "Our Heritage & Philosophy",
-                legacy_title: "Born in <span class='font-serif italic font-bold text-brand-accent'>2021</span> to redefine ultra-luxury private travel.",
+                legacy_title: `Born in <span class="font-serif italic font-bold text-brand-accent">2021</span> to redefine ultra-luxury private travel.`,
                 legacy_desc: "While the world was transforming, we turned our gaze toward the Mexican Caribbean horizon to craft an extraordinary alternative. We set out to curate journeys completely free from crowds and queues, customized down to the finest detail to showcase the pure soul of Cancún and Riviera Maya.",
                 legacy_stat1_num: "+5 Years",
                 legacy_stat1_txt: "Of Boutique Excellence",
@@ -622,7 +619,7 @@
                 modal_reserve_btn: "Book via WhatsApp",
                 zoom_hint_text: "Hover and move cursor across the image to examine details with the high-resolution lens",
                 contact_badge: "Bespoke Planning",
-                contact_title: "Design Your <span class='font-serif italic font-bold text-brand-accent'>Stay</span>",
+                contact_title: `Design Your <span class="font-serif italic font-bold text-brand-accent">Stay</span>`,
                 contact_desc: "Share your travel desires and our dedicated concierge will tailor your dream itinerary in minutes.",
                 contact_card_pill: "24/7 Dedicated Concierge",
                 form_ph_name: "Your Name",
@@ -649,13 +646,13 @@
                 footer_copyright: "© 2026 Amazing Colors Private Tours. All rights reserved.",
                 footer_privacy: "Guaranteed Privacy & Discretion",
                 cat_tour_badge: "Unforgettable Moments",
-                cat_tour_title: "Tours & <span class='font-serif italic font-bold text-brand-accent'>Adventures</span>",
+                cat_tour_title: `Tours & <span class="font-serif italic font-bold text-brand-accent">Adventures</span>`,
                 cat_tour_desc: "Explore mystical cenotes, sacred Mayan ruins, and iconic ecological parks in complete privacy.",
                 cat_yate_badge: "Our Fleet",
-                cat_yate_title: "Yachts & <span class='font-serif italic font-bold text-brand-accent'>Catamaranes</span>",
+                cat_yate_title: `Yachts & <span class="font-serif italic font-bold text-brand-accent">Catamaranes</span>`,
                 cat_yate_desc: "Premium charter navigation across turquoise horizons with world-class crew and hospitality.",
                 cat_trans_badge: "Elite Logistics",
-                cat_trans_title: "Transfers & <span class='font-serif italic font-bold text-brand-accent'>Private Chauffeur</span>",
+                cat_trans_title: `Transfers & <span class="font-serif italic font-bold text-brand-accent">Private Chauffeur</span>`,
                 cat_trans_desc: "Impeccable airport arrivals with zero waiting in luxury air-conditioned Suburban and high-end SUVs.",
                 whatsapp_default: "Hello Amazing Colors Concierge. I would like personalized information.",
                 whatsapp_modal: "Hello Amazing Colors Concierge. I would like to book and receive pricing for: ",
@@ -871,7 +868,6 @@
             "recomendaciones": "Recommendations"
         };
 
-        // PROTECCIÓN XSS: Sanitiza cualquier cadena para que no se ejecute como HTML
         function escapeHTML(str) {
             if (typeof str !== 'string') return '';
             return str.replace(/[&<>'"]/g, tag => ({
@@ -976,15 +972,11 @@
         function getImgUrlByFolio(folioValue, nameValue = '') {
             if (!folioValue || folioValue === '') return '';
             let fileName = folioValue.trim();
+            // Lógica original respetando las mayúsculas/minúsculas de tus imágenes en Github
             let baseName = fileName.replace(/\.[^/.]+$/, ""); 
             let lowerBase = baseName.toLowerCase();
             const knownPngs = ['cun', 'ca', 'clm', 'logo', 'lg2', 'trrr', 'trw', 'mrttt', 'xct'];
             let isPng = knownPngs.includes(lowerBase);
-            if (['cun', 'cnt', 'logo', 'lg2'].includes(lowerBase)) {
-                baseName = lowerBase;
-            } else {
-                baseName = baseName.toUpperCase(); 
-            }
             return GITHUB_BASE + baseName + (isPng ? '.png' : '.jpg');
         }
 
@@ -1008,13 +1000,16 @@
                 let nextExt = '.jpg';
                 let nextName = (attempts % 2 === 0) ? baseName.toUpperCase() : baseName.toLowerCase();
                 if (['cun', 'cnt', 'logo', 'lg2'].includes(baseName.toLowerCase())) nextName = baseName.toLowerCase();
+                
                 if (currentExt.includes('png')) nextExt = '.jpg';
                 else if (currentExt.includes('jpg')) nextExt = '.png';
                 else if (currentExt.includes('jpeg')) nextExt = '.PNG';
                 else nextExt = '.png';
+                
                 let nextServer = GITHUB_BASE;
                 if (attempts >= 2 && attempts < 4) nextServer = GITHUB_FALLBACK_CDN;
                 else if (attempts >= 4) nextServer = GITHUB_RAW_FALLBACK;
+                
                 img.src = nextServer + nextName + nextExt;
                 return;
             }
@@ -1141,25 +1136,27 @@
                 if (tipo.includes('yate')) categoryType = 'yate';
                 if (tipo.includes('trans') || tipo.includes('traslado')) categoryType = 'transportacion';
 
-                setHtml += "<div class='relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl border border-white/10' onclick=\"navigateTo('catalog', '" + categoryType + "')\">" +
-                    "<img src='" + imgUrl + "' alt='" + name + "' class='w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700' onerror=\"handleImgError(this, '" + categoryType + "')\">" +
-                    "<div class='absolute inset-0 bg-gradient-to-t from-brand-navy/95 via-brand-navy/30 to-transparent'></div>" +
-                    "<div class='absolute bottom-6 left-6 right-6'>" +
-                        "<span class='text-[10px] text-brand-accent uppercase tracking-widest font-bold block mb-1'>" + badgeText + "</span>" +
-                        "<h4 class='text-white font-display font-semibold tracking-widest uppercase text-base drop-shadow'>" + name + "</h4>" +
-                    "</div>" +
-                "</div>";
+                setHtml += `
+                    <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl border border-white/10" onclick="navigateTo('catalog', '${categoryType}')">
+                        <img src="${imgUrl}" alt="${name}" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, '${categoryType}')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/95 via-brand-navy/30 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <span class="text-[10px] text-brand-accent uppercase tracking-widest font-bold block mb-1">${badgeText}</span>
+                            <h4 class="text-white font-display font-semibold tracking-widest uppercase text-base drop-shadow">${name}</h4>
+                        </div>
+                    </div>
+                `;
             });
-            scrollContainer.innerHTML = "<div class='flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap'>" + setHtml + "</div><div class='flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap'>" + setHtml + "</div>";
+            // Ya no se repite el html dos veces, se renderiza una sola fila
+            scrollContainer.innerHTML = `<div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap">${setHtml}</div>`;
         }
 
-        // Validación estricta para evitar inyección en Subcategorías
         function filterCatalog(category) {
             const safeCategory = ['tour', 'yate', 'transportacion'].includes(category) ? category : 'tour';
             currentCategory = safeCategory;
             
             document.querySelectorAll('#page-catalog button[id^="sub-nav-"]').forEach(btn => {
-                const isTarget = btn.id === "sub-nav-" + safeCategory;
+                const isTarget = btn.id === `sub-nav-${safeCategory}`;
                 if (isTarget) {
                     btn.classList.add('bg-brand-accent', 'text-brand-dark', 'font-bold', 'border-brand-accent');
                     btn.classList.remove('text-white', 'border-white/10', 'glass-panel');
@@ -1201,12 +1198,13 @@
             });
 
             if (filtered.length === 0) {
-                grid.innerHTML = "" +
-                    "<div class='text-center py-16 text-slate-400 w-full'>" +
-                        "<i class='fas fa-search text-3xl text-brand-accent/50 mb-4 block'></i>" +
-                        "<p class='text-base text-white font-medium mb-1'>" + escapeHTML(t.catalog_not_found_title) + "</p>" +
-                        "<p class='text-xs text-slate-400'>" + escapeHTML(t.catalog_not_found_desc) + "</p>" +
-                    "</div>";
+                grid.innerHTML = `
+                    <div class="text-center py-16 text-slate-400 w-full">
+                        <i class="fas fa-search text-3xl text-brand-accent/50 mb-4 block"></i>
+                        <p class="text-base text-white font-medium mb-1">${escapeHTML(t.catalog_not_found_title)}</p>
+                        <p class="text-xs text-slate-400">${escapeHTML(t.catalog_not_found_desc)}</p>
+                    </div>
+                `;
                 return;
             }
 
@@ -1216,7 +1214,6 @@
                 card.className = 'card w-full max-w-[350px] glass-card hover:border-brand-accent/40 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white group';
                 
                 let rawNombre = getCleanValue(item, ['Nombre', 'NOMBRE']) || 'Private Experience';
-                // Sanitización estricta antes de renderizar
                 let nombre = escapeHTML(translateCatalogText(rawNombre, currentLang));
                 let safeEncodedNombre = encodeURIComponent(rawNombre);
                 
@@ -1244,37 +1241,36 @@
                         let translatedVal = escapeHTML(translateCatalogText(val, currentLang));
                         let safeLabel = escapeHTML(cleanLabel);
                         
-                        extraSpecsHtml += "" +
-                            "<div class='spec-row flex justify-between text-xs py-1 border-b border-white/5 last:border-0'>" +
-                                "<span class='spec-label font-semibold text-brand-accent uppercase tracking-wider text-[10px]'>" + safeLabel + ":</span>" +
-                                "<span class='spec-value text-slate-300 text-right font-light'>" + translatedVal + "</span>" +
-                            "</div>";
+                        extraSpecsHtml += `
+                            <div class="spec-row flex justify-between text-xs py-1 border-b border-white/5 last:border-0">
+                                <span class="spec-label font-semibold text-brand-accent uppercase tracking-wider text-[10px]">${safeLabel}:</span>
+                                <span class="spec-value text-slate-300 text-right font-light">${translatedVal}</span>
+                            </div>
+                        `;
                     }
                 });
 
-                let imageTag = imgUrl ? "<img src='" + imgUrl + "' onerror=\"handleImgError(this, '" + currentCategory + "')\" class='w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105' alt='" + nombre + "'>" : '';
-                let extraSpecsBlock = extraSpecsHtml ? "<div class='card-extra-specs border-t border-dashed border-white/10 pt-3 mt-3 flex flex-col gap-1 bg-brand-dark/30 p-3 rounded-xl'>" + extraSpecsHtml + "</div>" : '';
-
-                card.innerHTML = "" +
-                    "<div class='img-container relative h-60 overflow-hidden bg-brand-dark cursor-pointer' onclick=\"openDetailModal('" + safeEncodedNombre + "')\">" +
-                        imageTag +
-                        "<div class='absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-transparent to-transparent'></div>" +
-                        "<button onclick=\"openZoomModal('" + imgUrl + "', event)\" class='absolute top-4 right-4 glass-panel hover:bg-brand-accent text-white hover:text-brand-dark w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none border border-white/10' title='" + escapeHTML(t.modal_zoom_hint) + "'>" +
-                            "<i class='fas fa-search-plus text-xs'></i>" +
-                        "</button>" +
-                    "</div>" +
-                    "<div class='card-info p-6 flex flex-col justify-between flex-grow'>" +
-                        "<div>" +
-                            "<h3 class='card-title text-xl font-bold font-display text-white mb-2 cursor-pointer hover:text-brand-accent transition-colors' onclick=\"openDetailModal('" + safeEncodedNombre + "')\">" + nombre + "</h3>" +
-                            "<p class='card-price text-brand-accent font-semibold text-sm mb-4'>" + precio + "</p>" +
-                        "</div>" +
-                        extraSpecsBlock +
-                        "<div class='pt-6 mt-4 border-t border-white/10'>" +
-                            "<button onclick=\"openDetailModal('" + safeEncodedNombre + "')\" class='w-full glass-panel hover:bg-brand-accent text-brand-accent hover:text-brand-dark font-bold tracking-[0.2em] text-[10px] uppercase transition-all duration-300 rounded-full py-2.5 px-4 flex items-center justify-center gap-2 focus:outline-none shadow-md border-brand-accent/40 hover:border-brand-accent'>" +
-                                escapeHTML(t.card_view_details) + " <i class='fas fa-chevron-right text-[8px]'></i>" +
-                            "</button>" +
-                        "</div>" +
-                    "</div>";
+                card.innerHTML = `
+                    <div class="img-container relative h-60 overflow-hidden bg-brand-dark cursor-pointer" onclick="openDetailModal('${safeEncodedNombre}')">
+                        ${imgUrl ? `<img src="${imgUrl}" onerror="handleImgError(this, '${currentCategory}')" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" alt="${nombre}">` : ''}
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-transparent to-transparent"></div>
+                        <button onclick="openZoomModal('${imgUrl}', event)" class="absolute top-4 right-4 glass-panel hover:bg-brand-accent text-white hover:text-brand-dark w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none border border-white/10" title="${escapeHTML(t.modal_zoom_hint)}">
+                            <i class="fas fa-search-plus text-xs"></i>
+                        </button>
+                    </div>
+                    <div class="card-info p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <h3 class="card-title text-xl font-bold font-display text-white mb-2 cursor-pointer hover:text-brand-accent transition-colors" onclick="openDetailModal('${safeEncodedNombre}')">${nombre}</h3>
+                            <p class="card-price text-brand-accent font-semibold text-sm mb-4">${precio}</p>
+                        </div>
+                        ${extraSpecsHtml ? `<div class="card-extra-specs border-t border-dashed border-white/10 pt-3 mt-3 flex flex-col gap-1 bg-brand-dark/30 p-3 rounded-xl">${extraSpecsHtml}</div>` : ''}
+                        <div class="pt-6 mt-4 border-t border-white/10">
+                            <button onclick="openDetailModal('${safeEncodedNombre}')" class="w-full glass-panel hover:bg-brand-accent text-brand-accent hover:text-brand-dark font-bold tracking-[0.2em] text-[10px] uppercase transition-all duration-300 rounded-full py-2.5 px-4 flex items-center justify-center gap-2 focus:outline-none shadow-md border-brand-accent/40 hover:border-brand-accent">
+                                ${escapeHTML(t.card_view_details)} <i class="fas fa-chevron-right text-[8px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
                 grid.appendChild(card);
             });
         }
@@ -1286,7 +1282,7 @@
                 { "TIPO": "Yate", "Nombre": "Big time", "Pies": "46 fts", "Capacidad de personas": "15", "Descriptivo": "Olvídate de las multitudes y diseña tu propio día.", "Incluye:": "24 Cervezas 24 Aguas 24 Refrescos Hielo Tripulación", "Folio": "BTY" },
                 { "TIPO": "Yate", "Nombre": "Amapola", "Pies": "45 fts", "Capacidad de personas": "15", "Descriptivo": "Olvídate de las multitudes y diseña tu propio día.", "Incluye:": "24 Cervezas 24 Aguas 24 Refrescos Hielo Tripulación", "Folio": "AMP" },
                 { "TIPO": "Yate", "Nombre": "Esmeralda", "Pies": "44 fts", "Capacidad de personas": "12", "Descriptivo": "Olvídate de las multitudes y diseña tu propio día.", "Incluye:": "24 Cervezas 24 Aguas 24 Refrescos Hielo Tripulación", "Folio": "EMD" },
-                { "TIPO": "TOURS", "Nombre": "XCARET", "Pies": "", "Capacidad de personas": "", "Descriptivo": "En este parque temático de Cancún conocerás lo más hermoso de México desde sus tradiciones hasta su flora y fauna silvestre.", "Incluye:": "Transportación redonda. Una comida buffet que incluye una cerveza y bebidas ilimitadas. Presentación de Xcaret México Espectacular. Acceso a la playa, la caleta y pozas naturales. Casilleros, vestidores y baños.", "Folio": "XCT.png" },
+                { "TIPO": "TOURS", "Nombre": "XCARET", "Pies": "", "Capacidad de personas": "", "Descriptivo": "En este parque temático de Cancún conocerás lo más hermoso de México desde sus tradiciones hasta su flora y fauna silvestre.", "Incluye:": "Transportación redonda. Una comida buffet que incluye una cerveza y bebidas ilimitadas. Presentación de Xcaret México Espectacular. Acceso a la playa, la caleta y pozas naturales. Casilleros, vestidores y baños.", "Folio": "XCT" },
                 { "TIPO": "TOURS", "Nombre": "XEL-HA", "Pies": "", "Capacidad de personas": "", "Descriptivo": "El lugar ideal para los amantes del agua y el esnórquel. Un paraíso donde puedes realizar distintas actividades con toda la familia.", "Incluye:": "Transportación redonda. Snorkel. Paseo en llanta por el rio. El faro mirador. Mundo de los niños. Comida tipo buffet y barra libre domestica.", "Folio": "XHT" }
             ];
             filterCatalog('tour');
@@ -1298,8 +1294,7 @@
             const validPages = ['home', 'legacy', 'catalog', 'contact'];
             if (!validPages.includes(pageId)) pageId = '404';
 
-            const subPath = subCategory ? "/" + subCategory : "";
-            const newHash = "/" + pageId + subPath;
+            const newHash = `/${pageId}${subCategory ? `/${subCategory}` : ''}`;
             
             try {
                 if (window.location.hash !== '#' + newHash) {
@@ -1312,21 +1307,20 @@
             }
 
             const currentActive = document.querySelector('.page-view.active');
-            const targetPage = document.getElementById("page-" + pageId);
+            const targetPage = document.getElementById(`page-${pageId}`);
             
             const titles = { 'home': i18n[currentLang].nav_home, 'legacy': i18n[currentLang].nav_legacy, 'catalog': i18n[currentLang].nav_catalog, 'contact': i18n[currentLang].nav_contact, '404': i18n[currentLang].p404_title };
-            document.title = "Amazing Colors | " + (titles[pageId] || '');
+            document.title = `Amazing Colors | ${titles[pageId] || ''}`;
 
             // Actualizar botones visuales
             document.querySelectorAll('.nav-bar .nav-btn').forEach(link => {
                 const isCatalog = pageId === 'catalog' && link.id === 'btn-nav-catalog';
-                const isCurrent = link.id === "btn-nav-" + pageId || isCatalog;
+                const isCurrent = link.id === `btn-nav-${pageId}` || isCatalog;
                 link.classList.toggle('active', isCurrent);
                 if (isCurrent) { link.classList.add('text-brand-accent'); link.classList.remove('text-white/80'); } 
                 else { link.classList.remove('text-brand-accent'); link.classList.add('text-white/80'); }
             });
 
-            // BugFix: Si ya es la página actual, forzamos las animaciones para que no se quede oculta en la primera carga
             if(currentActive === targetPage && !subCategory) {
                 setupReveals();
                 return;
@@ -1374,6 +1368,7 @@
         function toggleCatalogDropdown(event) {
             if (event) event.stopPropagation();
             const menu = document.getElementById('catalog-dropdown-menu');
+            if (!menu) return;
             const isOpen = !menu.classList.contains('opacity-0');
             if (isOpen) { closeCatalogDropdown(); } 
             else { menu.classList.remove('opacity-0', 'invisible'); menu.classList.add('opacity-100', 'visible'); }
@@ -1450,16 +1445,16 @@
                     if (specHeaderTranslations[keyNormalized] && specHeaderTranslations[keyNormalized][currentLang]) cleanLabel = specHeaderTranslations[keyNormalized][currentLang];
                     let translatedVal = escapeHTML(translateCatalogText(val, currentLang));
 
-                    specsContainer.insertAdjacentHTML('beforeend', "" +
-                        "<div class='flex justify-between text-xs py-1 border-b border-white/10 last:border-0'>" +
-                            "<span class='font-semibold text-brand-accent uppercase tracking-wider text-[10px]'>" + escapeHTML(cleanLabel) + ":</span>" +
-                            "<span class='text-slate-300 text-right font-light'>" + translatedVal + "</span>" +
-                        "</div>"
-                    );
+                    specsContainer.insertAdjacentHTML('beforeend', `
+                        <div class="flex justify-between text-xs py-1 border-b border-white/10 last:border-0">
+                            <span class="font-semibold text-brand-accent uppercase tracking-wider text-[10px]">${escapeHTML(cleanLabel)}:</span>
+                            <span class="text-slate-300 text-right font-light">${translatedVal}</span>
+                        </div>
+                    `);
                 }
             });
 
-            reserveBtn.onclick = () => openWhatsApp(t.whatsapp_modal + translatedTitle + ".");
+            reserveBtn.onclick = () => openWhatsApp(`${t.whatsapp_modal}${translatedTitle}.`);
             modal.style.transition = 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
             modal.classList.remove('opacity-0', 'pointer-events-none');
             modal.offsetHeight; 
@@ -1505,7 +1500,7 @@
             const rect = container.getBoundingClientRect();
             const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
             const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
-            img.style.transformOrigin = xPercent + "% " + yPercent + "%";
+            img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
             img.style.transform = "scale(2.2)";
         }
 
@@ -1527,7 +1522,7 @@
 
         function openWhatsApp(message = null) {
             const finalMessage = message || i18n[currentLang].whatsapp_default;
-            window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(finalMessage), '_blank');
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(finalMessage)}`, '_blank');
         }
 
         function showFormError(msg) {
@@ -1540,7 +1535,6 @@
             event.preventDefault();
             const now = Date.now();
             
-            // Limitador de seguridad: 1 reserva por minuto
             if (now - lastFormSubmitTime < 60000) {
                 showFormError(i18n[currentLang].form_err_rate_limit);
                 return;
@@ -1576,19 +1570,9 @@
             
             let message = '';
             if (currentLang === 'en') {
-                message = "Hello Amazing Colors Concierge, my name is " + name + ".\n\n" +
-                          "• Guests: " + people + "\n" +
-                          "• Estimated Date: " + date + "\n" +
-                          "• Accommodation: " + hotel + "\n" +
-                          "• Activities of Interest: " + destinos + "\n\n" +
-                          "I would love to receive your tailored proposal and itinerary.";
+                message = `Hello Amazing Colors Concierge, my name is ${name}.\n\n• Guests: ${people}\n• Estimated Date: ${date}\n• Accommodation: ${hotel}\n• Activities of Interest: ${destinos}\n\nI would love to receive your tailored proposal and itinerary.`;
             } else {
-                message = "Hola Concierge de Amazing Colors, mi nombre es " + name + ".\n\n" +
-                          "• Pasajeros: " + people + "\n" +
-                          "• Fecha estimada: " + date + "\n" +
-                          "• Hospedaje: " + hotel + "\n" +
-                          "• Interés: " + destinos + "\n\n" +
-                          "Me gustaría recibir la propuesta e itinerario.";
+                message = `Hola Concierge de Amazing Colors, mi nombre es ${name}.\n\n• Pasajeros: ${people}\n• Fecha estimada: ${date}\n• Hospedaje: ${hotel}\n• Interés: ${destinos}\n\nMe gustaría recibir la propuesta e itinerario.`;
             }
 
             lastFormSubmitTime = Date.now();
@@ -1610,7 +1594,6 @@
             if (e.key === 'Escape') { closeZoomModal(); closeDetailModal(); }
         });
 
-        // Evento principal protegido y corregido
         document.addEventListener('DOMContentLoaded', () => {
             init();
             
@@ -1621,7 +1604,6 @@
             }
             handleRoute(window.location.hash);
             
-            // Forzar animaciones de la vista inicial de manera segura
             setTimeout(() => setupReveals(), 100);
         });
     </script>
