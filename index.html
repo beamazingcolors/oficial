@@ -34,15 +34,36 @@
 
     <style>
         /* ESTILOS BASE Y OPTIMIZACIÓN TÁCTIL MÓVIL */
+        *, ::before, ::after { box-sizing: border-box; }
         * { -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Inter', sans-serif; background-color: #030914; color: #FFFFFF; -webkit-font-smoothing: antialiased; }
         h1, h2, h3, h4, .font-display { font-family: 'Cinzel', serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
         
-        /* Prevenir zoom involuntario en iPhone iOS */
-        input, select, textarea { font-size: 16px !important; }
+        /* Prevenir zoom involuntario y encuadrar 100% todos los inputs en móvil */
+        input, select, textarea {
+            font-size: 16px !important;
+            box-sizing: border-box !important;
+            max-width: 100% !important;
+            width: 100% !important;
+            min-width: 0 !important;
+        }
         @media (min-width: 768px) {
             input, select, textarea { font-size: 0.875rem !important; }
+        }
+
+        /* Estilización elegante para el calendario de fecha */
+        input[type="date"] {
+            display: block;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            min-height: 48px;
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.8) sepia(100%) saturate(350%) hue-rotate(5deg);
+            cursor: pointer;
+            opacity: 0.85;
+            padding: 2px;
         }
 
         /* SISTEMA DE VISTAS (SPA) */
@@ -91,12 +112,12 @@
                 </div>
             </header>
 
-            <!-- NAVEGACIÓN STICKY CON MENÚ DE 3 BARRAS DESPLEGABLE EN MÓVIL -->
+            <!-- NAVEGACIÓN STICKY (MENÚ MÓVIL A LA IZQUIERDA) -->
             <nav class="nav-bar glass-panel sticky top-0 z-40 w-full max-w-full border-b border-white/5 shadow-2xl">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between items-center h-14 md:h-14">
                         
-                        <!-- BOTÓN DE 3 BARRAS (SOLO MÓVIL) -->
+                        <!-- BOTÓN DE 3 BARRAS DEL LADO IZQUIERDO (SOLO MÓVIL) -->
                         <div class="flex items-center md:hidden">
                             <button id="mobile-menu-toggle-btn" onclick="toggleMobileMenu()" aria-label="Abrir menú" class="w-10 h-10 rounded-xl glass-panel flex flex-col items-center justify-center gap-1.5 border border-brand-accent/30 text-brand-accent focus:outline-none cursor-pointer">
                                 <span id="hamb-bar-1" class="w-5 h-0.5 bg-brand-accent rounded-full transition-all duration-300"></span>
@@ -105,8 +126,8 @@
                             </button>
                         </div>
 
-                        <!-- LOGO COMPACTO EN MÓVIL (CENTRO) -->
-                        <div class="md:hidden flex items-center gap-2 cursor-pointer" onclick="navigateTo('home')">
+                        <!-- LOGO COMPACTO EN MÓVIL (DERECHA/CENTRO) -->
+                        <div class="md:hidden flex items-center gap-2 cursor-pointer ml-auto" onclick="navigateTo('home')">
                             <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Logo" class="w-7 h-7 object-contain">
                             <span class="text-xs font-bold font-display uppercase tracking-wider text-white">Amazing <span class="text-brand-accent">Colors</span></span>
                         </div>
@@ -131,17 +152,30 @@
                             </button>
                         </div>
                         
-                        <!-- SWITCHER DE IDIOMA -->
-                        <div class="lang-switcher shrink-0 flex items-center gap-1 border border-brand-accent/30 rounded-full p-0.5 sm:p-1 bg-brand-navy/60 shadow-inner">
+                        <!-- SWITCHER DE IDIOMA (SOLO VISIBLE EN DESKTOP) -->
+                        <div class="lang-switcher shrink-0 hidden md:flex items-center gap-1 border border-brand-accent/30 rounded-full p-0.5 sm:p-1 bg-brand-navy/60 shadow-inner">
                             <button onclick="switchLanguage('es')" id="lang-btn-es" class="cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm">ES</button>
                             <button onclick="switchLanguage('en')" id="lang-btn-en" class="cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white">EN</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- MENÚ DESPLEGABLE MÓVIL (ANIMADO) -->
+                <!-- MENÚ DESPLEGABLE MÓVIL CON IDIOMAS INTEGRADOS DENTRO -->
                 <div id="mobile-menu-dropdown" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-[#040c1a]/95 backdrop-blur-xl border-b border-brand-accent/20">
                     <div class="px-5 py-5 space-y-2.5">
+                        
+                        <!-- SELECTOR DE IDIOMA EN EL MENÚ MÓVIL -->
+                        <div class="flex items-center justify-between p-3 rounded-2xl bg-white/5 border border-white/10 mb-3">
+                            <span class="text-xs font-bold text-slate-300 uppercase tracking-widest flex items-center gap-2">
+                                <i class="fas fa-globe text-brand-accent"></i> Idioma / Language
+                            </span>
+                            <div class="flex items-center gap-1 border border-brand-accent/30 rounded-full p-0.5 bg-brand-navy/80">
+                                <button onclick="switchLanguage('es')" id="mob-lang-btn-es" class="cursor-pointer px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark">ES</button>
+                                <button onclick="switchLanguage('en')" id="mob-lang-btn-en" class="cursor-pointer px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white">EN</button>
+                            </div>
+                        </div>
+
+                        <!-- ENLACES DE PÁGINA -->
                         <button onclick="navigateAndCloseMenu('home')" id="btn-mob-home" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-white bg-white/5 border border-brand-accent/30 text-left transition-all">
                             <span class="flex items-center gap-3"><i class="fas fa-compass text-brand-accent text-sm"></i> <span data-i18n="nav_home">Inicio</span></span>
                             <i class="fas fa-chevron-right text-[10px] text-brand-accent"></i>
@@ -377,10 +411,10 @@
                 </div>
             </section>
 
-            <!-- VISTA: CONTACTO / RESERVA -->
+            <!-- VISTA: CONTACTO / RESERVA (100% ENCUADRADO Y OPTIMIZADO PARA MÓVIL) -->
             <section id="page-contact" class="page-view w-full max-w-full relative z-10">
-                <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-10 sm:py-20">
-                    <div class="flex flex-col lg:flex-row gap-10 sm:gap-16 bg-[#050b18] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20">
+                    <div class="flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16 bg-[#050b18] rounded-[1.5rem] sm:rounded-[2.5rem] p-4 sm:p-8 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
                         
                         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-50"></div>
 
@@ -416,17 +450,18 @@
                             </div>
                         </div>
 
-                        <!-- Formulario lado derecho -->
-                        <div class="w-full lg:w-7/12 reveal-up relative z-10">
-                            <form id="booking-form" onsubmit="handleFormSubmit(event)" class="glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-brand-accent/20 shadow-xl">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
-                                    <div>
-                                        <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_name">Tu Nombre Completo *</label>
-                                        <input type="text" id="f_name" required class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition-all" data-i18n-placeholder="form_ph_name" placeholder="Tu Nombre">
+                        <!-- Formulario lado derecho (Casillas encuadradas) -->
+                        <div class="w-full lg:w-7/12 reveal-up relative z-10 min-w-0">
+                            <form id="booking-form" onsubmit="handleFormSubmit(event)" class="glass-panel p-4 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl border border-brand-accent/20 shadow-xl w-full min-w-0 box-border">
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6 w-full min-w-0">
+                                    <div class="w-full min-w-0">
+                                        <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-1.5 ml-1" data-i18n="form_lbl_name">Tu Nombre Completo *</label>
+                                        <input type="text" id="f_name" required class="w-full min-w-0 box-border bg-brand-dark/80 border border-white/10 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:border-brand-accent transition-all" data-i18n-placeholder="form_ph_name" placeholder="Tu Nombre">
                                     </div>
-                                    <div>
-                                        <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_choose">¿Cuántos viajan? *</label>
-                                        <select id="f_people" required class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-accent transition-all cursor-pointer">
+                                    <div class="w-full min-w-0">
+                                        <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-1.5 ml-1" data-i18n="form_lbl_choose">¿Cuántos viajan? *</label>
+                                        <select id="f_people" required class="w-full min-w-0 box-border bg-brand-dark/80 border border-white/10 rounded-xl px-3.5 py-3 text-slate-200 focus:outline-none focus:border-brand-accent transition-all cursor-pointer">
                                             <option value="" disabled selected data-i18n="form_opt_choose">Selecciona opción...</option>
                                             <option value="pareja" data-i18n="form_opt_couple">Pareja (2 personas)</option>
                                             <option value="familia" data-i18n="form_opt_small_family">Familia (3 - 5 personas)</option>
@@ -435,27 +470,29 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
-                                    <div>
-                                        <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_date">Fecha Estimada de Viaje</label>
-                                        <input type="date" id="f_date" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition-all [color-scheme:dark] cursor-pointer">
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6 w-full min-w-0">
+                                    <div class="w-full min-w-0">
+                                        <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-1.5 ml-1" data-i18n="form_lbl_date">Fecha Estimada de Viaje</label>
+                                        <input type="date" id="f_date" class="w-full min-w-0 box-border bg-brand-dark/80 border border-white/10 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:border-brand-accent transition-all [color-scheme:dark] cursor-pointer block">
                                     </div>
-                                    <div>
-                                        <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_hotel">Hotel o Zona de Hospedaje</label>
-                                        <input type="text" id="f_hotel" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition-all" data-i18n-placeholder="form_ph_hotel" placeholder="Nombre de Hotel">
+                                    <div class="w-full min-w-0">
+                                        <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-1.5 ml-1" data-i18n="form_lbl_hotel">Hotel o Zona de Hospedaje</label>
+                                        <input type="text" id="f_hotel" class="w-full min-w-0 box-border bg-brand-dark/80 border border-white/10 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:border-brand-accent transition-all" data-i18n-placeholder="form_ph_hotel" placeholder="Nombre de Hotel">
                                     </div>
                                 </div>
-                                <div class="mb-6 sm:mb-8">
-                                    <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_interests">Actividades o Yates de Interés</label>
-                                    <textarea id="f_destinos" rows="3" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition-all resize-none" data-i18n-placeholder="form_ph_interests" placeholder="Ej: Chichén Itzá, Yate privado, Traslados..."></textarea>
+
+                                <div class="mb-5 sm:mb-6 w-full min-w-0">
+                                    <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-1.5 ml-1" data-i18n="form_lbl_interests">Actividades o Yates de Interés</label>
+                                    <textarea id="f_destinos" rows="3" class="w-full min-w-0 box-border bg-brand-dark/80 border border-white/10 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:border-brand-accent transition-all resize-none block" data-i18n-placeholder="form_ph_interests" placeholder="Ej: Chichén Itzá, Yate privado, Traslados..."></textarea>
                                 </div>
                                 
                                 <div id="form-error-msg" class="hidden text-red-400 text-xs text-center mb-4 bg-red-900/20 py-2 rounded-lg border border-red-500/30"></div>
                                 
-                                <button type="submit" class="w-full bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-3.5 sm:py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center gap-3 cursor-pointer">
+                                <button type="submit" class="w-full min-w-0 box-border bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-3.5 sm:py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center gap-3 cursor-pointer">
                                     <i class="fab fa-whatsapp text-lg"></i> <span data-i18n="form_btn_submit">Enviar Solicitud a WhatsApp</span>
                                 </button>
-                                <p class="text-center text-[9px] sm:text-[10px] text-slate-500 mt-3 sm:mt-4 uppercase tracking-wider" data-i18n="form_subtext">Respuesta inmediata con cotización formal.</p>
+                                <p class="text-center text-[9px] sm:text-[10px] text-slate-500 mt-3 uppercase tracking-wider" data-i18n="form_subtext">Respuesta inmediata con cotización formal.</p>
                             </form>
                         </div>
                     </div>
@@ -468,7 +505,7 @@
             <i class="fas fa-chevron-up text-sm sm:text-base"></i>
         </button>
 
-        <!-- FOOTER OFICIAL -->
+        <!-- FOOTER OFICIAL CON BOTONES DE FACEBOOK, INSTAGRAM Y WHATSAPP -->
         <footer class="bg-[#02050a] border-t border-white/5 pt-12 sm:pt-16 pb-8 relative z-20 w-full max-w-full">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 mb-10 sm:mb-12 text-center md:text-left">
@@ -500,6 +537,19 @@
                                 <span>+52 998 227 4928</span>
                             </li>
                         </ul>
+
+                        <!-- BOTONES DE FACEBOOK, INSTAGRAM Y WHATSAPP -->
+                        <div class="flex items-center justify-center md:justify-start gap-3 mt-6">
+                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-brand-dark hover:bg-brand-accent transition-all duration-300 shadow-md border border-white/10 hover:border-brand-accent cursor-pointer">
+                                <i class="fab fa-facebook-f text-sm"></i>
+                            </a>
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-brand-dark hover:bg-brand-accent transition-all duration-300 shadow-md border border-white/10 hover:border-brand-accent cursor-pointer">
+                                <i class="fab fa-instagram text-base"></i>
+                            </a>
+                            <a href="https://wa.me/529982274928" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-brand-dark hover:bg-brand-accent transition-all duration-300 shadow-md border border-white/10 hover:border-brand-accent cursor-pointer">
+                                <i class="fab fa-whatsapp text-base"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
@@ -1062,14 +1112,30 @@
             let activePageId = currentActive ? currentActive.id.replace('page-', '') : 'home';
             document.title = "Amazing Colors | " + (titles[activePageId] || i18n[lang].brand_tagline);
             
+            // Switcher Desktop
             const btnEs = document.getElementById('lang-btn-es');
             const btnEn = document.getElementById('lang-btn-en');
-            if (lang === 'es') {
-                btnEs.className = "cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
-                btnEn.className = "cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
-            } else {
-                btnEn.className = "cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
-                btnEs.className = "cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
+            if (btnEs && btnEn) {
+                if (lang === 'es') {
+                    btnEs.className = "cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
+                    btnEn.className = "cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
+                } else {
+                    btnEn.className = "cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
+                    btnEs.className = "cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
+                }
+            }
+
+            // Switcher Móvil (Dentro del menú)
+            const mobBtnEs = document.getElementById('mob-lang-btn-es');
+            const mobBtnEn = document.getElementById('mob-lang-btn-en');
+            if (mobBtnEs && mobBtnEn) {
+                if (lang === 'es') {
+                    mobBtnEs.className = "cursor-pointer px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
+                    mobBtnEn.className = "cursor-pointer px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
+                } else {
+                    mobBtnEn.className = "cursor-pointer px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
+                    mobBtnEs.className = "cursor-pointer px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
+                }
             }
 
             document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -1116,7 +1182,6 @@
                     canvas.width = 64;
                     canvas.height = 64;
                     const ctx = canvas.getContext('2d');
-                    // Dibujar imagen maximizada ocupando el 100% del lienzo
                     ctx.drawImage(img, -2, -2, 68, 68);
                     const fav = document.getElementById('dynamic-favicon');
                     if (fav) {
