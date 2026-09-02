@@ -2,7 +2,7 @@
 <html lang="es" class="scroll-smooth bg-brand-dark w-full max-w-full overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Amazing Colors | Viajes Oceánicos de Élite</title>
     <meta name="description" content="Redefiniendo el viaje privado por el Caribe Mexicano. Aventuras auténticas y logística VIP.">
     
@@ -29,22 +29,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ESTILOS BASE Y UTILERÍA */
+        /* ESTILOS BASE Y OPTIMIZACIÓN TÁCTIL MÓVIL */
+        * { -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Inter', sans-serif; background-color: #030914; color: #FFFFFF; -webkit-font-smoothing: antialiased; }
         h1, h2, h3, h4, .font-display { font-family: 'Cinzel', serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
         
+        /* Prevenir zoom involuntario en iPhone iOS */
+        input, select, textarea { font-size: 16px !important; }
+        @media (min-width: 768px) {
+            input, select, textarea { font-size: 0.875rem !important; }
+        }
+
         /* SISTEMA DE VISTAS (SPA) */
-        .page-view { display: none !important; opacity: 0; transform: scale(0.98) translateY(10px); filter: blur(5px); transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease-out; width: 100%; max-width: 100vw; overflow-x: hidden; }
+        .page-view { display: none !important; opacity: 0; transform: scale(0.98) translateY(8px); filter: blur(4px); transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease-out; width: 100%; max-width: 100vw; overflow-x: hidden; }
         .page-view.active { display: block !important; opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
         
         /* ESTÉTICA GLASSMORFISMO PREMIUM */
-        .glass-panel { background: rgba(7, 16, 33, 0.55); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.07); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35); }
-        .glass-card { background: linear-gradient(145deg, rgba(7, 16, 33, 0.75) 0%, rgba(3, 9, 20, 0.95) 100%); backdrop-filter: blur(14px) saturate(160%); border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45); }
+        .glass-panel { background: rgba(7, 16, 33, 0.6); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35); }
+        .glass-card { background: linear-gradient(145deg, rgba(7, 16, 33, 0.8) 0%, rgba(3, 9, 20, 0.95) 100%); backdrop-filter: blur(14px) saturate(160%); border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45); }
         
         /* EFECTOS Y ANIMACIONES */
         .text-glow { text-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
-        .reveal-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-up { opacity: 0; transform: translateY(24px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal-up.active { opacity: 1; transform: translateY(0); }
         
         .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -59,55 +66,51 @@
         
         <!-- FONDOS AMBIENTALES -->
         <div class="absolute inset-0 overflow-hidden -z-10 pointer-events-none">
-            <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-accent/5 blur-[150px] rounded-full"></div>
-            <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-accent/5 blur-[150px] rounded-full"></div>
+            <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-accent/5 blur-[120px] rounded-full"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-accent/5 blur-[120px] rounded-full"></div>
         </div>
 
         <div class="relative z-10 w-full max-w-full flex-grow">
-            <!-- CABECERA CON LOGO -->
-            <header class="site-brand-header flex flex-col items-center justify-center pt-10 pb-6 px-4 cursor-pointer text-center w-full max-w-full relative border-b border-brand-accent/20 bg-gradient-to-b from-[#030914] via-[#071021] to-transparent shadow-[0_10px_30px_rgba(3,9,20,0.5)] transition-colors duration-500" onclick="navigateTo('home')">
+            <!-- CABECERA CON LOGO (OPTIMIZADA PARA MÓVIL) -->
+            <header class="site-brand-header flex flex-col items-center justify-center pt-6 pb-4 md:pt-10 md:pb-6 px-4 cursor-pointer text-center w-full max-w-full relative border-b border-brand-accent/20 bg-gradient-to-b from-[#030914] via-[#071021] to-transparent shadow-[0_10px_30px_rgba(3,9,20,0.5)] transition-colors duration-500" onclick="navigateTo('home')">
                 <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 mix-blend-overlay -z-10 pointer-events-none"></div>
-                <div class="flex flex-col items-center justify-center gap-6 w-full relative z-10 transform hover:scale-[1.02] transition-transform duration-500">
-                    <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Amazing Colors Logo" class="w-36 h-36 md:w-48 md:h-48 object-contain drop-shadow-[0_0_25px_rgba(212,175,55,0.5)]">
+                <div class="flex flex-col items-center justify-center gap-3 sm:gap-5 w-full relative z-10 transform hover:scale-[1.01] transition-transform duration-300">
+                    <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Amazing Colors Logo" class="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.45)]">
                     <div>
-                        <h1 class="text-3xl md:text-5xl font-bold font-display tracking-[0.3em] text-white uppercase text-glow">
+                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold font-display tracking-[0.25em] md:tracking-[0.3em] text-white uppercase text-glow">
                             Amazing <span class="text-brand-accent">Colors</span>
                         </h1>
-                        <p class="mt-3 text-[9px] md:text-[11px] font-sans font-medium tracking-[0.4em] uppercase text-brand-accent/80" data-i18n="brand_tagline">
+                        <p class="mt-2 text-[8px] sm:text-[10px] md:text-[11px] font-sans font-medium tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-accent/85" data-i18n="brand_tagline">
                             Viajes Oceánicos de Élite y Experiencias Privadas
                         </p>
                     </div>
                 </div>
             </header>
 
-            <!-- NAVEGACIÓN -->
+            <!-- NAVEGACIÓN STICKY MÓVIL Y DESKTOP -->
             <nav class="nav-bar glass-panel sticky top-0 z-40 w-full max-w-full border-b border-white/5 shadow-2xl">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between md:justify-center items-center h-16 md:h-14 gap-4 md:gap-12 flex-wrap md:flex-nowrap">
-                        <div class="flex gap-4 md:gap-10 overflow-x-auto no-scrollbar py-2 w-full md:w-auto items-center justify-start md:justify-center">
-                            <button onclick="navigateTo('home')" id="btn-nav-home" class="nav-btn active cursor-pointer flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
-                                <i class="fas fa-compass opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_home">Inicio</span>
-                                <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
+                <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+                    <div class="flex justify-between md:justify-center items-center h-14 md:h-14 gap-2 sm:gap-6 md:gap-12">
+                        <!-- Enlaces de navegación táctil -->
+                        <div class="flex gap-2 sm:gap-6 md:gap-10 overflow-x-auto no-scrollbar py-2 w-auto items-center justify-start md:justify-center">
+                            <button onclick="navigateTo('home')" id="btn-nav-home" class="nav-btn active cursor-pointer flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold font-sans tracking-[0.15em] sm:tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none">
+                                <i class="fas fa-compass text-xs opacity-70"></i><span data-i18n="nav_home">Inicio</span>
                             </button>
-                            <button onclick="navigateTo('legacy')" id="btn-nav-legacy" class="nav-btn text-white/80 cursor-pointer flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
-                                <i class="fas fa-leaf opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_legacy">Legado</span>
-                                <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
+                            <button onclick="navigateTo('legacy')" id="btn-nav-legacy" class="nav-btn text-white/80 cursor-pointer flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold font-sans tracking-[0.15em] sm:tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none">
+                                <i class="fas fa-leaf text-xs opacity-70"></i><span data-i18n="nav_legacy">Legado</span>
                             </button>
-                            
-                            <button onclick="navigateTo('catalog')" id="btn-nav-catalog" class="nav-btn text-white/80 cursor-pointer flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
-                                <i class="fas fa-layer-group opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_catalog">Catálogo</span>
-                                <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
+                            <button onclick="navigateTo('catalog')" id="btn-nav-catalog" class="nav-btn text-white/80 cursor-pointer flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold font-sans tracking-[0.15em] sm:tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none">
+                                <i class="fas fa-layer-group text-xs opacity-70"></i><span data-i18n="nav_catalog">Catálogo</span>
                             </button>
-                            
-                            <button onclick="navigateTo('contact')" id="btn-nav-contact" class="nav-btn text-white/80 cursor-pointer flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
-                                <i class="far fa-calendar-check opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_contact">Reserva</span>
-                                <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
+                            <button onclick="navigateTo('contact')" id="btn-nav-contact" class="nav-btn text-white/80 cursor-pointer flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold font-sans tracking-[0.15em] sm:tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none">
+                                <i class="far fa-calendar-check text-xs opacity-70"></i><span data-i18n="nav_contact">Reserva</span>
                             </button>
                         </div>
                         
-                        <div class="lang-switcher ml-auto md:ml-0 flex items-center gap-1 border border-brand-accent/30 rounded-full p-1 bg-brand-navy/50 shadow-inner">
-                            <button onclick="switchLanguage('es')" id="lang-btn-es" class="cursor-pointer px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm">ES</button>
-                            <button onclick="switchLanguage('en')" id="lang-btn-en" class="cursor-pointer px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white">EN</button>
+                        <!-- Switcher de Idioma -->
+                        <div class="lang-switcher shrink-0 flex items-center gap-1 border border-brand-accent/30 rounded-full p-0.5 sm:p-1 bg-brand-navy/60 shadow-inner">
+                            <button onclick="switchLanguage('es')" id="lang-btn-es" class="cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm">ES</button>
+                            <button onclick="switchLanguage('en')" id="lang-btn-en" class="cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white">EN</button>
                         </div>
                     </div>
                 </div>
@@ -116,21 +119,20 @@
             <!-- VISTA: INICIO -->
             <section id="page-home" class="page-view active w-full max-w-full relative z-10">
                 
-                <!-- HERO SECTION: FORMATO DE CUN.PNG IDÉNTICO A CNT.JPG -->
-                <div class="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden py-14 md:py-20">
+                <!-- HERO SECTION -->
+                <div class="relative w-full min-h-[75vh] sm:min-h-[85vh] flex items-center justify-center overflow-hidden py-10 sm:py-16 md:py-20">
                     <div class="absolute inset-0 -z-10 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1582967676645-8120d8f07fb0?auto=format&fit=crop&w=2200&q=85" alt="Caribbean Sea" class="w-full h-full object-cover object-center scale-105 filter brightness-[0.45] contrast-110">
+                        <img src="https://images.unsplash.com/photo-1582967676645-8120d8f07fb0?auto=format&fit=crop&w=2200&q=85" alt="Caribbean Sea" class="w-full h-full object-cover object-center filter brightness-[0.45] contrast-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/70 to-transparent"></div>
                         <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent"></div>
-                        <div class="absolute -top-32 right-1/4 w-[500px] h-[500px] bg-brand-accent/10 rounded-full blur-[140px] pointer-events-none"></div>
                     </div>
                     
                     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
                             
                             <!-- Mensaje Principal -->
-                            <div class="lg:col-span-7 text-center lg:text-left reveal-up space-y-6">
-                                <h2 class="text-3xl sm:text-5xl lg:text-6xl font-display font-bold leading-[1.15] text-white tracking-wide" data-i18n-html="hero_title">
+                            <div class="lg:col-span-7 text-center lg:text-left reveal-up space-y-5 sm:space-y-6">
+                                <h2 class="text-3xl sm:text-5xl lg:text-6xl font-display font-bold leading-[1.18] sm:leading-[1.15] text-white tracking-wide" data-i18n-html="hero_title">
                                     Cancún no es solo un destino, <br class="hidden sm:inline">es un <span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-sand to-white">estado de plenitud.</span>
                                 </h2>
 
@@ -138,22 +140,22 @@
                                     La joya de Quintana Roo. Un lugar donde la selva de esmeraldas se funde con el mar turquesa y el tiempo parece detenerse para regalarte momentos inigualables.
                                 </p>
 
-                                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                                    <button onclick="navigateTo('catalog')" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-accent via-[#e5c158] to-brand-accent hover:from-white hover:to-slate-100 text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-500 shadow-[0_0_25px_rgba(212,175,55,0.35)] hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] transform hover:-translate-y-1 cursor-pointer" data-i18n="btn_explore_catalog">
+                                <div class="pt-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full">
+                                    <button onclick="navigateTo('catalog')" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 bg-gradient-to-r from-brand-accent via-[#e5c158] to-brand-accent hover:from-white hover:to-slate-100 text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.35)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] transform hover:-translate-y-0.5 cursor-pointer" data-i18n="btn_explore_catalog">
                                         Explorar Catálogo
                                     </button>
-                                    <button onclick="navigateTo('contact')" class="w-full sm:w-auto px-8 py-4 glass-panel hover:bg-white/10 text-white border border-white/20 font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 transform hover:-translate-y-1 cursor-pointer flex items-center justify-center gap-2" data-i18n="btn_design_itinerary">
+                                    <button onclick="navigateTo('contact')" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 glass-panel hover:bg-white/10 text-white border border-white/20 font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-2" data-i18n="btn_design_itinerary">
                                         <span data-i18n="btn_design_itinerary">Diseñar Itinerario</span>
                                         <i class="fas fa-arrow-right text-[10px] text-brand-accent"></i>
                                     </button>
                                 </div>
                             </div>
 
-                            <!-- IMAGEN CUN.PNG CON EL MISMO FORMATO Y MARCO QUE CNT.JPG -->
-                            <div class="lg:col-span-5 flex justify-center items-center reveal-up">
-                                <div class="w-full max-w-md lg:max-w-none relative">
-                                    <div class="absolute -inset-4 border border-brand-accent/20 rounded-3xl transform -rotate-3 -z-10"></div>
-                                    <img src="https://beamazingcolors.github.io/oficial/cun.png" alt="CUN Cancun Quintana Roo" class="w-full rounded-3xl shadow-2xl relative z-10 object-contain h-[420px] md:h-[480px] bg-brand-navy/60 p-6 md:p-8" onerror="handleImgError(this, 'general')">
+                            <!-- IMAGEN CUN.PNG ADAPTADA CON SEGURIDAD MÓVIL -->
+                            <div class="lg:col-span-5 flex justify-center items-center reveal-up px-2 sm:px-0">
+                                <div class="w-full max-w-[340px] sm:max-w-md lg:max-w-none relative">
+                                    <div class="absolute -inset-2 sm:-inset-4 border border-brand-accent/25 rounded-3xl transform -rotate-2 sm:-rotate-3 -z-10"></div>
+                                    <img src="https://beamazingcolors.github.io/oficial/cun.png" alt="CUN Cancun Quintana Roo" class="w-full rounded-3xl shadow-2xl relative z-10 object-contain h-[320px] sm:h-[420px] md:h-[480px] bg-brand-navy/70 p-4 sm:p-6 md:p-8 border border-white/5" onerror="handleImgError(this, 'general')">
                                 </div>
                             </div>
 
@@ -161,27 +163,27 @@
                     </div>
                 </div>
 
-                <!-- SECCIÓN DE DATOS CURIOSOS & SECRETOS DE CANCÚN (ESTÉTICA GLASSMORFISMO) -->
-                <div class="w-full py-20 bg-gradient-to-b from-brand-dark via-brand-navy/70 to-brand-navy border-y border-white/5 relative z-10">
+                <!-- SECCIÓN DE DATOS CURIOSOS & SECRETOS (RESPONSIVE 1-2-4 COLUMNAS) -->
+                <div class="w-full py-14 sm:py-20 bg-gradient-to-b from-brand-dark via-brand-navy/70 to-brand-navy border-y border-white/5 relative z-10">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
-                            <p class="text-brand-accent tracking-[0.3em] text-xs uppercase font-bold mb-3" data-i18n="facts_badge">Secretos del Caribe Mexicano</p>
-                            <h3 class="text-3xl md:text-5xl font-display font-bold text-white mb-4" data-i18n-html="facts_title">
+                        <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal-up">
+                            <p class="text-brand-accent tracking-[0.25em] sm:tracking-[0.3em] text-[11px] sm:text-xs uppercase font-bold mb-2.5" data-i18n="facts_badge">Secretos del Caribe Mexicano</p>
+                            <h3 class="text-2xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-3" data-i18n-html="facts_title">
                                 El Encanto Oculto de <span class="font-serif italic font-bold text-brand-accent">Cancún</span>
                             </h3>
-                            <p class="text-slate-400 text-sm font-light leading-relaxed" data-i18n="facts_desc">
+                            <p class="text-slate-400 text-xs sm:text-sm font-light leading-relaxed" data-i18n="facts_desc">
                                 Más allá de su horizonte turquesa, descubre los fenómenos naturales y la mística que convierten a este santuario en un paraíso inigualable.
                             </p>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                             <!-- Curiosidad 1 -->
-                            <div class="glass-card p-6 rounded-3xl border border-white/5 hover:border-brand-accent/40 transition-all duration-500 shadow-xl reveal-up flex flex-col justify-between group">
+                            <div class="glass-card p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/5 hover:border-brand-accent/40 transition-all duration-300 shadow-xl reveal-up flex flex-col justify-between group">
                                 <div>
-                                    <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent mb-5 group-hover:scale-110 transition-transform shadow-inner">
-                                        <i class="fas fa-umbrella-beach text-xl"></i>
+                                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent mb-4 group-hover:scale-105 transition-transform shadow-inner">
+                                        <i class="fas fa-umbrella-beach text-lg sm:text-xl"></i>
                                     </div>
-                                    <h4 class="text-white font-display font-bold text-lg mb-2" data-i18n="fact1_title">Arena que no quema</h4>
+                                    <h4 class="text-white font-display font-bold text-base sm:text-lg mb-2" data-i18n="fact1_title">Arena que no quema</h4>
                                     <p class="text-xs text-slate-300 font-light leading-relaxed mb-4" data-i18n="fact1_desc">
                                         Nuestra brillante arena blanca está compuesta de coral fino pulverizado durante milenios. No absorbe la radiación térmica, permitiendo caminar descalzo con total frescura a pleno mediodía.
                                     </p>
@@ -190,12 +192,12 @@
                             </div>
 
                             <!-- Curiosidad 2 -->
-                            <div class="glass-card p-6 rounded-3xl border border-white/5 hover:border-brand-accent/40 transition-all duration-500 shadow-xl reveal-up flex flex-col justify-between group">
+                            <div class="glass-card p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/5 hover:border-brand-accent/40 transition-all duration-300 shadow-xl reveal-up flex flex-col justify-between group">
                                 <div>
-                                    <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent mb-5 group-hover:scale-110 transition-transform shadow-inner">
-                                        <i class="fas fa-water text-xl"></i>
+                                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent mb-4 group-hover:scale-105 transition-transform shadow-inner">
+                                        <i class="fas fa-water text-lg sm:text-xl"></i>
                                     </div>
-                                    <h4 class="text-white font-display font-bold text-lg mb-2" data-i18n="fact2_title">Arrecife Mesoamericano</h4>
+                                    <h4 class="text-white font-display font-bold text-base sm:text-lg mb-2" data-i18n="fact2_title">Arrecife Mesoamericano</h4>
                                     <p class="text-xs text-slate-300 font-light leading-relaxed mb-4" data-i18n="fact2_desc">
                                         Frente a nuestras costas descansa el segundo sistema de arrecifes más grande del mundo, un santuario protegido de biodiversidad marina virgen y jardines de coral únicos.
                                     </p>
@@ -204,12 +206,12 @@
                             </div>
 
                             <!-- Curiosidad 3 -->
-                            <div class="glass-card p-6 rounded-3xl border border-white/5 hover:border-brand-accent/40 transition-all duration-500 shadow-xl reveal-up flex flex-col justify-between group">
+                            <div class="glass-card p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/5 hover:border-brand-accent/40 transition-all duration-300 shadow-xl reveal-up flex flex-col justify-between group">
                                 <div>
-                                    <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent mb-5 group-hover:scale-110 transition-transform shadow-inner">
-                                        <i class="fas fa-dungeon text-xl"></i>
+                                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent mb-4 group-hover:scale-105 transition-transform shadow-inner">
+                                        <i class="fas fa-dungeon text-lg sm:text-xl"></i>
                                     </div>
-                                    <h4 class="text-white font-display font-bold text-lg mb-2" data-i18n="fact3_title">Ríos Sagrados & Cenotes</h4>
+                                    <h4 class="text-white font-display font-bold text-base sm:text-lg mb-2" data-i18n="fact3_title">Ríos Sagrados & Cenotes</h4>
                                     <p class="text-xs text-slate-300 font-light leading-relaxed mb-4" data-i18n="fact3_desc">
                                         Quintana Roo alberga la red de ríos subterráneos y cavernas inundadas más extensa del planeta, consideradas por los antiguos mayas como portales sagrados de renovación.
                                     </p>
@@ -218,12 +220,12 @@
                             </div>
 
                             <!-- Curiosidad 4 -->
-                            <div class="glass-card p-6 rounded-3xl border border-white/5 hover:border-brand-accent/40 transition-all duration-500 shadow-xl reveal-up flex flex-col justify-between group">
+                            <div class="glass-card p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/5 hover:border-brand-accent/40 transition-all duration-300 shadow-xl reveal-up flex flex-col justify-between group">
                                 <div>
-                                    <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent mb-5 group-hover:scale-110 transition-transform shadow-inner">
-                                        <i class="fas fa-palette text-xl"></i>
+                                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent mb-4 group-hover:scale-105 transition-transform shadow-inner">
+                                        <i class="fas fa-palette text-lg sm:text-xl"></i>
                                     </div>
-                                    <h4 class="text-white font-display font-bold text-lg mb-2" data-i18n="fact4_title">El Mar de los 7 Tonos</h4>
+                                    <h4 class="text-white font-display font-bold text-base sm:text-lg mb-2" data-i18n="fact4_title">El Mar de los 7 Tonos</h4>
                                     <p class="text-xs text-slate-300 font-light leading-relaxed mb-4" data-i18n="fact4_desc">
                                         La combinación de aguas cristalinas, lechos de arena blanca y diferentes profundidades refracta la luz solar creando una sinfonía única de siete tonos de azul y turquesa.
                                     </p>
@@ -234,19 +236,18 @@
                     </div>
                 </div>
 
-                <!-- DESTACADOS CAROUSEL AUTOMÁTICO E INTERACTIVO -->
-                <div class="w-full py-20 bg-brand-navy relative border-b border-white/5 overflow-hidden group/carousel z-10" onmouseenter="stopCarouselAutoScroll()" onmouseleave="startCarouselAutoScroll()" ontouchstart="stopCarouselAutoScroll()" ontouchend="startCarouselAutoScroll()">
+                <!-- CARRUSEL CON PEEK TÁCTIL MÓVIL (80vw) -->
+                <div class="w-full py-14 sm:py-20 bg-brand-navy relative border-b border-white/5 overflow-hidden group/carousel z-10" onmouseenter="stopCarouselAutoScroll()" onmouseleave="startCarouselAutoScroll()" ontouchstart="stopCarouselAutoScroll()" ontouchend="startCarouselAutoScroll()">
                     <div class="absolute top-0 right-0 w-96 h-96 bg-brand-accent/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
-                    <div class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
                     
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center reveal-up">
-                        <h3 class="text-3xl md:text-5xl font-display font-bold text-white mb-3" data-i18n="carousel_title">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12 text-center reveal-up">
+                        <h3 class="text-2xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-2" data-i18n="carousel_title">
                             Experiencias Únicas
                         </h3>
                     </div>
                     
                     <div class="relative w-full max-w-[1400px] mx-auto reveal-up">
-                        <!-- Botones de carrusel interactivos -->
+                        <!-- Botones de carrusel (ocultos en móvil para dar prioridad al deslizamiento táctil natural) -->
                         <button onclick="scrollCarousel(-1)" class="absolute left-2 md:left-6 top-1/2 transform -translate-y-1/2 z-30 w-12 h-12 md:w-16 md:h-16 rounded-full glass-panel flex items-center justify-center text-brand-accent border border-brand-accent/40 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-[0_10px_25px_rgba(0,0,0,0.5)] opacity-0 group-hover/carousel:opacity-100 hidden sm:flex cursor-pointer">
                             <i class="fas fa-chevron-left text-xl"></i>
                         </button>
@@ -254,8 +255,8 @@
                             <i class="fas fa-chevron-right text-xl"></i>
                         </button>
                         
-                        <!-- Contenedor del Carrusel -->
-                        <div id="home-carousel-scroll" class="flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 md:px-16 py-6 no-scrollbar scroll-smooth">
+                        <!-- Contenedor del Carrusel Táctil -->
+                        <div id="home-carousel-scroll" class="flex overflow-x-auto snap-x snap-mandatory gap-4 sm:gap-6 px-4 sm:px-8 md:px-16 py-4 sm:py-6 no-scrollbar scroll-smooth">
                             <!-- Llenado dinámicamente -->
                         </div>
                     </div>
@@ -264,26 +265,26 @@
 
             <!-- VISTA: LEGACY -->
             <section id="page-legacy" class="page-view w-full max-w-full relative z-10">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                    <div class="flex flex-col lg:flex-row items-center gap-16 mt-8">
-                        <div class="w-full lg:w-1/2 reveal-up relative">
-                            <div class="absolute -inset-4 border border-brand-accent/20 rounded-3xl transform -rotate-3 -z-10"></div>
-                            <img src="https://beamazingcolors.github.io/oficial/cnt.jpg" alt="Legacy Image" class="w-full rounded-3xl shadow-2xl relative z-10 object-cover h-[500px]" onerror="handleImgError(this, 'general')">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+                    <div class="flex flex-col lg:flex-row items-center gap-10 sm:gap-16">
+                        <div class="w-full lg:w-1/2 reveal-up relative px-2 sm:px-0">
+                            <div class="absolute -inset-2 sm:-inset-4 border border-brand-accent/25 rounded-3xl transform -rotate-2 sm:-rotate-3 -z-10"></div>
+                            <img src="https://beamazingcolors.github.io/oficial/cnt.jpg" alt="Legacy Image" class="w-full rounded-3xl shadow-2xl relative z-10 object-cover h-[340px] sm:h-[440px] md:h-[500px]" onerror="handleImgError(this, 'general')">
                         </div>
-                        <div class="w-full lg:w-1/2 reveal-up">
-                            <p class="text-brand-accent tracking-[0.3em] text-xs uppercase font-bold mb-4" data-i18n="legacy_badge">Nuestra Trayectoria & Filosofía</p>
-                            <h2 class="text-3xl md:text-5xl font-display font-bold mb-8 leading-tight" data-i18n-html="legacy_title">
+                        <div class="w-full lg:w-1/2 reveal-up text-center lg:text-left">
+                            <p class="text-brand-accent tracking-[0.25em] sm:tracking-[0.3em] text-[11px] sm:text-xs uppercase font-bold mb-3" data-i18n="legacy_badge">Nuestra Trayectoria & Filosofía</p>
+                            <h2 class="text-2xl sm:text-4xl md:text-5xl font-display font-bold mb-5 leading-tight" data-i18n-html="legacy_title">
                                 Nacimos en <span class="font-serif italic font-bold text-brand-accent">2021</span> para redefinir el viaje privado de alta gama.
                             </h2>
-                            <p class="text-slate-300 text-base leading-relaxed mb-6 font-light" data-i18n="legacy_desc">
+                            <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-light" data-i18n="legacy_desc">
                                 Mientras el mundo entero experimentaba profundos cambios, nosotros decidimos mirar hacia el horizonte del Caribe Mexicano y crear una propuesta diferente. Nos propusimos diseñar experiencias completamente libres de filas, personalizadas al detalle y enfocadas en revelar la verdadera esencia y pureza de Cancún y la Riviera Maya.
                             </p>
-                            <div class="border-l-2 border-brand-accent pl-6 py-2 my-8">
-                                <p class="font-serif italic text-xl text-white/90" data-i18n="legacy_quote">
+                            <div class="border-l-2 border-brand-accent pl-4 sm:pl-6 py-2 my-6 sm:my-8 text-left">
+                                <p class="font-serif italic text-base sm:text-xl text-white/90" data-i18n="legacy_quote">
                                     "Llevamos media década entregándote el color real del paraíso sin prisas, intermediarios ni multitudes."
                                 </p>
                             </div>
-                            <button onclick="navigateTo('catalog')" class="mt-4 px-8 py-4 cursor-pointer bg-transparent border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 shadow-lg" data-i18n="btn_explore_catalog">
+                            <button onclick="navigateTo('catalog')" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 cursor-pointer bg-transparent border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 shadow-lg" data-i18n="btn_explore_catalog">
                                 Explorar Catálogo
                             </button>
                         </div>
@@ -294,39 +295,36 @@
             <!-- VISTA: CATÁLOGO -->
             <section id="page-catalog" class="page-view w-full max-w-full relative z-10">
                 <!-- Banner Categoría -->
-                <div class="relative py-16 bg-brand-navy border-b border-white/5 overflow-hidden">
-                    <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-1/2 h-full opacity-10 -z-10 pointer-events-none">
-                        <i class="fas fa-compass text-[20rem] text-brand-accent absolute -right-20 top-0"></i>
-                    </div>
+                <div class="relative py-12 sm:py-16 bg-brand-navy border-b border-white/5 overflow-hidden">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center reveal-up">
-                        <span id="catalog-category-badge" class="text-brand-accent tracking-[0.3em] text-[10px] uppercase font-bold mb-3 block" data-i18n="catalog_header_badge">Colección Exclusiva</span>
-                        <h2 id="catalog-category-title" class="text-4xl md:text-5xl font-display font-bold text-white mb-4">Catálogo</h2>
-                        <p id="catalog-category-desc" class="text-slate-300 max-w-2xl mx-auto text-sm font-light">Explora nuestra colección de itinerarios privados.</p>
+                        <span id="catalog-category-badge" class="text-brand-accent tracking-[0.25em] sm:tracking-[0.3em] text-[10px] uppercase font-bold mb-2 block" data-i18n="catalog_header_badge">Colección Exclusiva</span>
+                        <h2 id="catalog-category-title" class="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-3">Catálogo</h2>
+                        <p id="catalog-category-desc" class="text-slate-300 max-w-2xl mx-auto text-xs sm:text-sm font-light">Explora nuestra colección de itinerarios privados.</p>
                     </div>
                 </div>
 
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-10">
-                    <!-- Navegación Interna de Categorías -->
-                    <div class="flex flex-wrap justify-center gap-3 mb-10 reveal-up">
-                        <button id="sub-nav-tour" onclick="filterCatalog('tour')" class="cursor-pointer px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-lg border border-brand-accent" data-i18n="sub_tour">Tours & Aventuras</button>
-                        <button id="sub-nav-yate" onclick="filterCatalog('yate')" class="cursor-pointer px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80" data-i18n="sub_yacht">Yates & Catamaranes</button>
-                        <button id="sub-nav-transportacion" onclick="filterCatalog('transportacion')" class="cursor-pointer px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80" data-i18n="sub_trans">Traslados privados</button>
+                <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-10 relative z-10">
+                    <!-- Navegación Interna de Categorías (Adaptada a pantallas móviles) -->
+                    <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 reveal-up">
+                        <button id="sub-nav-tour" onclick="filterCatalog('tour')" class="cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-lg border border-brand-accent" data-i18n="sub_tour">Tours & Aventuras</button>
+                        <button id="sub-nav-yate" onclick="filterCatalog('yate')" class="cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80" data-i18n="sub_yacht">Yates & Catamaranes</button>
+                        <button id="sub-nav-transportacion" onclick="filterCatalog('transportacion')" class="cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80" data-i18n="sub_trans">Traslados privados</button>
                     </div>
 
                     <!-- Buscador -->
-                    <div class="mb-10 w-full max-w-md mx-auto relative reveal-up">
-                        <div class="relative flex items-center w-full h-12 rounded-full focus-within:shadow-[0_0_20px_rgba(212,175,55,0.2)] bg-brand-dark overflow-hidden border border-white/10 focus-within:border-brand-accent transition-all duration-300">
+                    <div class="mb-8 w-full max-w-md mx-auto relative reveal-up">
+                        <div class="relative flex items-center w-full h-11 sm:h-12 rounded-full bg-brand-dark overflow-hidden border border-white/10 focus-within:border-brand-accent transition-all duration-300">
                             <div class="grid place-items-center h-full w-12 text-slate-400">
-                                <i class="fas fa-search"></i>
+                                <i class="fas fa-search text-sm"></i>
                             </div>
-                            <input class="peer h-full w-full outline-none text-sm text-white bg-transparent pr-2 font-light" type="text" id="catalog-search" oninput="handleCatalogSearch(this.value)" data-i18n-placeholder="search_placeholder" placeholder="Buscar experiencia...">
+                            <input class="peer h-full w-full outline-none text-sm text-white bg-transparent pr-4 font-light" type="text" id="catalog-search" oninput="handleCatalogSearch(this.value)" data-i18n-placeholder="search_placeholder" placeholder="Buscar experiencia...">
                         </div>
                     </div>
 
                     <!-- Grid de Catálogo -->
-                    <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center min-h-[40vh] reveal-up">
+                    <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 justify-items-center min-h-[40vh] reveal-up">
                         <div class="col-span-full flex flex-col items-center justify-center py-20 text-brand-accent animate-pulse">
-                            <i class="fas fa-circle-notch fa-spin text-4xl mb-4"></i>
+                            <i class="fas fa-circle-notch fa-spin text-3xl sm:text-4xl mb-4"></i>
                             <p class="tracking-[0.2em] text-xs uppercase font-bold" data-i18n="catalog_syncing">Sincronizando inventario...</p>
                         </div>
                     </div>
@@ -335,41 +333,38 @@
 
             <!-- VISTA: CONTACTO / RESERVA -->
             <section id="page-contact" class="page-view w-full max-w-full relative z-10">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                    <div class="flex flex-col lg:flex-row gap-16 bg-[#050b18] rounded-[2.5rem] p-6 sm:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-10 sm:py-20">
+                    <div class="flex flex-col lg:flex-row gap-10 sm:gap-16 bg-[#050b18] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
                         
                         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-50"></div>
-                        <div class="absolute -bottom-32 -right-32 text-brand-accent/5 -z-10 pointer-events-none">
-                            <i class="fas fa-envelope-open-text text-[25rem]"></i>
-                        </div>
 
                         <!-- Info lado izquierdo -->
                         <div class="w-full lg:w-5/12 reveal-up relative z-10">
-                            <p class="text-brand-accent tracking-[0.3em] text-xs uppercase font-bold mb-4" data-i18n="contact_badge">Planificación Personalizada</p>
-                            <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 text-white" data-i18n-html="contact_title">
+                            <p class="text-brand-accent tracking-[0.25em] sm:tracking-[0.3em] text-[11px] sm:text-xs uppercase font-bold mb-3" data-i18n="contact_badge">Planificación Personalizada</p>
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4 sm:mb-6 text-white" data-i18n-html="contact_title">
                                 Diseña tu <span class="font-serif italic font-bold text-brand-accent">Estancia</span>
                             </h2>
-                            <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-10 font-light" data-i18n="contact_desc">
+                            <p class="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-10 font-light" data-i18n="contact_desc">
                                 Envíanos tus deseos de viaje y un concierge especializado creará tu itinerario ideal en minutos.
                             </p>
                             
-                            <div class="space-y-6">
+                            <div class="space-y-4 sm:space-y-6">
                                 <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-brand-accent flex-shrink-0 border-brand-accent/30 shadow-lg">
-                                        <i class="fab fa-whatsapp text-xl"></i>
+                                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full glass-panel flex items-center justify-center text-brand-accent flex-shrink-0 border-brand-accent/30 shadow-lg">
+                                        <i class="fab fa-whatsapp text-lg sm:text-xl"></i>
                                     </div>
                                     <div>
-                                        <p class="text-xs text-slate-400 uppercase tracking-wider mb-1" data-i18n="footer_direct_contact">Contacto Directo</p>
-                                        <p class="text-white font-medium text-lg">+52 998 227 4928</p>
+                                        <p class="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider mb-0.5 sm:mb-1" data-i18n="footer_direct_contact">Contacto Directo</p>
+                                        <p class="text-white font-medium text-base sm:text-lg">+52 998 227 4928</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-brand-accent flex-shrink-0 border-brand-accent/30 shadow-lg">
-                                        <i class="fas fa-map-marked-alt text-xl"></i>
+                                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full glass-panel flex items-center justify-center text-brand-accent flex-shrink-0 border-brand-accent/30 shadow-lg">
+                                        <i class="fas fa-map-marked-alt text-lg sm:text-xl"></i>
                                     </div>
                                     <div>
-                                        <p class="text-xs text-slate-400 uppercase tracking-wider mb-1" data-i18n="contact_base_title">Base de Operaciones</p>
-                                        <p class="text-white font-medium text-sm leading-relaxed" data-i18n-html="footer_address">Blvd. Kukulcan Km 12, Zona Hotelera<br>77500 Cancún, Q.R., México</p>
+                                        <p class="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider mb-0.5 sm:mb-1" data-i18n="contact_base_title">Base de Operaciones</p>
+                                        <p class="text-white font-medium text-xs sm:text-sm leading-relaxed" data-i18n-html="footer_address">Blvd. Kukulcan Km 12, Zona Hotelera<br>77500 Cancún, Q.R., México</p>
                                     </div>
                                 </div>
                             </div>
@@ -377,15 +372,15 @@
 
                         <!-- Formulario lado derecho -->
                         <div class="w-full lg:w-7/12 reveal-up relative z-10">
-                            <form id="booking-form" onsubmit="handleFormSubmit(event)" class="glass-panel p-6 sm:p-8 rounded-3xl border border-brand-accent/20 shadow-xl">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                            <form id="booking-form" onsubmit="handleFormSubmit(event)" class="glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-brand-accent/20 shadow-xl">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                                     <div>
                                         <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_name">Tu Nombre Completo *</label>
-                                        <input type="text" id="f_name" required class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all" data-i18n-placeholder="form_ph_name" placeholder="Tu Nombre">
+                                        <input type="text" id="f_name" required class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition-all" data-i18n-placeholder="form_ph_name" placeholder="Tu Nombre">
                                     </div>
                                     <div>
                                         <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_choose">¿Cuántos viajan? *</label>
-                                        <select id="f_people" required class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-300 focus:outline-none focus:border-brand-accent focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all cursor-pointer">
+                                        <select id="f_people" required class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-accent transition-all cursor-pointer">
                                             <option value="" disabled selected data-i18n="form_opt_choose">Selecciona opción...</option>
                                             <option value="pareja" data-i18n="form_opt_couple">Pareja (2 personas)</option>
                                             <option value="familia" data-i18n="form_opt_small_family">Familia (3 - 5 personas)</option>
@@ -394,27 +389,27 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                                     <div>
                                         <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_date">Fecha Estimada de Viaje</label>
-                                        <input type="date" id="f_date" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all [color-scheme:dark] cursor-pointer">
+                                        <input type="date" id="f_date" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition-all [color-scheme:dark] cursor-pointer">
                                     </div>
                                     <div>
                                         <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_hotel">Hotel o Zona de Hospedaje</label>
-                                        <input type="text" id="f_hotel" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all" data-i18n-placeholder="form_ph_hotel" placeholder="Nombre de Hotel">
+                                        <input type="text" id="f_hotel" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition-all" data-i18n-placeholder="form_ph_hotel" placeholder="Nombre de Hotel">
                                     </div>
                                 </div>
-                                <div class="mb-8">
+                                <div class="mb-6 sm:mb-8">
                                     <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_interests">Actividades o Yates de Interés</label>
-                                    <textarea id="f_destinos" rows="3" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all resize-none" data-i18n-placeholder="form_ph_interests" placeholder="Ej: Chichén Itzá, Yate privado, Traslados..."></textarea>
+                                    <textarea id="f_destinos" rows="3" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition-all resize-none" data-i18n-placeholder="form_ph_interests" placeholder="Ej: Chichén Itzá, Yate privado, Traslados..."></textarea>
                                 </div>
                                 
                                 <div id="form-error-msg" class="hidden text-red-400 text-xs text-center mb-4 bg-red-900/20 py-2 rounded-lg border border-red-500/30"></div>
                                 
-                                <button type="submit" class="w-full bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] transform hover:-translate-y-1 flex items-center justify-center gap-3 cursor-pointer">
+                                <button type="submit" class="w-full bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-3.5 sm:py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] flex items-center justify-center gap-3 cursor-pointer">
                                     <i class="fab fa-whatsapp text-lg"></i> <span data-i18n="form_btn_submit">Enviar Solicitud a WhatsApp</span>
                                 </button>
-                                <p class="text-center text-[10px] text-slate-500 mt-4 uppercase tracking-wider" data-i18n="form_subtext">Respuesta inmediata con cotización formal.</p>
+                                <p class="text-center text-[9px] sm:text-[10px] text-slate-500 mt-3 sm:mt-4 uppercase tracking-wider" data-i18n="form_subtext">Respuesta inmediata con cotización formal.</p>
                             </form>
                         </div>
                     </div>
@@ -423,18 +418,18 @@
         </div>
 
         <!-- FOOTER OFICIAL -->
-        <footer class="bg-[#02050a] border-t border-white/5 pt-16 pb-8 relative z-20 w-full max-w-full">
+        <footer class="bg-[#02050a] border-t border-white/5 pt-12 sm:pt-16 pb-8 relative z-20 w-full max-w-full">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
-                    <div class="md:col-span-5 flex flex-col items-center md:items-start text-center md:text-left">
-                        <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Amazing Colors Logo" class="w-36 h-36 md:w-48 md:h-48 mb-4 opacity-90 hover:scale-105 transition-all duration-500 drop-shadow-[0_0_15px_rgba(212,175,55,0.3)] object-contain cursor-pointer" onclick="navigateTo('home')">
-                        <h4 class="text-xl font-display font-bold text-white mb-3 uppercase tracking-widest">Amazing <span class="text-brand-accent">Colors</span></h4>
-                        <p class="text-slate-400 text-sm font-light max-w-sm" data-i18n="footer_desc">Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y logística de lujo.</p>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 mb-10 sm:mb-12 text-center md:text-left">
+                    <div class="md:col-span-5 flex flex-col items-center md:items-start">
+                        <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Amazing Colors Logo" class="w-32 h-32 sm:w-40 sm:h-40 mb-3 opacity-90 hover:scale-105 transition-all duration-500 drop-shadow-[0_0_15px_rgba(212,175,55,0.3)] object-contain cursor-pointer" onclick="navigateTo('home')">
+                        <h4 class="text-lg sm:text-xl font-display font-bold text-white mb-2 uppercase tracking-widest">Amazing <span class="text-brand-accent">Colors</span></h4>
+                        <p class="text-slate-400 text-xs sm:text-sm font-light max-w-sm" data-i18n="footer_desc">Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y logística de lujo.</p>
                     </div>
                     
-                    <div class="md:col-span-3 flex flex-col items-center md:items-start text-center md:text-left">
-                        <h4 class="text-brand-accent text-[10px] font-bold uppercase tracking-[0.2em] mb-5" data-i18n="footer_sections_title">Secciones Rápidas</h4>
-                        <ul class="space-y-3 text-sm text-slate-400">
+                    <div class="md:col-span-3 flex flex-col items-center md:items-start">
+                        <h4 class="text-brand-accent text-[10px] font-bold uppercase tracking-[0.2em] mb-4" data-i18n="footer_sections_title">Secciones Rápidas</h4>
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-400">
                             <li><button onclick="navigateTo('home')" class="cursor-pointer hover:text-brand-accent transition-colors" data-i18n="nav_home">Inicio</button></li>
                             <li><button onclick="navigateTo('legacy')" class="cursor-pointer hover:text-brand-accent transition-colors" data-i18n="nav_legacy">Legado</button></li>
                             <li><button onclick="navigateTo('catalog')" class="cursor-pointer hover:text-brand-accent transition-colors" data-i18n="nav_catalog">Catálogo</button></li>
@@ -442,11 +437,11 @@
                         </ul>
                     </div>
 
-                    <div class="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left">
-                        <h4 class="text-brand-accent text-[10px] font-bold uppercase tracking-[0.2em] mb-5" data-i18n="footer_concierge_title">Contacto Concierge</h4>
-                        <ul class="space-y-4 text-sm text-slate-400">
+                    <div class="md:col-span-4 flex flex-col items-center md:items-start">
+                        <h4 class="text-brand-accent text-[10px] font-bold uppercase tracking-[0.2em] mb-4" data-i18n="footer_concierge_title">Contacto Concierge</h4>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-400">
                             <li class="flex items-start gap-3 justify-center md:justify-start">
-                                <i class="fas fa-map-marker-alt text-brand-accent mt-1"></i>
+                                <i class="fas fa-map-marker-alt text-brand-accent mt-0.5"></i>
                                 <span data-i18n-html="footer_address">Blvd. Kukulcan Km 12, Zona Hotelera<br>77500 Cancún, Q.R., México</span>
                             </li>
                             <li class="flex items-center gap-3 justify-center md:justify-start">
@@ -454,63 +449,59 @@
                                 <span>+52 998 227 4928</span>
                             </li>
                         </ul>
-                        <div class="flex gap-4 mt-6">
-                            <a href="#" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-white/60 hover:text-brand-dark hover:bg-brand-accent transition-all duration-300 shadow-md cursor-pointer"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-white/60 hover:text-brand-dark hover:bg-brand-accent transition-all duration-300 shadow-md cursor-pointer"><i class="fab fa-facebook-f"></i></a>
-                        </div>
                     </div>
                 </div>
                 
-                <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest" data-i18n="footer_copyright">© 2026 Amazing Colors Tours. Todos los derechos reservados.</p>
-                    <p class="text-[10px] text-brand-accent/50 uppercase tracking-widest" data-i18n="footer_privacy">Privacidad y Confidencialidad Garantizada</p>
+                <div class="border-t border-white/10 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
+                    <p class="text-[9px] sm:text-[10px] text-slate-500 uppercase tracking-widest" data-i18n="footer_copyright">© 2026 Amazing Colors Tours. Todos los derechos reservados.</p>
+                    <p class="text-[9px] sm:text-[10px] text-brand-accent/50 uppercase tracking-widest" data-i18n="footer_privacy">Privacidad y Confidencialidad Garantizada</p>
                 </div>
             </div>
         </footer>
     </div>
 
-    <!-- MODAL DETALLE DE ACTIVIDAD (Totalmente seguro e invisible al cerrarse) -->
-    <div id="activity-detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 opacity-0 invisible transition-all duration-500 bg-brand-dark/90 backdrop-blur-md" onclick="if(event.target === this) closeDetailModal()">
-        <div class="bg-brand-navy w-full max-w-4xl max-h-full rounded-3xl border border-brand-accent/30 shadow-2xl flex flex-col overflow-hidden relative">
-            <button onclick="closeDetailModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full glass-panel text-white hover:text-brand-accent flex items-center justify-center transition-colors shadow-lg border-white/10 cursor-pointer">
-                <i class="fas fa-times"></i>
+    <!-- MODAL DETALLE DE ACTIVIDAD (OPTIMIZADO PARA PANTALLAS MÓVILES) -->
+    <div id="activity-detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 md:p-8 opacity-0 invisible transition-all duration-300 bg-brand-dark/90 backdrop-blur-md" onclick="if(event.target === this) closeDetailModal()">
+        <div class="bg-brand-navy w-full max-w-4xl max-h-[90vh] sm:max-h-[85vh] rounded-2xl sm:rounded-3xl border border-brand-accent/30 shadow-2xl flex flex-col overflow-hidden relative">
+            <button onclick="closeDetailModal()" class="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full glass-panel text-white hover:text-brand-accent flex items-center justify-center transition-colors shadow-lg border-white/10 cursor-pointer">
+                <i class="fas fa-times text-sm"></i>
             </button>
-            <div class="flex flex-col md:flex-row h-full overflow-y-auto overflow-x-hidden md:overflow-hidden no-scrollbar">
+            <div class="flex flex-col md:flex-row h-full overflow-y-auto no-scrollbar">
                 <!-- Imagen -->
-                <div class="w-full md:w-1/2 relative min-h-[300px] md:min-h-full cursor-zoom-in group" id="detail-img-container">
-                    <img id="detail-modal-img" src="" alt="Detail Image" class="absolute inset-0 w-full h-full object-cover">
+                <div class="w-full md:w-1/2 relative h-56 sm:h-64 md:h-full shrink-0 cursor-zoom-in group" id="detail-img-container">
+                    <img id="detail-modal-img" src="" alt="Detail Image" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-brand-navy"></div>
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-brand-navy/30 backdrop-blur-sm">
-                        <div class="glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-white shadow-lg">
-                            <i class="fas fa-search-plus text-brand-accent"></i> <span class="text-xs tracking-wider uppercase font-medium" data-i18n="modal_zoom_hint">Clic para ampliar</span>
+                        <div class="glass-panel px-3.5 py-1.5 rounded-full flex items-center gap-2 text-white shadow-lg">
+                            <i class="fas fa-search-plus text-brand-accent text-xs"></i> <span class="text-[10px] tracking-wider uppercase font-medium" data-i18n="modal_zoom_hint">Clic para ampliar</span>
                         </div>
                     </div>
                 </div>
                 <!-- Info -->
-                <div class="w-full md:w-1/2 p-6 md:p-8 flex flex-col overflow-y-auto no-scrollbar pb-10 md:pb-8">
-                    <div class="mb-6 border-b border-white/10 pb-6">
-                        <h3 id="detail-modal-title" class="text-2xl md:text-3xl font-display font-bold text-white mb-2 leading-tight"></h3>
-                        <p id="detail-modal-price" class="text-brand-accent font-semibold text-lg"></p>
+                <div class="w-full md:w-1/2 p-5 sm:p-8 flex flex-col flex-grow overflow-y-auto no-scrollbar">
+                    <div class="mb-4 sm:mb-6 border-b border-white/10 pb-4 sm:pb-6">
+                        <h3 id="detail-modal-title" class="text-xl sm:text-2xl md:text-3xl font-display font-bold text-white mb-1.5 leading-tight"></h3>
+                        <p id="detail-modal-price" class="text-brand-accent font-semibold text-base sm:text-lg"></p>
                     </div>
                     
-                    <div class="mb-6">
-                        <h4 class="text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2" data-i18n="modal_desc_heading">Descripción</h4>
-                        <p id="detail-modal-desc" class="text-sm text-slate-300 leading-relaxed font-light"></p>
+                    <div class="mb-4 sm:mb-6">
+                        <h4 class="text-[9px] sm:text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-1.5" data-i18n="modal_desc_heading">Descripción</h4>
+                        <p id="detail-modal-desc" class="text-xs sm:text-sm text-slate-300 leading-relaxed font-light"></p>
                     </div>
 
-                    <div id="detail-modal-includes-section" class="mb-6 bg-brand-dark/50 rounded-2xl p-5 border border-white/5 shadow-inner">
-                        <h4 class="text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 flex items-center gap-2">
-                            <i class="fas fa-check-circle"></i> <span data-i18n="modal_includes_heading">Incluye:</span>
+                    <div id="detail-modal-includes-section" class="mb-4 sm:mb-6 bg-brand-dark/50 rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-white/5 shadow-inner">
+                        <h4 class="text-[9px] sm:text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-1.5 flex items-center gap-2">
+                            <i class="fas fa-check-circle"></i> <span data-i18n="modal_includes_heading">Include</span>
                         </h4>
-                        <p id="detail-modal-includes" class="text-sm text-white font-medium leading-relaxed"></p>
+                        <p id="detail-modal-includes" class="text-xs sm:text-sm text-white font-medium leading-relaxed"></p>
                     </div>
 
-                    <div id="detail-modal-specs" class="space-y-1 mb-8 flex-grow">
+                    <div id="detail-modal-specs" class="space-y-1 mb-6 flex-grow">
                         <!-- Llenado dinámico por JS -->
                     </div>
 
-                    <div class="mt-auto pt-4 md:pt-0">
-                        <button id="detail-modal-reserve-btn" class="w-full bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] transform hover:-translate-y-1 flex items-center justify-center gap-3 cursor-pointer">
+                    <div class="mt-auto pt-2">
+                        <button id="detail-modal-reserve-btn" class="w-full bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-3.5 sm:py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center gap-3 cursor-pointer">
                             <i class="fab fa-whatsapp text-lg"></i> <span data-i18n="modal_reserve_btn">Reservar por WhatsApp</span>
                         </button>
                     </div>
@@ -520,15 +511,15 @@
     </div>
 
     <!-- MODAL ZOOM IMAGEN LUPA -->
-    <div id="image-zoom-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-10 opacity-0 invisible transition-all duration-300 bg-brand-dark/95 backdrop-blur-xl" onclick="if(event.target === this) closeZoomModal()">
-        <button onclick="closeZoomModal()" class="absolute top-6 right-6 z-[70] w-12 h-12 rounded-full glass-panel text-white hover:text-brand-accent flex items-center justify-center transition-colors shadow-2xl border-white/20 cursor-pointer pointer-events-auto">
-            <i class="fas fa-times text-xl"></i>
+    <div id="image-zoom-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-10 opacity-0 invisible transition-all duration-300 bg-brand-dark/95 backdrop-blur-xl" onclick="if(event.target === this) closeZoomModal()">
+        <button onclick="closeZoomModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 z-[70] w-10 h-10 sm:w-12 sm:h-12 rounded-full glass-panel text-white hover:text-brand-accent flex items-center justify-center transition-colors shadow-2xl border-white/20 cursor-pointer pointer-events-auto">
+            <i class="fas fa-times text-lg sm:text-xl"></i>
         </button>
         <div class="w-full h-full max-w-6xl flex flex-col items-center justify-center relative pointer-events-none">
             <div id="zoom-container" class="relative w-full h-full rounded-2xl overflow-hidden cursor-crosshair shadow-2xl border border-white/10 pointer-events-auto" onmousemove="zoomImage(event)" onmouseleave="resetZoomImage()">
                 <img id="zoom-modal-img" src="" alt="Zoom" class="w-full h-full object-contain transition-transform duration-100 ease-out origin-center">
             </div>
-            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 glass-panel px-6 py-2 rounded-full pointer-events-none hidden md:block border-brand-accent/30 shadow-lg">
+            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 glass-panel px-4 py-1.5 rounded-full pointer-events-none hidden md:block border-brand-accent/30 shadow-lg">
                 <p class="text-xs text-white uppercase tracking-widest flex items-center gap-2"><i class="fas fa-mouse text-brand-accent"></i> <span data-i18n="zoom_hint_text">Desplaza el cursor sobre la imagen para explorar detalles</span></p>
             </div>
         </div>
@@ -536,17 +527,17 @@
 
     <!-- BANNER DE COOKIES -->
     <div id="cookie-banner" class="fixed bottom-0 left-0 w-full glass-panel border-t border-brand-accent/40 z-[100] transform translate-y-full transition-transform duration-700 p-4 sm:p-6 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-start gap-4">
-                <div class="text-brand-accent mt-1 hidden sm:block"><i class="fas fa-shield-alt text-2xl"></i></div>
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+            <div class="flex items-start gap-3">
+                <div class="text-brand-accent mt-0.5 hidden sm:block"><i class="fas fa-shield-alt text-xl"></i></div>
                 <div>
-                    <h5 class="text-white font-bold text-sm uppercase tracking-wider mb-1" data-i18n="cookie_title">Privacidad y Seguridad</h5>
-                    <p class="text-xs text-slate-300 leading-relaxed font-light max-w-3xl" data-i18n="cookie_desc">
-                        Utilizamos cookies operativas y cifradas esenciales para garantizar la seguridad de su sesión de reserva y el correcto funcionamiento del sitio. Al continuar navegando, usted acepta nuestra estricta política de confidencialidad.
+                    <h5 class="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-1" data-i18n="cookie_title">Privacidad y Seguridad</h5>
+                    <p class="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-light max-w-3xl" data-i18n="cookie_desc">
+                        Utilizamos cookies operativas y cifradas esenciales para garantizar la seguridad de su sesión de reserva y el correcto funcionamiento del sitio.
                     </p>
                 </div>
             </div>
-            <button onclick="acceptCookies()" class="shrink-0 w-full sm:w-auto bg-brand-accent hover:bg-white text-brand-dark font-bold px-8 py-3 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md cursor-pointer" data-i18n="cookie_accept">Aceptar</button>
+            <button onclick="acceptCookies()" class="shrink-0 w-full sm:w-auto bg-brand-accent hover:bg-white text-brand-dark font-bold px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md cursor-pointer" data-i18n="cookie_accept">Aceptar</button>
         </div>
     </div>
 
@@ -1023,11 +1014,11 @@
             const btnEs = document.getElementById('lang-btn-es');
             const btnEn = document.getElementById('lang-btn-en');
             if (lang === 'es') {
-                btnEs.className = "cursor-pointer px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
-                btnEn.className = "cursor-pointer px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
+                btnEs.className = "cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
+                btnEn.className = "cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
             } else {
-                btnEn.className = "cursor-pointer px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
-                btnEs.className = "cursor-pointer px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
+                btnEn.className = "cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
+                btnEs.className = "cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
             }
 
             document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -1205,6 +1196,7 @@
                 return;
             }
 
+            // Cards de carrusel optimizadas para móvil (80vw)
             const cardsHTML = mixedItems.map((item, index) => {
                 const imgUrl = getImgUrlByFolio(item['folio'], item['nombre']);
                 const tipoCat = (item['tipo'] || 'tours').toLowerCase() === 'yate' ? 'yates' : 'tours';
@@ -1214,22 +1206,22 @@
                 let catBadge = (item['tipo'] || '').toLowerCase() === 'yate' ? 'Charter Privado' : 'Tour Élite';
                 
                 return `
-                <div class="w-[280px] sm:w-[320px] md:w-[380px] flex-shrink-0 snap-start group cursor-pointer h-full" onclick="openDetailModal('${encodeURIComponent(item['nombre'])}')">
-                    <div class="glass-card rounded-3xl overflow-hidden h-full flex flex-col relative border border-white/10 group-hover:border-brand-accent/50 transition-all duration-500 shadow-xl group-hover:shadow-[0_15px_40px_rgba(212,175,55,0.2)] transform group-hover:-translate-y-2">
-                        <div class="h-48 md:h-56 w-full overflow-hidden relative">
-                            <div class="absolute inset-0 bg-brand-dark/20 group-hover:bg-transparent z-10 transition-colors duration-500"></div>
-                            <img src="${imgUrl}" alt="${title}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" onerror="handleImgError(this, '${tipoCat}')">
+                <div class="w-[80vw] max-w-[310px] sm:w-[320px] md:w-[380px] flex-shrink-0 snap-start group cursor-pointer h-full" onclick="openDetailModal('${encodeURIComponent(item['nombre'])}')">
+                    <div class="glass-card rounded-2xl sm:rounded-3xl overflow-hidden h-full flex flex-col relative border border-white/10 group-hover:border-brand-accent/50 transition-all duration-300 shadow-xl transform group-hover:-translate-y-1">
+                        <div class="h-44 sm:h-52 md:h-56 w-full overflow-hidden relative">
+                            <div class="absolute inset-0 bg-brand-dark/20 group-hover:bg-transparent z-10 transition-colors duration-300"></div>
+                            <img src="${imgUrl}" alt="${title}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out" onerror="handleImgError(this, '${tipoCat}')">
                         </div>
-                        <div class="p-6 md:p-8 flex-grow flex flex-col bg-gradient-to-b from-transparent to-brand-navy/80">
-                            <span class="text-brand-accent tracking-[0.2em] text-[10px] uppercase font-bold mb-2 block">${catBadge}</span>
-                            <h4 class="text-xl md:text-2xl font-display font-bold text-white mb-2 leading-tight group-hover:text-brand-accent transition-colors">${title}</h4>
-                            <p class="text-slate-400 text-xs italic font-serif mb-4 flex-grow border-l-2 border-brand-accent/30 pl-3">${slogan}</p>
-                            <div class="mt-auto pt-4 border-t border-white/10 flex justify-between items-center">
-                                <span class="text-[10px] uppercase tracking-widest text-slate-300 font-semibold flex items-center gap-2 group-hover:text-white transition-colors">
+                        <div class="p-5 sm:p-6 md:p-8 flex-grow flex flex-col bg-gradient-to-b from-transparent to-brand-navy/80">
+                            <span class="text-brand-accent tracking-[0.2em] text-[9px] sm:text-[10px] uppercase font-bold mb-1.5 block">${catBadge}</span>
+                            <h4 class="text-lg sm:text-xl md:text-2xl font-display font-bold text-white mb-2 leading-tight group-hover:text-brand-accent transition-colors">${title}</h4>
+                            <p class="text-slate-400 text-xs italic font-serif mb-4 flex-grow border-l-2 border-brand-accent/30 pl-3 line-clamp-2">${slogan}</p>
+                            <div class="mt-auto pt-3 sm:pt-4 border-t border-white/10 flex justify-between items-center">
+                                <span class="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-300 font-semibold flex items-center gap-2 group-hover:text-white transition-colors">
                                     ${i18n[currentLang].card_view_details}
                                 </span>
-                                <div class="w-8 h-8 rounded-full glass-panel flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-brand-dark transition-all duration-300 shadow-md">
-                                    <i class="fas fa-arrow-right text-xs"></i>
+                                <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full glass-panel flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-brand-dark transition-all duration-300 shadow-md">
+                                    <i class="fas fa-arrow-right text-[10px] sm:text-xs"></i>
                                 </div>
                             </div>
                         </div>
@@ -1245,7 +1237,7 @@
         function scrollCarousel(direction) {
             const container = document.getElementById('home-carousel-scroll');
             if(container) {
-                const scrollAmount = window.innerWidth < 768 ? 320 : 380; 
+                const scrollAmount = window.innerWidth < 768 ? (window.innerWidth * 0.8) : 380; 
                 container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
             }
         }
@@ -1256,7 +1248,7 @@
                 const container = document.getElementById('home-carousel-scroll');
                 if (!container) return;
                 const maxScroll = container.scrollWidth - container.clientWidth;
-                const step = window.innerWidth < 768 ? 320 : 380;
+                const step = window.innerWidth < 768 ? (window.innerWidth * 0.8) : 380;
                 if (container.scrollLeft + step >= maxScroll - 10) {
                     container.scrollTo({ left: 0, behavior: 'smooth' });
                 } else {
@@ -1276,11 +1268,11 @@
             currentCategory = category;
             
             document.querySelectorAll('#page-catalog button[id^="sub-nav-"]').forEach(btn => {
-                btn.className = "cursor-pointer px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80";
+                btn.className = "cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80";
             });
             const activeBtn = document.getElementById('sub-nav-' + category);
             if (activeBtn) {
-                activeBtn.className = "cursor-pointer px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-lg border border-brand-accent";
+                activeBtn.className = "cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-lg border border-brand-accent";
             }
 
             const titleMap = {
@@ -1328,9 +1320,9 @@
             if (filtered.length === 0) {
                 grid.innerHTML = `
                     <div class="col-span-full flex flex-col items-center justify-center py-20 text-center reveal-up">
-                        <i class="far fa-compass text-6xl text-brand-accent/40 mb-6"></i>
-                        <h3 class="text-2xl font-display text-white mb-2">${i18n[currentLang].catalog_not_found_title}</h3>
-                        <p class="text-slate-400 font-light">${i18n[currentLang].catalog_not_found_desc}</p>
+                        <i class="far fa-compass text-5xl sm:text-6xl text-brand-accent/40 mb-6"></i>
+                        <h3 class="text-xl sm:text-2xl font-display text-white mb-2">${i18n[currentLang].catalog_not_found_title}</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm font-light">${i18n[currentLang].catalog_not_found_desc}</p>
                     </div>
                 `;
                 return;
@@ -1343,29 +1335,29 @@
                 
                 let priceHtml = '';
                 if (item['precio publico'] && item['precio publico'].trim() !== '') {
-                    priceHtml = `<span class="bg-brand-dark/80 text-white px-3 py-1 rounded-full text-xs font-bold border border-white/10 shadow-md backdrop-blur-sm">$${escapeHTML(item['precio publico'])}</span>`;
+                    priceHtml = `<span class="bg-brand-dark/80 text-white px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold border border-white/10 shadow-md backdrop-blur-sm">$${escapeHTML(item['precio publico'])}</span>`;
                 }
 
                 const card = document.createElement('div');
-                card.className = "w-full max-w-[360px] flex flex-col group cursor-pointer reveal-up h-full";
-                card.style.animationDelay = `${(index % 10) * 0.05}s`;
+                card.className = "w-full max-w-[340px] sm:max-w-[360px] flex flex-col group cursor-pointer reveal-up h-full";
+                card.style.animationDelay = `${(index % 10) * 0.04}s`;
                 card.onclick = () => openDetailModal(item['nombre']);
 
                 card.innerHTML = `
-                    <div class="glass-card rounded-[2rem] overflow-hidden flex flex-col h-full relative border border-white/5 group-hover:border-brand-accent/40 transition-all duration-500 shadow-lg group-hover:shadow-[0_15px_40px_rgba(212,175,55,0.15)] transform group-hover:-translate-y-2">
-                        <div class="h-56 w-full overflow-hidden relative">
+                    <div class="glass-card rounded-2xl sm:rounded-[2rem] overflow-hidden flex flex-col h-full relative border border-white/5 group-hover:border-brand-accent/40 transition-all duration-300 shadow-lg transform group-hover:-translate-y-1">
+                        <div class="h-48 sm:h-56 w-full overflow-hidden relative">
                             <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent z-10"></div>
-                            <img src="${imgUrl}" alt="${title}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" onerror="handleImgError(this, '${tipoCat}')">
-                            <div class="absolute top-4 right-4 z-20">${priceHtml}</div>
+                            <img src="${imgUrl}" alt="${title}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out" onerror="handleImgError(this, '${tipoCat}')">
+                            <div class="absolute top-3 right-3 sm:top-4 sm:right-4 z-20">${priceHtml}</div>
                         </div>
-                        <div class="p-6 md:p-8 flex-grow flex flex-col bg-brand-navy/60">
-                            <h4 class="text-lg md:text-xl font-display font-bold text-white mb-2 leading-tight group-hover:text-brand-accent transition-colors line-clamp-2">${title}</h4>
+                        <div class="p-5 sm:p-7 flex-grow flex flex-col bg-brand-navy/60">
+                            <h4 class="text-base sm:text-lg font-display font-bold text-white mb-2 leading-tight group-hover:text-brand-accent transition-colors line-clamp-2">${title}</h4>
                             <p class="text-slate-400 text-xs italic font-serif mb-4 flex-grow line-clamp-3">${getCreativeSlogan(item, index)}</p>
-                            <div class="mt-auto pt-4 border-t border-white/10 flex justify-between items-center w-full">
-                                <span class="text-[10px] uppercase tracking-[0.2em] text-brand-accent font-bold group-hover:text-white transition-colors">
+                            <div class="mt-auto pt-3 border-t border-white/10 flex justify-between items-center w-full">
+                                <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-brand-accent font-bold group-hover:text-white transition-colors">
                                     ${i18n[currentLang].card_view_details}
                                 </span>
-                                <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-brand-dark transition-all duration-300 shadow-md">
+                                <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-brand-dark transition-all duration-300 shadow-md">
                                     <i class="fas fa-plus text-xs"></i>
                                 </div>
                             </div>
@@ -1404,7 +1396,7 @@
             let priceText = item['precio publico'] ? `$${item['precio publico']}` : (currentLang === 'es' ? i18n[currentLang].consult_concierge : i18n[currentLang].consult_concierge);
             document.getElementById('detail-modal-price').textContent = priceText;
 
-            // Inclusiones
+            // Inclusiones (Garantizado 'Include' en EN)
             const includesRaw = item['incluye'] || item['include'] || item['inclusiones'] || '';
             const includesSec = document.getElementById('detail-modal-includes-section');
             if (includesRaw.trim()) {
@@ -1444,11 +1436,11 @@
                 const specDiv = document.createElement('div');
                 specDiv.className = "flex justify-between items-center py-2 border-b border-white/5 last:border-0 group/spec";
                 specDiv.innerHTML = `
-                    <span class="text-[10px] uppercase tracking-widest text-slate-400 font-bold flex items-center gap-2 w-1/3">
+                    <span class="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-400 font-bold flex items-center gap-2 w-1/3">
                         <i class="fas ${icon} text-brand-accent/70 group-hover/spec:text-brand-accent transition-colors"></i> 
                         <span class="truncate">${escapeHTML(headerName)}</span>
                     </span>
-                    <span class="text-sm font-medium text-white text-right w-2/3 pl-4">${escapeHTML(valueText)}</span>
+                    <span class="text-xs sm:text-sm font-medium text-white text-right w-2/3 pl-3">${escapeHTML(valueText)}</span>
                 `;
                 specsContainer.appendChild(specDiv);
                 hasSpecs = true;
