@@ -39,11 +39,11 @@
         .page-view.active { display: block !important; opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
         
         /* ESTÉTICA GLASSMORFISMO PREMIUM */
-        .glass-panel { background: rgba(7, 16, 33, 0.5); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
-        .glass-card { background: linear-gradient(145deg, rgba(7, 16, 33, 0.7) 0%, rgba(3, 9, 20, 0.95) 100%); backdrop-filter: blur(12px) saturate(150%); border: 1px solid rgba(212, 175, 55, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
+        .glass-panel { background: rgba(7, 16, 33, 0.55); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.07); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35); }
+        .glass-card { background: linear-gradient(145deg, rgba(7, 16, 33, 0.75) 0%, rgba(3, 9, 20, 0.95) 100%); backdrop-filter: blur(14px) saturate(160%); border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45); }
         
         /* EFECTOS Y ANIMACIONES */
-        .text-glow { text-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+        .text-glow { text-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
         .reveal-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal-up.active { opacity: 1; transform: translateY(0); }
         
@@ -57,6 +57,7 @@
     
     <div id="main-site-wrapper" class="bg-brand-dark min-h-screen flex flex-col justify-between opacity-100 relative w-full max-w-full overflow-hidden">
         
+        <!-- FONDOS AMBIENTALES -->
         <div class="absolute inset-0 overflow-hidden -z-10 pointer-events-none">
             <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-accent/5 blur-[150px] rounded-full"></div>
             <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-accent/5 blur-[150px] rounded-full"></div>
@@ -114,64 +115,147 @@
 
             <!-- VISTA: INICIO -->
             <section id="page-home" class="page-view active w-full max-w-full relative z-10">
-                <!-- HERO SECTION -->
-                <div class="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden">
-                    <div class="absolute inset-0 -z-10">
-                        <img src="https://images.unsplash.com/photo-1582967676645-8120d8f07fb0?auto=format&fit=crop&w=2000&q=80" alt="Caribbean Sea" class="w-full h-full object-cover object-center opacity-50">
+                
+                <!-- HERO SECTION: FORMATO DE CUN.PNG IDÉNTICO A CNT.JPG -->
+                <div class="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden py-14 md:py-20">
+                    <div class="absolute inset-0 -z-10 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1582967676645-8120d8f07fb0?auto=format&fit=crop&w=2200&q=85" alt="Caribbean Sea" class="w-full h-full object-cover object-center scale-105 filter brightness-[0.45] contrast-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/70 to-transparent"></div>
                         <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/30"></div>
+                        <div class="absolute -top-32 right-1/4 w-[500px] h-[500px] bg-brand-accent/10 rounded-full blur-[140px] pointer-events-none"></div>
                     </div>
                     
-                    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center pt-10 pb-20 pointer-events-auto">
-                        <div class="w-full md:w-3/5 pr-0 md:pr-10 text-center md:text-left reveal-up">
-                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-accent/30 bg-brand-accent/5 backdrop-blur-sm mb-6 shadow-lg">
-                                <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
-                                <span class="text-[10px] uppercase tracking-[0.3em] text-brand-accent font-semibold" data-i18n="badge_mexican_caribbean">Caribe Mexicano</span>
+                    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+                            
+                            <!-- Mensaje Principal -->
+                            <div class="lg:col-span-7 text-center lg:text-left reveal-up space-y-6">
+                                <h2 class="text-3xl sm:text-5xl lg:text-6xl font-display font-bold leading-[1.15] text-white tracking-wide" data-i18n-html="hero_title">
+                                    Cancún no es solo un destino, <br class="hidden sm:inline">es un <span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-sand to-white">estado de plenitud.</span>
+                                </h2>
+
+                                <p class="text-sm sm:text-base md:text-lg text-slate-300 font-light leading-relaxed max-w-2xl mx-auto lg:mx-0" data-i18n="hero_desc">
+                                    La joya de Quintana Roo. Un lugar donde la selva de esmeraldas se funde con el mar turquesa y el tiempo parece detenerse para regalarte momentos inigualables.
+                                </p>
+
+                                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                                    <button onclick="navigateTo('catalog')" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-accent via-[#e5c158] to-brand-accent hover:from-white hover:to-slate-100 text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-500 shadow-[0_0_25px_rgba(212,175,55,0.35)] hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] transform hover:-translate-y-1 cursor-pointer" data-i18n="btn_explore_catalog">
+                                        Explorar Catálogo
+                                    </button>
+                                    <button onclick="navigateTo('contact')" class="w-full sm:w-auto px-8 py-4 glass-panel hover:bg-white/10 text-white border border-white/20 font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 transform hover:-translate-y-1 cursor-pointer flex items-center justify-center gap-2" data-i18n="btn_design_itinerary">
+                                        <span data-i18n="btn_design_itinerary">Diseñar Itinerario</span>
+                                        <i class="fas fa-arrow-right text-[10px] text-brand-accent"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <h2 class="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] text-white mb-6" data-i18n-html="hero_title">
-                                Cancún no es solo un destino, <br class="hidden sm:inline">es un <span class="font-serif italic font-bold text-brand-accent">estado de plenitud.</span>
-                            </h2>
-                            <p class="text-base md:text-lg text-slate-300 mb-8 max-w-2xl font-light leading-relaxed" data-i18n="hero_desc">
-                                La joya de Quintana Roo. Un lugar donde la selva de esmeraldas se funde con el mar turquesa y el tiempo parece detenerse para regalarte momentos inigualables.
+
+                            <!-- IMAGEN CUN.PNG CON EL MISMO FORMATO Y MARCO QUE CNT.JPG -->
+                            <div class="lg:col-span-5 flex justify-center items-center reveal-up">
+                                <div class="w-full max-w-md lg:max-w-none relative">
+                                    <div class="absolute -inset-4 border border-brand-accent/20 rounded-3xl transform -rotate-3 -z-10"></div>
+                                    <img src="https://beamazingcolors.github.io/oficial/cun.png" alt="CUN Cancun Quintana Roo" class="w-full rounded-3xl shadow-2xl relative z-10 object-contain h-[420px] md:h-[480px] bg-brand-navy/60 p-6 md:p-8" onerror="handleImgError(this, 'general')">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN DE DATOS CURIOSOS & SECRETOS DE CANCÚN (ESTÉTICA GLASSMORFISMO) -->
+                <div class="w-full py-20 bg-gradient-to-b from-brand-dark via-brand-navy/70 to-brand-navy border-y border-white/5 relative z-10">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
+                            <p class="text-brand-accent tracking-[0.3em] text-xs uppercase font-bold mb-3" data-i18n="facts_badge">Secretos del Caribe Mexicano</p>
+                            <h3 class="text-3xl md:text-5xl font-display font-bold text-white mb-4" data-i18n-html="facts_title">
+                                El Encanto Oculto de <span class="font-serif italic font-bold text-brand-accent">Cancún</span>
+                            </h3>
+                            <p class="text-slate-400 text-sm font-light leading-relaxed" data-i18n="facts_desc">
+                                Más allá de su horizonte turquesa, descubre los fenómenos naturales y la mística que convierten a este santuario en un paraíso inigualable.
                             </p>
-                            <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
-                                <button onclick="navigateTo('catalog')" class="w-full sm:w-auto px-8 py-4 bg-brand-accent cursor-pointer hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] transform hover:-translate-y-1" data-i18n="btn_explore_catalog">
-                                    Explorar Catálogo
-                                </button>
-                                <button onclick="navigateTo('contact')" class="w-full sm:w-auto px-8 py-4 glass-panel cursor-pointer hover:bg-white/10 text-white border border-white/20 font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 transform hover:-translate-y-1" data-i18n="btn_design_itinerary">
-                                    Diseñar Itinerario
-                                </button>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <!-- Curiosidad 1 -->
+                            <div class="glass-card p-6 rounded-3xl border border-white/5 hover:border-brand-accent/40 transition-all duration-500 shadow-xl reveal-up flex flex-col justify-between group">
+                                <div>
+                                    <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent mb-5 group-hover:scale-110 transition-transform shadow-inner">
+                                        <i class="fas fa-umbrella-beach text-xl"></i>
+                                    </div>
+                                    <h4 class="text-white font-display font-bold text-lg mb-2" data-i18n="fact1_title">Arena que no quema</h4>
+                                    <p class="text-xs text-slate-300 font-light leading-relaxed mb-4" data-i18n="fact1_desc">
+                                        Nuestra brillante arena blanca está compuesta de coral fino pulverizado durante milenios. No absorbe la radiación térmica, permitiendo caminar descalzo con total frescura a pleno mediodía.
+                                    </p>
+                                </div>
+                                <span class="text-[9px] uppercase tracking-widest text-brand-accent font-bold" data-i18n="fact1_tag">Fenómeno Natural</span>
+                            </div>
+
+                            <!-- Curiosidad 2 -->
+                            <div class="glass-card p-6 rounded-3xl border border-white/5 hover:border-brand-accent/40 transition-all duration-500 shadow-xl reveal-up flex flex-col justify-between group">
+                                <div>
+                                    <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent mb-5 group-hover:scale-110 transition-transform shadow-inner">
+                                        <i class="fas fa-water text-xl"></i>
+                                    </div>
+                                    <h4 class="text-white font-display font-bold text-lg mb-2" data-i18n="fact2_title">Arrecife Mesoamericano</h4>
+                                    <p class="text-xs text-slate-300 font-light leading-relaxed mb-4" data-i18n="fact2_desc">
+                                        Frente a nuestras costas descansa el segundo sistema de arrecifes más grande del mundo, un santuario protegido de biodiversidad marina virgen y jardines de coral únicos.
+                                    </p>
+                                </div>
+                                <span class="text-[9px] uppercase tracking-widest text-brand-accent font-bold" data-i18n="fact2_tag">Vida Marina</span>
+                            </div>
+
+                            <!-- Curiosidad 3 -->
+                            <div class="glass-card p-6 rounded-3xl border border-white/5 hover:border-brand-accent/40 transition-all duration-500 shadow-xl reveal-up flex flex-col justify-between group">
+                                <div>
+                                    <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent mb-5 group-hover:scale-110 transition-transform shadow-inner">
+                                        <i class="fas fa-dungeon text-xl"></i>
+                                    </div>
+                                    <h4 class="text-white font-display font-bold text-lg mb-2" data-i18n="fact3_title">Ríos Sagrados & Cenotes</h4>
+                                    <p class="text-xs text-slate-300 font-light leading-relaxed mb-4" data-i18n="fact3_desc">
+                                        Quintana Roo alberga la red de ríos subterráneos y cavernas inundadas más extensa del planeta, consideradas por los antiguos mayas como portales sagrados de renovación.
+                                    </p>
+                                </div>
+                                <span class="text-[9px] uppercase tracking-widest text-brand-accent font-bold" data-i18n="fact3_tag">Misticismo Maya</span>
+                            </div>
+
+                            <!-- Curiosidad 4 -->
+                            <div class="glass-card p-6 rounded-3xl border border-white/5 hover:border-brand-accent/40 transition-all duration-500 shadow-xl reveal-up flex flex-col justify-between group">
+                                <div>
+                                    <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent mb-5 group-hover:scale-110 transition-transform shadow-inner">
+                                        <i class="fas fa-palette text-xl"></i>
+                                    </div>
+                                    <h4 class="text-white font-display font-bold text-lg mb-2" data-i18n="fact4_title">El Mar de los 7 Tonos</h4>
+                                    <p class="text-xs text-slate-300 font-light leading-relaxed mb-4" data-i18n="fact4_desc">
+                                        La combinación de aguas cristalinas, lechos de arena blanca y diferentes profundidades refracta la luz solar creando una sinfonía única de siete tonos de azul y turquesa.
+                                    </p>
+                                </div>
+                                <span class="text-[9px] uppercase tracking-widest text-brand-accent font-bold" data-i18n="fact4_tag">Óptica Marina</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- CUN MARK -->
-                <div class="w-full bg-brand-navy flex justify-center pt-24 pb-14 relative z-10 reveal-up">
-                    <img src="https://beamazingcolors.github.io/oficial/cun.png" alt="CUN Logo" class="h-32 md:h-52 object-contain drop-shadow-[0_0_25px_rgba(255,255,255,0.15)] hover:scale-[1.03] transition-transform duration-700 ease-out">
-                </div>
-
-                <!-- DESTACADOS CAROUSEL -->
-                <div class="w-full py-20 bg-brand-navy relative border-y border-white/5 overflow-hidden group/carousel z-10">
+                <!-- DESTACADOS CAROUSEL AUTOMÁTICO E INTERACTIVO -->
+                <div class="w-full py-20 bg-brand-navy relative border-b border-white/5 overflow-hidden group/carousel z-10" onmouseenter="stopCarouselAutoScroll()" onmouseleave="startCarouselAutoScroll()" ontouchstart="stopCarouselAutoScroll()" ontouchend="startCarouselAutoScroll()">
                     <div class="absolute top-0 right-0 w-96 h-96 bg-brand-accent/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-14 text-center reveal-up">
-                        <h3 class="text-3xl md:text-5xl font-display font-bold mb-4" data-i18n-html="carousel_title">
-                            Donde el paraíso toma su <br><span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-sand to-white">verdadero color.</span>
+                    <div class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+                    
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center reveal-up">
+                        <h3 class="text-3xl md:text-5xl font-display font-bold text-white mb-3" data-i18n="carousel_title">
+                            Experiencias Únicas
                         </h3>
-                        <p class="text-brand-accent tracking-[0.3em] text-xs uppercase font-medium" data-i18n="carousel_sub">El lujo de la libertad absoluta</p>
                     </div>
                     
                     <div class="relative w-full max-w-[1400px] mx-auto reveal-up">
                         <!-- Botones de carrusel interactivos -->
-                        <button onclick="scrollCarousel(-1)" class="absolute left-2 md:left-6 top-1/2 transform -translate-y-1/2 z-30 w-12 h-12 md:w-16 md:h-16 rounded-full glass-panel flex items-center justify-center text-brand-accent border-brand-accent/30 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-xl opacity-0 group-hover/carousel:opacity-100 hidden sm:flex cursor-pointer">
+                        <button onclick="scrollCarousel(-1)" class="absolute left-2 md:left-6 top-1/2 transform -translate-y-1/2 z-30 w-12 h-12 md:w-16 md:h-16 rounded-full glass-panel flex items-center justify-center text-brand-accent border border-brand-accent/40 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-[0_10px_25px_rgba(0,0,0,0.5)] opacity-0 group-hover/carousel:opacity-100 hidden sm:flex cursor-pointer">
                             <i class="fas fa-chevron-left text-xl"></i>
                         </button>
-                        <button onclick="scrollCarousel(1)" class="absolute right-2 md:right-6 top-1/2 transform -translate-y-1/2 z-30 w-12 h-12 md:w-16 md:h-16 rounded-full glass-panel flex items-center justify-center text-brand-accent border-brand-accent/30 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-xl opacity-0 group-hover/carousel:opacity-100 hidden sm:flex cursor-pointer">
+                        <button onclick="scrollCarousel(1)" class="absolute right-2 md:right-6 top-1/2 transform -translate-y-1/2 z-30 w-12 h-12 md:w-16 md:h-16 rounded-full glass-panel flex items-center justify-center text-brand-accent border border-brand-accent/40 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-[0_10px_25px_rgba(0,0,0,0.5)] opacity-0 group-hover/carousel:opacity-100 hidden sm:flex cursor-pointer">
                             <i class="fas fa-chevron-right text-xl"></i>
                         </button>
                         
                         <!-- Contenedor del Carrusel -->
-                        <div id="home-carousel-scroll" class="flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 md:px-16 py-4 no-scrollbar scroll-smooth">
+                        <div id="home-carousel-scroll" class="flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 md:px-16 py-6 no-scrollbar scroll-smooth">
                             <!-- Llenado dinámicamente -->
                         </div>
                     </div>
@@ -185,11 +269,6 @@
                         <div class="w-full lg:w-1/2 reveal-up relative">
                             <div class="absolute -inset-4 border border-brand-accent/20 rounded-3xl transform -rotate-3 -z-10"></div>
                             <img src="https://beamazingcolors.github.io/oficial/cnt.jpg" alt="Legacy Image" class="w-full rounded-3xl shadow-2xl relative z-10 object-cover h-[500px]" onerror="handleImgError(this, 'general')">
-                            
-                            <div class="absolute -bottom-8 -right-8 glass-panel p-6 rounded-2xl z-20 shadow-2xl border-brand-accent/30 hidden md:block">
-                                <p class="text-4xl font-display font-bold text-brand-accent mb-1" data-i18n="legacy_stat1_num">+5 Años</p>
-                                <p class="text-xs uppercase tracking-widest text-slate-300 font-medium" data-i18n="legacy_stat1_txt">De Excelencia Boutique</p>
-                            </div>
                         </div>
                         <div class="w-full lg:w-1/2 reveal-up">
                             <p class="text-brand-accent tracking-[0.3em] text-xs uppercase font-bold mb-4" data-i18n="legacy_badge">Nuestra Trayectoria & Filosofía</p>
@@ -220,7 +299,7 @@
                         <i class="fas fa-compass text-[20rem] text-brand-accent absolute -right-20 top-0"></i>
                     </div>
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center reveal-up">
-                        <span id="catalog-category-badge" class="text-brand-accent tracking-[0.3em] text-[10px] uppercase font-bold mb-3 block">Experiencias</span>
+                        <span id="catalog-category-badge" class="text-brand-accent tracking-[0.3em] text-[10px] uppercase font-bold mb-3 block" data-i18n="catalog_header_badge">Colección Exclusiva</span>
                         <h2 id="catalog-category-title" class="text-4xl md:text-5xl font-display font-bold text-white mb-4">Catálogo</h2>
                         <p id="catalog-category-desc" class="text-slate-300 max-w-2xl mx-auto text-sm font-light">Explora nuestra colección de itinerarios privados.</p>
                     </div>
@@ -289,7 +368,7 @@
                                         <i class="fas fa-map-marked-alt text-xl"></i>
                                     </div>
                                     <div>
-                                        <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Base de Operaciones</p>
+                                        <p class="text-xs text-slate-400 uppercase tracking-wider mb-1" data-i18n="contact_base_title">Base de Operaciones</p>
                                         <p class="text-white font-medium text-sm leading-relaxed" data-i18n-html="footer_address">Blvd. Kukulcan Km 12, Zona Hotelera<br>77500 Cancún, Q.R., México</p>
                                     </div>
                                 </div>
@@ -305,8 +384,7 @@
                                         <input type="text" id="f_name" required class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all" data-i18n-placeholder="form_ph_name" placeholder="Tu Nombre">
                                     </div>
                                     <div>
-                                        <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_opt_choose">¿Cuántos viajan? *</label>
-                                        <!-- Selector SIN appearance-none para que sea 100% nativo y fácil de pulsar -->
+                                        <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_choose">¿Cuántos viajan? *</label>
                                         <select id="f_people" required class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-300 focus:outline-none focus:border-brand-accent focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all cursor-pointer">
                                             <option value="" disabled selected data-i18n="form_opt_choose">Selecciona opción...</option>
                                             <option value="pareja" data-i18n="form_opt_couple">Pareja (2 personas)</option>
@@ -384,14 +462,14 @@
                 </div>
                 
                 <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest" data-i18n="footer_copyright">© 2026 Amazing Colors Private Tours. Todos los derechos reservados.</p>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-widest" data-i18n="footer_copyright">© 2026 Amazing Colors Tours. Todos los derechos reservados.</p>
                     <p class="text-[10px] text-brand-accent/50 uppercase tracking-widest" data-i18n="footer_privacy">Privacidad y Confidencialidad Garantizada</p>
                 </div>
             </div>
         </footer>
     </div>
 
-    <!-- MODAL DETALLE DE ACTIVIDAD (Totalmente invisible al estar cerrado) -->
+    <!-- MODAL DETALLE DE ACTIVIDAD (Totalmente seguro e invisible al cerrarse) -->
     <div id="activity-detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 opacity-0 invisible transition-all duration-500 bg-brand-dark/90 backdrop-blur-md" onclick="if(event.target === this) closeDetailModal()">
         <div class="bg-brand-navy w-full max-w-4xl max-h-full rounded-3xl border border-brand-accent/30 shadow-2xl flex flex-col overflow-hidden relative">
             <button onclick="closeDetailModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full glass-panel text-white hover:text-brand-accent flex items-center justify-center transition-colors shadow-lg border-white/10 cursor-pointer">
@@ -456,7 +534,7 @@
         </div>
     </div>
 
-    <!-- BANNER DE COOKIES CIBERSEGURIDAD -->
+    <!-- BANNER DE COOKIES -->
     <div id="cookie-banner" class="fixed bottom-0 left-0 w-full glass-panel border-t border-brand-accent/40 z-[100] transform translate-y-full transition-transform duration-700 p-4 sm:p-6 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-start gap-4">
@@ -488,6 +566,7 @@
         let currentLang = 'es';
         let lastOpenedItemName = null;
         let lastFormSubmitTime = 0; 
+        let carouselInterval = null;
 
         // TRADUCCIONES OFICIALES PARA DESCRIPCIONES EN INGLÉS
         const OFFICIAL_TOUR_DESC_EN = {
@@ -532,19 +611,30 @@
                 sub_yacht: "Yates & Catamaranes",
                 sub_trans: "Traslados privados",
                 hero_title: `Cancún no es solo un destino, <br class="hidden sm:inline">es un <span class="font-serif italic font-bold text-brand-accent">estado de plenitud.</span>`,
-                hero_desc: "La joya de Quintana Roo. Un lugar donde la selva de esmeraldas se funde con el mar turquesa y el tiempo parece detenerse para regalarte momentos inigualables. Cancún te ofrece el contraste perfecto de la civilización maya y la hospitalidad premium contemporánea.",
+                hero_desc: "La joya de Quintana Roo. Un lugar donde la selva de esmeraldas se funde con el mar turquesa y el tiempo parece detenerse para regalarte momentos inigualables.",
                 btn_explore_catalog: "Explorar Catálogo",
                 btn_design_itinerary: "Diseñar Itinerario",
-                badge_location: `<i class="fas fa-map-pin text-brand-accent mr-2"></i>Cancún, Quintana Roo`,
-                badge_mexican_caribbean: "Caribe Mexicano",
-                carousel_title: `Donde el paraíso toma su <br><span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-sand to-white">verdadero color.</span>`,
-                carousel_sub: "El lujo de la libertad absoluta",
+                facts_badge: "Secretos del Caribe Mexicano",
+                facts_title: `El Encanto Oculto de <span class="font-serif italic font-bold text-brand-accent">Cancún</span>`,
+                facts_desc: "Más allá de su horizonte turquesa, descubre los fenómenos naturales y la mística que convierten a este santuario en un paraíso inigualable.",
+                fact1_title: "Arena que no quema",
+                fact1_desc: "Nuestra brillante arena blanca está compuesta de coral fino pulverizado durante milenios. No absorbe la radiación térmica, permitiendo caminar descalzo con total frescura a pleno mediodía.",
+                fact1_tag: "Fenómeno Natural",
+                fact2_title: "Arrecife Mesoamericano",
+                fact2_desc: "Frente a nuestras costas descansa el segundo sistema de arrecifes más grande del mundo, un santuario protegido de biodiversidad marina virgen y jardines de coral únicos.",
+                fact2_tag: "Vida Marina",
+                fact3_title: "Ríos Sagrados & Cenotes",
+                fact3_desc: "Quintana Roo alberga la red de ríos subterráneos y cavernas inundadas más extensa del planeta, consideradas por los antiguos mayas como portales sagrados de renovación.",
+                fact3_tag: "Misticismo Maya",
+                fact4_title: "El Mar de los 7 Tonos",
+                fact4_desc: "La combinación de aguas cristalinas, lechos de arena blanca y diferentes profundidades refracta la luz solar creando una sinfonía única de siete tonos de azul y turquesa.",
+                fact4_tag: "Óptica Marina",
+                carousel_title: "Experiencias Únicas",
                 legacy_badge: "Nuestra Trayectoria & Filosofía",
                 legacy_title: `Nacimos en <span class="font-serif italic font-bold text-brand-accent">2021</span> para redefinir el viaje privado de alta gama.`,
                 legacy_desc: "Mientras el mundo entero experimentaba profundos cambios, nosotros decidimos mirar hacia el horizonte del Caribe Mexicano y crear una propuesta diferente. Nos propusimos diseñar experiencias completamente libres de filas, personalizadas al detalle y enfocadas en revelar la verdadera esencia y pureza de Cancún y la Riviera Maya.",
-                legacy_stat1_num: "+5 Años",
-                legacy_stat1_txt: "De Excelencia Boutique",
                 legacy_quote: "Llevamos media década entregándote el color real del paraíso sin prisas, intermediarios ni multitudes.",
+                catalog_header_badge: "Colección Exclusiva",
                 search_placeholder: "Buscar experiencia, destino o embarcación...",
                 catalog_syncing: "Sincronizando inventario exclusivo...",
                 catalog_not_found_title: "No se encontraron experiencias en esta categoría",
@@ -558,28 +648,30 @@
                 contact_badge: "Planificación Personalizada",
                 contact_title: `Diseña tu <span class="font-serif italic font-bold text-brand-accent">Estancia</span>`,
                 contact_desc: "Envíanos tus deseos de viaje y un concierge especializado creará tu itinerario ideal en minutos.",
+                contact_base_title: "Base de Operaciones",
                 form_ph_name: "Tu Nombre",
                 form_lbl_name: "Tu Nombre Completo *",
-                form_opt_choose: "¿Cuántos viajan? *",
+                form_lbl_choose: "¿Cuántos viajan? *",
+                form_opt_choose: "Selecciona opción...",
                 form_opt_couple: "Pareja (2 personas)",
-                form_opt_small_family: "Familia pequeña (3 a 5 personas)",
-                form_opt_med_group: "Grupo mediano (6 a 10 personas)",
-                form_opt_event: "Delegación / Evento Privado (10+ personas)",
+                form_opt_small_family: "Familia (3 - 5 personas)",
+                form_opt_med_group: "Grupo (6 - 10 personas)",
+                form_opt_event: "Evento (10+ personas)",
                 form_lbl_date: "Fecha Estimada de Viaje",
-                form_ph_hotel: "Hotel o Zona de Hospedaje",
+                form_ph_hotel: "Nombre de Hotel",
                 form_lbl_hotel: "Hotel o Zona de Hospedaje",
-                form_ph_interests: "Actividades de Interés",
+                form_ph_interests: "Ej: Chichén Itzá, Yate privado, Traslados...",
                 form_lbl_interests: "Actividades o Yates de Interés",
                 form_btn_submit: "Enviar Solicitud a WhatsApp",
-                form_subtext: "Respuesta inmediata con cotización formal e itinerario detallado.",
+                form_subtext: "Respuesta inmediata con cotización formal.",
                 form_err_rate_limit: "Por seguridad, espera 60 segundos antes de enviar otra solicitud.",
                 form_err_required: "Por favor, completa los campos obligatorios.",
-                footer_desc: "Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas, yates exclusivos y logística de lujo.",
+                footer_desc: "Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y logística de lujo.",
                 footer_sections_title: "Secciones Rápidas",
                 footer_concierge_title: "Contacto Concierge",
                 footer_address: "Blvd. Kukulcan Km 12, Zona Hotelera<br>77500 Cancún, Q.R., México",
-                footer_direct_contact: "Contacto Concierge Directo",
-                footer_copyright: "© 2026 Amazing Colors Private Tours. Todos los derechos reservados.",
+                footer_direct_contact: "Contacto Directo",
+                footer_copyright: "© 2026 Amazing Colors Tours. Todos los derechos reservados.",
                 footer_privacy: "Privacidad y Confidencialidad Garantizada",
                 cat_tour_badge: "Momentos inolvidables",
                 cat_tour_title: `Tours & <span class="font-serif italic font-bold text-brand-accent">Aventuras</span>`,
@@ -589,7 +681,7 @@
                 cat_yate_desc: "Navegación premium sobre el horizonte turquesa con servicio de tripulación de nivel internacional.",
                 cat_trans_badge: "Logística de Élite",
                 cat_trans_title: `Traslados <span class="font-serif italic font-bold text-brand-accent">Privados</span>`,
-                cat_trans_desc: "Llegadas impecables sin esperas ni transbordos en vehículos climatizados y Vans de alta gama.",
+                cat_trans_desc: "Llegadas impecables sin esperas.",
                 whatsapp_default: "Hola Concierge Amazing Colors. Quisiera información personalizada.",
                 whatsapp_modal: "Hola Concierge de Amazing Colors. Deseo agendar y cotizar la experiencia de: ",
                 whatsapp_form_intro: "Hola Concierge de Amazing Colors, mi nombre es ",
@@ -610,19 +702,30 @@
                 sub_yacht: "Yachts & Catamarans",
                 sub_trans: "Private Transfers",
                 hero_title: `Cancún is not just a destination, <br class="hidden sm:inline">it is a <span class="font-serif italic font-bold text-brand-accent">state of bliss.</span>`,
-                hero_desc: "The jewel of Quintana Roo. A sanctuary where the emerald jungle embraces the turquoise ocean and time stands still to bestow unforgettable moments. Cancún delivers the timeless majesty of Mayan heritage coupled with world-class boutique hospitality.",
+                hero_desc: "The jewel of Quintana Roo. A sanctuary where the emerald jungle embraces the turquoise ocean and time stands still to bestow unforgettable moments.",
                 btn_explore_catalog: "Explore Catalog",
                 btn_design_itinerary: "Design Itinerary",
-                badge_location: `<i class="fas fa-map-pin text-brand-accent mr-2"></i>Cancun, Quintana Roo`,
-                badge_mexican_caribbean: "Mexican Caribbean",
-                carousel_title: `Where paradise reveals its <br><span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-sand to-white">true colors.</span>`,
-                carousel_sub: "The luxury of absolute freedom",
+                facts_badge: "Secrets of the Mexican Caribbean",
+                facts_title: `The Hidden Wonder of <span class="font-serif italic font-bold text-brand-accent">Cancún</span>`,
+                facts_desc: "Beyond its iconic turquoise horizon, discover the natural phenomena and ancient mysticism that make this sanctuary an incomparable paradise.",
+                fact1_title: "Sand that Never Burns",
+                fact1_desc: "Our brilliant white sands are formed from finely crushed coral over millennia. They do not absorb solar heat, allowing you to walk barefoot comfortably at high noon.",
+                fact1_tag: "Natural Phenomenon",
+                fact2_title: "Mesoamerican Reef",
+                fact2_desc: "Resting off our coastline is the world's second-largest barrier reef system, a protected sanctuary of untouched marine biodiversity and coral gardens.",
+                fact2_tag: "Marine Life",
+                fact3_title: "Sacred Rivers & Cenotes",
+                fact3_desc: "Quintana Roo harbors the planet's most extensive subterranean river networks and flooded caves, revered by the ancient Maya as portals of renewal.",
+                fact3_tag: "Mayan Mysticism",
+                fact4_title: "The Sea of 7 Hues",
+                fact4_desc: "The pristine waters, pure white sandbars, and varying depths refract sunlight to produce an awe-inspiring spectrum of seven shades of blue and turquoise.",
+                fact4_tag: "Ocean Optics",
+                carousel_title: "Unique Experiences",
                 legacy_badge: "Our Heritage & Philosophy",
                 legacy_title: `Born in <span class="font-serif italic font-bold text-brand-accent">2021</span> to redefine ultra-luxury private travel.`,
                 legacy_desc: "While the world was transforming, we turned our gaze toward the Mexican Caribbean horizon to craft an extraordinary alternative. We set out to curate journeys completely free from crowds and queues, customized down to the finest detail to showcase the pure soul of Cancún and Riviera Maya.",
-                legacy_stat1_num: "+5 Years",
-                legacy_stat1_txt: "Of Boutique Excellence",
                 legacy_quote: "Over half a decade delivering the genuine colors of paradise without rush, middlemen, or crowds.",
+                catalog_header_badge: "Exclusive Collection",
                 search_placeholder: "Search experience, destination or vessel...",
                 catalog_syncing: "Synchronizing exclusive inventory...",
                 catalog_not_found_title: "No experiences found in this category",
@@ -636,38 +739,40 @@
                 contact_badge: "Bespoke Planning",
                 contact_title: `Design Your <span class="font-serif italic font-bold text-brand-accent">Stay</span>`,
                 contact_desc: "Share your travel desires and our dedicated concierge will tailor your dream itinerary in minutes.",
+                contact_base_title: "Operations Base",
                 form_ph_name: "Your Name",
                 form_lbl_name: "Your Full Name *",
-                form_opt_choose: "Party Size? *",
+                form_lbl_choose: "Party Size? *",
+                form_opt_choose: "Select option...",
                 form_opt_couple: "Couple (2 people)",
-                form_opt_small_family: "Small Family (3 to 5 people)",
-                form_opt_med_group: "Medium Group (6 to 10 people)",
-                form_opt_event: "Private Delegation / Event (10+ people)",
+                form_opt_small_family: "Family (3 - 5 people)",
+                form_opt_med_group: "Group (6 - 10 people)",
+                form_opt_event: "Event (10+ people)",
                 form_lbl_date: "Estimated Travel Date",
-                form_ph_hotel: "Hotel or Resort Area",
+                form_ph_hotel: "Hotel Name",
                 form_lbl_hotel: "Hotel or Resort Area",
-                form_ph_interests: "Activities of Interest",
+                form_ph_interests: "E.g. Chichén Itzá, Private Yacht, Transfers...",
                 form_lbl_interests: "Activities or Yachts of Interest",
-                form_btn_submit: "Send Request to WhatsApp",
-                form_subtext: "Instant response with a tailored proposal and detailed itinerary.",
+                form_btn_submit: "Send Request via WhatsApp",
+                form_subtext: "Instant response with a bespoke quote.",
                 form_err_rate_limit: "For security, please wait 60 seconds before submitting another request.",
                 form_err_required: "Please fill in the required fields to continue.",
-                footer_desc: "Redefining boutique travel across the Mexican Caribbean. Authentic private adventures, luxury yacht charters, and VIP executive logistics.",
-                footer_sections_title: "Quick Navigation",
+                footer_desc: "Redefining boutique travel across the Mexican Caribbean. Authentic private adventures and luxury logistics.",
+                footer_sections_title: "Quick Links",
                 footer_concierge_title: "Concierge Contact",
                 footer_address: "Blvd. Kukulcan Km 12, Hotel Zone<br>77500 Cancun, Q.R., Mexico",
-                footer_direct_contact: "Direct Concierge WhatsApp",
-                footer_copyright: "© 2026 Amazing Colors Private Tours. All rights reserved.",
+                footer_direct_contact: "Direct Contact",
+                footer_copyright: "© 2026 Amazing Colors Tours. All rights reserved.",
                 footer_privacy: "Guaranteed Privacy & Discretion",
                 cat_tour_badge: "Unforgettable Moments",
                 cat_tour_title: `Tours & <span class="font-serif italic font-bold text-brand-accent">Adventures</span>`,
                 cat_tour_desc: "Explore mystical cenotes, sacred Mayan ruins, and iconic ecological parks in complete privacy.",
                 cat_yate_badge: "Our Fleet",
-                cat_yate_title: `Yachts & <span class="font-serif italic font-bold text-brand-accent">Catamaranes</span>`,
+                cat_yate_title: `Yachts & <span class="font-serif italic font-bold text-brand-accent">Catamarans</span>`,
                 cat_yate_desc: "Premium charter navigation across turquoise horizons with world-class crew and hospitality.",
                 cat_trans_badge: "Elite Logistics",
                 cat_trans_title: `Private <span class="font-serif italic font-bold text-brand-accent">Transfers</span>`,
-                cat_trans_desc: "Impeccable airport arrivals with zero waiting in luxury air-conditioned SUVs and Vans.",
+                cat_trans_desc: "Impeccable arrivals with zero waiting.",
                 whatsapp_default: "Hello Amazing Colors Concierge. I would like personalized information.",
                 whatsapp_modal: "Hello Amazing Colors Concierge. I would like to book and receive pricing for: ",
                 whatsapp_form_intro: "Hello Amazing Colors Concierge, my name is ",
@@ -686,6 +791,8 @@
             'pies': { es: 'Eslora / Pies', en: 'Length / Feet' },
             'eslora': { es: 'Eslora', en: 'Length' },
             'incluye': { es: 'Incluye', en: 'Include' },
+            'inclusiones': { es: 'Incluye', en: 'Include' },
+            'include': { es: 'Incluye', en: 'Include' },
             'horario': { es: 'Horario', en: 'Schedule' },
             'horarios': { es: 'Horarios', en: 'Schedules' },
             'ubicacion': { es: 'Ubicación', en: 'Location' },
@@ -778,7 +885,7 @@
             "duracion": "Duration",
             "horas": "hours",
             "hora": "hour",
-            "incluye": "Includes",
+            "incluye": "Include",
             "descriptivo": "Description",
             "detalles": "Details",
             "precio": "Price",
@@ -1132,13 +1239,36 @@
             }).join('');
 
             container.innerHTML = cardsHTML;
+            startCarouselAutoScroll();
         }
 
         function scrollCarousel(direction) {
             const container = document.getElementById('home-carousel-scroll');
             if(container) {
-                const scrollAmount = window.innerWidth < 768 ? 320 : 400; 
+                const scrollAmount = window.innerWidth < 768 ? 320 : 380; 
                 container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+            }
+        }
+
+        function startCarouselAutoScroll() {
+            stopCarouselAutoScroll();
+            carouselInterval = setInterval(() => {
+                const container = document.getElementById('home-carousel-scroll');
+                if (!container) return;
+                const maxScroll = container.scrollWidth - container.clientWidth;
+                const step = window.innerWidth < 768 ? 320 : 380;
+                if (container.scrollLeft + step >= maxScroll - 10) {
+                    container.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    container.scrollBy({ left: step, behavior: 'smooth' });
+                }
+            }, 4000);
+        }
+
+        function stopCarouselAutoScroll() {
+            if (carouselInterval) {
+                clearInterval(carouselInterval);
+                carouselInterval = null;
             }
         }
 
@@ -1274,7 +1404,8 @@
             let priceText = item['precio publico'] ? `$${item['precio publico']}` : (currentLang === 'es' ? i18n[currentLang].consult_concierge : i18n[currentLang].consult_concierge);
             document.getElementById('detail-modal-price').textContent = priceText;
 
-            const includesRaw = item['incluye'] || '';
+            // Inclusiones
+            const includesRaw = item['incluye'] || item['include'] || item['inclusiones'] || '';
             const includesSec = document.getElementById('detail-modal-includes-section');
             if (includesRaw.trim()) {
                 includesSec.style.display = 'block';
@@ -1285,23 +1416,27 @@
 
             const specsContainer = document.getElementById('detail-modal-specs');
             specsContainer.innerHTML = '';
-            const ignoreKeys = ['nombre', 'folio', 'descriptivo', 'incluye', 'precio publico', 'tipo'];
+            const ignoreKeys = ['nombre', 'folio', 'descriptivo', 'incluye', 'include', 'inclusiones', 'precio publico', 'tipo'];
             
             let hasSpecs = false;
             Object.keys(item).forEach(key => {
-                if (ignoreKeys.includes(key) || !item[key] || item[key].trim() === '') return;
+                let cleanKey = key.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[:\.\s]/g, "");
+                if (ignoreKeys.includes(cleanKey) || !item[key] || item[key].trim() === '') return;
                 
                 let icon = 'fa-info-circle';
-                if (key.includes('capacidad') || key.includes('pasajeros')) icon = 'fa-users';
-                if (key.includes('duracion') || key.includes('horario') || key.includes('salidas')) icon = 'fa-clock';
-                if (key.includes('pies') || key.includes('eslora')) icon = 'fa-ruler-horizontal';
-                if (key.includes('ubicacion') || key.includes('muelle')) icon = 'fa-map-marker-alt';
-                if (key.includes('motor')) icon = 'fa-cogs';
-                if (key.includes('camarotes') || key.includes('banos')) icon = 'fa-bed';
+                if (cleanKey.includes('capacidad') || cleanKey.includes('pasajeros')) icon = 'fa-users';
+                if (cleanKey.includes('duracion') || cleanKey.includes('horario') || cleanKey.includes('salidas')) icon = 'fa-clock';
+                if (cleanKey.includes('pies') || cleanKey.includes('eslora')) icon = 'fa-ruler-horizontal';
+                if (cleanKey.includes('ubicacion') || cleanKey.includes('muelle')) icon = 'fa-map-marker-alt';
+                if (cleanKey.includes('motor')) icon = 'fa-cogs';
+                if (cleanKey.includes('camarotes') || cleanKey.includes('banos')) icon = 'fa-bed';
+                if (cleanKey.includes('incluye') || cleanKey.includes('include')) icon = 'fa-check-circle';
                 
                 let headerName = key.charAt(0).toUpperCase() + key.slice(1);
-                if (specHeaderTranslations[key]) {
-                    headerName = specHeaderTranslations[key][currentLang] || headerName;
+                if (specHeaderTranslations[cleanKey]) {
+                    headerName = specHeaderTranslations[cleanKey][currentLang] || headerName;
+                } else if (cleanKey.includes('incluye') || cleanKey.includes('include')) {
+                    headerName = currentLang === 'en' ? 'Include' : 'Incluye';
                 }
 
                 let valueText = translateCatalogText(item[key], currentLang);
