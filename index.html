@@ -7,10 +7,10 @@
     <meta name="description" content="Redefiniendo el viaje privado por el Caribe Mexicano. Aventuras auténticas y logística VIP.">
     
     <!-- FAVICON ESTÉTICO Y DE ALTA RESOLUCIÓN -->
-    <link rel="icon" type="image/png" sizes="512x512" href="https://beamazingcolors.github.io/oficial/logo.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="https://beamazingcolors.github.io/oficial/logo.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="https://beamazingcolors.github.io/oficial/lg2.png">
     
-    <!-- Seguridad Básica (Relajada para permitir Google Sheets TSV) -->
+    <!-- Seguridad Básica -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:;">
     
     <!-- Tailwind CSS (CDN para SPA) -->
@@ -38,9 +38,9 @@
         .page-view { display: none !important; opacity: 0; transform: scale(0.98) translateY(10px); filter: blur(5px); transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease-out; width: 100%; max-width: 100vw; overflow-x: hidden; }
         .page-view.active { display: block !important; opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
         
-        /* ESTETICA GLASSMORFISMO */
-        .glass-panel { background: rgba(7, 16, 33, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
-        .glass-card { background: linear-gradient(145deg, rgba(7, 16, 33, 0.8) 0%, rgba(3, 9, 20, 0.95) 100%); backdrop-filter: blur(10px); border: 1px solid rgba(212, 175, 55, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
+        /* ESTÉTICA GLASSMORFISMO PREMIUM */
+        .glass-panel { background: rgba(7, 16, 33, 0.5); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
+        .glass-card { background: linear-gradient(145deg, rgba(7, 16, 33, 0.7) 0%, rgba(3, 9, 20, 0.95) 100%); backdrop-filter: blur(12px) saturate(150%); border: 1px solid rgba(212, 175, 55, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
         
         /* EFECTOS Y ANIMACIONES */
         .text-glow { text-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
@@ -50,25 +50,24 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .input-error { border-color: #ef4444 !important; background-color: rgba(239, 68, 68, 0.05) !important; }
-        .no-scroll { overflow: hidden !important; }
+        .no-scroll { overflow: hidden !important; touch-action: none; }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden w-full max-w-full selection:bg-brand-accent selection:text-white bg-brand-dark text-slate-200">
     
     <div id="main-site-wrapper" class="bg-brand-dark min-h-screen flex flex-col justify-between opacity-100 relative w-full max-w-full overflow-hidden">
         
-        <!-- Neblinas de iluminacion de fondo -->
-        <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute inset-0 overflow-hidden -z-10 pointer-events-none">
             <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-accent/5 blur-[150px] rounded-full"></div>
             <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-accent/5 blur-[150px] rounded-full"></div>
         </div>
 
         <div class="relative z-10 w-full max-w-full flex-grow">
-            <!-- CABECERA CON LOGO GIGANTE -->
+            <!-- CABECERA CON LOGO -->
             <header class="site-brand-header flex flex-col items-center justify-center pt-10 pb-6 px-4 cursor-pointer text-center w-full max-w-full relative border-b border-brand-accent/20 bg-gradient-to-b from-[#030914] via-[#071021] to-transparent shadow-[0_10px_30px_rgba(3,9,20,0.5)] transition-colors duration-500" onclick="navigateTo('home')">
-                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 pointer-events-none mix-blend-overlay"></div>
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 mix-blend-overlay -z-10 pointer-events-none"></div>
                 <div class="flex flex-col items-center justify-center gap-6 w-full relative z-10 transform hover:scale-[1.02] transition-transform duration-500">
-                    <img src="https://beamazingcolors.github.io/oficial/logo.png" alt="Amazing Colors Logo" class="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-[0_0_25px_rgba(212,175,55,0.5)]">
+                    <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Amazing Colors Logo" class="w-36 h-36 md:w-48 md:h-48 object-contain drop-shadow-[0_0_25px_rgba(212,175,55,0.5)]">
                     <div>
                         <h1 class="text-3xl md:text-5xl font-bold font-display tracking-[0.3em] text-white uppercase text-glow">
                             Amazing <span class="text-brand-accent">Colors</span>
@@ -85,48 +84,47 @@
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between md:justify-center items-center h-16 md:h-14 gap-4 md:gap-12 flex-wrap md:flex-nowrap">
                         <div class="flex gap-4 md:gap-10 overflow-x-auto no-scrollbar py-2 w-full md:w-auto items-center justify-start md:justify-center">
-                            <button onclick="navigateTo('home')" id="btn-nav-home" class="nav-btn active flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
+                            <button onclick="navigateTo('home')" id="btn-nav-home" class="nav-btn active cursor-pointer flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
                                 <i class="fas fa-compass opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_home">Inicio</span>
                                 <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
                             </button>
-                            <button onclick="navigateTo('legacy')" id="btn-nav-legacy" class="nav-btn text-white/80 flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
+                            <button onclick="navigateTo('legacy')" id="btn-nav-legacy" class="nav-btn text-white/80 cursor-pointer flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
                                 <i class="fas fa-leaf opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_legacy">Legado</span>
                                 <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
                             </button>
                             
-                            <!-- Botón directo de Catálogo, como estaba antes -->
-                            <button onclick="navigateTo('catalog')" id="btn-nav-catalog" class="nav-btn text-white/80 flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
+                            <button onclick="navigateTo('catalog')" id="btn-nav-catalog" class="nav-btn text-white/80 cursor-pointer flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
                                 <i class="fas fa-layer-group opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_catalog">Catálogo</span>
                                 <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
                             </button>
                             
-                            <button onclick="navigateTo('contact')" id="btn-nav-contact" class="nav-btn text-white/80 flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
+                            <button onclick="navigateTo('contact')" id="btn-nav-contact" class="nav-btn text-white/80 cursor-pointer flex items-center gap-2 text-[10px] md:text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
                                 <i class="far fa-calendar-check opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_contact">Reserva</span>
                                 <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
                             </button>
                         </div>
                         
                         <div class="lang-switcher ml-auto md:ml-0 flex items-center gap-1 border border-brand-accent/30 rounded-full p-1 bg-brand-navy/50 shadow-inner">
-                            <button onclick="switchLanguage('es')" id="lang-btn-es" class="px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm">ES</button>
-                            <button onclick="switchLanguage('en')" id="lang-btn-en" class="px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white">EN</button>
+                            <button onclick="switchLanguage('es')" id="lang-btn-es" class="cursor-pointer px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm">ES</button>
+                            <button onclick="switchLanguage('en')" id="lang-btn-en" class="cursor-pointer px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white">EN</button>
                         </div>
                     </div>
                 </div>
             </nav>
 
             <!-- VISTA: INICIO -->
-            <section id="page-home" class="page-view active w-full max-w-full">
+            <section id="page-home" class="page-view active w-full max-w-full relative z-10">
                 <!-- HERO SECTION -->
                 <div class="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden">
-                    <div class="absolute inset-0 z-0">
+                    <div class="absolute inset-0 -z-10">
                         <img src="https://images.unsplash.com/photo-1582967676645-8120d8f07fb0?auto=format&fit=crop&w=2000&q=80" alt="Caribbean Sea" class="w-full h-full object-cover object-center opacity-50">
                         <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/30"></div>
                     </div>
                     
-                    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center pt-10 pb-20">
+                    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center pt-10 pb-20 pointer-events-auto">
                         <div class="w-full md:w-3/5 pr-0 md:pr-10 text-center md:text-left reveal-up">
-                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-accent/30 bg-brand-accent/5 backdrop-blur-sm mb-6">
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-accent/30 bg-brand-accent/5 backdrop-blur-sm mb-6 shadow-lg">
                                 <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
                                 <span class="text-[10px] uppercase tracking-[0.3em] text-brand-accent font-semibold" data-i18n="badge_mexican_caribbean">Caribe Mexicano</span>
                             </div>
@@ -137,10 +135,10 @@
                                 La joya de Quintana Roo. Un lugar donde la selva de esmeraldas se funde con el mar turquesa y el tiempo parece detenerse para regalarte momentos inigualables.
                             </p>
                             <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
-                                <button onclick="navigateTo('catalog')" class="w-full sm:w-auto px-8 py-4 bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] transform hover:-translate-y-1" data-i18n="btn_explore_catalog">
+                                <button onclick="navigateTo('catalog')" class="w-full sm:w-auto px-8 py-4 bg-brand-accent cursor-pointer hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] transform hover:-translate-y-1" data-i18n="btn_explore_catalog">
                                     Explorar Catálogo
                                 </button>
-                                <button onclick="navigateTo('contact')" class="w-full sm:w-auto px-8 py-4 glass-panel hover:bg-white/10 text-white border border-white/20 font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 transform hover:-translate-y-1" data-i18n="btn_design_itinerary">
+                                <button onclick="navigateTo('contact')" class="w-full sm:w-auto px-8 py-4 glass-panel cursor-pointer hover:bg-white/10 text-white border border-white/20 font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 transform hover:-translate-y-1" data-i18n="btn_design_itinerary">
                                     Diseñar Itinerario
                                 </button>
                             </div>
@@ -148,37 +146,44 @@
                     </div>
                 </div>
 
+                <!-- CUN MARK -->
+                <div class="w-full bg-brand-navy flex justify-center pt-24 pb-14 relative z-10 reveal-up">
+                    <img src="https://beamazingcolors.github.io/oficial/cun.png" alt="CUN Logo" class="h-32 md:h-52 object-contain drop-shadow-[0_0_25px_rgba(255,255,255,0.15)] hover:scale-[1.03] transition-transform duration-700 ease-out">
+                </div>
+
                 <!-- DESTACADOS CAROUSEL -->
-                <div class="w-full py-20 bg-brand-navy relative border-y border-white/5 overflow-hidden">
-                    <div class="absolute top-0 right-0 w-96 h-96 bg-brand-accent/5 rounded-full blur-[100px] pointer-events-none"></div>
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center reveal-up">
+                <div class="w-full py-20 bg-brand-navy relative border-y border-white/5 overflow-hidden group/carousel z-10">
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-brand-accent/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-14 text-center reveal-up">
                         <h3 class="text-3xl md:text-5xl font-display font-bold mb-4" data-i18n-html="carousel_title">
                             Donde el paraíso toma su <br><span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-sand to-white">verdadero color.</span>
                         </h3>
                         <p class="text-brand-accent tracking-[0.3em] text-xs uppercase font-medium" data-i18n="carousel_sub">El lujo de la libertad absoluta</p>
                     </div>
                     
-                    <div class="w-full overflow-x-auto no-scrollbar pb-10 cursor-grab active:cursor-grabbing pl-4 sm:pl-6 lg:pl-8 reveal-up" id="home-carousel-scroll">
-                        <!-- Llenado dinámicamente con Yates y Tours -->
-                        <div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap pb-4" id="home-carousel-track">
+                    <div class="relative w-full max-w-[1400px] mx-auto reveal-up">
+                        <!-- Botones de carrusel interactivos -->
+                        <button onclick="scrollCarousel(-1)" class="absolute left-2 md:left-6 top-1/2 transform -translate-y-1/2 z-30 w-12 h-12 md:w-16 md:h-16 rounded-full glass-panel flex items-center justify-center text-brand-accent border-brand-accent/30 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-xl opacity-0 group-hover/carousel:opacity-100 hidden sm:flex cursor-pointer">
+                            <i class="fas fa-chevron-left text-xl"></i>
+                        </button>
+                        <button onclick="scrollCarousel(1)" class="absolute right-2 md:right-6 top-1/2 transform -translate-y-1/2 z-30 w-12 h-12 md:w-16 md:h-16 rounded-full glass-panel flex items-center justify-center text-brand-accent border-brand-accent/30 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-xl opacity-0 group-hover/carousel:opacity-100 hidden sm:flex cursor-pointer">
+                            <i class="fas fa-chevron-right text-xl"></i>
+                        </button>
+                        
+                        <!-- Contenedor del Carrusel -->
+                        <div id="home-carousel-scroll" class="flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 md:px-16 py-4 no-scrollbar scroll-smooth">
+                            <!-- Llenado dinámicamente -->
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- VISTA: LEGACY (FILOSOFÍA) -->
-            <section id="page-legacy" class="page-view w-full max-w-full">
+            <!-- VISTA: LEGACY -->
+            <section id="page-legacy" class="page-view w-full max-w-full relative z-10">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                    
-                    <!-- IMAGEN AL PRINCIPIO: CUN -->
-                    <div class="w-full flex justify-center mb-16 reveal-up">
-                        <img src="https://beamazingcolors.github.io/oficial/cun.png" alt="CUN Legacy" class="h-20 md:h-32 object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:scale-105 transition-transform duration-500">
-                    </div>
-
-                    <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <div class="flex flex-col lg:flex-row items-center gap-16 mt-8">
                         <div class="w-full lg:w-1/2 reveal-up relative">
-                            <div class="absolute -inset-4 border border-brand-accent/20 rounded-3xl transform -rotate-3 z-0"></div>
-                            <!-- IMAGEN ACTUALIZADA A cnt.jpg -->
+                            <div class="absolute -inset-4 border border-brand-accent/20 rounded-3xl transform -rotate-3 -z-10"></div>
                             <img src="https://beamazingcolors.github.io/oficial/cnt.jpg" alt="Legacy Image" class="w-full rounded-3xl shadow-2xl relative z-10 object-cover h-[500px]" onerror="handleImgError(this, 'general')">
                             
                             <div class="absolute -bottom-8 -right-8 glass-panel p-6 rounded-2xl z-20 shadow-2xl border-brand-accent/30 hidden md:block">
@@ -199,7 +204,7 @@
                                     "Llevamos media década entregándote el color real del paraíso sin prisas, intermediarios ni multitudes."
                                 </p>
                             </div>
-                            <button onclick="navigateTo('catalog')" class="mt-4 px-8 py-4 bg-transparent border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300" data-i18n="btn_explore_catalog">
+                            <button onclick="navigateTo('catalog')" class="mt-4 px-8 py-4 cursor-pointer bg-transparent border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 shadow-lg" data-i18n="btn_explore_catalog">
                                 Explorar Catálogo
                             </button>
                         </div>
@@ -207,11 +212,11 @@
                 </div>
             </section>
 
-            <!-- VISTA: CATÁLOGO PRINCIPAL -->
-            <section id="page-catalog" class="page-view w-full max-w-full">
+            <!-- VISTA: CATÁLOGO -->
+            <section id="page-catalog" class="page-view w-full max-w-full relative z-10">
                 <!-- Banner Categoría -->
                 <div class="relative py-16 bg-brand-navy border-b border-white/5 overflow-hidden">
-                    <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-1/2 h-full opacity-10 pointer-events-none">
+                    <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-1/2 h-full opacity-10 -z-10 pointer-events-none">
                         <i class="fas fa-compass text-[20rem] text-brand-accent absolute -right-20 top-0"></i>
                     </div>
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center reveal-up">
@@ -221,17 +226,17 @@
                     </div>
                 </div>
 
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-10">
                     <!-- Navegación Interna de Categorías -->
                     <div class="flex flex-wrap justify-center gap-3 mb-10 reveal-up">
-                        <button id="sub-nav-tour" onclick="filterCatalog('tour')" class="px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-lg border border-brand-accent" data-i18n="sub_tour">Tours & Aventuras</button>
-                        <button id="sub-nav-yate" onclick="filterCatalog('yate')" class="px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50" data-i18n="sub_yacht">Yates & Catamaranes</button>
-                        <button id="sub-nav-transportacion" onclick="filterCatalog('transportacion')" class="px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50" data-i18n="sub_trans">Traslados VIP</button>
+                        <button id="sub-nav-tour" onclick="filterCatalog('tour')" class="cursor-pointer px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-lg border border-brand-accent" data-i18n="sub_tour">Tours & Aventuras</button>
+                        <button id="sub-nav-yate" onclick="filterCatalog('yate')" class="cursor-pointer px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80" data-i18n="sub_yacht">Yates & Catamaranes</button>
+                        <button id="sub-nav-transportacion" onclick="filterCatalog('transportacion')" class="cursor-pointer px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80" data-i18n="sub_trans">Traslados privados</button>
                     </div>
 
                     <!-- Buscador -->
                     <div class="mb-10 w-full max-w-md mx-auto relative reveal-up">
-                        <div class="relative flex items-center w-full h-12 rounded-full focus-within:shadow-lg bg-brand-dark overflow-hidden border border-white/10 focus-within:border-brand-accent transition-colors">
+                        <div class="relative flex items-center w-full h-12 rounded-full focus-within:shadow-[0_0_20px_rgba(212,175,55,0.2)] bg-brand-dark overflow-hidden border border-white/10 focus-within:border-brand-accent transition-all duration-300">
                             <div class="grid place-items-center h-full w-12 text-slate-400">
                                 <i class="fas fa-search"></i>
                             </div>
@@ -250,13 +255,12 @@
             </section>
 
             <!-- VISTA: CONTACTO / RESERVA -->
-            <section id="page-contact" class="page-view w-full max-w-full">
+            <section id="page-contact" class="page-view w-full max-w-full relative z-10">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                     <div class="flex flex-col lg:flex-row gap-16 bg-[#050b18] rounded-[2.5rem] p-6 sm:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
                         
-                        <!-- Elementos de diseño fondo -->
                         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-50"></div>
-                        <div class="absolute -bottom-32 -right-32 text-brand-accent/5 pointer-events-none">
+                        <div class="absolute -bottom-32 -right-32 text-brand-accent/5 -z-10 pointer-events-none">
                             <i class="fas fa-envelope-open-text text-[25rem]"></i>
                         </div>
 
@@ -272,7 +276,7 @@
                             
                             <div class="space-y-6">
                                 <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-brand-accent flex-shrink-0 border-brand-accent/30">
+                                    <div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-brand-accent flex-shrink-0 border-brand-accent/30 shadow-lg">
                                         <i class="fab fa-whatsapp text-xl"></i>
                                     </div>
                                     <div>
@@ -281,12 +285,12 @@
                                     </div>
                                 </div>
                                 <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-brand-accent flex-shrink-0 border-brand-accent/30">
+                                    <div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-brand-accent flex-shrink-0 border-brand-accent/30 shadow-lg">
                                         <i class="fas fa-map-marked-alt text-xl"></i>
                                     </div>
                                     <div>
                                         <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Base de Operaciones</p>
-                                        <p class="text-white font-medium text-sm leading-relaxed" data-i18n-html="footer_address">Blvd. Kukulcan Km 9, Zona Hotelera<br>Cancún, Q.R., México</p>
+                                        <p class="text-white font-medium text-sm leading-relaxed" data-i18n-html="footer_address">Blvd. Kukulcan Km 12, Zona Hotelera<br>77500 Cancún, Q.R., México</p>
                                     </div>
                                 </div>
                             </div>
@@ -294,15 +298,16 @@
 
                         <!-- Formulario lado derecho -->
                         <div class="w-full lg:w-7/12 reveal-up relative z-10">
-                            <form id="booking-form" onsubmit="handleFormSubmit(event)" class="glass-panel p-6 sm:p-8 rounded-3xl border border-brand-accent/20">
+                            <form id="booking-form" onsubmit="handleFormSubmit(event)" class="glass-panel p-6 sm:p-8 rounded-3xl border border-brand-accent/20 shadow-xl">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                                     <div>
                                         <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_name">Tu Nombre Completo *</label>
-                                        <input type="text" id="f_name" required class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" data-i18n-placeholder="form_ph_name" placeholder="Tu Nombre">
+                                        <input type="text" id="f_name" required class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all" data-i18n-placeholder="form_ph_name" placeholder="Tu Nombre">
                                     </div>
                                     <div>
                                         <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_opt_choose">¿Cuántos viajan? *</label>
-                                        <select id="f_people" required class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-300 focus:outline-none focus:border-brand-accent transition-colors appearance-none">
+                                        <!-- Selector SIN appearance-none para que sea 100% nativo y fácil de pulsar -->
+                                        <select id="f_people" required class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-300 focus:outline-none focus:border-brand-accent focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all cursor-pointer">
                                             <option value="" disabled selected data-i18n="form_opt_choose">Selecciona opción...</option>
                                             <option value="pareja" data-i18n="form_opt_couple">Pareja (2 personas)</option>
                                             <option value="familia" data-i18n="form_opt_small_family">Familia (3 - 5 personas)</option>
@@ -314,21 +319,21 @@
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                                     <div>
                                         <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_date">Fecha Estimada de Viaje</label>
-                                        <input type="date" id="f_date" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors [color-scheme:dark]">
+                                        <input type="date" id="f_date" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all [color-scheme:dark] cursor-pointer">
                                     </div>
                                     <div>
                                         <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_hotel">Hotel o Zona de Hospedaje</label>
-                                        <input type="text" id="f_hotel" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" data-i18n-placeholder="form_ph_hotel" placeholder="Nombre de Hotel">
+                                        <input type="text" id="f_hotel" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all" data-i18n-placeholder="form_ph_hotel" placeholder="Nombre de Hotel">
                                     </div>
                                 </div>
                                 <div class="mb-8">
                                     <label class="block text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 ml-1" data-i18n="form_lbl_interests">Actividades o Yates de Interés</label>
-                                    <textarea id="f_destinos" rows="3" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors resize-none" data-i18n-placeholder="form_ph_interests" placeholder="Ej: Chichén Itzá, Yate privado, Traslados..."></textarea>
+                                    <textarea id="f_destinos" rows="3" class="w-full bg-brand-dark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all resize-none" data-i18n-placeholder="form_ph_interests" placeholder="Ej: Chichén Itzá, Yate privado, Traslados..."></textarea>
                                 </div>
                                 
                                 <div id="form-error-msg" class="hidden text-red-400 text-xs text-center mb-4 bg-red-900/20 py-2 rounded-lg border border-red-500/30"></div>
                                 
-                                <button type="submit" class="w-full bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-4 transition-all duration-300 shadow-lg flex items-center justify-center gap-3">
+                                <button type="submit" class="w-full bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] transform hover:-translate-y-1 flex items-center justify-center gap-3 cursor-pointer">
                                     <i class="fab fa-whatsapp text-lg"></i> <span data-i18n="form_btn_submit">Enviar Solicitud a WhatsApp</span>
                                 </button>
                                 <p class="text-center text-[10px] text-slate-500 mt-4 uppercase tracking-wider" data-i18n="form_subtext">Respuesta inmediata con cotización formal.</p>
@@ -344,8 +349,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
                     <div class="md:col-span-5 flex flex-col items-center md:items-start text-center md:text-left">
-                        <!-- LOGO FOOTER -->
-                        <img src="https://beamazingcolors.github.io/oficial/logo.png" alt="Amazing Colors Logo" class="w-24 h-24 md:w-32 md:h-32 mb-4 opacity-90 hover:scale-105 transition-all duration-500 drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+                        <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Amazing Colors Logo" class="w-36 h-36 md:w-48 md:h-48 mb-4 opacity-90 hover:scale-105 transition-all duration-500 drop-shadow-[0_0_15px_rgba(212,175,55,0.3)] object-contain cursor-pointer" onclick="navigateTo('home')">
                         <h4 class="text-xl font-display font-bold text-white mb-3 uppercase tracking-widest">Amazing <span class="text-brand-accent">Colors</span></h4>
                         <p class="text-slate-400 text-sm font-light max-w-sm" data-i18n="footer_desc">Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y logística de lujo.</p>
                     </div>
@@ -353,10 +357,10 @@
                     <div class="md:col-span-3 flex flex-col items-center md:items-start text-center md:text-left">
                         <h4 class="text-brand-accent text-[10px] font-bold uppercase tracking-[0.2em] mb-5" data-i18n="footer_sections_title">Secciones Rápidas</h4>
                         <ul class="space-y-3 text-sm text-slate-400">
-                            <li><button onclick="navigateTo('home')" class="hover:text-brand-accent transition-colors" data-i18n="nav_home">Inicio</button></li>
-                            <li><button onclick="navigateTo('legacy')" class="hover:text-brand-accent transition-colors" data-i18n="nav_legacy">Legado</button></li>
-                            <li><button onclick="navigateTo('catalog')" class="hover:text-brand-accent transition-colors" data-i18n="nav_catalog">Catálogo</button></li>
-                            <li><button onclick="navigateTo('contact')" class="hover:text-brand-accent transition-colors" data-i18n="nav_contact">Reserva</button></li>
+                            <li><button onclick="navigateTo('home')" class="cursor-pointer hover:text-brand-accent transition-colors" data-i18n="nav_home">Inicio</button></li>
+                            <li><button onclick="navigateTo('legacy')" class="cursor-pointer hover:text-brand-accent transition-colors" data-i18n="nav_legacy">Legado</button></li>
+                            <li><button onclick="navigateTo('catalog')" class="cursor-pointer hover:text-brand-accent transition-colors" data-i18n="nav_catalog">Catálogo</button></li>
+                            <li><button onclick="navigateTo('contact')" class="cursor-pointer hover:text-brand-accent transition-colors" data-i18n="nav_contact">Reserva</button></li>
                         </ul>
                     </div>
 
@@ -365,7 +369,7 @@
                         <ul class="space-y-4 text-sm text-slate-400">
                             <li class="flex items-start gap-3 justify-center md:justify-start">
                                 <i class="fas fa-map-marker-alt text-brand-accent mt-1"></i>
-                                <span data-i18n-html="footer_address">Blvd. Kukulcan Km 9, Zona Hotelera<br>77500 Cancún, Q.R., México</span>
+                                <span data-i18n-html="footer_address">Blvd. Kukulcan Km 12, Zona Hotelera<br>77500 Cancún, Q.R., México</span>
                             </li>
                             <li class="flex items-center gap-3 justify-center md:justify-start">
                                 <i class="fab fa-whatsapp text-brand-accent"></i>
@@ -373,8 +377,8 @@
                             </li>
                         </ul>
                         <div class="flex gap-4 mt-6">
-                            <a href="#" class="w-8 h-8 rounded-full glass-panel flex items-center justify-center text-white/50 hover:text-brand-accent transition-colors"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="w-8 h-8 rounded-full glass-panel flex items-center justify-center text-white/50 hover:text-brand-accent transition-colors"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-white/60 hover:text-brand-dark hover:bg-brand-accent transition-all duration-300 shadow-md cursor-pointer"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-white/60 hover:text-brand-dark hover:bg-brand-accent transition-all duration-300 shadow-md cursor-pointer"><i class="fab fa-facebook-f"></i></a>
                         </div>
                     </div>
                 </div>
@@ -387,10 +391,10 @@
         </footer>
     </div>
 
-    <!-- MODAL DETALLE DE ACTIVIDAD -->
-    <div id="activity-detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-500 bg-brand-dark/90 backdrop-blur-md">
-        <div class="bg-brand-navy w-full max-w-4xl max-h-[90vh] rounded-3xl border border-brand-accent/30 shadow-2xl flex flex-col overflow-hidden relative">
-            <button onclick="closeDetailModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full glass-panel text-white hover:text-brand-accent flex items-center justify-center transition-colors shadow-lg">
+    <!-- MODAL DETALLE DE ACTIVIDAD (Totalmente invisible al estar cerrado) -->
+    <div id="activity-detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 opacity-0 invisible transition-all duration-500 bg-brand-dark/90 backdrop-blur-md" onclick="if(event.target === this) closeDetailModal()">
+        <div class="bg-brand-navy w-full max-w-4xl max-h-full rounded-3xl border border-brand-accent/30 shadow-2xl flex flex-col overflow-hidden relative">
+            <button onclick="closeDetailModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full glass-panel text-white hover:text-brand-accent flex items-center justify-center transition-colors shadow-lg border-white/10 cursor-pointer">
                 <i class="fas fa-times"></i>
             </button>
             <div class="flex flex-col md:flex-row h-full overflow-y-auto overflow-x-hidden md:overflow-hidden no-scrollbar">
@@ -399,13 +403,13 @@
                     <img id="detail-modal-img" src="" alt="Detail Image" class="absolute inset-0 w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-brand-navy"></div>
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-brand-navy/30 backdrop-blur-sm">
-                        <div class="glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-white">
+                        <div class="glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-white shadow-lg">
                             <i class="fas fa-search-plus text-brand-accent"></i> <span class="text-xs tracking-wider uppercase font-medium" data-i18n="modal_zoom_hint">Clic para ampliar</span>
                         </div>
                     </div>
                 </div>
                 <!-- Info -->
-                <div class="w-full md:w-1/2 p-6 md:p-8 flex flex-col overflow-y-auto no-scrollbar pb-24 md:pb-8">
+                <div class="w-full md:w-1/2 p-6 md:p-8 flex flex-col overflow-y-auto no-scrollbar pb-10 md:pb-8">
                     <div class="mb-6 border-b border-white/10 pb-6">
                         <h3 id="detail-modal-title" class="text-2xl md:text-3xl font-display font-bold text-white mb-2 leading-tight"></h3>
                         <p id="detail-modal-price" class="text-brand-accent font-semibold text-lg"></p>
@@ -416,9 +420,9 @@
                         <p id="detail-modal-desc" class="text-sm text-slate-300 leading-relaxed font-light"></p>
                     </div>
 
-                    <div id="detail-modal-includes-section" class="mb-6 bg-brand-dark/50 rounded-2xl p-5 border border-white/5">
+                    <div id="detail-modal-includes-section" class="mb-6 bg-brand-dark/50 rounded-2xl p-5 border border-white/5 shadow-inner">
                         <h4 class="text-[10px] text-brand-accent uppercase tracking-widest font-bold mb-2 flex items-center gap-2">
-                            <i class="fas fa-check-circle"></i> <span data-i18n="modal_includes_heading">¿Qué incluye?</span>
+                            <i class="fas fa-check-circle"></i> <span data-i18n="modal_includes_heading">Incluye:</span>
                         </h4>
                         <p id="detail-modal-includes" class="text-sm text-white font-medium leading-relaxed"></p>
                     </div>
@@ -428,7 +432,7 @@
                     </div>
 
                     <div class="mt-auto pt-4 md:pt-0">
-                        <button id="detail-modal-reserve-btn" class="w-full bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-4 transition-all duration-300 shadow-lg flex items-center justify-center gap-3">
+                        <button id="detail-modal-reserve-btn" class="w-full bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] transform hover:-translate-y-1 flex items-center justify-center gap-3 cursor-pointer">
                             <i class="fab fa-whatsapp text-lg"></i> <span data-i18n="modal_reserve_btn">Reservar por WhatsApp</span>
                         </button>
                     </div>
@@ -438,12 +442,12 @@
     </div>
 
     <!-- MODAL ZOOM IMAGEN LUPA -->
-    <div id="image-zoom-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-10 opacity-0 pointer-events-none transition-opacity duration-300 bg-brand-dark/95 backdrop-blur-xl">
-        <button onclick="closeZoomModal()" class="absolute top-6 right-6 z-[70] w-12 h-12 rounded-full glass-panel text-white hover:text-brand-accent flex items-center justify-center transition-colors shadow-2xl border-white/20">
+    <div id="image-zoom-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-10 opacity-0 invisible transition-all duration-300 bg-brand-dark/95 backdrop-blur-xl" onclick="if(event.target === this) closeZoomModal()">
+        <button onclick="closeZoomModal()" class="absolute top-6 right-6 z-[70] w-12 h-12 rounded-full glass-panel text-white hover:text-brand-accent flex items-center justify-center transition-colors shadow-2xl border-white/20 cursor-pointer pointer-events-auto">
             <i class="fas fa-times text-xl"></i>
         </button>
-        <div class="w-full h-full max-w-6xl flex flex-col items-center justify-center relative">
-            <div id="zoom-container" class="relative w-full h-full rounded-2xl overflow-hidden cursor-crosshair shadow-2xl border border-white/10" onmousemove="zoomImage(event)" onmouseleave="resetZoomImage()">
+        <div class="w-full h-full max-w-6xl flex flex-col items-center justify-center relative pointer-events-none">
+            <div id="zoom-container" class="relative w-full h-full rounded-2xl overflow-hidden cursor-crosshair shadow-2xl border border-white/10 pointer-events-auto" onmousemove="zoomImage(event)" onmouseleave="resetZoomImage()">
                 <img id="zoom-modal-img" src="" alt="Zoom" class="w-full h-full object-contain transition-transform duration-100 ease-out origin-center">
             </div>
             <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 glass-panel px-6 py-2 rounded-full pointer-events-none hidden md:block border-brand-accent/30 shadow-lg">
@@ -464,14 +468,14 @@
                     </p>
                 </div>
             </div>
-            <button onclick="acceptCookies()" class="shrink-0 w-full sm:w-auto bg-brand-accent hover:bg-white text-brand-dark font-bold px-8 py-3 rounded-full text-xs uppercase tracking-widest transition-all duration-300" data-i18n="cookie_accept">Aceptar</button>
+            <button onclick="acceptCookies()" class="shrink-0 w-full sm:w-auto bg-brand-accent hover:bg-white text-brand-dark font-bold px-8 py-3 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md cursor-pointer" data-i18n="cookie_accept">Aceptar</button>
         </div>
     </div>
 
     <script>
         // CONFIGURACIONES GLOBALES
         const TSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFWLeg9DvMAXX5TwL8JXwY3fm0UDHeKxnqmtYVZGQNNHcTSJG32pLWZVHCMA2-Eo_lZ9sVHqKtgvIO/pub?output=tsv';
-        const WHATSAPP_NUMBER = "529982274928"; // Número actualizado para reservas
+        const WHATSAPP_NUMBER = "529982274928"; 
         
         const GITHUB_BASE = 'https://beamazingcolors.github.io/oficial/'; 
         const GITHUB_FALLBACK_CDN = 'https://cdn.jsdelivr.net/gh/beamazingcolors/oficial@main/';
@@ -485,6 +489,37 @@
         let lastOpenedItemName = null;
         let lastFormSubmitTime = 0; 
 
+        // TRADUCCIONES OFICIALES PARA DESCRIPCIONES EN INGLÉS
+        const OFFICIAL_TOUR_DESC_EN = {
+            'xcaret': "Discover Mexico's best-kept secrets at Xcaret, a magnificent eco-archaeological park. Immerse yourself in Mayan culture, explore underground rivers, and witness the spectacular Xcaret Mexico Espectacular night show.",
+            'xelha': "Dive into the world's most beautiful natural aquarium. Xel-Há is an aquatic paradise where you can snorkel in pristine caletas, float down lazy rivers, and enjoy unlimited food and beverages in a stunning natural reserve.",
+            'xel ha': "Dive into the world's most beautiful natural aquarium. Xel-Há is an aquatic paradise where you can snorkel in pristine caletas, float down lazy rivers, and enjoy unlimited food and beverages in a stunning natural reserve.",
+            'xel-ha': "Dive into the world's most beautiful natural aquarium. Xel-Há is an aquatic paradise where you can snorkel in pristine caletas, float down lazy rivers, and enjoy unlimited food and beverages in a stunning natural reserve.",
+            'xplor fuego': "Experience the ultimate nighttime adventure. When the sun sets, Xplor Fuego ignites with fiery zip-lines, illuminated amphibious trails, and a mesmerizing underground river of lava-red waters.",
+            'xplor': "Unleash your adventurous spirit in the heart of the Riviera Maya jungle. Fly across the highest zip-lines, drive amphibious vehicles through lush trails, and swim in ancient underground rivers surrounded by stalactites.",
+            'xoximilco': "A floating fiesta celebrating Mexican culture. Board colorful trajineras and navigate through festive canals while enjoying live mariachi music, authentic Mexican cuisine, and an open bar of tequila and beer.",
+            'xenotes': "Embark on an exclusive journey to four distinct types of cenotes (natural sinkholes). Enjoy kayaking, zip-lining, and rappelling in a mystical jungle setting, complemented by a luxurious jungle picnic.",
+            'chichen': "Step back in time and witness the grandeur of the Mayan civilization. Explore the legendary Temple of Kukulcan, a Wonder of the Modern World, and swim in a sacred cenote on this immersive cultural expedition.",
+            '5x1': "The ultimate Riviera Maya road trip. Experience five iconic destinations in a single day: the ancient ruins of Tulum and Coba, a traditional Mayan village, a refreshing cenote, and the vibrant 5th Avenue in Playa del Carmen.",
+            'catamaran': "Sail the turquoise waters of the Caribbean Sea aboard a luxury catamaran to the beautiful Isla Mujeres. Enjoy snorkeling at a vibrant coral reef, tropical cocktails from the open bar, and relaxing beach club vibes.",
+            'atv': "Get your adrenaline pumping on a thrilling off-road ATV ride through the dense Mayan jungle. Navigate rugged terrain, conquer mud trails, and cool off with a refreshing dip in a hidden cenote.",
+            'cozumel': "Discover the underwater wonders of Cozumel, world-renowned for its spectacular coral reefs. Enjoy premium snorkeling at Palancar and Colombia reefs, and relax at the pristine El Cielo sandbar with starfish.",
+            'bacalar': "Journey to the mesmerizing Lagoon of Seven Colors. Explore the historic San Felipe Fort, swim in the crystal-clear waters of the Blue Cenote, and enjoy a scenic boat ride through this peaceful paradise.",
+            'holbox': "Escape to a secluded island sanctuary where streets are made of sand and time stands still. Swim in the Yalahau water spring, marvel at the Punta Mosquito sandbanks, and soak in the bohemian island atmosphere.",
+            'coloradas': "Witness one of Mexico's most surreal landscapes. Marvel at the striking pink salt lakes of Las Coloradas and explore the Rio Lagartos biosphere reserve, home to diverse wildlife including flocks of wild flamingos.",
+            'jungle tour': "Take the wheel of your own speedboat and navigate through the winding mangrove channels of the Nichupté Lagoon. Arrive at the spectacular Punta Nizuc reef for an unforgettable Caribbean snorkeling experience.",
+            'diving': "Plunge into the depths of the Mesoamerican Reef. Whether you are a beginner or a certified diver, explore vibrant coral gardens, majestic underwater statues, and diverse marine life guided by PADI professionals.",
+            'columbus': "Set sail on a romantic Spanish galleon across the Nichupté Lagoon. Indulge in a multi-course dinner, enjoy a premium open bar, and listen to live saxophone music under the Caribbean starlight."
+        };
+
+        function getOfficialDesc(nombreTour) {
+            let n = nombreTour.toLowerCase();
+            for(let key in OFFICIAL_TOUR_DESC_EN) {
+                if(n.includes(key)) return OFFICIAL_TOUR_DESC_EN[key];
+            }
+            return null;
+        }
+
         // TRADUCCIONES DE LA INTERFAZ
         const i18n = {
             es: {
@@ -495,25 +530,13 @@
                 nav_contact: "Reserva",
                 sub_tour: "Tours & Aventuras",
                 sub_yacht: "Yates & Catamaranes",
-                sub_trans: "Traslados VIP",
+                sub_trans: "Traslados privados",
                 hero_title: `Cancún no es solo un destino, <br class="hidden sm:inline">es un <span class="font-serif italic font-bold text-brand-accent">estado de plenitud.</span>`,
                 hero_desc: "La joya de Quintana Roo. Un lugar donde la selva de esmeraldas se funde con el mar turquesa y el tiempo parece detenerse para regalarte momentos inigualables. Cancún te ofrece el contraste perfecto de la civilización maya y la hospitalidad premium contemporánea.",
-                hero_quote: `"Siente la brisa caribeña sin límites ni prisas. Te revelamos el verdadero color del paraíso."`,
                 btn_explore_catalog: "Explorar Catálogo",
                 btn_design_itinerary: "Diseñar Itinerario",
                 badge_location: `<i class="fas fa-map-pin text-brand-accent mr-2"></i>Cancún, Quintana Roo`,
                 badge_mexican_caribbean: "Caribe Mexicano",
-                facts_badge: "Secretos del Caribe",
-                facts_title: `Misterios de <span class="font-serif italic font-bold text-brand-accent">Quintana Roo</span>`,
-                fact1_title: "Arena que no quema",
-                fact1_desc: "Nuestra brillante arena blanca está hecha de coral fino triturado por milenios. No absorbe la energía solar, permitiendo caminar descalzo placenteramente a pleno mediodía.",
-                fact1_tag: "Fenómeno Natural",
-                fact2_title: "El Arrecife Mesoamericano",
-                fact2_desc: "Frente a nuestras costas descansa la segunda barrera de coral más grande del planeta. Un santuario de biodiversidad marina virgen ideal para explorar en privacidad.",
-                fact2_tag: "Vida Marina",
-                fact3_title: "Portales al Inframundo",
-                fact3_desc: "Quintana Roo alberga los sistemas de ríos subterráneos y cuevas inundadas (cenotes) más extensos y sagrados del mundo maya. Aguas puras y cristalinas.",
-                fact3_tag: "Misticismo Maya",
                 carousel_title: `Donde el paraíso toma su <br><span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-sand to-white">verdadero color.</span>`,
                 carousel_sub: "El lujo de la libertad absoluta",
                 legacy_badge: "Nuestra Trayectoria & Filosofía",
@@ -521,23 +544,20 @@
                 legacy_desc: "Mientras el mundo entero experimentaba profundos cambios, nosotros decidimos mirar hacia el horizonte del Caribe Mexicano y crear una propuesta diferente. Nos propusimos diseñar experiencias completamente libres de filas, personalizadas al detalle y enfocadas en revelar la verdadera esencia y pureza de Cancún y la Riviera Maya.",
                 legacy_stat1_num: "+5 Años",
                 legacy_stat1_txt: "De Excelencia Boutique",
-                legacy_stat2_txt: "Itinerarios Privados",
                 legacy_quote: "Llevamos media década entregándote el color real del paraíso sin prisas, intermediarios ni multitudes.",
                 search_placeholder: "Buscar experiencia, destino o embarcación...",
                 catalog_syncing: "Sincronizando inventario exclusivo...",
                 catalog_not_found_title: "No se encontraron experiencias en esta categoría",
                 catalog_not_found_desc: "Intenta con otro término o consulta a nuestro Concierge.",
                 card_view_details: "Ver Detalles & Reserva",
-                featured_badge: "Experiencia Destacada",
                 modal_zoom_hint: "Clic para ampliar con lupa",
                 modal_desc_heading: "Descripción",
-                modal_includes_heading: "¿Qué incluye?",
+                modal_includes_heading: "Incluye:",
                 modal_reserve_btn: "Reservar por WhatsApp",
-                zoom_hint_text: "Desplaza el cursor sobre la imagen para explorar detalles con la lente amplificadora",
+                zoom_hint_text: "Desplaza el cursor sobre la imagen para explorar detalles",
                 contact_badge: "Planificación Personalizada",
                 contact_title: `Diseña tu <span class="font-serif italic font-bold text-brand-accent">Estancia</span>`,
                 contact_desc: "Envíanos tus deseos de viaje y un concierge especializado creará tu itinerario ideal en minutos.",
-                contact_card_pill: "Atención Directa 24/7",
                 form_ph_name: "Tu Nombre",
                 form_lbl_name: "Tu Nombre Completo *",
                 form_opt_choose: "¿Cuántos viajan? *",
@@ -549,7 +569,7 @@
                 form_ph_hotel: "Hotel o Zona de Hospedaje",
                 form_lbl_hotel: "Hotel o Zona de Hospedaje",
                 form_ph_interests: "Actividades de Interés",
-                form_lbl_interests: "Actividades o Yates de Interés (Ej: Chichén Itzá, Catamarán Isla Mujeres)",
+                form_lbl_interests: "Actividades o Yates de Interés",
                 form_btn_submit: "Enviar Solicitud a WhatsApp",
                 form_subtext: "Respuesta inmediata con cotización formal e itinerario detallado.",
                 form_err_rate_limit: "Por seguridad, espera 60 segundos antes de enviar otra solicitud.",
@@ -557,7 +577,7 @@
                 footer_desc: "Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas, yates exclusivos y logística de lujo.",
                 footer_sections_title: "Secciones Rápidas",
                 footer_concierge_title: "Contacto Concierge",
-                footer_address: "Blvd. Kukulcan Km 9, Zona Hotelera<br>77500 Cancún, Q.R., México",
+                footer_address: "Blvd. Kukulcan Km 12, Zona Hotelera<br>77500 Cancún, Q.R., México",
                 footer_direct_contact: "Contacto Concierge Directo",
                 footer_copyright: "© 2026 Amazing Colors Private Tours. Todos los derechos reservados.",
                 footer_privacy: "Privacidad y Confidencialidad Garantizada",
@@ -568,8 +588,8 @@
                 cat_yate_title: `Yates & <span class="font-serif italic font-bold text-brand-accent">Catamaranes</span>`,
                 cat_yate_desc: "Navegación premium sobre el horizonte turquesa con servicio de tripulación de nivel internacional.",
                 cat_trans_badge: "Logística de Élite",
-                cat_trans_title: `Traslados & <span class="font-serif italic font-bold text-brand-accent">Chofer Privado</span>`,
-                cat_trans_desc: "Llegadas impecables sin esperas ni transbordos en vehículos climatizados Suburban o SUV de alta gama.",
+                cat_trans_title: `Traslados <span class="font-serif italic font-bold text-brand-accent">Privados</span>`,
+                cat_trans_desc: "Llegadas impecables sin esperas ni transbordos en vehículos climatizados y Vans de alta gama.",
                 whatsapp_default: "Hola Concierge Amazing Colors. Quisiera información personalizada.",
                 whatsapp_modal: "Hola Concierge de Amazing Colors. Deseo agendar y cotizar la experiencia de: ",
                 whatsapp_form_intro: "Hola Concierge de Amazing Colors, mi nombre es ",
@@ -578,7 +598,6 @@
                 cookie_desc: "Utilizamos cookies operativas y cifradas esenciales para garantizar la seguridad de su sesión de reserva y el correcto funcionamiento del sitio. Al continuar navegando, usted acepta nuestra estricta política de confidencialidad.",
                 cookie_accept: "Aceptar",
                 p404_title: "Ruta no encontrada",
-                p404_desc: "La experiencia que buscas no está disponible o la URL es incorrecta.",
                 p404_btn: "Volver al Inicio"
             },
             en: {
@@ -589,25 +608,13 @@
                 nav_contact: "Bookings",
                 sub_tour: "Tours & Adventures",
                 sub_yacht: "Yachts & Catamarans",
-                sub_trans: "VIP Transfers",
+                sub_trans: "Private Transfers",
                 hero_title: `Cancún is not just a destination, <br class="hidden sm:inline">it is a <span class="font-serif italic font-bold text-brand-accent">state of bliss.</span>`,
                 hero_desc: "The jewel of Quintana Roo. A sanctuary where the emerald jungle embraces the turquoise ocean and time stands still to bestow unforgettable moments. Cancún delivers the timeless majesty of Mayan heritage coupled with world-class boutique hospitality.",
-                hero_quote: `"Embrace the Caribbean breeze with no limits or rush. We reveal the authentic colors of paradise."`,
                 btn_explore_catalog: "Explore Catalog",
                 btn_design_itinerary: "Design Itinerary",
                 badge_location: `<i class="fas fa-map-pin text-brand-accent mr-2"></i>Cancun, Quintana Roo`,
                 badge_mexican_caribbean: "Mexican Caribbean",
-                facts_badge: "Caribbean Secrets",
-                facts_title: `Mysteries of <span class="font-serif italic font-bold text-brand-accent">Quintana Roo</span>`,
-                fact1_title: "Sand that Never Burns",
-                fact1_desc: "Our brilliant white sands are formed from finely crushed coral over millennia. They do not absorb solar heat, allowing you to walk barefoot comfortably at high noon.",
-                fact1_tag: "Natural Phenomenon",
-                fact2_title: "The Mesoamerican Reef",
-                fact2_desc: "Directly off our coast lies the world's second-largest barrier reef. A pristine sanctuary of marine biodiversity crafted for private snorkeling and diving.",
-                fact2_tag: "Marine Life",
-                fact3_title: "Portals to the Underworld",
-                fact3_desc: "Quintana Roo harbors the planet's most extensive subterranean river networks and sacred cenotes. Pure, crystalline waters honored by ancient Mayan civilization.",
-                fact3_tag: "Mayan Mysticism",
                 carousel_title: `Where paradise reveals its <br><span class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-sand to-white">true colors.</span>`,
                 carousel_sub: "The luxury of absolute freedom",
                 legacy_badge: "Our Heritage & Philosophy",
@@ -615,23 +622,20 @@
                 legacy_desc: "While the world was transforming, we turned our gaze toward the Mexican Caribbean horizon to craft an extraordinary alternative. We set out to curate journeys completely free from crowds and queues, customized down to the finest detail to showcase the pure soul of Cancún and Riviera Maya.",
                 legacy_stat1_num: "+5 Years",
                 legacy_stat1_txt: "Of Boutique Excellence",
-                legacy_stat2_txt: "Private Itineraries",
                 legacy_quote: "Over half a decade delivering the genuine colors of paradise without rush, middlemen, or crowds.",
                 search_placeholder: "Search experience, destination or vessel...",
                 catalog_syncing: "Synchronizing exclusive inventory...",
                 catalog_not_found_title: "No experiences found in this category",
                 catalog_not_found_desc: "Try searching with another term or contact our Concierge team directly.",
                 card_view_details: "View Details & Book",
-                featured_badge: "Featured Experience",
                 modal_zoom_hint: "Click to explore with magnifying lens",
                 modal_desc_heading: "Description",
-                modal_includes_heading: "What's Included?",
+                modal_includes_heading: "Include",
                 modal_reserve_btn: "Book via WhatsApp",
-                zoom_hint_text: "Hover and move cursor across the image to examine details with the high-resolution lens",
+                zoom_hint_text: "Hover and move cursor across the image to examine details",
                 contact_badge: "Bespoke Planning",
                 contact_title: `Design Your <span class="font-serif italic font-bold text-brand-accent">Stay</span>`,
                 contact_desc: "Share your travel desires and our dedicated concierge will tailor your dream itinerary in minutes.",
-                contact_card_pill: "24/7 Dedicated Concierge",
                 form_ph_name: "Your Name",
                 form_lbl_name: "Your Full Name *",
                 form_opt_choose: "Party Size? *",
@@ -643,7 +647,7 @@
                 form_ph_hotel: "Hotel or Resort Area",
                 form_lbl_hotel: "Hotel or Resort Area",
                 form_ph_interests: "Activities of Interest",
-                form_lbl_interests: "Activities or Yachts of Interest (e.g. Chichén Itzá, Isla Mujeres Catamaran)",
+                form_lbl_interests: "Activities or Yachts of Interest",
                 form_btn_submit: "Send Request to WhatsApp",
                 form_subtext: "Instant response with a tailored proposal and detailed itinerary.",
                 form_err_rate_limit: "For security, please wait 60 seconds before submitting another request.",
@@ -651,7 +655,7 @@
                 footer_desc: "Redefining boutique travel across the Mexican Caribbean. Authentic private adventures, luxury yacht charters, and VIP executive logistics.",
                 footer_sections_title: "Quick Navigation",
                 footer_concierge_title: "Concierge Contact",
-                footer_address: "Blvd. Kukulcan Km 9, Hotel Zone<br>77500 Cancun, Q.R., Mexico",
+                footer_address: "Blvd. Kukulcan Km 12, Hotel Zone<br>77500 Cancun, Q.R., Mexico",
                 footer_direct_contact: "Direct Concierge WhatsApp",
                 footer_copyright: "© 2026 Amazing Colors Private Tours. All rights reserved.",
                 footer_privacy: "Guaranteed Privacy & Discretion",
@@ -662,8 +666,8 @@
                 cat_yate_title: `Yachts & <span class="font-serif italic font-bold text-brand-accent">Catamaranes</span>`,
                 cat_yate_desc: "Premium charter navigation across turquoise horizons with world-class crew and hospitality.",
                 cat_trans_badge: "Elite Logistics",
-                cat_trans_title: `Transfers & <span class="font-serif italic font-bold text-brand-accent">Private Chauffeur</span>`,
-                cat_trans_desc: "Impeccable airport arrivals with zero waiting in luxury air-conditioned Suburban and high-end SUVs.",
+                cat_trans_title: `Private <span class="font-serif italic font-bold text-brand-accent">Transfers</span>`,
+                cat_trans_desc: "Impeccable airport arrivals with zero waiting in luxury air-conditioned SUVs and Vans.",
                 whatsapp_default: "Hello Amazing Colors Concierge. I would like personalized information.",
                 whatsapp_modal: "Hello Amazing Colors Concierge. I would like to book and receive pricing for: ",
                 whatsapp_form_intro: "Hello Amazing Colors Concierge, my name is ",
@@ -672,7 +676,6 @@
                 cookie_desc: "We use operational and encrypted cookies essential to guarantee the security of your booking session and the proper functioning of the site. By continuing to browse, you agree to our strict confidentiality policy.",
                 cookie_accept: "Accept",
                 p404_title: "Path Not Found",
-                p404_desc: "The experience you are looking for is not available or the URL is incorrect.",
                 p404_btn: "Return Home"
             }
         };
@@ -682,7 +685,7 @@
             'duracion': { es: 'Duración', en: 'Duration' },
             'pies': { es: 'Eslora / Pies', en: 'Length / Feet' },
             'eslora': { es: 'Eslora', en: 'Length' },
-            'incluye': { es: 'Incluye', en: 'Includes' },
+            'incluye': { es: 'Incluye', en: 'Include' },
             'horario': { es: 'Horario', en: 'Schedule' },
             'horarios': { es: 'Horarios', en: 'Schedules' },
             'ubicacion': { es: 'Ubicación', en: 'Location' },
@@ -702,37 +705,7 @@
 
         const MASTER_EXACT_MATCHES = {
             "olvídate de las multitudes y diseña tu propio día. desde el momento en que subes a bordo con tu grupo privado, nuestro capitán se encarga de todo. ¿tu única misión? decidir si quieres usar el paddleboard en aguas turquesas, tomar el sol en la proa o simplemente disfrutar de una copa mientras nos dirigimos a la icónica isla mujeres.": "Leave the crowds behind and tailor your own bespoke day. From the moment you board with your private group, our captain takes care of everything. Your only mission? Decide if you want to paddleboard in turquoise waters, sunbathe on the bow, or simply enjoy a drink while we head to the iconic Isla Mujeres.",
-            "en este parque temático de cancún conocerás lo más hermoso de méxico desde sus tradiciones hasta su flora y fauna silvestre.": "In this Cancun theme park you will discover the most beautiful aspects of Mexico, from its traditions to its wild flora and fauna.",
-            "el lugar ideal para los amantes del agua y el esnórquel. un paraíso donde puedes realizar distintas actividades con toda la familia.": "The ideal place for water and snorkeling lovers. A paradise where you can enjoy various activities with the whole family.",
-            "el lugar ideal para los amantes del agua y el esnórquel.": "The ideal place for water and snorkeling lovers.",
-            "un parque hecho para la aventura y la adrenalina a través de las diferentes actividades.": "A park made for adventure and adrenaline through its different activities.",
-            "enciende tu adrenalina en el único parque nocturno sin límites en la riviera maya.": "Ignite your adrenaline in the only limitless night park in the Riviera Maya.",
-            "ven a xoximilco cancún en donde la fiesta te espera con un gran ambiente estilo kermés.": "Come to Xoximilco Cancun where the party awaits you with a great traditional fair atmosphere.",
-            "ven a xoximilco cancún en donde la fiesta te espera.": "Come to Xoximilco Cancun where the party awaits you.",
-            "xenotes es el único tour en cancún que te lleva a conocer los cuatro tipos de cenotes que existen en la naturaleza: cenote cristalino semiabierto, abierto, gran cenote antiguo y cenote azul de caverna. diviértete con actividades como rappel asistido, tirolesas, kayak, nado de exploración acuática, o saltos de altura. para reponer energía, un delicioso picnic te estará esperando. adéntrate al corazón de la jungla con los cenotes en cancún.": "Xenotes is the only tour in Cancun that takes you to discover the four types of cenotes that exist in nature. Have fun with activities like assisted rappel, zip-lines, kayaking, and cliff jumping. To recharge, a delicious picnic awaits you. Dive into the heart of the jungle with the cenotes in Cancun.",
-            "xenotes es el único tour en cancún que te lleva a conocer los cuatro tipos de cenotes que existen en la naturaleza: cenote cristalino semiabierto, abierto, gran cenote antiguo y cenote azul de caverna.": "Xenotes is the only tour in Cancun that takes you to discover the four types of cenotes that exist in nature: semi-open crystalline, open, ancient great cenote, and blue cavern cenote.",
-            "xenotes es el único tour en cancún que te lleva a conocer los cuatro tipos de cenotes que existen en la naturaleza.": "Xenotes is the only tour in Cancun that takes you to discover the four types of cenotes that exist in nature.",
-            "sé testigo del legado de los mayas con el tour chichén y conoce la historia de esta maravilla del mundo moderno.": "Witness the legacy of the Mayans with the Chichén tour and discover the history of this wonder of the modern world.",
-            "vive la increíble experiencia que incluye historia, naturaleza, pueblos mágicos y mar, y es mejor poder disfrutar de 5 destinos maravillosos como tulum, coba, visita a una representación de aldea maya, playa del carmen y obviamente un cenote para recargar energías en un solo día.": "Live the incredible experience that includes history, nature, magic towns, and the sea, enjoying 5 wonderful destinations like Tulum, Coba, a Mayan village representation, Playa del Carmen, and of course a cenote to recharge your energy in a single day.",
-            "vive la increíble experiencia que incluye historia, naturaleza, pueblos mágicos y mar.": "Live the incredible experience that includes history, nature, magic towns, and the sea.",
-            "un increíble catamarán incredible, el cual va hacia la hermosa isla de isla mujeres, en donde podrán disfrutar de las encantadoras tonalidades del mar caribe.": "An incredible catamaran sailing towards the beautiful Isla Mujeres, where you can enjoy the enchanting shades of the Caribbean Sea.",
-            "un increíble catamarán, el cual va hacia la hermosa isla de isla mujeres, en donde podrán disfrutar de las encantadoras tonalidades del mar caribe.": "An incredible catamaran sailing towards the beautiful Isla Mujeres, where you can enjoy the enchanting shades of the Caribbean Sea.",
-            "combine tirolesa, cenote y atvs en esta increíble aventura en la riviera maya. la supervisión de un guía al aire libre garantizará su seguridad y comodidad durante todas las actividades. almuerzo y transporte de ida y vuelta al hotel incluidos.": "Combine zip-lines, a cenote, and ATVs in this incredible adventure in the Riviera Maya. The supervision of an outdoor guide will ensure your safety and comfort during all activities. Lunch and round-trip hotel transportation included.",
-            "combine tirolesa, cenote y atvs en esta increíble aventura en la riviera maya.": "Combine zip-lines, a cenote, and ATVs in this incredible adventure in the Riviera Maya.",
-            "navega hacia playa mia grand beach park y disfruta de una infinidad de actividades gratuitas, cocina auténtica y relajantes tratamientos de spa. tanto si estás descubriendo las vistas y los sonidos culturales de méxico como si estas tomando un descanso en la playa de arena blanca, descubrirás que playa mia es el destino de playa favorito de cozumel por una razón.": "Sail to Playa Mia Grand Beach Park and enjoy countless free activities, authentic cuisine, and relaxing spa treatments. Whether you are discovering the cultural sights and sounds of Mexico or taking a break on the white sand beach, you will discover why Playa Mia is Cozumel's favorite beach destination.",
-            "navega hacia playa mia grand beach park y disfruta de una infinidad de actividades gratuitas, cocina auténtica y relajantes tratamientos de spa.": "Sail to Playa Mia Grand Beach Park and enjoy countless free activities, authentic cuisine, and relaxing spa treatments.",
-            "holbox no es solo una isla; es el botón de pausa que tu ritmo de vida en cancún está pidiendo a gritos.": "Holbox is not just an island; it is the pause button that your pace of life in Cancun is desperately crying out for.",
-            "holbox es donde las calles son de arena, el reloj no existe y el azul del mar se confunde con el cielo. un escape diseñado para los que saben que el verdadero lujo es la desconexión total. el misticismo del ojo de agua yalahau. caminar sobre el agua en los bancos de arena de punta mosquito. el spot más instagrameable: los murales y el ambiente bohemio del centro.": "Holbox is where the streets are made of sand, clocks don't exist, and the blue of the sea blends with the sky. An escape designed for those who know that true luxury is total disconnection. The mysticism of the Yalahau water eye. Walk on water at the Punta Mosquito sandbanks. The most Instagrammable spot: the murals and bohemian vibe of downtown.",
-            "holbox es donde las calles son de arena, el reloj no existe y el azul del mar se confunde con el cielo.": "Holbox is where the streets are made of sand, clocks don't exist, and the blue of the sea blends with the sky.",
-            "descubre uno de los paisajes más impresionantes de méxico, las aguas rosadas de las coloradas te esperan para vivir una experiencia única, llena de naturaleza, color y momentos inolvidables.": "Discover one of the most impressive landscapes in Mexico. The pink waters of Las Coloradas await you for a unique experience, full of nature, color, and unforgettable moments.",
-            "descubre uno de los paisajes más impresionantes de méxico, las aguas rosadas de las coloradas te esperan.": "Discover one of the most impressive landscapes in Mexico. The pink waters of Las Coloradas await you.",
-            "disfruta del popular tour en cancún y disfruta de un recorrido por los manglares y sumérgete en las cristalinas aguas del caribe para disfrutar de un snorkel espectacular.": "Enjoy the popular jungle tour in Cancun with a ride through the mangroves and dive into the crystal-clear waters of the Caribbean for spectacular snorkeling.",
-            "disfruta del popular tour en cancún y disfruta de un recorrido por los manglares y sumérgete en las cristalinas aguas.": "Enjoy the popular jungle tour in Cancun with a ride through the mangroves and dive into the crystal-clear waters.",
-            "sumérgete en las aguas del caribe, descubre arrecifes y deja que la naturaleza te maraville!": "Dive into the Caribbean waters, discover coral reefs, and let nature amaze you!",
-            "brindar en este clásico galéon español es ilimitado, ya que columbus cuenta con barra libre nacional, sacando tu lado más creativo.": "Toasting on this classic Spanish Galleon is limitless, as the Columbus features a Domestic Open Bar, bringing out your most creative side.",
-            "brindar en este clásico galéon español es ilimitado, ya que columbus cuenta con barra libre nacional.": "Toasting on this classic Spanish Galleon is limitless, as the Columbus features a Domestic Open Bar.",
             "servicio de transportación privada, viajes sencillos y redondos": "Private transportation service, one-way and round trips",
-            
             "24 cervezas 24 aguas 24 refrescos hielo tripulación": "24 Beers, 24 Bottled Waters, 24 Soft Drinks, Ice, Crew",
             "transportación redonda. una comida buffet. presentación de xcaret méxico espectacular. visitas al acuario de arrecife coral, el mariposario y aviario. chalecos salvavidas. camastros, hamacas y áreas de descanso.": "Round-trip transportation. One buffet meal. Xcaret Mexico Espectacular presentation. Visits to the Coral Reef Aquarium, Butterfly Pavilion, and Aviary. Life jackets. Lounge chairs, hammocks, and rest areas.",
             "transportación redonda. una comida buffet que incluye una cerveza y bebidas ilimitadas. presentación de xcaret méxico espectacular. acceso a la playa, la caleta y pozas naturales. casilleros, vestidores y baños.": "Round-trip transportation. A buffet meal including one beer and unlimited beverages. Xcaret Mexico Espectacular presentation. Access to the beach, inlet, and natural pools. Lockers, dressing rooms, and restrooms.",
@@ -793,6 +766,7 @@
             "tours": "Tours",
             "tour": "Tour",
             "transportacion": "Transportation",
+            "van": "Van",
             "traslados": "Transfers",
             "privada": "Private",
             "privado": "Private",
@@ -942,11 +916,11 @@
             const btnEs = document.getElementById('lang-btn-es');
             const btnEn = document.getElementById('lang-btn-en');
             if (lang === 'es') {
-                btnEs.className = "px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
-                btnEn.className = "px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
+                btnEs.className = "cursor-pointer px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
+                btnEn.className = "cursor-pointer px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
             } else {
-                btnEn.className = "px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
-                btnEs.className = "px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
+                btnEn.className = "cursor-pointer px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm";
+                btnEs.className = "cursor-pointer px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white";
             }
 
             document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -971,10 +945,13 @@
             });
 
             filterCatalog(currentCategory);
-            initHomeCarousel();
+            
+            if(document.getElementById('home-carousel-scroll') && document.getElementById('home-carousel-scroll').children.length > 0) {
+                initHomeCarousel();
+            }
 
             const detailModal = document.getElementById('activity-detail-modal');
-            if (detailModal && !detailModal.classList.contains('opacity-0') && lastOpenedItemName) {
+            if (detailModal && !detailModal.classList.contains('invisible') && lastOpenedItemName) {
                 openDetailModal(encodeURIComponent(lastOpenedItemName));
             }
         }
@@ -1037,605 +1014,532 @@
         }
 
         function getCreativeSlogan(item, index) {
-            const slogansTours = { es: ["Travesía Mística Exclusiva", "Aventura Premium a Medida", "Exploración de Leyenda", "Descubrimiento de Élite", "Experiencia de Lujo Absoluto", "Ruta Ancestral de Ensueño"], en: ["Exclusive Mystical Journey", "Bespoke Premium Adventure", "Legendary Exploration", "Elite Discovery Route", "Absolute Luxury Experience", "Dream Ancestral Expedition"] };
-            const slogansYates = { es: ["Navegación de Alta Costura", "Elegancia sobre el Mar Turquesa", "Travesía Privada de Lujo", "Atardecer Exclusivo en Popa", "Carta Náutica de Ensueño", "Libertad Absoluta en Alta Mar"], en: ["Haute Couture Navigation", "Elegance Over Turquoise Waters", "Private Luxury Charter", "Exclusive Sunset Sailing", "Bespoke Nautical Itinerary", "Absolute Freedom at High Sea"] };
-            const slogansTrans = { es: ["Arribo Impecable y Seguro", "Logística VIP con Chofer", "Confort de Primera Clase", "Privacidad Total en Ruta", "Conexión VIP Riviera Maya", "Transportación de Alta Gama"], en: ["Flawless & Safe Arrival", "VIP Chauffeur Logistics", "First-Class Highway Comfort", "Complete Privacy on the Road", "Riviera Maya VIP Connection", "High-End Executive Transport"] };
-            let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
-            let lang = currentLang === 'en' ? 'en' : 'es';
-            let arr = slogansTours[lang];
-            if (tipo.includes('yate')) arr = slogansYates[lang];
-            else if (tipo.includes('trans') || tipo.includes('traslado')) arr = slogansTrans[lang];
+            const slogansTours = { 
+                es: ["Travesía Mística Exclusiva", "Aventura Premium a Medida", "Exploración de Leyenda", "Descubrimiento de Élite", "Experiencia de Lujo Absoluto", "Ruta Ancestral de Ensueño"], 
+                en: ["Exclusive Mystical Journey", "Bespoke Premium Adventure", "Legendary Exploration", "Elite Discovery Route", "Absolute Luxury Experience", "Dream Ancestral Expedition"] 
+            };
+            const slogansYates = { 
+                es: ["Navegación de Alta Costura", "Elegancia sobre el Mar Turquesa", "Travesía Privada de Lujo", "Atardecer Exclusivo en Popa", "Carta Náutica de Ensueño", "Libertad Oceánica Absoluta"], 
+                en: ["Haute Couture Navigation", "Elegance on the Turquoise Sea", "Luxury Private Voyage", "Exclusive Aft Sunset", "Dream Nautical Charter", "Absolute Oceanic Freedom"] 
+            };
+            const slogansTrans = { 
+                es: ["Traslado VIP Impecable", "Llegada de Alta Gama", "Confort Absoluto en Ruta", "Logística de Clase Mundial", "Privacidad Total en Movimiento", "Recepción de Élite"], 
+                en: ["Impeccable VIP Transfer", "High-End Arrival", "Absolute Comfort En Route", "World-Class Logistics", "Total Privacy in Motion", "Elite Reception"] 
+            };
+
+            let tipo = (item['tipo'] || '').toLowerCase();
+            let nombre = (item['nombre'] || '').toLowerCase();
+            let dict = slogansTours;
+            
+            if (tipo === 'yate') dict = slogansYates;
+            if (['transportacion', 'van'].includes(tipo) || /\bvan\b/i.test(nombre)) dict = slogansTrans;
+            
+            let arr = dict[currentLang] || dict['es'];
             return arr[index % arr.length];
         }
 
-        function getCleanValue(item, possibleHeaders) {
-            if (!item) return '';
-            const normalizedSearched = possibleHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
-            for (let originalKey in item) {
-                let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
-                if (normalizedSearched.includes(normalizedKey)) {
-                    let val = item[originalKey] ? item[originalKey].trim() : '';
-                    if (!val || val.toLowerCase() === 'undefined' || val.toLowerCase() === 'null') continue;
-                    if (val.startsWith('::')) val = val.substring(2).trim();
-                    else if (val.startsWith(':')) val = val.substring(1).trim();
-                    return val;
-                }
-            }
-            for (let originalKey in item) {
-                let normalizedKey = originalKey.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '');
-                for (let search of normalizedSearched) {
-                    if (normalizedKey.includes(search) || search.includes(normalizedKey)) {
-                        let val = item[originalKey] ? item[originalKey].trim() : '';
-                        if (!val || val.toLowerCase() === 'undefined' || val.toLowerCase() === 'null') continue;
-                        if (val.startsWith('::')) val = val.substring(2).trim();
-                        else if (val.startsWith(':')) val = val.substring(1).trim();
-                        return val;
-                    }
-                }
-            }
-            return '';
-        }
-
-        function parseTSV(text) {
-            let rows = []; let row = []; let field = ''; let inQuotes = false;
-            for (let i = 0; i < text.length; i++) {
-                let char = text[i]; let nextChar = text[i+1];
-                if (inQuotes) {
-                    if (char === '"') { if (nextChar === '"') { field += '"'; i++; } else { inQuotes = false; } } else { field += char; }
-                } else {
-                    if (char === '"') { inQuotes = true; } 
-                    else if (char === '\t') { row.push(field); field = ''; } 
-                    else if (char === '\n' || char === '\r') {
-                        if (char === '\r' && nextChar === '\n') i++; 
-                        row.push(field); rows.push(row); row = []; field = '';
-                    } else { field += char; }
-                }
-            }
-            if (field || row.length > 0) { row.push(field); rows.push(row); }
-            return rows;
-        }
-
-        async function init() {
+        async function initData() {
             try {
-                const response = await fetch(TSV_URL);
-                if (!response.ok) throw new Error("Network response was not ok");
+                const response = await fetch(TSV_URL, { cache: 'no-cache' });
+                if (!response.ok) throw new Error("Error en red");
                 const text = await response.text();
-                let cleanText = text;
-                if (cleanText.charCodeAt(0) === 0xFEFF) cleanText = cleanText.substring(1);
-                const rows = parseTSV(cleanText).filter(r => r.length > 0 && r.some(cell => cell.trim() !== ''));
-                if (rows.length < 2) throw new Error("Empty TSV");
-                const rawHeaders = rows[0].map(h => h.trim());
-                globalHeaders = rawHeaders;
-                const cleanHeaders = rawHeaders.map(h => h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, ''));
+                
+                const rows = text.split('\n');
+                if (rows.length < 2) throw new Error("TSV Vacío");
+                
+                globalHeaders = rows[0].split('\t').map(h => h.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+                
                 fullData = rows.slice(1).map(row => {
-                    let item = {}; 
-                    rawHeaders.forEach((h, i) => { 
-                        const cleanH = cleanHeaders[i];
-                        const val = row[i] !== undefined ? row[i].trim() : '';
-                        item[cleanH] = val; item[h] = val;
-                    }); 
-                    return item;
-                });
-                renderCatalog();
+                    const values = row.split('\t');
+                    let obj = {};
+                    globalHeaders.forEach((header, i) => {
+                        obj[header] = values[i] ? values[i].trim() : '';
+                    });
+                    return obj;
+                }).filter(item => item['nombre'] && item['nombre'].trim() !== '');
+
                 initHomeCarousel();
-            } catch (err) { 
-                console.warn("Aviso en carga de TSV. Activando Catálogo de Respaldo.", err);
-                renderFallbackCatalog();
+                filterCatalog(currentCategory);
+                checkHashNavigation();
+                
+            } catch (error) {
+                console.error("Error al cargar TSV:", error);
+                const grid = document.getElementById('catalog-grid');
+                if (grid) {
+                    grid.innerHTML = `
+                        <div class="col-span-full text-center py-20">
+                            <i class="fas fa-exclamation-triangle text-red-500 text-5xl mb-4"></i>
+                            <p class="text-white text-lg">No se pudo cargar el inventario. Por favor, recarga la página o contacta a Concierge.</p>
+                        </div>`;
+                }
             }
-            checkCookies(); 
         }
 
         function initHomeCarousel() {
-            const scrollContainer = document.getElementById('home-carousel-scroll');
-            if (!scrollContainer) return;
-            let source = fullData.length > 0 ? fullData : [];
-            let itemsWithImages = source.filter(item => { let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']); return folio && folio.trim() !== ''; });
-            if (itemsWithImages.length === 0) return;
-            
-            // SEPARAR YATES Y TOURS
-            let tours = itemsWithImages.filter(item => {
-                let t = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
-                return t.includes('tour') || t.includes('aventura') || (!t.includes('yate') && !t.includes('trans'));
-            });
-            let yates = itemsWithImages.filter(item => {
-                let t = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
-                return t.includes('yate');
+            const container = document.getElementById('home-carousel-scroll');
+            if (!container) return;
+
+            const yates = fullData.filter(i => (i['tipo'] || '').toLowerCase() === 'yate');
+            const tours = fullData.filter(i => {
+                let t = (i['tipo'] || '').toLowerCase();
+                let n = (i['nombre'] || '').toLowerCase();
+                return t !== 'yate' && !['transportacion', 'van'].includes(t) && !(/\bvan\b/i.test(n));
             });
             
-            let selectedItems = [];
-            // Mezclamos intercalando 4 yates y 4 tours (o lo que haya disponible)
-            for (let i = 0; i < 4; i++) {
-                if (yates[i]) selectedItems.push(yates[i]);
-                if (tours[i]) selectedItems.push(tours[i]);
-            }
-            
-            // Si por alguna razón no hay suficientes filtrados, mostrar los primeros 8 en general
-            if (selectedItems.length === 0) {
-                selectedItems = itemsWithImages.slice(0, 8);
+            let mixedItems = [];
+            let maxItems = Math.min(yates.length, tours.length, 6);
+            for(let i=0; i<maxItems; i++) {
+                if(yates[i]) mixedItems.push(yates[i]);
+                if(tours[i]) mixedItems.push(tours[i]);
             }
 
-            let badgeText = escapeHTML(i18n[currentLang].featured_badge);
-            let setHtml = '';
-            
-            selectedItems.forEach(item => {
-                let rawName = getCleanValue(item, ['Nombre', 'NOMBRE']);
-                let name = escapeHTML(translateCatalogText(rawName, currentLang));
-                let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
-                let imgUrl = escapeHTML(getImgUrlByFolio(folio, rawName));
-                let tipo = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
-                let categoryType = 'tour';
-                if (tipo.includes('yate')) categoryType = 'yate';
-                if (tipo.includes('trans') || tipo.includes('traslado')) categoryType = 'transportacion';
+            if (mixedItems.length === 0) {
+                container.innerHTML = '';
+                return;
+            }
 
-                setHtml += `
-                    <div class="relative w-64 h-80 md:w-80 md:h-[400px] flex-shrink-0 group overflow-hidden rounded-2xl cursor-pointer shadow-xl border border-white/10" onclick="navigateTo('catalog', '${categoryType}')">
-                        <img src="${imgUrl}" alt="${name}" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700" onerror="handleImgError(this, '${categoryType}')">
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/95 via-brand-navy/30 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <span class="text-[10px] text-brand-accent uppercase tracking-widest font-bold block mb-1">${badgeText}</span>
-                            <h4 class="text-white font-display font-semibold tracking-widest uppercase text-base drop-shadow">${name}</h4>
+            const cardsHTML = mixedItems.map((item, index) => {
+                const imgUrl = getImgUrlByFolio(item['folio'], item['nombre']);
+                const tipoCat = (item['tipo'] || 'tours').toLowerCase() === 'yate' ? 'yates' : 'tours';
+                const slogan = getCreativeSlogan(item, index);
+                
+                let title = escapeHTML(item['nombre'] || 'Experiencia Exclusiva');
+                let catBadge = (item['tipo'] || '').toLowerCase() === 'yate' ? 'Charter Privado' : 'Tour Élite';
+                
+                return `
+                <div class="w-[280px] sm:w-[320px] md:w-[380px] flex-shrink-0 snap-start group cursor-pointer h-full" onclick="openDetailModal('${encodeURIComponent(item['nombre'])}')">
+                    <div class="glass-card rounded-3xl overflow-hidden h-full flex flex-col relative border border-white/10 group-hover:border-brand-accent/50 transition-all duration-500 shadow-xl group-hover:shadow-[0_15px_40px_rgba(212,175,55,0.2)] transform group-hover:-translate-y-2">
+                        <div class="h-48 md:h-56 w-full overflow-hidden relative">
+                            <div class="absolute inset-0 bg-brand-dark/20 group-hover:bg-transparent z-10 transition-colors duration-500"></div>
+                            <img src="${imgUrl}" alt="${title}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" onerror="handleImgError(this, '${tipoCat}')">
+                        </div>
+                        <div class="p-6 md:p-8 flex-grow flex flex-col bg-gradient-to-b from-transparent to-brand-navy/80">
+                            <span class="text-brand-accent tracking-[0.2em] text-[10px] uppercase font-bold mb-2 block">${catBadge}</span>
+                            <h4 class="text-xl md:text-2xl font-display font-bold text-white mb-2 leading-tight group-hover:text-brand-accent transition-colors">${title}</h4>
+                            <p class="text-slate-400 text-xs italic font-serif mb-4 flex-grow border-l-2 border-brand-accent/30 pl-3">${slogan}</p>
+                            <div class="mt-auto pt-4 border-t border-white/10 flex justify-between items-center">
+                                <span class="text-[10px] uppercase tracking-widest text-slate-300 font-semibold flex items-center gap-2 group-hover:text-white transition-colors">
+                                    ${i18n[currentLang].card_view_details}
+                                </span>
+                                <div class="w-8 h-8 rounded-full glass-panel flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-brand-dark transition-all duration-300 shadow-md">
+                                    <i class="fas fa-arrow-right text-xs"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
                 `;
-            });
-            
-            scrollContainer.innerHTML = `<div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap pb-4">${setHtml}</div>`;
+            }).join('');
+
+            container.innerHTML = cardsHTML;
+        }
+
+        function scrollCarousel(direction) {
+            const container = document.getElementById('home-carousel-scroll');
+            if(container) {
+                const scrollAmount = window.innerWidth < 768 ? 320 : 400; 
+                container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+            }
         }
 
         function filterCatalog(category) {
-            const safeCategory = ['tour', 'yate', 'transportacion'].includes(category) ? category : 'tour';
-            currentCategory = safeCategory;
+            currentCategory = category;
             
             document.querySelectorAll('#page-catalog button[id^="sub-nav-"]').forEach(btn => {
-                const isTarget = btn.id === `sub-nav-${safeCategory}`;
-                if (isTarget) {
-                    btn.classList.add('bg-brand-accent', 'text-brand-dark', 'font-bold', 'border-brand-accent');
-                    btn.classList.remove('text-white', 'border-white/10', 'glass-panel');
-                } else {
-                    btn.classList.remove('bg-brand-accent', 'text-brand-dark', 'font-bold', 'border-brand-accent');
-                    btn.classList.add('text-white', 'border-white/10', 'glass-panel');
-                }
+                btn.className = "cursor-pointer px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80";
             });
-            const badge = document.getElementById('catalog-category-badge');
-            const title = document.getElementById('catalog-category-title');
-            const desc = document.getElementById('catalog-category-desc');
-            const t = i18n[currentLang];
-            if (safeCategory === 'tour') { badge.innerText = t.cat_tour_badge; title.innerHTML = t.cat_tour_title; desc.innerText = t.cat_tour_desc; }
-            else if (safeCategory === 'yate') { badge.innerText = t.cat_yate_badge; title.innerHTML = t.cat_yate_title; desc.innerText = t.cat_yate_desc; }
-            else if (safeCategory === 'transportacion') { badge.innerText = t.cat_trans_badge; title.innerHTML = t.cat_trans_title; desc.innerText = t.cat_trans_desc; }
-            renderCatalog();
+            const activeBtn = document.getElementById('sub-nav-' + category);
+            if (activeBtn) {
+                activeBtn.className = "cursor-pointer px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-lg border border-brand-accent";
+            }
+
+            const titleMap = {
+                'tour': { badge: i18n[currentLang].cat_tour_badge, title: i18n[currentLang].cat_tour_title, desc: i18n[currentLang].cat_tour_desc },
+                'yate': { badge: i18n[currentLang].cat_yate_badge, title: i18n[currentLang].cat_yate_title, desc: i18n[currentLang].cat_yate_desc },
+                'transportacion': { badge: i18n[currentLang].cat_trans_badge, title: i18n[currentLang].cat_trans_title, desc: i18n[currentLang].cat_trans_desc }
+            };
+            
+            document.getElementById('catalog-category-badge').textContent = titleMap[category].badge;
+            document.getElementById('catalog-category-title').innerHTML = titleMap[category].title;
+            document.getElementById('catalog-category-desc').textContent = titleMap[category].desc;
+
+            handleCatalogSearch(currentSearchQuery);
         }
 
         function handleCatalogSearch(query) {
-            currentSearchQuery = query.toLowerCase().trim();
-            renderCatalog();
-        }
+            currentSearchQuery = query.toLowerCase();
+            
+            let filtered = fullData.filter(item => {
+                let isCatMatch = false;
+                let tipo = (item['tipo'] || '').toLowerCase();
+                let nombre = (item['nombre'] || '').toLowerCase();
+                let isVan = /\bvan\b/i.test(nombre);
+                
+                if (currentCategory === 'yate') {
+                    isCatMatch = tipo === 'yate';
+                } else if (currentCategory === 'transportacion') {
+                    isCatMatch = ['transportacion', 'van'].includes(tipo) || isVan;
+                } else {
+                    isCatMatch = tipo !== 'yate' && !['transportacion', 'van'].includes(tipo) && !isVan;
+                }
 
-        function renderCatalog() {
-            const grid = document.getElementById('catalog-grid');
-            if (!grid) return;
-            grid.innerHTML = '';
-            const t = i18n[currentLang];
-            const filtered = fullData.filter(item => {
-                let tipoSheet = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                const matchesCategory = tipoSheet.includes(currentCategory.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
-                if (!matchesCategory) return false;
-                if (!currentSearchQuery) return true;
-                let nombreEs = getCleanValue(item, ['Nombre', 'NOMBRE']).toLowerCase();
-                let descEs = getCleanValue(item, ['Descriptivo', 'Detalles', 'DESCRIPTIVO']).toLowerCase();
-                let nombreEn = translateCatalogText(nombreEs, 'en').toLowerCase();
-                let descEn = translateCatalogText(descEs, 'en').toLowerCase();
-                return nombreEs.includes(currentSearchQuery) || descEs.includes(currentSearchQuery) || nombreEn.includes(currentSearchQuery) || descEn.includes(currentSearchQuery);
+                if (!isCatMatch) return false;
+                if (currentSearchQuery === '') return true;
+
+                return nombre.includes(currentSearchQuery) || 
+                       (item['descriptivo'] && item['descriptivo'].toLowerCase().includes(currentSearchQuery));
             });
+
+            const grid = document.getElementById('catalog-grid');
+            if(!grid) return;
+            
+            grid.innerHTML = '';
 
             if (filtered.length === 0) {
                 grid.innerHTML = `
-                    <div class="text-center py-16 text-slate-400 w-full">
-                        <i class="fas fa-search text-3xl text-brand-accent/50 mb-4 block"></i>
-                        <p class="text-base text-white font-medium mb-1">${escapeHTML(t.catalog_not_found_title)}</p>
-                        <p class="text-xs text-slate-400">${escapeHTML(t.catalog_not_found_desc)}</p>
+                    <div class="col-span-full flex flex-col items-center justify-center py-20 text-center reveal-up">
+                        <i class="far fa-compass text-6xl text-brand-accent/40 mb-6"></i>
+                        <h3 class="text-2xl font-display text-white mb-2">${i18n[currentLang].catalog_not_found_title}</h3>
+                        <p class="text-slate-400 font-light">${i18n[currentLang].catalog_not_found_desc}</p>
                     </div>
                 `;
                 return;
             }
 
-            let printedKeys = new Set();
-            filtered.forEach((item, idx) => {
-                const card = document.createElement('div'); 
-                card.className = 'card w-full max-w-[350px] glass-card hover:border-brand-accent/40 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-white group';
+            filtered.forEach((item, index) => {
+                const imgUrl = getImgUrlByFolio(item['folio'], item['nombre']);
+                const tipoCat = (['transportacion', 'van'].includes((item['tipo'] || '').toLowerCase()) || /\bvan\b/i.test((item['nombre'] || ''))) ? 'transportacion' : ( (item['tipo'] || '').toLowerCase() === 'yate' ? 'yates' : 'tours' );
+                const title = escapeHTML(item['nombre']);
                 
-                let rawNombre = getCleanValue(item, ['Nombre', 'NOMBRE']) || 'Private Experience';
-                let nombre = escapeHTML(translateCatalogText(rawNombre, currentLang));
-                let safeEncodedNombre = encodeURIComponent(rawNombre);
-                
-                let folioValue = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
-                let imgUrl = escapeHTML(getImgUrlByFolio(folioValue, rawNombre));
-                
-                let precio = getCleanValue(item, ['Precio', 'PRECIO']);
-                if (precio === '' || precio.toLowerCase() === 'consultar' || precio.toLowerCase() === 'inquire') precio = escapeHTML(getCreativeSlogan(item, idx));
-                else precio = escapeHTML(translateCatalogText(precio, currentLang));
+                let priceHtml = '';
+                if (item['precio publico'] && item['precio publico'].trim() !== '') {
+                    priceHtml = `<span class="bg-brand-dark/80 text-white px-3 py-1 rounded-full text-xs font-bold border border-white/10 shadow-md backdrop-blur-sm">$${escapeHTML(item['precio publico'])}</span>`;
+                }
 
-                let extraSpecsHtml = '';
-                const excludedHeaders = ['nombre', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye', 'catalogo', 'folio', 'pax'];
-                
-                printedKeys.clear();
-                globalHeaders.forEach(header => {
-                    let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '').trim();
-                    if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) return;
-                    if (printedKeys.has(keyNormalized)) return;
-                    printedKeys.add(keyNormalized);
-                    
-                    let val = getCleanValue(item, [header]); 
-                    if (val && val !== '') {
-                        let cleanLabel = header.trim().replace(/:$/, '');
-                        if (specHeaderTranslations[keyNormalized] && specHeaderTranslations[keyNormalized][currentLang]) cleanLabel = specHeaderTranslations[keyNormalized][currentLang];
-                        let translatedVal = escapeHTML(translateCatalogText(val, currentLang));
-                        let safeLabel = escapeHTML(cleanLabel);
-                        
-                        extraSpecsHtml += `
-                            <div class="spec-row flex justify-between text-xs py-1 border-b border-white/5 last:border-0">
-                                <span class="spec-label font-semibold text-brand-accent uppercase tracking-wider text-[10px]">${safeLabel}:</span>
-                                <span class="spec-value text-slate-300 text-right font-light">${translatedVal}</span>
-                            </div>
-                        `;
-                    }
-                });
+                const card = document.createElement('div');
+                card.className = "w-full max-w-[360px] flex flex-col group cursor-pointer reveal-up h-full";
+                card.style.animationDelay = `${(index % 10) * 0.05}s`;
+                card.onclick = () => openDetailModal(item['nombre']);
 
                 card.innerHTML = `
-                    <div class="img-container relative h-60 overflow-hidden bg-brand-dark cursor-pointer" onclick="openDetailModal('${safeEncodedNombre}')">
-                        ${imgUrl ? `<img src="${imgUrl}" onerror="handleImgError(this, '${currentCategory}')" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" alt="${nombre}">` : ''}
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-transparent to-transparent"></div>
-                        <button onclick="openZoomModal('${imgUrl}', event)" class="absolute top-4 right-4 glass-panel hover:bg-brand-accent text-white hover:text-brand-dark w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none border border-white/10" title="${escapeHTML(t.modal_zoom_hint)}">
-                            <i class="fas fa-search-plus text-xs"></i>
-                        </button>
-                    </div>
-                    <div class="card-info p-6 flex flex-col justify-between flex-grow">
-                        <div>
-                            <h3 class="card-title text-xl font-bold font-display text-white mb-2 cursor-pointer hover:text-brand-accent transition-colors" onclick="openDetailModal('${safeEncodedNombre}')">${nombre}</h3>
-                            <p class="card-price text-brand-accent font-semibold text-sm mb-4">${precio}</p>
+                    <div class="glass-card rounded-[2rem] overflow-hidden flex flex-col h-full relative border border-white/5 group-hover:border-brand-accent/40 transition-all duration-500 shadow-lg group-hover:shadow-[0_15px_40px_rgba(212,175,55,0.15)] transform group-hover:-translate-y-2">
+                        <div class="h-56 w-full overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent z-10"></div>
+                            <img src="${imgUrl}" alt="${title}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" onerror="handleImgError(this, '${tipoCat}')">
+                            <div class="absolute top-4 right-4 z-20">${priceHtml}</div>
                         </div>
-                        ${extraSpecsHtml ? `<div class="card-extra-specs border-t border-dashed border-white/10 pt-3 mt-3 flex flex-col gap-1 bg-brand-dark/30 p-3 rounded-xl">${extraSpecsHtml}</div>` : ''}
-                        <div class="pt-6 mt-4 border-t border-white/10">
-                            <button onclick="openDetailModal('${safeEncodedNombre}')" class="w-full glass-panel hover:bg-brand-accent text-brand-accent hover:text-brand-dark font-bold tracking-[0.2em] text-[10px] uppercase transition-all duration-300 rounded-full py-2.5 px-4 flex items-center justify-center gap-2 focus:outline-none shadow-md border-brand-accent/40 hover:border-brand-accent">
-                                ${escapeHTML(t.card_view_details)} <i class="fas fa-chevron-right text-[8px]"></i>
-                            </button>
+                        <div class="p-6 md:p-8 flex-grow flex flex-col bg-brand-navy/60">
+                            <h4 class="text-lg md:text-xl font-display font-bold text-white mb-2 leading-tight group-hover:text-brand-accent transition-colors line-clamp-2">${title}</h4>
+                            <p class="text-slate-400 text-xs italic font-serif mb-4 flex-grow line-clamp-3">${getCreativeSlogan(item, index)}</p>
+                            <div class="mt-auto pt-4 border-t border-white/10 flex justify-between items-center w-full">
+                                <span class="text-[10px] uppercase tracking-[0.2em] text-brand-accent font-bold group-hover:text-white transition-colors">
+                                    ${i18n[currentLang].card_view_details}
+                                </span>
+                                <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-brand-dark transition-all duration-300 shadow-md">
+                                    <i class="fas fa-plus text-xs"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 `;
                 grid.appendChild(card);
             });
-        }
-
-        function renderFallbackCatalog() {
-            globalHeaders = ["TIPO", "Nombre", "Pies", "Capacidad de personas", "Descriptivo", "Incluye:", "Folio"];
-            fullData = [
-                { "TIPO": "Yate", "Nombre": "Angelina", "Pies": "43 fts", "Capacidad de personas": "12", "Descriptivo": "Olvídate de las multitudes y diseña tu propio día.", "Incluye:": "24 Cervezas 24 Aguas 24 Refrescos Hielo Tripulación", "Folio": "ANG" },
-                { "TIPO": "Yate", "Nombre": "Big time", "Pies": "46 fts", "Capacidad de personas": "15", "Descriptivo": "Olvídate de las multitudes y diseña tu propio día.", "Incluye:": "24 Cervezas 24 Aguas 24 Refrescos Hielo Tripulación", "Folio": "BTY" },
-                { "TIPO": "Yate", "Nombre": "Amapola", "Pies": "45 fts", "Capacidad de personas": "15", "Descriptivo": "Olvídate de las multitudes y diseña tu propio día.", "Incluye:": "24 Cervezas 24 Aguas 24 Refrescos Hielo Tripulación", "Folio": "AMP" },
-                { "TIPO": "Yate", "Nombre": "Esmeralda", "Pies": "44 fts", "Capacidad de personas": "12", "Descriptivo": "Olvídate de las multitudes y diseña tu propio día.", "Incluye:": "24 Cervezas 24 Aguas 24 Refrescos Hielo Tripulación", "Folio": "EMD" },
-                { "TIPO": "TOURS", "Nombre": "XCARET", "Pies": "", "Capacidad de personas": "", "Descriptivo": "En este parque temático de Cancún conocerás lo más hermoso de México desde sus tradiciones hasta su flora y fauna silvestre.", "Incluye:": "Transportación redonda. Una comida buffet que incluye una cerveza y bebidas ilimitadas. Presentación de Xcaret México Espectacular. Acceso a la playa, la caleta y pozas naturales. Casilleros, vestidores y baños.", "Folio": "XCT" },
-                { "TIPO": "TOURS", "Nombre": "XEL-HA", "Pies": "", "Capacidad de personas": "", "Descriptivo": "El lugar ideal para los amantes del agua y el esnórquel. Un paraíso donde puedes realizar distintas actividades con toda la familia.", "Incluye:": "Transportación redonda. Snorkel. Paseo en llanta por el rio. El faro mirador. Mundo de los niños. Comida tipo buffet y barra libre domestica.", "Folio": "XHT" }
-            ];
-            filterCatalog('tour');
-            initHomeCarousel();
-        }
-
-        // SISTEMA DE ENRUTAMIENTO ÚNICO POR URL CORREGIDO PARA CHROME LOCAL
-        function navigateTo(pageId, subCategory = '') {
-            const validPages = ['home', 'legacy', 'catalog', 'contact'];
-            if (!validPages.includes(pageId)) pageId = '404';
-
-            const newHash = `/${pageId}${subCategory ? `/${subCategory}` : ''}`;
             
-            try {
-                if (window.location.hash !== '#' + newHash) {
-                    history.pushState(null, null, '#' + newHash);
-                }
-            } catch (e) {
-                if (window.location.hash !== '#' + newHash) {
-                    window.location.hash = newHash;
-                }
-            }
-
-            const currentActive = document.querySelector('.page-view.active');
-            const targetPage = document.getElementById(`page-${pageId}`);
-            
-            const titles = { 'home': i18n[currentLang].nav_home, 'legacy': i18n[currentLang].nav_legacy, 'catalog': i18n[currentLang].nav_catalog, 'contact': i18n[currentLang].nav_contact, '404': i18n[currentLang].p404_title };
-            document.title = `Amazing Colors | ${titles[pageId] || ''}`;
-
-            // Actualizar botones visuales
-            document.querySelectorAll('.nav-bar .nav-btn').forEach(link => {
-                const isCatalog = pageId === 'catalog' && link.id === 'btn-nav-catalog';
-                const isCurrent = link.id === `btn-nav-${pageId}` || isCatalog;
-                link.classList.toggle('active', isCurrent);
-                if (isCurrent) { link.classList.add('text-brand-accent'); link.classList.remove('text-white/80'); } 
-                else { link.classList.remove('text-brand-accent'); link.classList.add('text-white/80'); }
-            });
-
-            if(currentActive === targetPage && !subCategory) {
-                setupReveals();
-                return;
-            }
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            if(currentActive && currentActive !== targetPage) {
-                currentActive.style.opacity = '0';
-                currentActive.style.transform = 'scale(0.97) translateY(-20px)';
-                currentActive.style.filter = 'blur(10px)';
-                setTimeout(() => { 
-                    currentActive.classList.remove('active'); 
-                    showTarget(); 
-                }, 250);
-            } else { showTarget(); }
-
-            function showTarget() {
-                if(targetPage) {
-                    targetPage.classList.add('active');
-                    targetPage.offsetHeight; 
-                    setTimeout(() => {
-                        targetPage.style.opacity = '1';
-                        targetPage.style.transform = 'scale(1) translateY(0)';
-                        targetPage.style.filter = 'blur(0)';
-                    }, 40);
-                    setTimeout(() => setupReveals(), 150);
-                }
-            }
-
-            if(pageId === 'catalog') filterCatalog(subCategory || 'tour');
+            setTimeout(() => {
+                document.querySelectorAll('.reveal-up:not(.active)').forEach(el => el.classList.add('active'));
+            }, 50);
         }
 
-        window.addEventListener('hashchange', () => {
-            handleRoute(window.location.hash);
-        });
-
-        function handleRoute(hashStr) {
-            let hash = hashStr.replace(/^#\/?/, '');
-            if (!hash) { navigateTo('home'); return; }
-            let parts = hash.split('/');
-            navigateTo(escapeHTML(parts[0]), escapeHTML(parts[1] || ''));
-        }
-
-        function toggleCatalogDropdown(event) {
-            if (event) event.stopPropagation();
-            const menu = document.getElementById('catalog-dropdown-menu');
-            if (!menu) return;
-            const isOpen = !menu.classList.contains('opacity-0');
-            if (isOpen) { closeCatalogDropdown(); } 
-            else { menu.classList.remove('opacity-0', 'invisible'); menu.classList.add('opacity-100', 'visible'); }
-        }
-
-        function closeCatalogDropdown() {
-            const menu = document.getElementById('catalog-dropdown-menu');
-            if (menu) menu.classList.add('opacity-0', 'invisible');
-        }
-
-        function selectCatalogSubCategory(category, event) {
-            if (event) event.stopPropagation(); 
-            closeCatalogDropdown(); 
-            navigateTo('catalog', category);
-        }
-
-        document.addEventListener('click', () => closeCatalogDropdown());
-
-        function openDetailModal(encodedNombreBusqueda) {
-            const nombreBusqueda = decodeURIComponent(encodedNombreBusqueda);
-            lastOpenedItemName = nombreBusqueda;
-            const item = fullData.find(i => getCleanValue(i, ['Nombre', 'NOMBRE']) === nombreBusqueda);
+        // --- DETALLE MODAL ---
+        function openDetailModal(itemNameEncoded) {
+            const itemName = decodeURIComponent(itemNameEncoded);
+            const item = fullData.find(i => i['nombre'] === itemName);
             if (!item) return;
 
-            const t = i18n[currentLang];
+            lastOpenedItemName = itemName;
             const modal = document.getElementById('activity-detail-modal');
-            const img = document.getElementById('detail-modal-img');
-            const title = document.getElementById('detail-modal-title');
-            const price = document.getElementById('detail-modal-price');
-            const desc = document.getElementById('detail-modal-desc');
-            const includes = document.getElementById('detail-modal-includes');
-            const includesSection = document.getElementById('detail-modal-includes-section');
-            const specsContainer = document.getElementById('detail-modal-specs');
-            const reserveBtn = document.getElementById('detail-modal-reserve-btn');
-
-            let folioValue = getCleanValue(item, ['Folio', 'folio', 'FOLIO']);
-            let imgUrl = escapeHTML(getImgUrlByFolio(folioValue, nombreBusqueda));
-            img.src = imgUrl;
-            img.onerror = function() { handleImgError(this, 'general'); };
-            document.getElementById('detail-img-container').onclick = () => openZoomModal(imgUrl);
-
-            let rawNombre = getCleanValue(item, ['Nombre', 'NOMBRE']);
-            let translatedTitle = escapeHTML(translateCatalogText(rawNombre, currentLang));
-            title.innerText = translatedTitle;
-
-            let precio = getCleanValue(item, ['Precio', 'PRECIO']);
-            if (precio === '' || precio.toLowerCase() === 'consultar' || precio.toLowerCase() === 'inquire') {
-                price.innerText = escapeHTML(t.consult_concierge);
+            
+            document.getElementById('detail-modal-title').textContent = item['nombre'] || '';
+            
+            const officialDescEN = currentLang === 'en' ? getOfficialDesc(item['nombre']) : null;
+            let rawDesc = item['descriptivo'] || '';
+            let finalDesc = '';
+            if (currentLang === 'en' && officialDescEN) {
+                finalDesc = officialDescEN;
             } else {
-                price.innerText = escapeHTML(translateCatalogText(precio, currentLang));
+                finalDesc = translateCatalogText(rawDesc, currentLang);
+            }
+            document.getElementById('detail-modal-desc').textContent = finalDesc || (currentLang === 'es' ? 'Descripción disponible previa solicitud al Concierge.' : 'Description available upon request to Concierge.');
+            
+            let priceText = item['precio publico'] ? `$${item['precio publico']}` : (currentLang === 'es' ? i18n[currentLang].consult_concierge : i18n[currentLang].consult_concierge);
+            document.getElementById('detail-modal-price').textContent = priceText;
+
+            const includesRaw = item['incluye'] || '';
+            const includesSec = document.getElementById('detail-modal-includes-section');
+            if (includesRaw.trim()) {
+                includesSec.style.display = 'block';
+                document.getElementById('detail-modal-includes').textContent = translateCatalogText(includesRaw, currentLang);
+            } else {
+                includesSec.style.display = 'none';
             }
 
-            let rawDesc = getCleanValue(item, ['Descriptivo', 'Detalles', 'DESCRIPTIVO']);
-            if (rawDesc) desc.innerText = escapeHTML(translateCatalogText(rawDesc, currentLang));
-            else desc.innerText = currentLang === 'en' ? 'Bespoke boutique itinerary file available upon request from our dedicated concierge team.' : 'Ficha de experiencia boutique personalizada disponible bajo solicitud de nuestro concierge.';
-            
-            let rawIncluye = getCleanValue(item, ['Incluye:', 'Incluye', 'INCLUYE']);
-            if (rawIncluye) { includesSection.style.display = 'block'; includes.innerText = escapeHTML(translateCatalogText(rawIncluye, currentLang)); } 
-            else { includesSection.style.display = 'none'; }
-
+            const specsContainer = document.getElementById('detail-modal-specs');
             specsContainer.innerHTML = '';
-            const excludedHeaders = ['nombre', 'codigo', 'tipo', 'precio', 'descriptivo', 'detalles', 'incluye', 'catalogo', 'folio', 'pax'];
+            const ignoreKeys = ['nombre', 'folio', 'descriptivo', 'incluye', 'precio publico', 'tipo'];
             
-            let printedModalKeys = new Set();
-            globalHeaders.forEach(header => {
-                let keyNormalized = header.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_]/g, '').trim();
-                if (excludedHeaders.some(ex => keyNormalized === ex || keyNormalized.includes(ex))) return;
-                if (printedModalKeys.has(keyNormalized)) return;
-                printedModalKeys.add(keyNormalized);
-
-                let val = getCleanValue(item, [header]);
-                if (val && val !== '') {
-                    let cleanLabel = header.trim().replace(/:$/, '');
-                    if (specHeaderTranslations[keyNormalized] && specHeaderTranslations[keyNormalized][currentLang]) cleanLabel = specHeaderTranslations[keyNormalized][currentLang];
-                    let translatedVal = escapeHTML(translateCatalogText(val, currentLang));
-
-                    specsContainer.insertAdjacentHTML('beforeend', `
-                        <div class="flex justify-between text-xs py-1 border-b border-white/10 last:border-0">
-                            <span class="font-semibold text-brand-accent uppercase tracking-wider text-[10px]">${escapeHTML(cleanLabel)}:</span>
-                            <span class="text-slate-300 text-right font-light">${translatedVal}</span>
-                        </div>
-                    `);
+            let hasSpecs = false;
+            Object.keys(item).forEach(key => {
+                if (ignoreKeys.includes(key) || !item[key] || item[key].trim() === '') return;
+                
+                let icon = 'fa-info-circle';
+                if (key.includes('capacidad') || key.includes('pasajeros')) icon = 'fa-users';
+                if (key.includes('duracion') || key.includes('horario') || key.includes('salidas')) icon = 'fa-clock';
+                if (key.includes('pies') || key.includes('eslora')) icon = 'fa-ruler-horizontal';
+                if (key.includes('ubicacion') || key.includes('muelle')) icon = 'fa-map-marker-alt';
+                if (key.includes('motor')) icon = 'fa-cogs';
+                if (key.includes('camarotes') || key.includes('banos')) icon = 'fa-bed';
+                
+                let headerName = key.charAt(0).toUpperCase() + key.slice(1);
+                if (specHeaderTranslations[key]) {
+                    headerName = specHeaderTranslations[key][currentLang] || headerName;
                 }
-            });
 
-            reserveBtn.onclick = () => openWhatsApp(`${t.whatsapp_modal}${translatedTitle}.`);
-            modal.style.transition = 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modal.offsetHeight; 
-            modal.style.opacity = '1';
+                let valueText = translateCatalogText(item[key], currentLang);
+
+                const specDiv = document.createElement('div');
+                specDiv.className = "flex justify-between items-center py-2 border-b border-white/5 last:border-0 group/spec";
+                specDiv.innerHTML = `
+                    <span class="text-[10px] uppercase tracking-widest text-slate-400 font-bold flex items-center gap-2 w-1/3">
+                        <i class="fas ${icon} text-brand-accent/70 group-hover/spec:text-brand-accent transition-colors"></i> 
+                        <span class="truncate">${escapeHTML(headerName)}</span>
+                    </span>
+                    <span class="text-sm font-medium text-white text-right w-2/3 pl-4">${escapeHTML(valueText)}</span>
+                `;
+                specsContainer.appendChild(specDiv);
+                hasSpecs = true;
+            });
+            
+            if (!hasSpecs) {
+                specsContainer.innerHTML = `<p class="text-xs text-slate-500 italic">${currentLang === 'es' ? 'Especificaciones detalladas con el Concierge.' : 'Detailed specifications available with Concierge.'}</p>`;
+            }
+
+            const catTipo = (['transportacion', 'van'].includes((item['tipo'] || '').toLowerCase()) || /\bvan\b/i.test((item['nombre'] || ''))) ? 'transportacion' : ( (item['tipo'] || '').toLowerCase() === 'yate' ? 'yates' : 'tours' );
+            const imgEl = document.getElementById('detail-modal-img');
+            imgEl.src = getImgUrlByFolio(item['folio'], item['nombre']);
+            imgEl.onerror = () => handleImgError(imgEl, catTipo);
+            
+            const btnReserve = document.getElementById('detail-modal-reserve-btn');
+            btnReserve.onclick = () => {
+                const msg = i18n[currentLang].whatsapp_modal + item['nombre'];
+                window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+            };
+
+            const imgContainer = document.getElementById('detail-img-container');
+            imgContainer.onclick = () => {
+                const zoomModal = document.getElementById('image-zoom-modal');
+                const zoomImg = document.getElementById('zoom-modal-img');
+                zoomImg.src = imgEl.src;
+                zoomModal.classList.remove('opacity-0', 'invisible');
+                document.body.classList.add('no-scroll');
+            };
+
+            modal.classList.remove('opacity-0', 'invisible');
             document.body.classList.add('no-scroll');
         }
 
         function closeDetailModal() {
             const modal = document.getElementById('activity-detail-modal');
-            modal.style.opacity = '0';
-            setTimeout(() => { 
-                modal.classList.add('opacity-0', 'pointer-events-none'); 
-                document.body.classList.remove('no-scroll'); 
-            }, 300);
+            if(modal) {
+                modal.classList.add('opacity-0', 'invisible');
+            }
+            document.body.classList.remove('no-scroll');
+            lastOpenedItemName = null;
         }
 
-        function openZoomModal(imgSrc, event) {
-            if (event) event.stopPropagation();
-            const modal = document.getElementById('image-zoom-modal');
-            const img = document.getElementById('zoom-modal-img');
-            img.src = escapeHTML(imgSrc);
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modal.offsetHeight; 
-            modal.style.opacity = '1';
-            document.body.classList.add('no-scroll');
-        }
-
-        function closeZoomModal() {
-            const modal = document.getElementById('image-zoom-modal');
-            modal.style.opacity = '0';
-            setTimeout(() => { 
-                modal.classList.add('opacity-0', 'pointer-events-none'); 
-                resetZoomImage(); 
-                if (document.getElementById('activity-detail-modal').classList.contains('opacity-0')) {
-                    document.body.classList.remove('no-scroll');
-                }
-            }, 300);
-        }
-
+        // --- ZOOM LUPA ---
         function zoomImage(e) {
             const container = document.getElementById('zoom-container');
             const img = document.getElementById('zoom-modal-img');
             const rect = container.getBoundingClientRect();
-            const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
-            const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
+            
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const xPercent = (x / rect.width) * 100;
+            const yPercent = (y / rect.height) * 100;
+            
             img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
-            img.style.transform = "scale(2.2)";
+            img.style.transform = 'scale(2.5)';
         }
 
         function resetZoomImage() {
             const img = document.getElementById('zoom-modal-img');
-            img.style.transform = "scale(1)";
-        }
-
-        function checkCookies() {
-            if (!document.cookie.includes('ac_consent=true')) {
-                setTimeout(() => { document.getElementById('cookie-banner').classList.remove('translate-y-full'); }, 1500);
+            if(img) {
+                img.style.transform = 'scale(1)';
+                img.style.transformOrigin = 'center center';
             }
         }
 
-        function acceptCookies() {
-            document.cookie = "ac_consent=true; max-age=31536000; path=/; SameSite=Lax" + (location.protocol === 'https:' ? "; Secure" : "");
-            document.getElementById('cookie-banner').classList.add('translate-y-full');
-        }
-
-        function openWhatsApp(message = null) {
-            const finalMessage = message || i18n[currentLang].whatsapp_default;
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(finalMessage)}`, '_blank');
-        }
-
-        function showFormError(msg) {
-            const errEl = document.getElementById('form-error-msg');
-            errEl.textContent = msg;
-            errEl.classList.remove('hidden');
-        }
-
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const now = Date.now();
+        function closeZoomModal() {
+            const modal = document.getElementById('image-zoom-modal');
+            if(modal) {
+                modal.classList.add('opacity-0', 'invisible');
+            }
+            resetZoomImage();
             
+            const detailModal = document.getElementById('activity-detail-modal');
+            if (detailModal && detailModal.classList.contains('invisible')) {
+                document.body.classList.remove('no-scroll');
+            }
+        }
+
+        // --- NAVEGACIÓN SPA ---
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active', 'text-white'));
+            
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                const targetBtn = document.getElementById('btn-nav-' + pageId);
+                if (targetBtn) {
+                    targetBtn.classList.add('active', 'text-white');
+                    targetBtn.classList.remove('text-white/80');
+                }
+                
+                try {
+                    if (window.location.protocol !== 'file:') {
+                        history.pushState(null, '', '#' + pageId);
+                    } else {
+                        window.location.hash = pageId;
+                    }
+                } catch(e) {
+                    window.location.hash = pageId;
+                }
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setTimeout(() => {
+                    targetPage.querySelectorAll('.reveal-up').forEach(el => el.classList.add('active'));
+                }, 100);
+
+                if (pageId === 'catalog') {
+                    const grid = document.getElementById('catalog-grid');
+                    if (grid && !grid.children.length) {
+                        filterCatalog(currentCategory);
+                    }
+                }
+                switchLanguage(currentLang); 
+            }
+        }
+
+        function checkHashNavigation() {
+            const hash = window.location.hash.replace('#', '');
+            if (['home', 'legacy', 'catalog', 'contact'].includes(hash)) {
+                navigateTo(hash);
+            } else {
+                navigateTo('home');
+            }
+        }
+
+        window.addEventListener('popstate', checkHashNavigation);
+
+        // --- FORMULARIO Y CONTACTO ---
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const now = Date.now();
             if (now - lastFormSubmitTime < 60000) {
                 showFormError(i18n[currentLang].form_err_rate_limit);
                 return;
             }
-
-            const nameInput = document.getElementById('f_name');
-            const selectEl = document.getElementById('f_people');
             
+            const name = document.getElementById('f_name').value.trim();
+            const people = document.getElementById('f_people').value;
+            const date = document.getElementById('f_date').value;
+            const hotel = document.getElementById('f_hotel').value.trim();
+            const interests = document.getElementById('f_destinos').value.trim();
+            
+            if (!name || !people) {
+                showFormError(i18n[currentLang].form_err_required);
+                document.getElementById('f_name').classList.add('input-error');
+                document.getElementById('f_people').classList.add('input-error');
+                return;
+            }
+            
+            document.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
             document.getElementById('form-error-msg').classList.add('hidden');
-            nameInput.classList.remove('input-error');
-            selectEl.classList.remove('input-error');
 
-            if (!nameInput.value.trim()) {
-                showFormError(i18n[currentLang].form_err_required);
-                nameInput.classList.add('input-error');
-                return;
-            }
+            let message = `${i18n[currentLang].whatsapp_form_intro}*${name}*.\n\n`;
+            message += `👥 ${currentLang === 'es' ? 'Viajeros' : 'Party'}: ${people}\n`;
+            if (date) message += `📅 ${currentLang === 'es' ? 'Fecha' : 'Date'}: ${date}\n`;
+            if (hotel) message += `🏨 Hotel/Ubic.: ${hotel}\n`;
+            if (interests) message += `✨ ${currentLang === 'es' ? 'Intereses' : 'Interests'}:\n${interests}\n`;
             
-            if (!selectEl.value) {
-                showFormError(i18n[currentLang].form_err_required);
-                selectEl.classList.add('input-error');
-                return;
-            }
+            lastFormSubmitTime = now;
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+        }
 
-            const name = escapeHTML(nameInput.value);
-            const people = escapeHTML(selectEl.options[selectEl.selectedIndex].text);
-            const rawDate = document.getElementById('f_date').value;
-            const date = escapeHTML(rawDate) || (currentLang === 'en' ? 'Flexible dates' : 'Fecha flexible');
-            const rawHotel = document.getElementById('f_hotel').value;
-            const hotel = escapeHTML(rawHotel) || (currentLang === 'en' ? 'To be confirmed' : 'Por definir');
-            const rawDestinos = document.getElementById('f_destinos').value;
-            const destinos = escapeHTML(rawDestinos) || (currentLang === 'en' ? 'Custom Collection' : 'Colección personalizada');
+        function showFormError(msg) {
+            const errDiv = document.getElementById('form-error-msg');
+            if(errDiv) {
+                errDiv.textContent = msg;
+                errDiv.classList.remove('hidden');
+                setTimeout(() => errDiv.classList.add('hidden'), 5000);
+            }
+        }
+
+        // --- COOKIES ---
+        function acceptCookies() {
+            const banner = document.getElementById('cookie-banner');
+            if(banner) {
+                banner.style.transform = 'translateY(100%)';
+            }
+            try {
+                localStorage.setItem('amz_cookies_accepted', 'true');
+            } catch(e) {}
+        }
+
+        // --- INICIALIZACIÓN ---
+        window.addEventListener('DOMContentLoaded', () => {
+            initData();
             
-            let message = '';
-            if (currentLang === 'en') {
-                message = `Hello Amazing Colors Concierge, my name is ${name}.\n\n• Guests: ${people}\n• Estimated Date: ${date}\n• Accommodation: ${hotel}\n• Activities of Interest: ${destinos}\n\nI would love to receive your tailored proposal and itinerary.`;
+            if (typeof IntersectionObserver !== 'undefined') {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
             } else {
-                message = `Hola Concierge de Amazing Colors, mi nombre es ${name}.\n\n• Pasajeros: ${people}\n• Fecha estimada: ${date}\n• Hospedaje: ${hotel}\n• Interés: ${destinos}\n\nMe gustaría recibir la propuesta e itinerario.`;
+                document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('active'));
             }
-
-            lastFormSubmitTime = Date.now();
-            openWhatsApp(message);
-        }
-
-        function setupReveals() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => { 
-                    if (entry.isIntersecting) { entry.target.classList.add('active'); } 
-                });
-            }, { threshold: 0.05 });
             
-            const activePage = document.querySelector('.page-view.active');
-            if(activePage) { activePage.querySelectorAll('.reveal-up, .reveal-curtain').forEach(el => observer.observe(el)); }
-        }
+            try {
+                if (!localStorage.getItem('amz_cookies_accepted')) {
+                    setTimeout(() => {
+                        const banner = document.getElementById('cookie-banner');
+                        if(banner) banner.style.transform = 'translateY(0)';
+                    }, 3000);
+                }
+            } catch(e) {}
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') { closeZoomModal(); closeDetailModal(); }
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            init();
+            switchLanguage('es');
             
-            if (!window.location.hash) {
-                try {
-                    window.location.hash = '#/home';
-                } catch(e) {}
-            }
-            handleRoute(window.location.hash);
-            
-            setTimeout(() => setupReveals(), 100);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const zoomModal = document.getElementById('image-zoom-modal');
+                    const detailModal = document.getElementById('activity-detail-modal');
+                    
+                    if (zoomModal && !zoomModal.classList.contains('invisible')) {
+                        closeZoomModal();
+                    } else if (detailModal && !detailModal.classList.contains('invisible')) {
+                        closeDetailModal();
+                    }
+                }
+            });
         });
     </script>
 </body>
