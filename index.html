@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Amazing Colors | Viajes Oceánicos de Élite</title>
     <meta name="description" content="Redefiniendo el viaje privado por el Caribe Mexicano. Aventuras auténticas y logística VIP.">
-    <link rel="icon" type="image/png" href="https://beamazingcolors.github.io/oficial/logo.png">
+    
+    <!-- FAVICON ESTÉTICO Y DE ALTA RESOLUCIÓN -->
+    <link rel="icon" type="image/png" sizes="512x512" href="https://beamazingcolors.github.io/oficial/logo.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="https://beamazingcolors.github.io/oficial/logo.png">
     
     <!-- Seguridad Básica (Relajada para permitir Google Sheets TSV) -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:;">
@@ -61,11 +64,11 @@
         </div>
 
         <div class="relative z-10 w-full max-w-full flex-grow">
-            <!-- CABECERA -->
+            <!-- CABECERA CON LOGO GIGANTE -->
             <header class="site-brand-header flex flex-col items-center justify-center pt-10 pb-6 px-4 cursor-pointer text-center w-full max-w-full relative border-b border-brand-accent/20 bg-gradient-to-b from-[#030914] via-[#071021] to-transparent shadow-[0_10px_30px_rgba(3,9,20,0.5)] transition-colors duration-500" onclick="navigateTo('home')">
                 <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 pointer-events-none mix-blend-overlay"></div>
-                <div class="flex flex-col items-center justify-center gap-4 w-full relative z-10 transform hover:scale-[1.02] transition-transform duration-500">
-                    <img src="https://beamazingcolors.github.io/oficial/logo.png" alt="Amazing Colors Logo" class="w-16 h-16 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                <div class="flex flex-col items-center justify-center gap-6 w-full relative z-10 transform hover:scale-[1.02] transition-transform duration-500">
+                    <img src="https://beamazingcolors.github.io/oficial/logo.png" alt="Amazing Colors Logo" class="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-[0_0_25px_rgba(212,175,55,0.5)]">
                     <div>
                         <h1 class="text-3xl md:text-5xl font-bold font-display tracking-[0.3em] text-white uppercase text-glow">
                             Amazing <span class="text-brand-accent">Colors</span>
@@ -116,7 +119,6 @@
                 <!-- HERO SECTION -->
                 <div class="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden">
                     <div class="absolute inset-0 z-0">
-                        <!-- Imagen actualizada: Mar Caribe Turquesa Espectacular -->
                         <img src="https://images.unsplash.com/photo-1582967676645-8120d8f07fb0?auto=format&fit=crop&w=2000&q=80" alt="Caribbean Sea" class="w-full h-full object-cover object-center opacity-50">
                         <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/30"></div>
@@ -157,7 +159,7 @@
                     </div>
                     
                     <div class="w-full overflow-x-auto no-scrollbar pb-10 cursor-grab active:cursor-grabbing pl-4 sm:pl-6 lg:pl-8 reveal-up" id="home-carousel-scroll">
-                        <!-- Llenado por JS. Ya no repite las imágenes -->
+                        <!-- Llenado dinámicamente con Yates y Tours -->
                         <div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap pb-4" id="home-carousel-track">
                         </div>
                     </div>
@@ -167,11 +169,18 @@
             <!-- VISTA: LEGACY (FILOSOFÍA) -->
             <section id="page-legacy" class="page-view w-full max-w-full">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                    
+                    <!-- IMAGEN AL PRINCIPIO: CUN -->
+                    <div class="w-full flex justify-center mb-16 reveal-up">
+                        <img src="https://beamazingcolors.github.io/oficial/cun.png" alt="CUN Legacy" class="h-20 md:h-32 object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:scale-105 transition-transform duration-500">
+                    </div>
+
                     <div class="flex flex-col lg:flex-row items-center gap-16">
                         <div class="w-full lg:w-1/2 reveal-up relative">
                             <div class="absolute -inset-4 border border-brand-accent/20 rounded-3xl transform -rotate-3 z-0"></div>
-                            <!-- Imagen actualizada y robusta -->
-                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=80" alt="Yacht Lifestyle" class="w-full rounded-3xl shadow-2xl relative z-10 object-cover h-[500px]">
+                            <!-- IMAGEN ACTUALIZADA A cnt.jpg -->
+                            <img src="https://beamazingcolors.github.io/oficial/cnt.jpg" alt="Legacy Image" class="w-full rounded-3xl shadow-2xl relative z-10 object-cover h-[500px]" onerror="handleImgError(this, 'general')">
+                            
                             <div class="absolute -bottom-8 -right-8 glass-panel p-6 rounded-2xl z-20 shadow-2xl border-brand-accent/30 hidden md:block">
                                 <p class="text-4xl font-display font-bold text-brand-accent mb-1" data-i18n="legacy_stat1_num">+5 Años</p>
                                 <p class="text-xs uppercase tracking-widest text-slate-300 font-medium" data-i18n="legacy_stat1_txt">De Excelencia Boutique</p>
@@ -268,7 +277,7 @@
                                     </div>
                                     <div>
                                         <p class="text-xs text-slate-400 uppercase tracking-wider mb-1" data-i18n="footer_direct_contact">Contacto Directo</p>
-                                        <p class="text-white font-medium text-lg">+52 1 998 123 4567</p>
+                                        <p class="text-white font-medium text-lg">+52 998 227 4928</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start gap-4">
@@ -335,7 +344,8 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
                     <div class="md:col-span-5 flex flex-col items-center md:items-start text-center md:text-left">
-                        <img src="https://beamazingcolors.github.io/oficial/logo.png" alt="Amazing Colors Logo" class="w-16 h-16 mb-4 opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
+                        <!-- LOGO FOOTER -->
+                        <img src="https://beamazingcolors.github.io/oficial/logo.png" alt="Amazing Colors Logo" class="w-24 h-24 md:w-32 md:h-32 mb-4 opacity-90 hover:scale-105 transition-all duration-500 drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">
                         <h4 class="text-xl font-display font-bold text-white mb-3 uppercase tracking-widest">Amazing <span class="text-brand-accent">Colors</span></h4>
                         <p class="text-slate-400 text-sm font-light max-w-sm" data-i18n="footer_desc">Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y logística de lujo.</p>
                     </div>
@@ -359,7 +369,7 @@
                             </li>
                             <li class="flex items-center gap-3 justify-center md:justify-start">
                                 <i class="fab fa-whatsapp text-brand-accent"></i>
-                                <span>+52 1 998 123 4567</span>
+                                <span>+52 998 227 4928</span>
                             </li>
                         </ul>
                         <div class="flex gap-4 mt-6">
@@ -461,7 +471,7 @@
     <script>
         // CONFIGURACIONES GLOBALES
         const TSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFWLeg9DvMAXX5TwL8JXwY3fm0UDHeKxnqmtYVZGQNNHcTSJG32pLWZVHCMA2-Eo_lZ9sVHqKtgvIO/pub?output=tsv';
-        const WHATSAPP_NUMBER = "5219981234567"; // Número para reservas
+        const WHATSAPP_NUMBER = "529982274928"; // Número actualizado para reservas
         
         const GITHUB_BASE = 'https://beamazingcolors.github.io/oficial/'; 
         const GITHUB_FALLBACK_CDN = 'https://cdn.jsdelivr.net/gh/beamazingcolors/oficial@main/';
@@ -972,7 +982,6 @@
         function getImgUrlByFolio(folioValue, nameValue = '') {
             if (!folioValue || folioValue === '') return '';
             let fileName = folioValue.trim();
-            // Lógica original respetando las mayúsculas/minúsculas de tus imágenes en Github
             let baseName = fileName.replace(/\.[^/.]+$/, ""); 
             let lowerBase = baseName.toLowerCase();
             const knownPngs = ['cun', 'ca', 'clm', 'logo', 'lg2', 'trrr', 'trw', 'mrttt', 'xct'];
@@ -1122,7 +1131,29 @@
             let source = fullData.length > 0 ? fullData : [];
             let itemsWithImages = source.filter(item => { let folio = getCleanValue(item, ['Folio', 'folio', 'FOLIO']); return folio && folio.trim() !== ''; });
             if (itemsWithImages.length === 0) return;
-            let selectedItems = itemsWithImages.slice(0, 6);
+            
+            // SEPARAR YATES Y TOURS
+            let tours = itemsWithImages.filter(item => {
+                let t = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
+                return t.includes('tour') || t.includes('aventura') || (!t.includes('yate') && !t.includes('trans'));
+            });
+            let yates = itemsWithImages.filter(item => {
+                let t = getCleanValue(item, ['TIPO', 'Tipo']).toLowerCase();
+                return t.includes('yate');
+            });
+            
+            let selectedItems = [];
+            // Mezclamos intercalando 4 yates y 4 tours (o lo que haya disponible)
+            for (let i = 0; i < 4; i++) {
+                if (yates[i]) selectedItems.push(yates[i]);
+                if (tours[i]) selectedItems.push(tours[i]);
+            }
+            
+            // Si por alguna razón no hay suficientes filtrados, mostrar los primeros 8 en general
+            if (selectedItems.length === 0) {
+                selectedItems = itemsWithImages.slice(0, 8);
+            }
+
             let badgeText = escapeHTML(i18n[currentLang].featured_badge);
             let setHtml = '';
             
@@ -1147,8 +1178,8 @@
                     </div>
                 `;
             });
-            // Ya no se repite el html dos veces, se renderiza una sola fila
-            scrollContainer.innerHTML = `<div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap">${setHtml}</div>`;
+            
+            scrollContainer.innerHTML = `<div class="flex gap-4 md:gap-6 pr-4 md:pr-6 flex-nowrap pb-4">${setHtml}</div>`;
         }
 
         function filterCatalog(category) {
