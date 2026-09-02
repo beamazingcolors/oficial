@@ -46,7 +46,7 @@
         .page-view.active { display: block !important; opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
         
         /* ESTÉTICA GLASSMORFISMO PREMIUM */
-        .glass-panel { background: rgba(7, 16, 33, 0.6); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35); }
+        .glass-panel { background: rgba(7, 16, 33, 0.65); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35); }
         .glass-card { background: linear-gradient(145deg, rgba(7, 16, 33, 0.8) 0%, rgba(3, 9, 20, 0.95) 100%); backdrop-filter: blur(14px) saturate(160%); border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45); }
         
         /* EFECTOS Y ANIMACIONES */
@@ -87,30 +87,78 @@
                 </div>
             </header>
 
-            <!-- NAVEGACIÓN STICKY MÓVIL Y DESKTOP -->
+            <!-- NAVEGACIÓN STICKY CON MENÚ DE 3 BARRAS DESPLEGABLE EN MÓVIL -->
             <nav class="nav-bar glass-panel sticky top-0 z-40 w-full max-w-full border-b border-white/5 shadow-2xl">
-                <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-                    <div class="flex justify-between md:justify-center items-center h-14 md:h-14 gap-2 sm:gap-6 md:gap-12">
-                        <!-- Enlaces de navegación táctil -->
-                        <div class="flex gap-2 sm:gap-6 md:gap-10 overflow-x-auto no-scrollbar py-2 w-auto items-center justify-start md:justify-center">
-                            <button onclick="navigateTo('home')" id="btn-nav-home" class="nav-btn active cursor-pointer flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold font-sans tracking-[0.15em] sm:tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none">
-                                <i class="fas fa-compass text-xs opacity-70"></i><span data-i18n="nav_home">Inicio</span>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-center h-14 md:h-14">
+                        
+                        <!-- BOTÓN DE 3 BARRAS (SOLO MÓVIL) -->
+                        <div class="flex items-center md:hidden">
+                            <button id="mobile-menu-toggle-btn" onclick="toggleMobileMenu()" aria-label="Abrir menú" class="w-10 h-10 rounded-xl glass-panel flex flex-col items-center justify-center gap-1.5 border border-brand-accent/30 text-brand-accent focus:outline-none cursor-pointer">
+                                <span id="hamb-bar-1" class="w-5 h-0.5 bg-brand-accent rounded-full transition-all duration-300"></span>
+                                <span id="hamb-bar-2" class="w-5 h-0.5 bg-brand-accent rounded-full transition-all duration-300"></span>
+                                <span id="hamb-bar-3" class="w-5 h-0.5 bg-brand-accent rounded-full transition-all duration-300"></span>
                             </button>
-                            <button onclick="navigateTo('legacy')" id="btn-nav-legacy" class="nav-btn text-white/80 cursor-pointer flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold font-sans tracking-[0.15em] sm:tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none">
-                                <i class="fas fa-leaf text-xs opacity-70"></i><span data-i18n="nav_legacy">Legado</span>
+                        </div>
+
+                        <!-- LOGO COMPACTO EN MÓVIL (CENTRO) -->
+                        <div class="md:hidden flex items-center gap-2 cursor-pointer" onclick="navigateTo('home')">
+                            <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Logo" class="w-7 h-7 object-contain">
+                            <span class="text-xs font-bold font-display uppercase tracking-wider text-white">Amazing <span class="text-brand-accent">Colors</span></span>
+                        </div>
+
+                        <!-- MENÚ DESKTOP HORIZONTAL (MD+) -->
+                        <div class="hidden md:flex gap-10 items-center justify-center flex-grow">
+                            <button onclick="navigateTo('home')" id="btn-nav-home" class="nav-btn active cursor-pointer flex items-center gap-2 text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
+                                <i class="fas fa-compass opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_home">Inicio</span>
+                                <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
                             </button>
-                            <button onclick="navigateTo('catalog')" id="btn-nav-catalog" class="nav-btn text-white/80 cursor-pointer flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold font-sans tracking-[0.15em] sm:tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none">
-                                <i class="fas fa-layer-group text-xs opacity-70"></i><span data-i18n="nav_catalog">Catálogo</span>
+                            <button onclick="navigateTo('legacy')" id="btn-nav-legacy" class="nav-btn text-white/80 cursor-pointer flex items-center gap-2 text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
+                                <i class="fas fa-leaf opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_legacy">Legado</span>
+                                <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
                             </button>
-                            <button onclick="navigateTo('contact')" id="btn-nav-contact" class="nav-btn text-white/80 cursor-pointer flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold font-sans tracking-[0.15em] sm:tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none">
-                                <i class="far fa-calendar-check text-xs opacity-70"></i><span data-i18n="nav_contact">Reserva</span>
+                            <button onclick="navigateTo('catalog')" id="btn-nav-catalog" class="nav-btn text-white/80 cursor-pointer flex items-center gap-2 text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
+                                <i class="fas fa-layer-group opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_catalog">Catálogo</span>
+                                <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
+                            </button>
+                            <button onclick="navigateTo('contact')" id="btn-nav-contact" class="nav-btn text-white/80 cursor-pointer flex items-center gap-2 text-xs font-bold font-sans tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 hover:text-brand-accent focus:outline-none py-1 border-b-2 border-transparent relative group">
+                                <i class="far fa-calendar-check opacity-70 group-hover:opacity-100"></i><span data-i18n="nav_contact">Reserva</span>
+                                <div class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></div>
                             </button>
                         </div>
                         
-                        <!-- Switcher de Idioma -->
+                        <!-- SWITCHER DE IDIOMA -->
                         <div class="lang-switcher shrink-0 flex items-center gap-1 border border-brand-accent/30 rounded-full p-0.5 sm:p-1 bg-brand-navy/60 shadow-inner">
                             <button onclick="switchLanguage('es')" id="lang-btn-es" class="cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-sm">ES</button>
                             <button onclick="switchLanguage('en')" id="lang-btn-en" class="cursor-pointer px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white">EN</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MENÚ DESPLEGABLE MÓVIL (ANIMADO) -->
+                <div id="mobile-menu-dropdown" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-[#040c1a]/95 backdrop-blur-xl border-b border-brand-accent/20">
+                    <div class="px-5 py-5 space-y-2.5">
+                        <button onclick="navigateAndCloseMenu('home')" id="btn-mob-home" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-white bg-white/5 border border-brand-accent/30 text-left transition-all">
+                            <span class="flex items-center gap-3"><i class="fas fa-compass text-brand-accent text-sm"></i> <span data-i18n="nav_home">Inicio</span></span>
+                            <i class="fas fa-chevron-right text-[10px] text-brand-accent"></i>
+                        </button>
+                        <button onclick="navigateAndCloseMenu('legacy')" id="btn-mob-legacy" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-slate-300 hover:text-white hover:bg-white/5 text-left transition-all">
+                            <span class="flex items-center gap-3"><i class="fas fa-leaf text-brand-accent/70 text-sm"></i> <span data-i18n="nav_legacy">Legado</span></span>
+                            <i class="fas fa-chevron-right text-[10px] text-slate-500"></i>
+                        </button>
+                        <button onclick="navigateAndCloseMenu('catalog')" id="btn-mob-catalog" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-slate-300 hover:text-white hover:bg-white/5 text-left transition-all">
+                            <span class="flex items-center gap-3"><i class="fas fa-layer-group text-brand-accent/70 text-sm"></i> <span data-i18n="nav_catalog">Catálogo</span></span>
+                            <i class="fas fa-chevron-right text-[10px] text-slate-500"></i>
+                        </button>
+                        <button onclick="navigateAndCloseMenu('contact')" id="btn-mob-contact" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-slate-300 hover:text-white hover:bg-white/5 text-left transition-all">
+                            <span class="flex items-center gap-3"><i class="far fa-calendar-check text-brand-accent/70 text-sm"></i> <span data-i18n="nav_contact">Reserva</span></span>
+                            <i class="fas fa-chevron-right text-[10px] text-slate-500"></i>
+                        </button>
+                        
+                        <div class="pt-3 border-t border-white/10">
+                            <a href="https://wa.me/529982274928" target="_blank" class="w-full py-3 bg-brand-accent/10 border border-brand-accent/40 rounded-xl text-center text-xs uppercase tracking-widest text-brand-accent font-bold flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-sm"></i> Concierge WhatsApp
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -406,7 +454,7 @@
                                 
                                 <div id="form-error-msg" class="hidden text-red-400 text-xs text-center mb-4 bg-red-900/20 py-2 rounded-lg border border-red-500/30"></div>
                                 
-                                <button type="submit" class="w-full bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-3.5 sm:py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] flex items-center justify-center gap-3 cursor-pointer">
+                                <button type="submit" class="w-full bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-3.5 sm:py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center gap-3 cursor-pointer">
                                     <i class="fab fa-whatsapp text-lg"></i> <span data-i18n="form_btn_submit">Enviar Solicitud a WhatsApp</span>
                                 </button>
                                 <p class="text-center text-[9px] sm:text-[10px] text-slate-500 mt-3 sm:mt-4 uppercase tracking-wider" data-i18n="form_subtext">Respuesta inmediata con cotización formal.</p>
@@ -416,6 +464,11 @@
                 </div>
             </section>
         </div>
+
+        <!-- BOTÓN FLOTANTE: VOLVER ARRIBA (SCROLL TO TOP) -->
+        <button id="btn-back-to-top" onclick="scrollToTop()" aria-label="Volver arriba" class="fixed bottom-6 right-6 z-40 w-11 h-11 sm:w-12 sm:h-12 rounded-full glass-panel border border-brand-accent/40 text-brand-accent flex items-center justify-center shadow-[0_4px_25px_rgba(0,0,0,0.6)] transition-all duration-300 transform opacity-0 invisible translate-y-4 hover:bg-brand-accent hover:text-brand-dark hover:scale-110 active:scale-95 cursor-pointer">
+            <i class="fas fa-chevron-up text-sm sm:text-base"></i>
+        </button>
 
         <!-- FOOTER OFICIAL -->
         <footer class="bg-[#02050a] border-t border-white/5 pt-12 sm:pt-16 pb-8 relative z-20 w-full max-w-full">
@@ -1054,6 +1107,54 @@
             }
         }
 
+        // --- MANEJO DE MENÚ DE 3 BARRAS MÓVIL ---
+        function toggleMobileMenu() {
+            const dropdown = document.getElementById('mobile-menu-dropdown');
+            const b1 = document.getElementById('hamb-bar-1');
+            const b2 = document.getElementById('hamb-bar-2');
+            const b3 = document.getElementById('hamb-bar-3');
+            
+            const isOpen = dropdown.style.maxHeight && dropdown.style.maxHeight !== '0px';
+            
+            if (isOpen) {
+                dropdown.style.maxHeight = '0px';
+                b1.style.transform = 'none';
+                b2.style.opacity = '1';
+                b3.style.transform = 'none';
+            } else {
+                dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
+                b1.style.transform = 'translateY(8px) rotate(45deg)';
+                b2.style.opacity = '0';
+                b3.style.transform = 'translateY(-8px) rotate(-45deg)';
+            }
+        }
+
+        function navigateAndCloseMenu(pageId) {
+            const dropdown = document.getElementById('mobile-menu-dropdown');
+            if (dropdown && dropdown.style.maxHeight && dropdown.style.maxHeight !== '0px') {
+                toggleMobileMenu();
+            }
+            navigateTo(pageId);
+        }
+
+        // --- VOLVER ARRIBA (SCROLL TO TOP) ---
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('btn-back-to-top');
+            if (btn) {
+                if (window.scrollY > 300) {
+                    btn.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+                    btn.classList.add('opacity-100', 'visible', 'translate-y-0');
+                } else {
+                    btn.classList.add('opacity-0', 'invisible', 'translate-y-4');
+                    btn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                }
+            }
+        });
+
         function getImgUrlByFolio(folioValue, nameValue = '') {
             if (!folioValue || folioValue === '') return '';
             let fileName = folioValue.trim();
@@ -1196,7 +1297,6 @@
                 return;
             }
 
-            // Cards de carrusel optimizadas para móvil (80vw)
             const cardsHTML = mixedItems.map((item, index) => {
                 const imgUrl = getImgUrlByFolio(item['folio'], item['nombre']);
                 const tipoCat = (item['tipo'] || 'tours').toLowerCase() === 'yate' ? 'yates' : 'tours';
@@ -1528,10 +1628,21 @@
             const targetPage = document.getElementById('page-' + pageId);
             if (targetPage) {
                 targetPage.classList.add('active');
+                
+                // Active Desktop Nav
                 const targetBtn = document.getElementById('btn-nav-' + pageId);
                 if (targetBtn) {
                     targetBtn.classList.add('active', 'text-white');
                     targetBtn.classList.remove('text-white/80');
+                }
+
+                // Active Mobile Dropdown Nav
+                document.querySelectorAll('[id^="btn-mob-"]').forEach(b => {
+                    b.className = "w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-slate-300 hover:text-white hover:bg-white/5 text-left transition-all";
+                });
+                const activeMobBtn = document.getElementById('btn-mob-' + pageId);
+                if (activeMobBtn) {
+                    activeMobBtn.className = "w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-white bg-white/5 border border-brand-accent/30 text-left transition-all";
                 }
                 
                 try {
