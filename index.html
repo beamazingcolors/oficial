@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Amazing Colors | Viajes Oceánicos de Élite</title>
+    <title>Amazing Colors | Experiencias únicas e inolvidables</title>
     <meta name="description" content="Redefiniendo el viaje privado por el Caribe Mexicano. Aventuras auténticas y logística VIP.">
     
-    <!-- FAVICON ESTÉTICO Y DE ALTA RESOLUCIÓN -->
-    <link rel="icon" type="image/png" sizes="512x512" href="https://beamazingcolors.github.io/oficial/lg2.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <!-- FAVICON ESTÉTICO Y DE MÁXIMA ESCALA -->
+    <link id="dynamic-favicon" rel="icon" type="image/png" sizes="512x512" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <link rel="shortcut icon" href="https://beamazingcolors.github.io/oficial/lg2.png">
     
     <!-- Seguridad Básica -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:;">
@@ -71,7 +75,7 @@
         </div>
 
         <div class="relative z-10 w-full max-w-full flex-grow">
-            <!-- CABECERA CON LOGO (OPTIMIZADA PARA MÓVIL) -->
+            <!-- CABECERA CON LOGO -->
             <header class="site-brand-header flex flex-col items-center justify-center pt-6 pb-4 md:pt-10 md:pb-6 px-4 cursor-pointer text-center w-full max-w-full relative border-b border-brand-accent/20 bg-gradient-to-b from-[#030914] via-[#071021] to-transparent shadow-[0_10px_30px_rgba(3,9,20,0.5)] transition-colors duration-500" onclick="navigateTo('home')">
                 <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 mix-blend-overlay -z-10 pointer-events-none"></div>
                 <div class="flex flex-col items-center justify-center gap-3 sm:gap-5 w-full relative z-10 transform hover:scale-[1.01] transition-transform duration-300">
@@ -81,7 +85,7 @@
                             Amazing <span class="text-brand-accent">Colors</span>
                         </h1>
                         <p class="mt-2 text-[8px] sm:text-[10px] md:text-[11px] font-sans font-medium tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-accent/85" data-i18n="brand_tagline">
-                            Viajes Oceánicos de Élite y Experiencias Privadas
+                            Experiencias únicas e inolvidables
                         </p>
                     </div>
                 </div>
@@ -199,7 +203,7 @@
                                 </div>
                             </div>
 
-                            <!-- IMAGEN CUN.PNG ADAPTADA CON SEGURIDAD MÓVIL -->
+                            <!-- IMAGEN CUN.PNG -->
                             <div class="lg:col-span-5 flex justify-center items-center reveal-up px-2 sm:px-0">
                                 <div class="w-full max-w-[340px] sm:max-w-md lg:max-w-none relative">
                                     <div class="absolute -inset-2 sm:-inset-4 border border-brand-accent/25 rounded-3xl transform -rotate-2 sm:-rotate-3 -z-10"></div>
@@ -211,7 +215,7 @@
                     </div>
                 </div>
 
-                <!-- SECCIÓN DE DATOS CURIOSOS & SECRETOS (RESPONSIVE 1-2-4 COLUMNAS) -->
+                <!-- SECCIÓN DE DATOS CURIOSOS & SECRETOS -->
                 <div class="w-full py-14 sm:py-20 bg-gradient-to-b from-brand-dark via-brand-navy/70 to-brand-navy border-y border-white/5 relative z-10">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal-up">
@@ -295,7 +299,6 @@
                     </div>
                     
                     <div class="relative w-full max-w-[1400px] mx-auto reveal-up">
-                        <!-- Botones de carrusel (ocultos en móvil para dar prioridad al deslizamiento táctil natural) -->
                         <button onclick="scrollCarousel(-1)" class="absolute left-2 md:left-6 top-1/2 transform -translate-y-1/2 z-30 w-12 h-12 md:w-16 md:h-16 rounded-full glass-panel flex items-center justify-center text-brand-accent border border-brand-accent/40 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-[0_10px_25px_rgba(0,0,0,0.5)] opacity-0 group-hover/carousel:opacity-100 hidden sm:flex cursor-pointer">
                             <i class="fas fa-chevron-left text-xl"></i>
                         </button>
@@ -303,7 +306,6 @@
                             <i class="fas fa-chevron-right text-xl"></i>
                         </button>
                         
-                        <!-- Contenedor del Carrusel Táctil -->
                         <div id="home-carousel-scroll" class="flex overflow-x-auto snap-x snap-mandatory gap-4 sm:gap-6 px-4 sm:px-8 md:px-16 py-4 sm:py-6 no-scrollbar scroll-smooth">
                             <!-- Llenado dinámicamente -->
                         </div>
@@ -342,7 +344,6 @@
 
             <!-- VISTA: CATÁLOGO -->
             <section id="page-catalog" class="page-view w-full max-w-full relative z-10">
-                <!-- Banner Categoría -->
                 <div class="relative py-12 sm:py-16 bg-brand-navy border-b border-white/5 overflow-hidden">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center reveal-up">
                         <span id="catalog-category-badge" class="text-brand-accent tracking-[0.25em] sm:tracking-[0.3em] text-[10px] uppercase font-bold mb-2 block" data-i18n="catalog_header_badge">Colección Exclusiva</span>
@@ -352,14 +353,12 @@
                 </div>
 
                 <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-10 relative z-10">
-                    <!-- Navegación Interna de Categorías (Adaptada a pantallas móviles) -->
                     <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 reveal-up">
                         <button id="sub-nav-tour" onclick="filterCatalog('tour')" class="cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-lg border border-brand-accent" data-i18n="sub_tour">Tours & Aventuras</button>
                         <button id="sub-nav-yate" onclick="filterCatalog('yate')" class="cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80" data-i18n="sub_yacht">Yates & Catamaranes</button>
                         <button id="sub-nav-transportacion" onclick="filterCatalog('transportacion')" class="cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80" data-i18n="sub_trans">Traslados privados</button>
                     </div>
 
-                    <!-- Buscador -->
                     <div class="mb-8 w-full max-w-md mx-auto relative reveal-up">
                         <div class="relative flex items-center w-full h-11 sm:h-12 rounded-full bg-brand-dark overflow-hidden border border-white/10 focus-within:border-brand-accent transition-all duration-300">
                             <div class="grid place-items-center h-full w-12 text-slate-400">
@@ -369,7 +368,6 @@
                         </div>
                     </div>
 
-                    <!-- Grid de Catálogo -->
                     <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 justify-items-center min-h-[40vh] reveal-up">
                         <div class="col-span-full flex flex-col items-center justify-center py-20 text-brand-accent animate-pulse">
                             <i class="fas fa-circle-notch fa-spin text-3xl sm:text-4xl mb-4"></i>
@@ -513,7 +511,7 @@
         </footer>
     </div>
 
-    <!-- MODAL DETALLE DE ACTIVIDAD (OPTIMIZADO PARA PANTALLAS MÓVILES) -->
+    <!-- MODAL DETALLE DE ACTIVIDAD -->
     <div id="activity-detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 md:p-8 opacity-0 invisible transition-all duration-300 bg-brand-dark/90 backdrop-blur-md" onclick="if(event.target === this) closeDetailModal()">
         <div class="bg-brand-navy w-full max-w-4xl max-h-[90vh] sm:max-h-[85vh] rounded-2xl sm:rounded-3xl border border-brand-accent/30 shadow-2xl flex flex-col overflow-hidden relative">
             <button onclick="closeDetailModal()" class="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full glass-panel text-white hover:text-brand-accent flex items-center justify-center transition-colors shadow-lg border-white/10 cursor-pointer">
@@ -646,7 +644,7 @@
         // TRADUCCIONES DE LA INTERFAZ
         const i18n = {
             es: {
-                brand_tagline: "Viajes Oceánicos de Élite y Experiencias Privadas",
+                brand_tagline: "Experiencias únicas e inolvidables",
                 nav_home: "Inicio",
                 nav_legacy: "Legado",
                 nav_catalog: "Catálogo",
@@ -737,7 +735,7 @@
                 p404_btn: "Volver al Inicio"
             },
             en: {
-                brand_tagline: "Elite Ocean Journeys & Private Experiences",
+                brand_tagline: "Unique and Unforgettable Experiences",
                 nav_home: "Home",
                 nav_legacy: "Legacy",
                 nav_catalog: "Catalog",
@@ -1105,6 +1103,27 @@
             if (detailModal && !detailModal.classList.contains('invisible') && lastOpenedItemName) {
                 openDetailModal(encodeURIComponent(lastOpenedItemName));
             }
+        }
+
+        // --- OPTIMIZACIÓN DE FAVICON MAXIMIZADO ---
+        function optimizeFavicon() {
+            try {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.src = GITHUB_BASE + 'lg2.png';
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 64;
+                    canvas.height = 64;
+                    const ctx = canvas.getContext('2d');
+                    // Dibujar imagen maximizada ocupando el 100% del lienzo
+                    ctx.drawImage(img, -2, -2, 68, 68);
+                    const fav = document.getElementById('dynamic-favicon');
+                    if (fav) {
+                        fav.href = canvas.toDataURL('image/png');
+                    }
+                };
+            } catch(e) {}
         }
 
         // --- MANEJO DE MENÚ DE 3 BARRAS MÓVIL ---
@@ -1740,6 +1759,7 @@
         // --- INICIALIZACIÓN ---
         window.addEventListener('DOMContentLoaded', () => {
             initData();
+            optimizeFavicon();
             
             if (typeof IntersectionObserver !== 'undefined') {
                 const observer = new IntersectionObserver((entries) => {
