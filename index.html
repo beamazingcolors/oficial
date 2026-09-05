@@ -24,7 +24,7 @@
             theme: {
                 extend: {
                     colors: { brand: { dark: '#030914', navy: '#071021', accent: '#D4AF37', sand: '#F5E6D3', light: '#FFFFFF' } },
-                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'], display: ['Cinzel', 'serif'] }
+                    fontFamily: { sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'], serif: ['Playfair Display', 'serif'], display: ['Cinzel', 'serif'] }
                 }
             }
         }
@@ -33,10 +33,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ESTILOS BASE Y OPTIMIZACIÓN TÁCTIL MÓVIL */
+        /* ESTILOS BASE Y CURVAS DE ANIMACIÓN APPLE */
+        :root {
+            --apple-ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+            --apple-spring: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         *, ::before, ::after { box-sizing: border-box; }
         * { -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Inter', sans-serif; background-color: #030914; color: #FFFFFF; -webkit-font-smoothing: antialiased; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background-color: #030914; 
+            color: #FFFFFF; 
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale;
+        }
         h1, h2, h3, h4, .font-display { font-family: 'Cinzel', serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
         
@@ -66,18 +77,51 @@
             padding: 2px;
         }
 
-        /* SISTEMA DE VISTAS (SPA) */
-        .page-view { display: none !important; opacity: 0; transform: scale(0.98) translateY(8px); filter: blur(4px); transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease-out; width: 100%; max-width: 100vw; overflow-x: hidden; }
-        .page-view.active { display: block !important; opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        /* SISTEMA DE VISTAS (SPA) CON TRANSICIONES ULTRA SUAVES */
+        .page-view { 
+            display: none !important; 
+            opacity: 0; 
+            transform: scale(0.99) translateY(6px); 
+            filter: blur(3px); 
+            transition: opacity 0.45s var(--apple-ease), transform 0.45s var(--apple-ease), filter 0.45s var(--apple-ease); 
+            width: 100%; 
+            max-width: 100vw; 
+            overflow-x: hidden; 
+        }
+        .page-view.active { 
+            display: block !important; 
+            opacity: 1; 
+            transform: scale(1) translateY(0); 
+            filter: blur(0); 
+        }
         
-        /* ESTÉTICA GLASSMORFISMO PREMIUM */
-        .glass-panel { background: rgba(7, 16, 33, 0.65); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35); }
-        .glass-card { background: linear-gradient(145deg, rgba(7, 16, 33, 0.8) 0%, rgba(3, 9, 20, 0.95) 100%); backdrop-filter: blur(14px) saturate(160%); border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45); }
+        /* ESTÉTICA GLASSMORFISMO ESTILO APPLE */
+        .glass-panel { 
+            background: rgba(7, 16, 33, 0.72); 
+            backdrop-filter: blur(24px) saturate(190%); 
+            -webkit-backdrop-filter: blur(24px) saturate(190%); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35); 
+        }
+        .glass-card { 
+            background: linear-gradient(145deg, rgba(7, 16, 33, 0.85) 0%, rgba(3, 9, 20, 0.96) 100%); 
+            backdrop-filter: blur(20px) saturate(170%); 
+            -webkit-backdrop-filter: blur(20px) saturate(170%); 
+            border: 1px solid rgba(212, 175, 55, 0.18); 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45); 
+        }
         
         /* EFECTOS Y ANIMACIONES */
         .text-glow { text-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
-        .reveal-up { opacity: 0; transform: translateY(24px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal-up.active { opacity: 1; transform: translateY(0); }
+        .reveal-up { 
+            opacity: 0; 
+            transform: translateY(20px); 
+            transition: all 0.65s var(--apple-spring); 
+        }
+        .reveal-up.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
         
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -96,11 +140,11 @@
         </div>
 
         <div class="relative z-10 w-full max-w-full flex-grow">
-            <!-- CABECERA CON LOGO -->
-            <header class="site-brand-header flex flex-col items-center justify-center pt-6 pb-4 md:pt-10 md:pb-6 px-4 cursor-pointer text-center w-full max-w-full relative border-b border-brand-accent/20 bg-gradient-to-b from-[#030914] via-[#071021] to-transparent shadow-[0_10px_30px_rgba(3,9,20,0.5)] transition-colors duration-500" onclick="navigateTo('home')">
+            <!-- CABECERA CON LOGO (MARCA OFICIAL - TAMAÑO MÁS GRANDE) -->
+            <header class="site-brand-header flex flex-col items-center justify-center pt-8 pb-5 md:pt-12 md:pb-8 px-4 cursor-pointer text-center w-full max-w-full relative border-b border-brand-accent/20 bg-gradient-to-b from-[#030914] via-[#071021] to-transparent shadow-[0_10px_30px_rgba(3,9,20,0.5)] transition-colors duration-500" onclick="navigateTo('home')">
                 <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 mix-blend-overlay -z-10 pointer-events-none"></div>
                 <div class="flex flex-col items-center justify-center gap-3 sm:gap-5 w-full relative z-10 transform hover:scale-[1.01] transition-transform duration-300">
-                    <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Amazing Colors Logo" class="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.45)]">
+                    <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Amazing Colors Logo" class="w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain drop-shadow-[0_0_25px_rgba(212,175,55,0.5)]">
                     <div>
                         <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold font-display tracking-[0.25em] md:tracking-[0.3em] text-white uppercase text-glow">
                             Amazing <span class="text-brand-accent">Colors</span>
@@ -112,24 +156,18 @@
                 </div>
             </header>
 
-            <!-- NAVEGACIÓN STICKY (MENÚ MÓVIL A LA IZQUIERDA) -->
-            <nav class="nav-bar glass-panel sticky top-0 z-40 w-full max-w-full border-b border-white/5 shadow-2xl">
+            <!-- NAVEGACIÓN STICKY ESTILO APPLE (MÓVIL: BOTÓN DE 3 LÍNEAS A LA DERECHA) -->
+            <nav class="nav-bar glass-panel sticky top-0 z-40 w-full max-w-full border-b border-white/[0.08] shadow-2xl">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between items-center h-14 md:h-14">
+                    <div class="flex items-center justify-end md:justify-center h-12 sm:h-14 relative">
                         
-                        <!-- BOTÓN DE 3 BARRAS DEL LADO IZQUIERDO (SOLO MÓVIL) -->
-                        <div class="flex items-center md:hidden">
-                            <button id="mobile-menu-toggle-btn" onclick="toggleMobileMenu()" aria-label="Abrir menú" class="w-10 h-10 rounded-xl glass-panel flex flex-col items-center justify-center gap-1.5 border border-brand-accent/30 text-brand-accent focus:outline-none cursor-pointer">
-                                <span id="hamb-bar-1" class="w-5 h-0.5 bg-brand-accent rounded-full transition-all duration-300"></span>
-                                <span id="hamb-bar-2" class="w-5 h-0.5 bg-brand-accent rounded-full transition-all duration-300"></span>
-                                <span id="hamb-bar-3" class="w-5 h-0.5 bg-brand-accent rounded-full transition-all duration-300"></span>
+                        <!-- BOTÓN DE 3 BARRAS DEL LADO DERECHO (SOLO MÓVIL) -->
+                        <div class="flex items-center md:hidden ml-auto">
+                            <button id="mobile-menu-toggle-btn" onclick="toggleMobileMenu()" aria-label="Abrir menú" class="w-10 h-10 rounded-xl flex flex-col items-end justify-center gap-1.5 text-white/90 hover:text-brand-accent transition-colors duration-300 focus:outline-none cursor-pointer">
+                                <span id="hamb-bar-1" class="w-5 h-[2px] bg-brand-accent rounded-full transition-all duration-300 transform origin-right"></span>
+                                <span id="hamb-bar-2" class="w-3.5 h-[2px] bg-brand-accent rounded-full transition-all duration-300 transform origin-right"></span>
+                                <span id="hamb-bar-3" class="w-5 h-[2px] bg-brand-accent rounded-full transition-all duration-300 transform origin-right"></span>
                             </button>
-                        </div>
-
-                        <!-- LOGO COMPACTO EN MÓVIL (DERECHA/CENTRO) -->
-                        <div class="md:hidden flex items-center gap-2 cursor-pointer ml-auto" onclick="navigateTo('home')">
-                            <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Logo" class="w-7 h-7 object-contain">
-                            <span class="text-xs font-bold font-display uppercase tracking-wider text-white">Amazing <span class="text-brand-accent">Colors</span></span>
                         </div>
 
                         <!-- MENÚ DESKTOP HORIZONTAL (MD+) -->
@@ -160,41 +198,41 @@
                     </div>
                 </div>
 
-                <!-- MENÚ DESPLEGABLE MÓVIL CON IDIOMAS INTEGRADOS DENTRO -->
-                <div id="mobile-menu-dropdown" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-[#040c1a]/95 backdrop-blur-xl border-b border-brand-accent/20">
+                <!-- MENÚ DESPLEGABLE MÓVIL ESTILO APPLE CON IDIOMAS INTEGRADOS -->
+                <div id="mobile-menu-dropdown" class="md:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.28,0.11,0.32,1)] bg-[#030914]/98 backdrop-blur-2xl border-b border-white/10">
                     <div class="px-5 py-5 space-y-2.5">
                         
                         <!-- SELECTOR DE IDIOMA EN EL MENÚ MÓVIL -->
-                        <div class="flex items-center justify-between p-3 rounded-2xl bg-white/5 border border-white/10 mb-3">
-                            <span class="text-xs font-bold text-slate-300 uppercase tracking-widest flex items-center gap-2">
+                        <div class="flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 mb-3">
+                            <span class="text-xs font-semibold text-slate-300 uppercase tracking-widest flex items-center gap-2">
                                 <i class="fas fa-globe text-brand-accent"></i> Idioma / Language
                             </span>
-                            <div class="flex items-center gap-1 border border-brand-accent/30 rounded-full p-0.5 bg-brand-navy/80">
+                            <div class="flex items-center gap-1 border border-brand-accent/30 rounded-full p-0.5 bg-brand-navy/90">
                                 <button onclick="switchLanguage('es')" id="mob-lang-btn-es" class="cursor-pointer px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark">ES</button>
                                 <button onclick="switchLanguage('en')" id="mob-lang-btn-en" class="cursor-pointer px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white/70 hover:text-white">EN</button>
                             </div>
                         </div>
 
-                        <!-- ENLACES DE PÁGINA -->
-                        <button onclick="navigateAndCloseMenu('home')" id="btn-mob-home" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-white bg-white/5 border border-brand-accent/30 text-left transition-all">
+                        <!-- ENLACES DE PÁGINA (ESTILO APPLE) -->
+                        <button onclick="navigateAndCloseMenu('home')" id="btn-mob-home" class="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-white bg-white/[0.06] border border-brand-accent/30 text-left transition-all active:scale-[0.98]">
                             <span class="flex items-center gap-3"><i class="fas fa-compass text-brand-accent text-sm"></i> <span data-i18n="nav_home">Inicio</span></span>
                             <i class="fas fa-chevron-right text-[10px] text-brand-accent"></i>
                         </button>
-                        <button onclick="navigateAndCloseMenu('legacy')" id="btn-mob-legacy" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-slate-300 hover:text-white hover:bg-white/5 text-left transition-all">
+                        <button onclick="navigateAndCloseMenu('legacy')" id="btn-mob-legacy" class="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-slate-300 hover:text-white hover:bg-white/[0.04] text-left transition-all active:scale-[0.98]">
                             <span class="flex items-center gap-3"><i class="fas fa-leaf text-brand-accent/70 text-sm"></i> <span data-i18n="nav_legacy">Legado</span></span>
                             <i class="fas fa-chevron-right text-[10px] text-slate-500"></i>
                         </button>
-                        <button onclick="navigateAndCloseMenu('catalog')" id="btn-mob-catalog" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-slate-300 hover:text-white hover:bg-white/5 text-left transition-all">
+                        <button onclick="navigateAndCloseMenu('catalog')" id="btn-mob-catalog" class="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-slate-300 hover:text-white hover:bg-white/[0.04] text-left transition-all active:scale-[0.98]">
                             <span class="flex items-center gap-3"><i class="fas fa-layer-group text-brand-accent/70 text-sm"></i> <span data-i18n="nav_catalog">Catálogo</span></span>
                             <i class="fas fa-chevron-right text-[10px] text-slate-500"></i>
                         </button>
-                        <button onclick="navigateAndCloseMenu('contact')" id="btn-mob-contact" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-slate-300 hover:text-white hover:bg-white/5 text-left transition-all">
+                        <button onclick="navigateAndCloseMenu('contact')" id="btn-mob-contact" class="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-slate-300 hover:text-white hover:bg-white/[0.04] text-left transition-all active:scale-[0.98]">
                             <span class="flex items-center gap-3"><i class="far fa-calendar-check text-brand-accent/70 text-sm"></i> <span data-i18n="nav_contact">Reserva</span></span>
                             <i class="fas fa-chevron-right text-[10px] text-slate-500"></i>
                         </button>
                         
                         <div class="pt-3 border-t border-white/10">
-                            <a href="https://wa.me/529982274928" target="_blank" class="w-full py-3 bg-brand-accent/10 border border-brand-accent/40 rounded-xl text-center text-xs uppercase tracking-widest text-brand-accent font-bold flex items-center justify-center gap-2">
+                            <a href="https://wa.me/529982274928" target="_blank" class="w-full py-3.5 bg-brand-accent/10 border border-brand-accent/40 rounded-xl text-center text-xs uppercase tracking-widest text-brand-accent font-bold flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
                                 <i class="fab fa-whatsapp text-sm"></i> Concierge WhatsApp
                             </a>
                         </div>
@@ -227,10 +265,10 @@
                                 </p>
 
                                 <div class="pt-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full">
-                                    <button onclick="navigateTo('catalog')" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 bg-gradient-to-r from-brand-accent via-[#e5c158] to-brand-accent hover:from-white hover:to-slate-100 text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.35)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] transform hover:-translate-y-0.5 cursor-pointer" data-i18n="btn_explore_catalog">
+                                    <button onclick="navigateTo('catalog')" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 bg-gradient-to-r from-brand-accent via-[#e5c158] to-brand-accent hover:from-white hover:to-slate-100 text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.35)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] transform hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer" data-i18n="btn_explore_catalog">
                                         Explorar Catálogo
                                     </button>
-                                    <button onclick="navigateTo('contact')" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 glass-panel hover:bg-white/10 text-white border border-white/20 font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-2" data-i18n="btn_design_itinerary">
+                                    <button onclick="navigateTo('contact')" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 glass-panel hover:bg-white/10 text-white border border-white/20 font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 transform hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2" data-i18n="btn_design_itinerary">
                                         <span data-i18n="btn_design_itinerary">Diseñar Itinerario</span>
                                         <i class="fas fa-arrow-right text-[10px] text-brand-accent"></i>
                                     </button>
@@ -368,7 +406,7 @@
                                     "Llevamos media década entregándote el color real del paraíso sin prisas, intermediarios ni multitudes."
                                 </p>
                             </div>
-                            <button onclick="navigateTo('catalog')" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 cursor-pointer bg-transparent border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 shadow-lg" data-i18n="btn_explore_catalog">
+                            <button onclick="navigateTo('catalog')" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 cursor-pointer bg-transparent border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-full transition-all duration-300 shadow-lg active:scale-[0.98]" data-i18n="btn_explore_catalog">
                                 Explorar Catálogo
                             </button>
                         </div>
@@ -388,9 +426,9 @@
 
                 <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-10 relative z-10">
                     <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 reveal-up">
-                        <button id="sub-nav-tour" onclick="filterCatalog('tour')" class="cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-lg border border-brand-accent" data-i18n="sub_tour">Tours & Aventuras</button>
-                        <button id="sub-nav-yate" onclick="filterCatalog('yate')" class="cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80" data-i18n="sub_yacht">Yates & Catamaranes</button>
-                        <button id="sub-nav-transportacion" onclick="filterCatalog('transportacion')" class="cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80" data-i18n="sub_trans">Traslados privados</button>
+                        <button id="sub-nav-tour" onclick="filterCatalog('tour')" class="cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-lg border border-brand-accent active:scale-[0.98]" data-i18n="sub_tour">Tours & Aventuras</button>
+                        <button id="sub-nav-yate" onclick="filterCatalog('yate')" class="cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80 active:scale-[0.98]" data-i18n="sub_yacht">Yates & Catamaranes</button>
+                        <button id="sub-nav-transportacion" onclick="filterCatalog('transportacion')" class="cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80 active:scale-[0.98]" data-i18n="sub_trans">Traslados privados</button>
                     </div>
 
                     <div class="mb-8 w-full max-w-md mx-auto relative reveal-up">
@@ -489,7 +527,7 @@
                                 
                                 <div id="form-error-msg" class="hidden text-red-400 text-xs text-center mb-4 bg-red-900/20 py-2 rounded-lg border border-red-500/30"></div>
                                 
-                                <button type="submit" class="w-full min-w-0 box-border bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-3.5 sm:py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center gap-3 cursor-pointer">
+                                <button type="submit" class="w-full min-w-0 box-border bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-3.5 sm:py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center gap-3 active:scale-[0.98] cursor-pointer">
                                     <i class="fab fa-whatsapp text-lg"></i> <span data-i18n="form_btn_submit">Enviar Solicitud a WhatsApp</span>
                                 </button>
                                 <p class="text-center text-[9px] sm:text-[10px] text-slate-500 mt-3 uppercase tracking-wider" data-i18n="form_subtext">Respuesta inmediata con cotización formal.</p>
@@ -510,7 +548,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 mb-10 sm:mb-12 text-center md:text-left">
                     <div class="md:col-span-5 flex flex-col items-center md:items-start">
-                        <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Amazing Colors Logo" class="w-32 h-32 sm:w-40 sm:h-40 mb-3 opacity-90 hover:scale-105 transition-all duration-500 drop-shadow-[0_0_15px_rgba(212,175,55,0.3)] object-contain cursor-pointer" onclick="navigateTo('home')">
+                        <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Amazing Colors Logo" class="w-40 h-40 sm:w-48 sm:h-48 mb-3 opacity-90 hover:scale-105 transition-all duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.4)] object-contain cursor-pointer" onclick="navigateTo('home')">
                         <h4 class="text-lg sm:text-xl font-display font-bold text-white mb-2 uppercase tracking-widest">Amazing <span class="text-brand-accent">Colors</span></h4>
                         <p class="text-slate-400 text-xs sm:text-sm font-light max-w-sm" data-i18n="footer_desc">Redefiniendo los itinerarios boutique por el Caribe Mexicano. Aventuras auténticas y logística de lujo.</p>
                     </div>
@@ -540,22 +578,21 @@
 
                         <!-- BOTONES DE FACEBOOK, INSTAGRAM Y WHATSAPP -->
                         <div class="flex items-center justify-center md:justify-start gap-3 mt-6">
-                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-brand-dark hover:bg-brand-accent transition-all duration-300 shadow-md border border-white/10 hover:border-brand-accent cursor-pointer">
+                            <a href="https://www.facebook.com/profile.php?id=100088379184523" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-brand-dark hover:bg-brand-accent transition-all duration-300 shadow-md border border-white/10 hover:border-brand-accent active:scale-95 cursor-pointer">
                                 <i class="fab fa-facebook-f text-sm"></i>
                             </a>
-                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-brand-dark hover:bg-brand-accent transition-all duration-300 shadow-md border border-white/10 hover:border-brand-accent cursor-pointer">
+                            <a href="https://www.instagram.com/alexisjfgg?igsi=aTA2bGJ3bWUycmMy&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-brand-dark hover:bg-brand-accent transition-all duration-300 shadow-md border border-white/10 hover:border-brand-accent active:scale-95 cursor-pointer">
                                 <i class="fab fa-instagram text-base"></i>
                             </a>
-                            <a href="https://wa.me/529982274928" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-brand-dark hover:bg-brand-accent transition-all duration-300 shadow-md border border-white/10 hover:border-brand-accent cursor-pointer">
+                            <a href="https://wa.me/529982274928" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-brand-dark hover:bg-brand-accent transition-all duration-300 shadow-md border border-white/10 hover:border-brand-accent active:scale-95 cursor-pointer">
                                 <i class="fab fa-whatsapp text-base"></i>
                             </a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="border-t border-white/10 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
+                <div class="border-t border-white/10 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-center items-center gap-3 text-center">
                     <p class="text-[9px] sm:text-[10px] text-slate-500 uppercase tracking-widest" data-i18n="footer_copyright">© 2026 Amazing Colors Tours. Todos los derechos reservados.</p>
-                    <p class="text-[9px] sm:text-[10px] text-brand-accent/50 uppercase tracking-widest" data-i18n="footer_privacy">Privacidad y Confidencialidad Garantizada</p>
                 </div>
             </div>
         </footer>
@@ -602,7 +639,7 @@
                     </div>
 
                     <div class="mt-auto pt-2">
-                        <button id="detail-modal-reserve-btn" class="w-full bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-3.5 sm:py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center gap-3 cursor-pointer">
+                        <button id="detail-modal-reserve-btn" class="w-full bg-brand-accent hover:bg-white text-brand-dark font-bold tracking-[0.2em] text-xs uppercase rounded-xl py-3.5 sm:py-4 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center gap-3 active:scale-[0.98] cursor-pointer">
                             <i class="fab fa-whatsapp text-lg"></i> <span data-i18n="modal_reserve_btn">Reservar por WhatsApp</span>
                         </button>
                     </div>
@@ -638,7 +675,7 @@
                     </p>
                 </div>
             </div>
-            <button onclick="acceptCookies()" class="shrink-0 w-full sm:w-auto bg-brand-accent hover:bg-white text-brand-dark font-bold px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md cursor-pointer" data-i18n="cookie_accept">Aceptar</button>
+            <button onclick="acceptCookies()" class="shrink-0 w-full sm:w-auto bg-brand-accent hover:bg-white text-brand-dark font-bold px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md active:scale-95 cursor-pointer" data-i18n="cookie_accept">Aceptar</button>
         </div>
     </div>
 
@@ -764,7 +801,6 @@
                 footer_address: "Blvd. Kukulcan Km 12, Zona Hotelera<br>77500 Cancún, Q.R., México",
                 footer_direct_contact: "Contacto Directo",
                 footer_copyright: "© 2026 Amazing Colors Tours. Todos los derechos reservados.",
-                footer_privacy: "Privacidad y Confidencialidad Garantizada",
                 cat_tour_badge: "Momentos inolvidables",
                 cat_tour_title: `Tours & <span class="font-serif italic font-bold text-brand-accent">Aventuras</span>`,
                 cat_tour_desc: "Explora cenotes místicos, ruinas mayas sagradas y parques temáticos de manera completamente privada.",
@@ -855,7 +891,6 @@
                 footer_address: "Blvd. Kukulcan Km 12, Hotel Zone<br>77500 Cancun, Q.R., Mexico",
                 footer_direct_contact: "Direct Contact",
                 footer_copyright: "© 2026 Amazing Colors Tours. All rights reserved.",
-                footer_privacy: "Guaranteed Privacy & Discretion",
                 cat_tour_badge: "Unforgettable Moments",
                 cat_tour_title: `Tours & <span class="font-serif italic font-bold text-brand-accent">Adventures</span>`,
                 cat_tour_desc: "Explore mystical cenotes, sacred Mayan ruins, and iconic ecological parks in complete privacy.",
@@ -929,7 +964,7 @@
             "transportación redonda. entrada al cenote azul. paseo en lancha. comida.": "Round-trip transportation. Entrance to the Blue Cenote. Boat ride. Lunch.",
             "transportación redonda. entrada al cenote azul. paseo en lancha. incluye comida en el restaurante.": "Round-trip transportation. Entrance to the Blue Cenote. Boat ride. Includes lunch at the restaurant.",
             "transportación redonda. box luch. paseo en lancha para recorrido en cenote y visita a dos islas. visita a isla holbox. comida en restaurante.": "Round-trip transportation. Box lunch. Boat ride for a cenote tour and visit to two islands. Visit to Holbox Island. Lunch at a restaurant.",
-            "transportación redonda. paseo en lancha para recorrido en cenote y visita a dos islas. comida en restaurante.": "Round-trip transportation. Boat ride for a cenote tour and visit to two islands. Lunch at a restaurant.",
+            "transportación redonda. paseo en lancha para recorrido en cenote y visita a dos islas. comida en restaurante.": "Round-trip transportation. Boat ride. Visit to Holbox Island. Lunch at a restaurant.",
             "transportación redonda. paseo en lancha. visita a isla holbox. comida en restaurante.": "Round-trip transportation. Boat ride. Visit to Holbox Island. Lunch at a restaurant.",
             "transportación redonda. box luch. visita a las coloradas. visita a la reserva de rio lagartos. comida en restaurante. entrada a la granja de cocodrilos itzamkanac.": "Round-trip transportation. Box lunch. Visit to Las Coloradas. Visit to the Rio Lagartos Reserve. Lunch at a restaurant. Entrance to the Itzamkanac Crocodile Farm.",
             "transportación redonda. visita a las coloradas. visita a la reserva de rio lagartos. comida en restaurante. entrada a la granja de cocodrilos itzamkanac.": "Round-trip transportation. Visit to Las Coloradas. Visit to the Rio Lagartos Reserve. Lunch at a restaurant. Entrance to the Itzamkanac Crocodile Farm.",
@@ -1191,7 +1226,7 @@
             } catch(e) {}
         }
 
-        // --- MANEJO DE MENÚ DE 3 BARRAS MÓVIL ---
+        // --- MANEJO DE MENÚ DE 3 BARRAS MÓVIL ESTILO APPLE (DERECHA) ---
         function toggleMobileMenu() {
             const dropdown = document.getElementById('mobile-menu-dropdown');
             const b1 = document.getElementById('hamb-bar-1');
@@ -1202,14 +1237,16 @@
             
             if (isOpen) {
                 dropdown.style.maxHeight = '0px';
+                dropdown.style.opacity = '0';
                 b1.style.transform = 'none';
                 b2.style.opacity = '1';
                 b3.style.transform = 'none';
             } else {
                 dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
-                b1.style.transform = 'translateY(8px) rotate(45deg)';
+                dropdown.style.opacity = '1';
+                b1.style.transform = 'translateY(6.5px) rotate(-45deg)';
                 b2.style.opacity = '0';
-                b3.style.transform = 'translateY(-8px) rotate(-45deg)';
+                b3.style.transform = 'translateY(-6.5px) rotate(45deg)';
             }
         }
 
@@ -1298,12 +1335,12 @@
 
         function getCreativeSlogan(item, index) {
             const slogansTours = { 
-                es: ["Travesía Mística Exclusiva", "Aventura Premium a Medida", "Exploración de Leyenda", "Descubrimiento de Élite", "Experiencia de Lujo Absoluto", "Ruta Ancestral de Ensueño"], 
-                en: ["Exclusive Mystical Journey", "Bespoke Premium Adventure", "Legendary Exploration", "Elite Discovery Route", "Absolute Luxury Experience", "Dream Ancestral Expedition"] 
+                es: ["Travesía Mística Exclusiva", "Aventura Premium a Medida", "Exploración de Leyenda", "Descubrimientos Únicos", "Experiencia de Lujo Absoluto", "Ruta Ancestral de Ensueño"], 
+                en: ["Exclusive Mystical Journey", "Bespoke Premium Adventure", "Legendary Exploration", "Unique Discoveries", "Absolute Luxury Experience", "Dream Ancestral Expedition"] 
             };
             const slogansYates = { 
-                es: ["Navegación de Alta Costura", "Elegancia sobre el Mar Turquesa", "Travesía Privada de Lujo", "Atardecer Exclusivo en Popa", "Carta Náutica de Ensueño", "Libertad Oceánica Absoluta"], 
-                en: ["Haute Couture Navigation", "Elegance on the Turquoise Sea", "Luxury Private Voyage", "Exclusive Aft Sunset", "Dream Nautical Charter", "Absolute Oceanic Freedom"] 
+                es: ["Navega como nunca antes", "Elegancia sobre el Mar Turquesa", "Travesía Privada de Lujo", "Atardecer Exclusivo en Popa", "Carta Náutica de Ensueño", "Libertad Oceánica Absoluta"], 
+                en: ["Sail like never before", "Elegance on the Turquoise Sea", "Luxury Private Voyage", "Exclusive Aft Sunset", "Dream Nautical Charter", "Absolute Oceanic Freedom"] 
             };
             const slogansTrans = { 
                 es: ["Traslado VIP Impecable", "Llegada de Alta Gama", "Confort Absoluto en Ruta", "Logística de Clase Mundial", "Privacidad Total en Movimiento", "Recepción de Élite"], 
@@ -1391,7 +1428,7 @@
                 
                 return `
                 <div class="w-[80vw] max-w-[310px] sm:w-[320px] md:w-[380px] flex-shrink-0 snap-start group cursor-pointer h-full" onclick="openDetailModal('${encodeURIComponent(item['nombre'])}')">
-                    <div class="glass-card rounded-2xl sm:rounded-3xl overflow-hidden h-full flex flex-col relative border border-white/10 group-hover:border-brand-accent/50 transition-all duration-300 shadow-xl transform group-hover:-translate-y-1">
+                    <div class="glass-card rounded-2xl sm:rounded-3xl overflow-hidden h-full flex flex-col relative border border-white/10 group-hover:border-brand-accent/50 transition-all duration-300 shadow-xl transform group-hover:-translate-y-1 active:scale-[0.98]">
                         <div class="h-44 sm:h-52 md:h-56 w-full overflow-hidden relative">
                             <div class="absolute inset-0 bg-brand-dark/20 group-hover:bg-transparent z-10 transition-colors duration-300"></div>
                             <img src="${imgUrl}" alt="${title}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out" onerror="handleImgError(this, '${tipoCat}')">
@@ -1452,11 +1489,11 @@
             currentCategory = category;
             
             document.querySelectorAll('#page-catalog button[id^="sub-nav-"]').forEach(btn => {
-                btn.className = "cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80";
+                btn.className = "cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white glass-panel hover:border-brand-accent/50 hover:bg-brand-navy/80 active:scale-[0.98]";
             });
             const activeBtn = document.getElementById('sub-nav-' + category);
             if (activeBtn) {
-                activeBtn.className = "cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-lg border border-brand-accent";
+                activeBtn.className = "cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-accent text-brand-dark shadow-lg border border-brand-accent active:scale-[0.98]";
             }
 
             const titleMap = {
@@ -1528,7 +1565,7 @@
                 card.onclick = () => openDetailModal(item['nombre']);
 
                 card.innerHTML = `
-                    <div class="glass-card rounded-2xl sm:rounded-[2rem] overflow-hidden flex flex-col h-full relative border border-white/5 group-hover:border-brand-accent/40 transition-all duration-300 shadow-lg transform group-hover:-translate-y-1">
+                    <div class="glass-card rounded-2xl sm:rounded-[2rem] overflow-hidden flex flex-col h-full relative border border-white/5 group-hover:border-brand-accent/40 transition-all duration-300 shadow-lg transform group-hover:-translate-y-1 active:scale-[0.98]">
                         <div class="h-48 sm:h-56 w-full overflow-hidden relative">
                             <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent z-10"></div>
                             <img src="${imgUrl}" alt="${title}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out" onerror="handleImgError(this, '${tipoCat}')">
@@ -1722,11 +1759,11 @@
 
                 // Active Mobile Dropdown Nav
                 document.querySelectorAll('[id^="btn-mob-"]').forEach(b => {
-                    b.className = "w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-slate-300 hover:text-white hover:bg-white/5 text-left transition-all";
+                    b.className = "w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-slate-300 hover:text-white hover:bg-white/[0.04] text-left transition-all active:scale-[0.98]";
                 });
                 const activeMobBtn = document.getElementById('btn-mob-' + pageId);
                 if (activeMobBtn) {
-                    activeMobBtn.className = "w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-white bg-white/5 border border-brand-accent/30 text-left transition-all";
+                    activeMobBtn.className = "w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-xs font-bold font-sans tracking-[0.15em] uppercase text-white bg-white/[0.06] border border-brand-accent/30 text-left transition-all active:scale-[0.98]";
                 }
                 
                 try {
