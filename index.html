@@ -262,6 +262,115 @@
             animation: rainbowFlow 2s linear infinite !important;
         }
 
+    
+        /* ==========================================================================
+           EFECTO DE ONDAS / HUMO DE COLORES MULTICOLOR EN HEADER Y FOOTER
+           ========================================================================== */
+        .smoke-wave-canvas-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+            background: #000000;
+        }
+
+        /* Capas de humo etéreo con morphing y difuminado orgánico */
+        .smoke-wave-layer {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(55px) saturate(180%);
+            mix-blend-mode: screen;
+            will-change: transform, opacity, filter;
+            pointer-events: none;
+        }
+
+        .wave-layer-1 {
+            width: 120%;
+            height: 140%;
+            top: -20%;
+            left: -10%;
+            background: radial-gradient(circle at 30% 40%, rgba(0, 113, 227, 0.45), rgba(139, 92, 246, 0.4) 45%, transparent 75%);
+            animation: smokeDrift1 15s ease-in-out infinite alternate, smokeColorCycle 22s linear infinite;
+            opacity: 0.4;
+        }
+
+        .wave-layer-2 {
+            width: 130%;
+            height: 150%;
+            bottom: -30%;
+            right: -15%;
+            background: radial-gradient(circle at 70% 60%, rgba(236, 72, 153, 0.45), rgba(139, 92, 246, 0.35) 40%, transparent 75%);
+            animation: smokeDrift2 19s ease-in-out infinite alternate, smokeColorCycle 26s linear infinite reverse;
+            opacity: 0.35;
+        }
+
+        .wave-layer-3 {
+            width: 110%;
+            height: 130%;
+            top: 5%;
+            left: 10%;
+            background: radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.35), rgba(245, 158, 11, 0.3) 50%, transparent 70%);
+            animation: smokeDrift3 21s ease-in-out infinite alternate, smokeColorCycle 18s linear infinite;
+            opacity: 0.3;
+        }
+
+        /* Ondas sinusoidales tipo olas marinas / cintas de luz en movimiento horizontal fluido */
+        .smoke-svg-waves {
+            filter: blur(25px) saturate(160%);
+            animation: smokeColorCycle 22s linear infinite;
+            transform-origin: center bottom;
+        }
+
+        .svg-wave-anim-1 {
+            animation: waveHorizontalScroll 14s ease-in-out infinite alternate;
+        }
+
+        .svg-wave-anim-2 {
+            animation: waveHorizontalScrollRev 18s ease-in-out infinite alternate;
+        }
+
+        @keyframes waveHorizontalScroll {
+            0% { transform: translateX(0) translateY(0) scaleY(1); }
+            50% { transform: translateX(-15%) translateY(-10px) scaleY(1.15); }
+            100% { transform: translateX(-30%) translateY(5px) scaleY(0.9); }
+        }
+
+        @keyframes waveHorizontalScrollRev {
+            0% { transform: translateX(-25%) translateY(5px) scaleY(0.95); }
+            50% { transform: translateX(-10%) translateY(-15px) scaleY(1.2); }
+            100% { transform: translateX(0) translateY(0) scaleY(1); }
+        }
+
+        @keyframes smokeDrift1 {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.3; }
+            50% { transform: translate(6%, 8%) scale(1.15) rotate(4deg); opacity: 0.55; }
+            100% { transform: translate(-5%, -6%) scale(0.92) rotate(-3deg); opacity: 0.35; }
+        }
+
+        @keyframes smokeDrift2 {
+            0% { transform: translate(0, 0) scale(1.05) rotate(0deg); opacity: 0.35; }
+            50% { transform: translate(-8%, -10%) scale(0.9) rotate(-5deg); opacity: 0.5; }
+            100% { transform: translate(5%, 7%) scale(1.18) rotate(3deg); opacity: 0.3; }
+        }
+
+        @keyframes smokeDrift3 {
+            0% { transform: translate(0, 0) scale(0.95); opacity: 0.25; }
+            50% { transform: translate(10%, -6%) scale(1.2); opacity: 0.45; }
+            100% { transform: translate(-8%, 8%) scale(1.05); opacity: 0.25; }
+        }
+
+        @keyframes smokeColorCycle {
+            0% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(180deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* Atenuación estética para garantizar 100% de contraste y legibilidad */
+        .bg-radial-gradient-attenuation {
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.55) 75%, rgba(0, 0, 0, 0.85) 100%);
+        }
+
     </style>
 </head>
 <body class="antialiased overflow-x-hidden w-full max-w-full selection:bg-purple-600 selection:text-white bg-[#f5f5f7] text-[#1d1d1f]">
@@ -275,16 +384,41 @@
         </div>
 
         <div class="relative z-10 w-full max-w-full flex-grow">
-            <!-- CABECERA CON LOGO (GRANDE Y PROMINENTE) -->
-            <header class="site-brand-header flex flex-col items-center justify-center pt-4 pb-2 md:pt-6 md:pb-3 px-4 cursor-pointer text-center w-full max-w-full relative border-b border-white/10 bg-[#000000] shadow-sm transition-all duration-500" onclick="navigateTo('home')">
-                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-overlay -z-10 pointer-events-none"></div>
+                        <!-- CABECERA CON LOGO Y EFECTO DE HUMO / OLAS DE COLORES -->
+            <header class="site-brand-header flex flex-col items-center justify-center pt-4 pb-2 md:pt-6 md:pb-3 px-4 cursor-pointer text-center w-full max-w-full relative border-b border-white/10 bg-[#000000] shadow-sm transition-all duration-500 overflow-hidden" onclick="navigateTo('home')">
+                <!-- EFECTO DE ONDAS / HUMO DE COLORES ENCABEZADO -->
+                <div class="smoke-wave-canvas-container absolute inset-0 overflow-hidden pointer-events-none z-0">
+                    <div class="smoke-wave-layer wave-layer-1"></div>
+                    <div class="smoke-wave-layer wave-layer-2"></div>
+                    <div class="smoke-wave-layer wave-layer-3"></div>
+                    <svg class="smoke-svg-waves absolute inset-0 w-[200%] h-full opacity-40 mix-blend-screen" preserveAspectRatio="none" viewBox="0 0 1440 320">
+                        <defs>
+                            <linearGradient id="header-wave-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#0071e3" stop-opacity="0.8" />
+                                <stop offset="35%" stop-color="#8b5cf6" stop-opacity="0.9" />
+                                <stop offset="70%" stop-color="#ec4899" stop-opacity="0.8" />
+                                <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.8" />
+                            </linearGradient>
+                            <linearGradient id="header-wave-grad-2" x1="100%" y1="0%" x2="0%" y2="0%">
+                                <stop offset="0%" stop-color="#ec4899" stop-opacity="0.7" />
+                                <stop offset="40%" stop-color="#8b5cf6" stop-opacity="0.8" />
+                                <stop offset="75%" stop-color="#0071e3" stop-opacity="0.8" />
+                                <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.7" />
+                            </linearGradient>
+                        </defs>
+                        <path class="svg-wave-anim-1" fill="url(#header-wave-grad-1)" d="M0,160 C320,300, 420,40, 720,180 C1020,320, 1140,60, 1440,160 L1440,320 L0,320 Z"></path>
+                        <path class="svg-wave-anim-2" fill="url(#header-wave-grad-2)" d="M0,200 C360,60, 540,320, 900,140 C1260,-40, 1320,240, 1440,200 L1440,320 L0,320 Z"></path>
+                    </svg>
+                    <div class="absolute inset-0 bg-radial-gradient-attenuation pointer-events-none"></div>
+                </div>
+
                 <div class="flex flex-col items-center justify-center gap-0 w-full relative z-10 transform hover:scale-[1.01] transition-transform duration-300">
-                    <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Amazing Colors Logo" class="w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain -mb-5 sm:-mb-7 md:-mb-9 drop-shadow-[0_0_30px_rgba(0,113,227,0.35)]">
+                    <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Amazing Colors Logo" class="w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain -mb-5 sm:-mb-7 md:-mb-9 drop-shadow-[0_0_35px_rgba(0,113,227,0.45)]">
                     <div class="relative z-20">
-                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold font-display tracking-tight text-white uppercase leading-none">
+                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold font-display tracking-tight text-white uppercase leading-none drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
                             Amazing <span class="bg-gradient-to-r from-[#0071e3] via-[#8b5cf6] to-[#ec4899] bg-clip-text text-transparent">Colors</span>
                         </h1>
-                        <p class="mt-1.5 text-[9px] sm:text-[11px] md:text-[12px] font-sans font-medium tracking-[0.25em] uppercase text-slate-400" data-i18n="brand_tagline">
+                        <p class="mt-1.5 text-[9px] sm:text-[11px] md:text-[12px] font-sans font-medium tracking-[0.25em] uppercase text-slate-300 drop-shadow-[0_1px_8px_rgba(0,0,0,0.7)]" data-i18n="brand_tagline">
                             Experiencias únicas e inolvidables
                         </p>
                     </div>
@@ -690,8 +824,34 @@
         </button>
 
         <!-- FOOTER OFICIAL CON BOTONES DE REDES SOCIALES Y LOGO AMPLIO -->
-        <footer class="bg-[#000000] border-t border-white/10 pt-12 sm:pt-16 pb-8 relative z-20 w-full max-w-full text-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <footer class="bg-[#000000] border-t border-white/10 pt-12 sm:pt-16 pb-8 relative z-20 w-full max-w-full text-white overflow-hidden">
+            <!-- EFECTO DE ONDAS / HUMO DE COLORES PIE DE PÁGINA -->
+            <div class="smoke-wave-canvas-container absolute inset-0 overflow-hidden pointer-events-none z-0">
+                <div class="smoke-wave-layer wave-layer-1"></div>
+                <div class="smoke-wave-layer wave-layer-2"></div>
+                <div class="smoke-wave-layer wave-layer-3"></div>
+                <svg class="smoke-svg-waves absolute inset-0 w-[200%] h-full opacity-35 mix-blend-screen" preserveAspectRatio="none" viewBox="0 0 1440 320">
+                    <defs>
+                        <linearGradient id="footer-wave-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#0071e3" stop-opacity="0.8" />
+                            <stop offset="40%" stop-color="#8b5cf6" stop-opacity="0.9" />
+                            <stop offset="70%" stop-color="#ec4899" stop-opacity="0.8" />
+                            <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.8" />
+                        </linearGradient>
+                        <linearGradient id="footer-wave-grad-2" x1="100%" y1="0%" x2="0%" y2="0%">
+                            <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.7" />
+                            <stop offset="40%" stop-color="#ec4899" stop-opacity="0.8" />
+                            <stop offset="70%" stop-color="#8b5cf6" stop-opacity="0.9" />
+                            <stop offset="100%" stop-color="#0071e3" stop-opacity="0.7" />
+                        </linearGradient>
+                    </defs>
+                    <path class="svg-wave-anim-1" fill="url(#footer-wave-grad-1)" d="M0,140 C280,20, 500,280, 800,120 C1100,-40, 1300,220, 1440,140 L1440,320 L0,320 Z"></path>
+                    <path class="svg-wave-anim-2" fill="url(#footer-wave-grad-2)" d="M0,220 C340,340, 600,80, 920,220 C1240,360, 1350,100, 1440,220 L1440,320 L0,320 Z"></path>
+                </svg>
+                <div class="absolute inset-0 bg-radial-gradient-attenuation pointer-events-none"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 mb-10 sm:mb-12 text-center md:text-left">
                     <div class="md:col-span-5 flex flex-col items-center md:items-start">
                         <img src="https://beamazingcolors.github.io/oficial/lg2.png" alt="Amazing Colors Logo" class="w-40 h-40 sm:w-48 sm:h-48 mb-3 opacity-90 hover:scale-105 transition-all duration-500 drop-shadow-[0_0_20px_rgba(0,113,227,0.3)] object-contain cursor-pointer" onclick="navigateTo('home')">
