@@ -7,12 +7,20 @@
     <meta name="description" content="Redefiniendo el viaje privado por el Caribe Mexicano. Aventuras auténticas y logística VIP.">
     
     <!-- FAVICON ESTÉTICO Y DE MÁXIMA ESCALA -->
-    <link id="dynamic-favicon" rel="icon" type="image/png" sizes="512x512" href="https://beamazingcolors.github.io/oficial/lg2.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <link id="dynamic-favicon" rel="icon" type="image/png" sizes="192x192" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://beamazingcolors.github.io/oficial/lg2.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://beamazingcolors.github.io/oficial/lg2.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://beamazingcolors.github.io/oficial/lg2.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://beamazingcolors.github.io/oficial/lg2.png">
     <link rel="shortcut icon" href="https://beamazingcolors.github.io/oficial/lg2.png">
+    <script>
+        // Precarga ultra-rápida de logo para favicon
+        try {
+            const _favPreload = new Image();
+            _favPreload.crossOrigin = 'anonymous';
+            _favPreload.src = 'https://beamazingcolors.github.io/oficial/lg2.png';
+        } catch(e) {}
+    </script>
     
     <!-- Seguridad Básica -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:;">
@@ -698,24 +706,6 @@
                         <button id="sub-nav-tour" onclick="filterCatalog('tour')" class="cat-option-btn active-cat cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-gradient-to-r from-[#0071e3] via-[#8b5cf6] to-[#ec4899] text-white shadow-md shadow-purple-500/20 active:scale-[0.97]" data-i18n="sub_tour"><span class="cat-option-text">Tours & Aventuras</span></button>
                         <button id="sub-nav-yate" onclick="filterCatalog('yate')" class="cat-option-btn cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 text-slate-700 bg-white border border-slate-200 hover:border-purple-300 active:scale-[0.97]" data-i18n="sub_yacht"><span class="cat-option-text">Yates & Catamaranes</span></button>
                         <button id="sub-nav-transportacion" onclick="filterCatalog('transportacion')" class="cat-option-btn cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300 text-slate-700 bg-white border border-slate-200 hover:border-purple-300 active:scale-[0.97]" data-i18n="sub_trans"><span class="cat-option-text">Traslados privados</span></button>
-                    </div>
-
-                                        <div class="mb-10 w-full max-w-xl mx-auto relative reveal-up px-3 sm:px-0">
-                        <!-- Marco con Aura y Gradiente Dinámico -->
-                        <div class="relative group p-[2px] rounded-full bg-gradient-to-r from-[#0071e3]/40 via-[#8b5cf6]/50 via-[#ec4899]/40 to-[#06b6d4]/40 hover:from-[#0071e3] hover:via-[#8b5cf6] hover:to-[#ec4899] focus-within:from-[#0071e3] focus-within:via-[#8b5cf6] focus-within:via-[#ec4899] focus-within:to-[#f59e0b] transition-all duration-500 shadow-md hover:shadow-xl focus-within:shadow-[0_12px_35px_rgba(139,92,246,0.22)]">
-                            <div class="relative flex items-center w-full h-13 sm:h-14 rounded-full bg-white/95 backdrop-blur-2xl px-2.5">
-                                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-[#0071e3] to-[#8b5cf6] flex items-center justify-center text-white shadow-sm shadow-purple-500/30 shrink-0 ml-1 group-hover:scale-105 group-focus-within:scale-110 transition-transform duration-300">
-                                    <i class="fas fa-search text-xs sm:text-sm"></i>
-                                </div>
-                                <input class="peer h-full w-full outline-none text-xs sm:text-sm text-[#1d1d1f] bg-transparent px-3.5 font-medium placeholder:text-slate-400 placeholder:font-normal" type="text" id="catalog-search" oninput="handleCatalogSearch(this.value)" data-i18n-placeholder="search_placeholder" placeholder="Buscar por nombre o experiencia...">
-                                <button type="button" id="catalog-search-clear" onclick="clearCatalogSearch()" aria-label="Limpiar búsqueda" class="hidden w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-700 items-center justify-center transition-all cursor-pointer shrink-0 mr-1">
-                                    <i class="fas fa-times text-xs"></i>
-                                </button>
-                                <span class="hidden sm:inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 border border-slate-200/80 text-[10px] font-bold text-slate-500 uppercase tracking-widest select-none shrink-0 mr-1.5">
-                                    <i class="fas fa-compass text-purple-600 text-[10px]"></i> Explorar
-                                </span>
-                            </div>
-                        </div>
                     </div>
 
                     <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 justify-items-center min-h-[40vh] reveal-up">
@@ -1793,24 +1783,150 @@
             }
         }
 
-        // --- OPTIMIZACIÓN DE FAVICON MAXIMIZADO ---
+        // --- OPTIMIZACIÓN DE FAVICON MAXIMIZADO (AUTO-RECORTE Y MÁXIMA ESCALA) ---
         function optimizeFavicon() {
             try {
                 const img = new Image();
                 img.crossOrigin = 'anonymous';
-                img.src = GITHUB_BASE + 'lg2.png';
+                const srcBase = (typeof GITHUB_BASE !== 'undefined' ? GITHUB_BASE : 'https://beamazingcolors.github.io/oficial/');
+                img.src = srcBase + 'lg2.png';
+                
                 img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = 64;
-                    canvas.height = 64;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, -2, -2, 68, 68);
-                    const fav = document.getElementById('dynamic-favicon');
-                    if (fav) {
-                        fav.href = canvas.toDataURL('image/png');
+                    const natW = img.naturalWidth || img.width || 256;
+                    const natH = img.naturalHeight || img.height || 256;
+                    
+                    // Canvas de salida a alta definición (192x192 para Retina y pantallas 4K)
+                    const outSize = 192;
+                    const outCanvas = document.createElement('canvas');
+                    outCanvas.width = outSize;
+                    outCanvas.height = outSize;
+                    const outCtx = outCanvas.getContext('2d');
+                    outCtx.imageSmoothingEnabled = true;
+                    outCtx.imageSmoothingQuality = 'high';
+                    
+                    let cropped = false;
+                    
+                    // 1. Detección automática por Bounding Box (eliminación total de márgenes transparentes)
+                    try {
+                        const scanCanvas = document.createElement('canvas');
+                        scanCanvas.width = natW;
+                        scanCanvas.height = natH;
+                        const scanCtx = scanCanvas.getContext('2d');
+                        scanCtx.drawImage(img, 0, 0);
+                        const imgData = scanCtx.getImageData(0, 0, natW, natH);
+                        const data = imgData.data;
+                        
+                        let minX = natW, minY = natH, maxX = 0, maxY = 0;
+                        let hasVisible = false;
+                        
+                        for (let y = 0; y < natH; y++) {
+                            for (let x = 0; x < natW; x++) {
+                                const alpha = data[(y * natW + x) * 4 + 3];
+                                if (alpha > 15) {
+                                    hasVisible = true;
+                                    if (x < minX) minX = x;
+                                    if (x > maxX) maxX = x;
+                                    if (y < minY) minY = y;
+                                    if (y > maxY) maxY = y;
+                                }
+                            }
+                        }
+                        
+                        if (hasVisible && maxX >= minX && maxY >= minY) {
+                            const bh = maxY - minY + 1;
+                            
+                            // Comprobar si hay separación de texto inferior para aislar el isotipo/emblema
+                            let rowCounts = new Array(bh).fill(0);
+                            for (let y = minY; y <= maxY; y++) {
+                                for (let x = minX; x <= maxX; x++) {
+                                    if (data[(y * natW + x) * 4 + 3] > 15) {
+                                        rowCounts[y - minY]++;
+                                    }
+                                }
+                            }
+                            
+                            let cropMinY = minY;
+                            let cropMaxY = maxY;
+                            let cropMinX = minX;
+                            let cropMaxX = maxX;
+                            
+                            // Buscar brecha horizontal limpia entre el isotipo y el texto inferior
+                            for (let i = Math.floor(bh * 0.25); i < Math.floor(bh * 0.85); i++) {
+                                if (rowCounts[i] === 0) {
+                                    cropMaxY = minY + i;
+                                    // Recalcular ancho del isotipo aislado
+                                    let subMinX = natW, subMaxX = 0;
+                                    for (let sy = cropMinY; sy <= cropMaxY; sy++) {
+                                        for (let sx = minX; sx <= maxX; sx++) {
+                                            if (data[(sy * natW + sx) * 4 + 3] > 15) {
+                                                if (sx < subMinX) subMinX = sx;
+                                                if (sx > subMaxX) subMaxX = sx;
+                                            }
+                                        }
+                                    }
+                                    if (subMaxX >= subMinX) {
+                                        cropMinX = subMinX;
+                                        cropMaxX = subMaxX;
+                                    }
+                                    break;
+                                }
+                            }
+                            
+                            const finalW = cropMaxX - cropMinX + 1;
+                            const finalH = cropMaxY - cropMinY + 1;
+                            
+                            // Escala al 100% de la casilla para que el favicon se vea lo más grande posible
+                            const scale = outSize / Math.max(finalW, finalH);
+                            const destW = Math.round(finalW * scale);
+                            const destH = Math.round(finalH * scale);
+                            const destX = Math.round((outSize - destW) / 2);
+                            const destY = Math.round((outSize - destH) / 2);
+                            
+                            outCtx.drawImage(img, cropMinX, cropMinY, finalW, finalH, destX, destY, destW, destH);
+                            cropped = true;
+                        }
+                    } catch(corsErr) {
+                        // Fallback protegido contra restricciones CORS locales
                     }
+                    
+                    // 2. Fallback de Zoom Óptico al 175% si el navegador no permite getImageData
+                    if (!cropped) {
+                        const zoom = 1.75;
+                        const sw = natW / zoom;
+                        const sh = natH / zoom;
+                        const sx = (natW - sw) / 2;
+                        const sy = (natH - sh) / 2;
+                        outCtx.drawImage(img, sx, sy, sw, sh, 0, 0, outSize, outSize);
+                    }
+                    
+                    const maxFaviconUrl = outCanvas.toDataURL('image/png');
+                    
+                    // Actualizar e inyectar en TODOS los enlaces de favicon para obligar al navegador a repintar
+                    const existingFavicons = document.querySelectorAll('link[rel*="icon"], link[rel="apple-touch-icon"]');
+                    existingFavicons.forEach(el => el.remove());
+                    
+                    const targets = [
+                        { rel: 'icon', type: 'image/png', sizes: '192x192' },
+                        { rel: 'icon', type: 'image/png', sizes: '96x96' },
+                        { rel: 'icon', type: 'image/png', sizes: '48x48' },
+                        { rel: 'icon', type: 'image/png', sizes: '32x32' },
+                        { rel: 'icon', type: 'image/png', sizes: '16x16' },
+                        { rel: 'apple-touch-icon', sizes: '180x180' },
+                        { rel: 'shortcut icon', type: 'image/png' }
+                    ];
+                    
+                    targets.forEach(t => {
+                        const link = document.createElement('link');
+                        link.rel = t.rel;
+                        if (t.type) link.type = t.type;
+                        if (t.sizes) link.sizes = t.sizes;
+                        link.href = maxFaviconUrl;
+                        document.head.appendChild(link);
+                    });
                 };
-            } catch(e) {}
+            } catch(e) {
+                console.warn('Optimización de favicon en proceso:', e);
+            }
         }
 
         // --- MANEJO DE MENÚ DE 3 BARRAS MÓVIL ESTILO APPLE (DERECHA) ---
@@ -2520,6 +2636,7 @@
                 }
             });
         });
+        window.addEventListener('load', optimizeFavicon);
     </script>
 </body>
 </html>
